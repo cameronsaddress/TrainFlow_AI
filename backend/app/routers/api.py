@@ -7,6 +7,12 @@ from ..dependencies import verify_admin, verify_viewer
 
 # --- Glossary Router ---
 glossary_router = APIRouter(prefix="/glossary", tags=["glossary"])
+export_router = APIRouter(prefix="/export", tags=["Export"])
+processing_router = APIRouter(prefix="/process", tags=["Processing"])
+
+@export_router.get("/ping")
+async def ping_export():
+    return {"status": "pong"}
 
 @glossary_router.post("/", dependencies=[Depends(verify_admin)])
 async def add_glossary_entry(entry: dict, db: Session = Depends(get_db)):
@@ -178,6 +184,30 @@ async def get_processing_status(video_id: int, db: Session = Depends(get_db)):
         "processing_stage": video.processing_stage,
         "progress": 45  # Keep mock progress for now or map stage to %
     }
+
+@processing_router.get("/jobs")
+async def get_jobs(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """
+    Get recent processing jobs (Videos).
+    """
+    from ..models import models
+    # Return videos descending by ID
+    videos = db.query(models.Video).order_by(models.Video.id.desc()).offset(skip).limit(limit).all()
+    
+    # Map to Job-like structure
+    res = []
+    for v in videos:
+        res.append({
+            "id": v.id,
+            "video_id": v.id,
+            "status": v.status,
+            "progress": 100 if v.status == "COMPLETED" else 0, # Simple progress
+            "current_stage": v.processing_stage,
+            "error_message": v.error_message,
+            "created_at": v.created_at,
+            "video_filename": v.filename
+        })
+    return res
 
 @processing_router.get("/flows/{flow_id}", dependencies=[Depends(verify_viewer)])
 async def get_process_flow(flow_id: int, db: Session = Depends(get_db)):
@@ -408,6 +438,19 @@ async def generate_wo_guide_endpoint(flow_id: int, target_system: str = "Generic
     result = wo_generator.generate_wo_guide_data(flow)
     return result
 
+@export_router.post("/training-guide/{flow_id}", dependencies=[Depends(verify_viewer)])
+async def generate_training_guide_endpoint(flow_id: int, db: Session = Depends(get_db)):
+    """
+    Hyper-Learning: Generate a synthetic training guide fusing Video + Business Rules.
+    """
+    from ..services import training_synthesizer
+    
+    result = training_synthesizer.generate_hyper_guide(flow_id, db)
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+        
+    return result
+
 @processing_router.put("/flows/{flow_id}/approval", dependencies=[Depends(verify_admin)])
 async def update_flow_approval(flow_id: int, status_update: dict, db: Session = Depends(get_db)):
     """
@@ -429,7 +472,8 @@ async def update_flow_approval(flow_id: int, status_update: dict, db: Session = 
     return {"id": flow.id, "status": flow.approval_status}
 
 # --- Export Router ---
-export_router = APIRouter(prefix="/export", tags=["export"])
+# export_router defined at top of file
+
 
 @export_router.get("/{flow_id}")
 def export_flow(flow_id: int, format: str = "json", db: Session = Depends(get_db)):

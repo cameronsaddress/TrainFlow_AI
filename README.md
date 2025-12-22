@@ -1,22 +1,18 @@
 # TrainFlow AI: Enterprise Multimodal Workflow Agent
 
-**Version**: 2.5 (GB10-Optimized)
+**Version**: 3.0 (Hyper-Learning)
 **Author**: TrainFlow Engineering Team
 
-TrainFlow AI is an advanced "Field-to-Office" automation system that transforms raw video footage of industrial procedures into verifiable, step-by-step training guides. It leverages a sophisticated multimodal pipeline (ASR, Computer Vision, LLM Reasoning) to autonomously "watch" a video, understand the intent, and generate a standardized Standard Operating Procedure (SOP) with visual evidence.
+TrainFlow AI is an advanced "Field-to-Office" automation system that transforms raw video footage of industrial procedures into verifiable, step-by-step training guides. It leverages a sophisticated multimodal pipeline (ASR, Computer Vision, LLM Reasoning) and a **Knowledge Engine** to autonomously "watch" a video, understand the intent, and generate succinct, rule-compliant training modules.
 
 ---
 
-## 🚨 Critical Development Rules
+## 🚀 Key Features
 
-All contributors must adhere to these strict engineering standards:
-
-1.  **NO MOCK DATA**: The system must always run against the real containerized stack. Never hardcode JSON responses or use "dummy" arrays in the frontend. All data must originate from the PostgreSQL database or the actual AI pipeline.
-2.  **DOCKER EXCLUSIVE**: All code execution, database migrations, and service orchestration must occur within the Docker containers. Do not run Python scripts or npm commands on the host machine directly.
-    *   *Correct*: `docker exec trainflow-backend python3 script.py`
-    *   *Incorrect*: `python3 script.py`
-3.  **REAL FILE I/O**: Video uploads and processing must use the actual MinIO/S3 storage backend and local volume mounts. No bypassing the storage layer.
-4.  **SEQUENTIAL PROCESSING**: The worker pipeline requires exclusive GPU access. Jobs are processed strictly sequentially (FIFO) to prevent VRAM OOM errors.
+*   **Autonomous Video Analysis**: Converts MP4s into broken-down process steps with timestamps.
+*   **Knowledge Engine (New in V3)**: Ingests PDFs/SOPs, extracts business rules using RAG, and enforces compliance.
+*   **Hyper-Guides (New in V3)**: Synthesizes "Perfect Training Guides" by fusing video actions with safety rules.
+*   **Smart Player**: Interactive split-screen learning with "Heads Up" instruction overlays.
 
 ---
 
@@ -30,7 +26,7 @@ graph TD
     Client -->|View Results| API
     
     API -->|Store| MinIO[MinIO Object Store]
-    API -->|Persist| PG[(PostgreSQL DB)]
+    API -->|Persist| PG[(PostgreSQL + pgvector)]
     API -->|Queue Job| Redis[Redis Queue]
     
     subgraph "AI Processing Cluster (GPU Container)"
@@ -44,12 +40,12 @@ graph TD
         
         subgraph "Cognitive Layer"
             Align[Multimodal Alignment Algo]
-            LLM[Gemini 2.0 Flash / GPT-4o]
+            LLM[Gemini 3 Flash]
         end
         
         subgraph "Synthesis Layer"
             Gen[FFmpeg Smart Watch]
-            Graph[Flow Generator]
+            Knowledge[Rule Fusion Engine]
         end
         
         Worker --> ASR
@@ -57,6 +53,7 @@ graph TD
         ASR & CV --> Align
         Align --> LLM
         LLM --> Gen
+        Gen --> Knowledge
     end
     
     Worker -->|Save Metadata| PG
@@ -69,12 +66,12 @@ graph TD
 ### Frontend
 -   **Framework**: Next.js 14 (App Router)
 -   **Styling**: TailwindCSS + Lucide Icons + Framer Motion
--   **State**: React Hooks (SWR/Fetch) - *No Redux/global stores to keep it lightweight.*
--   **Visualization**: React Flow (for verify interactive graphs).
+-   **State**: React Hooks (SWR/Fetch)
+-   **Visualization**: React Flow & Smart Player HUD
 
 ### Backend API
 -   **Framework**: FastAPI (Python 3.10+)
--   **Database**: PostgreSQL 15 (SQLAlchemy ORM)
+-   **Database**: PostgreSQL 15 + `pgvector` (Vector Search)
 -   **Queue**: Redis (Pub/Sub + List)
 -   **Storage**: MinIO (S3 Compatible)
 
@@ -83,22 +80,21 @@ The core IP resides in `backend/app/services/`.
 
 1.  **ASR (Automatic Speech Recognition)**
     *   **Model**: `nvidia/parakeet-ctc-1.1b` (NeMo Toolkit)
-    *   **Why**: Optimized for industrial noise robustness and timestamp precision.
     *   **Module**: `services/asr.py`
 
 2.  **Computer Vision (CV)**
     *   **Object Detection**: `YOLOv8-World` (Real-time Open Vocabulary Detection)
-    *   **OCR**: `EasyOCR` (GPU-accelerated) for screen text reading.
+    *   **OCR**: `EasyOCR` (GPU-accelerated)
     *   **Module**: `services/cv.py`
 
-3.  **LLM Reasoning**
-    *   **Model**: Google Gemini 2.0 Flash (via OpenRouter) or OpenAI GPT-4o.
-    *   **Role**: Intent understanding, step segmentation, logic inference (Decision Nodes), and JSON structuring.
-    *   **Module**: `services/llm.py` & `services/field_assistant.py`
+3.  **LLM Reasoning & Knowledge**
+    *   **Model**: Google Gemini 3 Flash Experiment.
+    *   **Role**: Intent understanding, Rule Extraction (JSON), and Guide Synthesis.
+    *   **Module**: `services/llm.py` & `services/knowledge_ingestor.py`
 
-4.  **Multimodal Alignment**
-    *   **Algorithm**: Local proprietary fuzzy-match algorithm (`alignment.py`).
-    *   **Function**: Correlates ASR timestamps with CV detection events (e.g., "User says 'Click Next' AND OCR sees 'Next' button at t=4.5s").
+4.  **Hyper-Learning Engine**
+    *   **Algorithm**: "The Zipper" (Fuses Video Steps with Business Rules).
+    *   **Module**: `services/training_synthesizer.py`
 
 ---
 

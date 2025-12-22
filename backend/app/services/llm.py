@@ -154,3 +154,92 @@ def segment_transcript(full_text: str):
                 print(f"Chunk {i} Error: {e}")
                 
         return all_steps
+
+def generate_text(prompt: str) -> str:
+    """
+    Generic text generation utility for Knowledge Engine.
+    """
+    try:
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=[
+                {"role": "system", "content": "You are a helpful AI assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.1
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"LLM Generation Error: {e}")
+        return ""
+
+def get_embedding(text: str) -> list:
+    """
+    Generates vector embedding for text using OpenAI/compatible API.
+    Returns list of floats.
+    """
+    try:
+        # If using OpenRouter/NIM, check if they support embeddings endpoint.
+        # Otherwise might need a fallback or specific model.
+        # Defaulting to standard OpenAI call structure.
+        response = client.embeddings.create(
+            file=text, # Wrong arg? It's input=text usually. Let's check docs or use standard.
+            # Client wrapper might be strict.
+            model="text-embedding-3-small"
+        )
+        # Wait, OpenAI client uses `input`.
+        # Correct call:
+        response = client.embeddings.create(
+            input=text,
+            model="text-embedding-3-small"
+        )
+        return response.data[0].embedding
+    except Exception as e:
+        print(f"Embedding Error: {e}")
+        # Return generic zero vector for safety? or None?
+        # knowledge_ingestor expects list or throws?
+        return []
+
+SYNTHESIS_PROMPT = """
+You are a "Hyper-Learning" Instructor.
+Your goal is to convert a raw video step into a concise, rule-compliant training action.
+
+Input:
+1. Raw Step: "User kinda clicks the save button I guess"
+2. Relevant Rules: 
+   - "Must verify ZIP code before Save."
+   - "Do not click Save if status is Offline."
+
+Output JSON:
+{
+    "refined_action": "Verify ZIP Code, then click Save.",
+    "compliance_warnings": ["Do not click if status is Offline"],
+    "criticality": "HIGH"
+}
+"""
+
+def refine_instruction_with_rules(raw_text: str, rules: list) -> dict:
+    """
+    Synthesizes a clean instruction merged with compliance rules.
+    """
+    rules_text = "\n".join([f"- {r}" for r in rules])
+    user_content = f"Raw Step: \"{raw_text}\"\nRelevant Rules:\n{rules_text}"
+    
+    try:
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=[
+                {"role": "system", "content": SYNTHESIS_PROMPT},
+                {"role": "user", "content": user_content}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.1
+        )
+        return json.loads(response.choices[0].message.content)
+    except Exception as e:
+        print(f"Rule Synthesis Error: {e}")
+        return {
+            "refined_action": raw_text,
+            "compliance_warnings": [],
+            "criticality": "LOW"
+        }

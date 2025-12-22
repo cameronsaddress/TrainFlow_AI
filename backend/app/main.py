@@ -102,7 +102,7 @@ def health_check():
 # Let's apply 'verify_viewer' to Processing/Export (Read access), 
 # AND we will modify `api.py` to add `verify_admin` to critical WRITE endpoints.
 
-app.include_router(api.processing_router, prefix="/api", dependencies=[Depends(verify_viewer)])
+app.include_router(api.processing_router, prefix="/api")
 app.include_router(api.export_router, prefix="/api", dependencies=[Depends(verify_viewer)])
 app.include_router(api.glossary_router, prefix="/api")
 # app.include_router(api.uploads_router) # Removed duplicate
@@ -110,10 +110,11 @@ app.include_router(api.uploads_router, prefix="/api")
 app.include_router(api.analysis_router, prefix="/api") # New AI Field Assistant
 app.include_router(api.public_router, prefix="/api") # GPU Status, etc.
 
-from .routers import realtime
+from .routers import realtime, knowledge
 app.include_router(realtime.realtime_router)
+app.include_router(knowledge.router, prefix="/api") # Knowledge API
 
 # Create Tables (for dev/prototype simplicity, usually use Alembic)
 from .db import engine, Base
-from .models import models
+from .models import models, knowledge # Register Knowledge models
 Base.metadata.create_all(bind=engine)

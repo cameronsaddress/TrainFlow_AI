@@ -176,6 +176,38 @@ def process_video_job(video_id: int):
                 
                 aligned_data = reconstructed_steps
 
+        # FR-5: Merge Speaker Diarization into Steps
+        # Assign 'speaker' key to each step based on temporal overlap
+        speaker_segments = asr_result.get("speaker_segments", [])
+        if speaker_segments and aligned_data:
+            print(f"Merging {len(speaker_segments)} speaker segments into {len(aligned_data)} steps...")
+            for step in aligned_data:
+                s_start = step.get('start_ts', 0.0)
+                s_end = step.get('end_ts', 0.0)
+                step_dur = s_end - s_start
+                if step_dur <= 0: continue
+                
+                # Check overlaps
+                speaker_counts = {}
+                for seg in speaker_segments:
+                    # Intersection
+                    seg_start = seg['start']
+                    seg_end = seg['end']
+                    overlap_start = max(s_start, seg_start)
+                    overlap_end = min(s_end, seg_end)
+                    overlap = max(0, overlap_end - overlap_start)
+                    
+                    if overlap > 0:
+                        spk = seg['speaker']
+                        speaker_counts[spk] = speaker_counts.get(spk, 0) + overlap
+                        
+                # Assign max overlap speaker
+                if speaker_counts:
+                    best_speaker = max(speaker_counts, key=speaker_counts.get)
+                    step['speaker'] = best_speaker
+                else:
+                     step['speaker'] = "Unknown"
+
         video.processing_stage = "Saving Raw Extraction Data"
         if aligned_data:
              video.transcription_log = sanitize_json_compatible(aligned_data)
@@ -243,19 +275,30 @@ def process_video_job(video_id: int):
         
         for i, step_data in enumerate(aligned_data):
             # ... loop continues ...
-            # LLM Enrichment (Mocked or Real)
-            # refined_step = llm.refine_step(step_data) # If using real LLM
-            # For prototype speed, we map directly:
-            refined_step = {
-                "step_number": step_data.get("step_number"),
-                "action": step_data.get("action_details"),
-                "result": "System updates",
-                "start_ts": step_data.get("start_ts"),
-                "end_ts": step_data.get("end_ts"),
-                "duration": step_data.get("duration"),
-                "text": step_data.get("action_details"),
-                "field_details": [] # FR-9
-            }
+            # LLM Enrichment
+            try:
+                refined_step = llm.refine_step(step_data) 
+            except Exception as e:
+                print(f"LLM Enrichment Failed for Step {i+1}: {e}")
+                refined_step = step_data # Fallback to raw alignment data
+            
+            # Ensure critical keys exist for downstream processing if LLM failed or returned partial
+            if not refined_step.get("step_number"):
+                refined_step["step_number"] = step_data.get("step_number")
+            if not refined_step.get("action"):
+                refined_step["action"] = refined_step.get("action_details", step_data.get("action_details", ""))
+            if not refined_step.get("result"):
+                refined_step["result"] = "System updates" # Default fallback
+            if not refined_step.get("start_ts"):
+                refined_step["start_ts"] = step_data.get("start_ts")
+            if not refined_step.get("end_ts"):
+                refined_step["end_ts"] = step_data.get("end_ts")
+            if not refined_step.get("duration"):
+                refined_step["duration"] = step_data.get("duration")
+            if not refined_step.get("text"):
+                refined_step["text"] = refined_step.get("action", step_data.get("action_details", ""))
+            if "field_details" not in refined_step: # FR-9
+                refined_step["field_details"] = []
             
             # Application of Logic Analysis
             if i == decision_idx:

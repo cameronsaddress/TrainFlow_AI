@@ -187,7 +187,7 @@ export default function FieldAssistantPage() {
 
                     <div className="mt-4 flex gap-4">
                         <button
-                            onClick={() => document.querySelector('input[type="file"]')?.click()}
+                            onClick={() => (document.querySelector('input[type="file"]') as HTMLElement)?.click()}
                             className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg flex items-center gap-2 transition"
                         >
                             <Camera size={20} /> New Photo

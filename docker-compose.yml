@@ -17,6 +17,7 @@ services:
       # OpenRouter Config (Shared)
       - LLM_API_BASE=https://openrouter.ai/api/v1
       - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
+      - LLM_MODEL=google/gemini-3-flash-preview
     depends_on:
       - db
       - redis
@@ -105,7 +106,7 @@ services:
       - trainflow-net
 
   db:
-    image: postgres:15-alpine
+    image: pgvector/pgvector:pg15
     container_name: trainflow-db
     environment:
       - POSTGRES_USER=user

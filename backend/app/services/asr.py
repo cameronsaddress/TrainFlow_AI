@@ -145,7 +145,9 @@ def get_diarizer_config(output_dir):
         "name": "ClusterDiarizer",
         "num_workers": 0,
         "sample_rate": 16000,
-        "batch_size": 16, # Optimized for GB10
+        "batch_size": 16,
+        "device": "cuda" if torch.cuda.is_available() else "cpu", 
+        "verbose": False, # Fix: NeMo expects this attribute
         "diarizer": {
             "manifest_filepath": "?",
             "out_dir": output_dir,
@@ -154,14 +156,24 @@ def get_diarizer_config(output_dir):
             "ignore_overlap": True,
             "vad": {
                 "model_path": "vad_multilingual_marblenet",
-                "parameters": {"onset": 0.8, "offset": 0.6, "min_duration_on": 0.2, "min_duration_off": 0.1, "filter_speech_first": True},
+                "parameters": {
+                    "onset": 0.8, 
+                    "offset": 0.6, 
+                    "min_duration_on": 0.2, 
+                    "min_duration_off": 0.1, 
+                    "filter_speech_first": True,
+                    "window_length_in_sec": 0.63, # Required for Marblenet
+                    "shift_length_in_sec": 0.08,
+                    "smoothing": False,
+                    "overlap": 0.5 # Fix: Required for Marblenet
+                },
             },
             "speaker_embeddings": {
                 "model_path": "titanet_large",
                 "parameters": {"window_length_in_sec": 1.5, "shift_length_in_sec": 0.75, "multiscale_weights": [1,1,1,1,1], "save_embeddings": False},
             },
             "clustering": {
-                "parameters": {"max_num_speakers": 4} # Assume small training setting
+                "parameters": {"max_num_speakers": 4}
             }
         }
     })

@@ -58,5 +58,8 @@ semver
 soundfile
 python-docx
 python-pptx==0.6.23
-fpdf
+fpdf2
 # Removed: moviepy (Banned), ffmpeg-python (Use subprocess direct)
+pypdf
+pgvector
+langchain-text-splitters
