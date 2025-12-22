@@ -1,0 +1,170 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: trainflow-backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "2027:8000"
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/trainflow
+      - REDIS_URL=redis://redis:6379/0
+      - OIDC_DOMAIN=https://dev-auth.trainflow.ai/
+      - OIDC_AUDIENCE=trainflow-api
+      # OpenRouter Config (Shared)
+      - LLM_API_BASE=https://openrouter.ai/api/v1
+      - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
+    depends_on:
+      - db
+      - redis
+    networks:
+      - trainflow-net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  worker:
+    build: ./backend
+    container_name: trainflow-worker
+    command: python -m app.worker
+    # GB10 Optimization: 16GB Shared Memory for DALI/PyTorch dataloaders
+    shm_size: '16gb'
+    volumes:
+      - ./backend:/app
+      - minio_data:/data
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/trainflow
+      - REDIS_URL=redis://redis:6379/0
+      - MINIO_ENDPOINT=minio:9000
+      - PYTHONUNBUFFERED=1
+      # OpenRouter Config (Llama 3.3 70B)
+      - LLM_API_BASE=https://openrouter.ai/api/v1
+      - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
+      - LLM_MODEL=google/gemini-3-flash-preview
+    depends_on:
+      - db
+      - redis
+      - minio
+      #- llm-service
+    networks:
+      - trainflow-net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  # --- NVIDIA NIM SERVICES (Requires NGC_API_KEY) ---
+  # llm-service:
+  #   image: nvcr.io/nim/meta/llama3-70b-instruct:latest
+  #   container_name: trainflow-llm
+  #   environment:
+  #     - NGC_API_KEY=${NGC_API_KEY}
+  #   ports:
+  #     - "8008:8000"
+  #   shm_size: '16gb'
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: "all" # Llama 70B needs full GPU power
+  #             capabilities: [ gpu ]
+  #   networks:
+  #     - trainflow-net
+
+  frontend:
+    build:
+      context: ./frontend
+      target: deps
+    container_name: trainflow-frontend
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "2026:3000"
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+      # Critical for Client-Side Fetching (when browser accesses app)
+      - NEXT_PUBLIC_API_URL=http://localhost:2027
+    depends_on:
+      - backend
+    networks:
+      - trainflow-net
+
+  db:
+    image: postgres:15-alpine
+    container_name: trainflow-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=trainflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "2028:5432"
+    networks:
+      - trainflow-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: trainflow-redis
+    ports:
+      - "2029:6379"
+    networks:
+      - trainflow-net
+
+  minio:
+    image: minio/minio
+    container_name: trainflow-minio
+    ports:
+      - "2030:9000"
+      - "2031:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - trainflow-net
+
+  prometheus:
+    image: prom/prometheus
+    container_name: trainflow-prometheus
+    volumes:
+      - ./docker/prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - trainflow-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: trainflow-grafana
+    ports:
+      - "3001:3000"
+    networks:
+      - trainflow-net
+    depends_on:
+      - prometheus
+
+networks:
+  trainflow-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  minio_data:

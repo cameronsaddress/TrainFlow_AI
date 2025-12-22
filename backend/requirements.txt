@@ -1,0 +1,62 @@
+# Torch / CUDA Stack
+# Provided by NVIDIA Base Container (pytorch:25.11 or nemo:24.01)
+# DO NOT pip install torch, torchvision, or torchaudio here
+
+# --- CORE APP ---
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.6.0
+prometheus-fastapi-instrumentator
+python-multipart==0.0.9
+redis==5.0.1
+minio==7.2.3
+asyncpg==0.29.0
+psycopg2-binary
+SQLAlchemy==2.0.25
+alembic==1.13.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+openai>=1.55.0
+
+# --- GB10 OPTIMIZED AI STACK ---
+# ASR: NeMo (We assume base container has system deps, or we install toolkit)
+nemo_toolkit[asr]
+
+# CV: YOLO-World & TRT
+ultralytics>=8.3.0
+tensorrt
+# onnx, onnxruntime-gpu required for some exports
+onnx>=1.15.0
+# onnxruntime-gpu (Not available for Py3.12 ARM64 on PyPI yet)
+
+# CV: OCR (EasyOCR - PyTorch based, compatible with Py3.12 ARM64)
+easyocr
+
+# Video: DALI
+nvidia-dali-cuda120
+
+# Logic: LLM Client (OpenAI lib is sufficient if connecting to NIM)
+
+# --- UTILS ---
+tiktoken
+huggingface-hub
+tokenizers
+safetensors
+scipy
+pandas
+pillow
+matplotlib
+einops
+tqdm
+click
+regex
+packaging
+filelock
+fsspec
+pyyaml
+semver
+soundfile
+python-docx
+python-pptx==0.6.23
+fpdf
+# Removed: moviepy (Banned), ffmpeg-python (Use subprocess direct)
