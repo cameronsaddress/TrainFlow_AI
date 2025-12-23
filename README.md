@@ -1,6 +1,6 @@
 # TrainFlow AI: Enterprise Multimodal Workflow Agent
 
-**Version**: 5.13 (Curriculum Architect Release)
+**Version**: 6.00 (TrainFlow Enterprise Release)
 **Author**: TrainFlow Engineering Team
 
 TrainFlow AI is an advanced "Field-to-Office" automation system that transforms raw video footage of industrial procedures into verifiable, step-by-step training guides. It leverages a sophisticated multimodal pipeline (ASR, Computer Vision, LLM Reasoning) and a **Knowledge Engine** to autonomously "watch" a video, understand the intent, and generate succinct, rule-compliant training modules.
@@ -9,10 +9,13 @@ TrainFlow AI is an advanced "Field-to-Office" automation system that transforms 
 
 ## 🚀 Key Features
 
-*   **Autonomous Video Analysis**: Converts MP4s into broken-down process steps with timestamps.
-*   **Knowledge Engine (New in V3)**: Ingests PDFs/SOPs, extracts business rules using RAG, and enforces compliance.
-*   **Hyper-Guides (New in V3)**: Synthesizes "Perfect Training Guides" by fusing video actions with safety rules.
-*   **Smart Player**: Interactive split-screen learning with "Heads Up" instruction overlays.
+*   **Curriculum Architect**: Automates the creation of full training courses from unorganized video dumps using Map-Reduce strategies.
+*   **Knowledge Engine**: Ingests PDFs/SOPs, extracts business rules using RAG, and enforces compliance.
+*   **Hyper-Guides**: Synthesizes "Perfect Training Guides" by fusing video actions with safety rules.
+*   **Smart Player V2 (Interactive Slices)**: 
+    *   **Server-Side Slicing**: Dynamically cuts video segments on the fly (ffmpeg).
+    *   **Secure**: Restricted duration viewing (no scrubbing outside clip).
+    *   **Efficient**: Optimized streaming and static thumbnails.
 
 ---
 

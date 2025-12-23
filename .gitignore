@@ -27,3 +27,6 @@ postgres_data/
 minio_data/
 start_all.sh
 stop_all.sh
+
+# Video files
+*.mp4
