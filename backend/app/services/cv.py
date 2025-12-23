@@ -21,32 +21,48 @@ def _safe_load_wrapper(*args, **kwargs):
     return _original_torch_load(*args, **kwargs)
 torch.load = _safe_load_wrapper
 
-# Global model instances
-_yolo_model = None
-_ocr_reader = None
+# Ephemeral Model Management
+import gc
 
-def get_yolo_model():
-    """
-    Load YOLO-World model. (Enterprise Grade)
-    """
-    global _yolo_model
-    if _yolo_model is None:
-        print("Loading YOLO-World (GB10 Optimized)...")
-        # Standard loading (Version pinned to 8.1.0 in requirements)
-        _yolo_model = YOLO('yolov8x-world.pt') 
+class CVSession:
+    def __init__(self, use_yolo=True, use_ocr=True):
+        self.use_yolo = use_yolo
+        self.use_ocr = use_ocr
+        self.yolo = None
+        self.ocr = None
+
+    def __enter__(self):
+        # Load YOLO
+        if self.use_yolo:
+            print("Loading YOLO-World (Ephemeral)...")
+            self.yolo = YOLO('yolov8x-world.pt')
+            if torch.cuda.is_available():
+                self.yolo.to('cuda')
+        
+        # Load OCR
+        if self.use_ocr:
+            print("Loading EasyOCR (Ephemeral)...")
+            # gpu=True/False depends on need. True is faster but VRAM heavy.
+            self.ocr = easyocr.Reader(['en'], gpu=True)
+            
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Unloading CV Models...")
+        if self.yolo:
+            del self.yolo
+        if self.ocr:
+            del self.ocr
+        
+        self.yolo = None
+        self.ocr = None
+        
+        gc.collect()
         if torch.cuda.is_available():
-            _yolo_model.to('cuda')
-    return _yolo_model
+            torch.cuda.empty_cache()
 
-def get_ocr_reader():
-    """
-    Load EasyOCR with GPU support.
-    """
-    global _ocr_reader
-    if _ocr_reader is None:
-        print("Loading EasyOCR (GPU)...")
-        _ocr_reader = easyocr.Reader(['en'], gpu=True)
-    return _ocr_reader
+
+
 
 # --- DALI PIPELINE ---
 @pipeline_def
@@ -112,11 +128,19 @@ def extract_frames_dali(video_path: str, interval_seconds: int = 2):
         # FAIL JOB - No Fallback Allowed
         raise e
 
-def detect_ui_elements(image: Image):
+def detect_ui_elements(image: Image, model=None):
     """
     Open Vocabulary Detection using YOLO-World.
     """
-    model = get_yolo_model()
+    if model is None:
+        # Fallback (Slow)
+        with CVSession(use_ocr=False) as session:
+            model = session.yolo
+            return _run_yolo(image, model)
+    else:
+        return _run_yolo(image, model)
+
+def _run_yolo(image, model):
     # Updated for Utility Pole Inspection
     model.set_classes(["utility pole", "cross arm", "transformer", "insulator", "wire", "decay", "license plate", "person", "safety cone"])
     results = model.predict(image, conf=0.15, verbose=False, device='cuda')
@@ -137,11 +161,18 @@ def detect_ui_elements(image: Image):
             })
     return detected
 
-def perform_ocr(image: Image):
+def perform_ocr(image: Image, reader=None):
     """
     Extract text using EasyOCR (GPU).
     """
-    reader = get_ocr_reader()
+    if reader is None:
+        with CVSession(use_yolo=False) as session:
+            reader = session.ocr
+            return _run_ocr(image, reader)
+    else:
+        return _run_ocr(image, reader)
+
+def _run_ocr(image, reader):
     img_np = np.array(image)
     
     # helper for EasyOCR
@@ -159,6 +190,13 @@ def perform_ocr(image: Image):
             
     return {"full_text": full_text.strip(), "details": details}
 
+def extract_text_from_image(image: Image, reader=None) -> str:
+    """
+    Lightweight wrapper for text extraction.
+    """
+    res = perform_ocr(image, reader)
+    return res["full_text"]
+
 def process_cv(video_path: str):
     """
     Full Pipeline: DALI -> EasyOCR -> YOLO-World
@@ -166,17 +204,70 @@ def process_cv(video_path: str):
     frames = extract_frames_dali(video_path, interval_seconds=2)
     results = []
     
-    for ts, frame in frames:
-        ocr_result = perform_ocr(frame)
-        ui_elements = detect_ui_elements(frame)
-        
-        results.append({
-            "timestamp": ts,
-            "ocr": ocr_result,
-            "ui_elements": ui_elements
-        })
+    with CVSession() as session:
+        for ts, frame in frames:
+            ocr_result = perform_ocr(frame, reader=session.ocr)
+            ui_elements = detect_ui_elements(frame, model=session.yolo)
+            
+            results.append({
+                "timestamp": ts,
+                "ocr": ocr_result,
+                "ui_elements": ui_elements
+            })
         
     return results
+
+def process_ocr_sampling(video_path: str, sample_rate: int = 5) -> dict:
+    """
+    Process video for OCR indexing (Sampling + EasyOCR).
+    Runs in its own CVSession (Ephemeral).
+    """
+    import cv2
+    from PIL import Image
+    
+    print(f"Starting OCR Sampling (rate={sample_rate}s) for {video_path}...")
+    cap = cv2.VideoCapture(video_path)
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    
+    # Robustness Checks
+    if fps <= 0:
+        print(f"WARNING: Invalid FPS {fps}. Defaulting to 30.0")
+        fps = 30.0
+        
+    duration = total_frames / fps
+    ocr_texts = []
+    ocr_json_data = []
+    
+    # Safety: frame_interval >= 1
+    frame_interval = max(1, int(fps * sample_rate))
+    current_frame = 0
+    
+    with CVSession(use_yolo=False, use_ocr=True) as session:
+        while current_frame < total_frames:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, current_frame)
+            ret, frame = cap.read()
+            if ret:
+                pil_img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+                text = extract_text_from_image(pil_img, reader=session.ocr)
+                
+                if text.strip():
+                    timestamp = current_frame / fps
+                    ocr_texts.append(f"[{timestamp:.1f}s]: {text.strip()}")
+                    ocr_json_data.append({
+                        "timestamp": float(f"{timestamp:.2f}"),
+                        "text": text.strip()
+                    })
+            current_frame += frame_interval
+            
+    cap.release()
+    print(f"OCR Sampling Complete. Found {len(ocr_texts)} text segments.")
+    
+    return {
+        "full_text": "\n".join(ocr_texts),
+        "json_data": ocr_json_data,
+        "duration": duration
+    }
 
 def redact_pii(image: Image) -> Image:
     """

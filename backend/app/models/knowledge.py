@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum, Text, DateTime, JSON
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum, Text, DateTime, JSON, Float
 from sqlalchemy.dialects.postgresql import UUID, ARRAY
 from sqlalchemy.orm import relationship
 from pgvector.sqlalchemy import Vector
@@ -68,3 +68,28 @@ class BusinessRule(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     document = relationship("KnowledgeDocument", back_populates="rules")
+
+class VideoCorpus(Base):
+    __tablename__ = "video_corpus"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    filename = Column(String)
+    file_path = Column(String)
+    transcript_text = Column(Text, nullable=True) # Full ASR (Text Blob)
+    transcript_json = Column(JSON, nullable=True) # Rich Data: Timestamps, Speakers
+    ocr_text = Column(Text, nullable=True)       # Aggregated OCR
+    ocr_json = Column(JSON, nullable=True)       # Rich Data: Sampled Frames with Timestamps
+    duration_seconds = Column(Float, nullable=True)
+    status = Column(Enum(DocStatus), default=DocStatus.PENDING)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Metadata for potential future expansion (resolution, codec, etc)
+    metadata_json = Column(JSON, nullable=True)
+
+class TrainingCurriculum(Base):
+    __tablename__ = "training_curricula"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String)
+    structured_json = Column(JSON) # The full course plan
+    created_at = Column(DateTime, default=datetime.utcnow)

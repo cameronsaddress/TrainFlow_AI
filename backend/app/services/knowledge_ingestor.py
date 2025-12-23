@@ -12,14 +12,16 @@ import json
 # Setup
 logger = logging.getLogger(__name__)
 
-async def ingest_document(doc_id: int):
+def ingest_document(doc_id: int):
     """
     Background Task: Encapsulates PDF -> Text -> Chunks -> Embeddings -> Rules
     """
+    print(f"Background Task Started: Ingesting Doc ID {doc_id}", flush=True)
     db = SessionLocal()
     try:
         doc = db.query(k_models.KnowledgeDocument).filter(k_models.KnowledgeDocument.id == doc_id).first()
         if not doc:
+            print(f"Doc ID {doc_id} not found in DB", flush=True)
             return
             
         doc.status = k_models.DocStatus.INDEXING
@@ -30,12 +32,19 @@ async def ingest_document(doc_id: int):
         if not os.path.exists(doc.file_path):
              raise FileNotFoundError(f"File {doc.file_path} not found")
         
+        print(f"Loading PDF: {doc.file_path}", flush=True)
         reader = PdfReader(doc.file_path)
         full_text = ""
-        for page in reader.pages:
+        page_count = len(reader.pages)
+        print(f"Extracting text from {page_count} pages...", flush=True)
+        
+        for i, page in enumerate(reader.pages):
             full_text += page.extract_text() + "\n"
+            if i % 50 == 0:
+                print(f"Extracted page {i}/{page_count}...", flush=True)
 
         # 2. Chunking
+        print(f"Chunking {len(full_text)} characters...", flush=True)
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=100
@@ -55,74 +64,78 @@ async def ingest_document(doc_id: int):
             )
             db.add(chunk)
             
-        # 4. Independent Rule Extraction (LLM)
-        # Call LLM to extract specific rules from full text
+        # 4. Independent Rule Extraction (LLM) - Scaled for Large Docs
         from ..services import llm
+        import json
+        import re
+
+        # Process in large batches (Gemini Flash can handle 1M tokens, so ~200k chars is safe and efficient)
+        BATCH_SIZE = 200000
+        total_extracted = 0
         
-        prompt = f"""
-        Analyze the following Standard Operating Procedure (SOP) text.
-        Extract a list of specific "Business Rules" or "Compliance Checks".
-        Format as JSON list: [{{ "trigger": "Context (e.g. Login Screen)", "rule": "Description of rule", "type": "FORMAT|SEQUENCE|COMPLIANCE" }}]
+        # Calculate total batches for logging
+        total_batches = (len(full_text) // BATCH_SIZE) + 1
+        print(f"Starting Rule Extraction for Doc {doc_id}. Total Text: {len(full_text)} chars. Batches: {total_batches}", flush=True)
+
+        for i in range(0, len(full_text), BATCH_SIZE):
+            batch_num = (i // BATCH_SIZE) + 1
+            batch_text = full_text[i : i + BATCH_SIZE]
+            
+            prompt = f"""
+            Analyze the following Standard Operating Procedure (SOP) text (Batch {batch_num}/{total_batches}).
+            Extract a list of specific "Business Rules" or "Compliance Checks".
+            Format as JSON list: [{{ "trigger": "Context (e.g. Login Screen)", "rule": "Description of rule", "type": "FORMAT|SEQUENCE|COMPLIANCE" }}]
+            
+            Text:
+            {batch_text}
+            """
+            
+            print(f"Processing Batch {batch_num}/{total_batches}...", flush=True)
+            
+            try:
+                response = llm.generate_text(prompt)
+                
+                # Robust JSON parsing
+                clean_response = response.strip()
+                if "```" in clean_response:
+                    match = re.search(r'```(?:json)?\s*(.*?)```', clean_response, re.DOTALL)
+                    if match:
+                        clean_response = match.group(1).strip()
+                
+                # Sanitize common LLM quirks
+                clean_response = clean_response.replace(",]", "]") 
+                
+                rules_data = []
+                try:
+                    rules_data = json.loads(clean_response)
+                except json.JSONDecodeError:
+                    print(f"Failed to parse JSON for batch {batch_num}. Response: {response[:100]}...", flush=True)
+                    continue
+
+                if isinstance(rules_data, list):
+                    for r in rules_data:
+                        rule = k_models.BusinessRule(
+                            document_id=doc.id,
+                            trigger_context=r.get("trigger", "General"),
+                            rule_description=r.get("rule", "Unknown Rule"),
+                            rule_type=r.get("type", "COMPLIANCE")
+                        )
+                        db.add(rule)
+                        total_extracted += 1
+                    db.commit() # Commit per batch to save progress
+                    
+            except Exception as batch_e:
+                print(f"Error processing batch {batch_num}: {batch_e}", flush=True)
+                continue
+
+        print(f"Extracted {total_extracted} total rules from Doc {doc_id}", flush=True)
         
-        Text:
-        {full_text[:4000]}... (truncated)
-        """
-        
-        response = "No response"
-        try:
-            # We assume llm.generate returns string
-            response = llm.generate_text(prompt)
-            logger.info(f"Raw LLM Response for Doc {doc_id}: {response}")
+        doc.status = k_models.DocStatus.READY
+        db.commit()
             
-            # Robust JSON parsing: Remove Markdown code blocks if present
-            clean_response = response.strip()
-            if "```" in clean_response:
-                import re
-                # Extract content between ```json ... ``` or just ``` ... ```
-                match = re.search(r'```(?:json)?\s*(.*?)```', clean_response, re.DOTALL)
-                if match:
-                    clean_response = match.group(1).strip()
-            
-            # Attempt parsing
-            import json
-            # Sanitize common LLM quirks (trailing commas)
-            clean_response = clean_response.replace(",]", "]") 
-            
-            rules_data = json.loads(clean_response)
-            
-            # Validate and Insert
-            count = 0
-            if isinstance(rules_data, list):
-                for r in rules_data:
-                    rule = k_models.BusinessRule(
-                        document_id=doc.id,
-                        trigger_context=r.get("trigger", "General"),
-                        rule_description=r.get("rule", "Unknown Rule"),
-                        rule_type=r.get("type", "COMPLIANCE")
-                    )
-                    db.add(rule)
-                    count += 1
-            logger.info(f"Extracted {count} rules from Doc {doc_id}")
-            
-            doc.status = k_models.DocStatus.READY
-            db.commit()
-            
-        except Exception as e:
-            logger.error(f"Rule Extraction failed: {e}. Raw Response: {response}")
-            # Ensure we mark as ready even if rule extraction fails? 
-            # Or mark as PARTIAL? For now, let's just log and keep doc as READY 
-            # but maybe with a warning?
-            # Actually, the outer try/except handles the 'Ingestion Failed' status.
-            # This inner try/except (lines 68-108) wraps ONLY rule extraction.
-            # If Rule Extraction fails, we still want the doc to be indexed (Chunks are done).
-            
-            # So we should NOT mark as FAILED here if chunks succeeded.
-            doc.status = k_models.DocStatus.READY
-            doc.error_message = f"Rule Extraction Failed: {str(e)}"
-            db.commit()
 
     except Exception as e:
-        logger.error(f"Ingestion Failed: {e}")
+        print(f"Ingestion Failed: {e}", flush=True)
         doc.status = k_models.DocStatus.FAILED
         doc.error_message = str(e)
         db.commit()

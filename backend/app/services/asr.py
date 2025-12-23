@@ -11,32 +11,42 @@ except ImportError:
     print("WARNING: NeMo Toolkit not found. ASR and Diarization will fail.")
     HAS_NEMO = False
 
-# Global Singleton
-_asr_model = None
+# Ephemeral Model Session
+import gc
 
-def get_asr_model():
-    global _asr_model
-    if _asr_model is None and HAS_NEMO:
-        print("Loading NeMo Parakeet-CTC-1.1B on GB10...")
-        # Automatic download from NGC
-        # map_location='cuda' ensures it loads on GPU
-        _asr_model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained(
-            model_name="nvidia/parakeet-ctc-1.1b"
-        )
-        if torch.cuda.is_available():
-            _asr_model = _asr_model.cuda()
-            
-        # AI Director 2.0: Enable Timestamp Computation
+class ASRModelSession:
+    def __init__(self):
+        self.model = None
+
+    def __enter__(self):
+        if not HAS_NEMO: return None
+        print("Loading NeMo Parakeet-CTC-1.1B (Ephemeral)...", flush=True)
         try:
-             cfg = _asr_model.cfg.decoding
-             cfg.preserve_alignments = True
-             cfg.compute_timestamps = True
-             _asr_model.change_decoding_strategy(cfg)
-             print("ASR Config: Timestamps Enabled.")
+            self.model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained(
+                model_name="nvidia/parakeet-ctc-1.1b"
+            )
+            if torch.cuda.is_available():
+                self.model = self.model.cuda()
+            
+            # AI Director 2.0: Enable Timestamp Computation
+            cfg = self.model.cfg.decoding
+            cfg.preserve_alignments = True
+            cfg.compute_timestamps = True
+            self.model.change_decoding_strategy(cfg)
+            return self.model
         except Exception as e:
-             print(f"Failed to enable timestamp computation: {e}")
-             
-    return _asr_model
+            print(f"Failed to load NeMo Model: {e}", flush=True)
+            return None
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.model:
+            print("Unloading NeMo Model (Cleaning VRAM)...", flush=True)
+            del self.model
+            self.model = None
+        # Aggressive Cleanup
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
 def extract_audio(video_path: str, output_path: str):
     """
@@ -60,6 +70,93 @@ def extract_audio(video_path: str, output_path: str):
         print(f"FFmpeg extraction failed: {e}")
         return None
 
+def get_audio_duration(file_path):
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", file_path],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+        return float(result.stdout)
+    except:
+        return 0.0
+
+def process_long_form_asr(video_path: str, model):
+    """
+    Robustly handles large files by slicing them into 5-minute chunks, 
+    transcribing them individually, and stitching the results.
+    """
+    import shutil
+    import glob
+    
+    chunk_len_sec = 300 # 5 minutes
+    temp_dir = video_path + "_chunks"
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    try:
+        # 1. Split Audio via FFmpeg
+        print(f"Splitting audio into {chunk_len_sec}s chunks...", flush=True)
+        # Using segment muxer for fast splitting without re-encoding overhead if possible, 
+        # but for consistent WAV input we use standard output
+        temp_pattern = os.path.join(temp_dir, "chunk_%03d.wav")
+        
+        subprocess.run([
+            "ffmpeg", "-y", "-i", video_path, 
+            "-f", "segment", 
+            "-segment_time", str(chunk_len_sec), 
+            "-c", "copy", 
+            temp_pattern
+        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        
+        chunk_files = sorted(glob.glob(os.path.join(temp_dir, "chunk_*.wav")))
+        print(f"Created {len(chunk_files)} chunks. Starting Batch Transcription...", flush=True)
+
+        full_text = ""
+        full_timeline = []
+        
+        # 2. Transcribe in Batches
+        # We process chunks in a list. NeMo handles the batching internally.
+        # batch_size=4 is extremely safe for 5-minute chunks on GB10 (approx 5GB VRAM usage)
+        
+        # Note: timestamps are relative to each chunk. We must offset them.
+        # We cannot simply pass the whole list to transcribe if we want to fix timestamps easily per file.
+        # However, calling transcribe() multiple times (once per chunk) is safer for tracking offsets.
+        
+        for i, chunk_file in enumerate(chunk_files):
+            offset_seconds = i * chunk_len_sec
+            
+            with torch.no_grad():
+                # Transcribe single chunk
+                hypotheses = model.transcribe([chunk_file], batch_size=1, verbose=False, return_hypotheses=True)
+                
+            if hypotheses and len(hypotheses) > 0:
+                hyp = hypotheses[0]
+                text_segment = hyp.text if hasattr(hyp, 'text') else str(hyp)
+                
+                # Stitch Text
+                full_text += text_segment + " "
+                
+                # Stitch Timeline (Offsetting)
+                if hasattr(hyp, 'timestamp') and hasattr(hyp, 'tokens'):
+                    chunk_timeline = _reconstruct_timeline(hyp)
+                    for item in chunk_timeline:
+                        item['start_ts'] += offset_seconds
+                        item['end_ts'] += offset_seconds
+                        full_timeline.extend(chunk_timeline)
+            
+            # Interactive Progress
+            if i % 5 == 0:
+                print(f"Processed Chunk {i+1}/{len(chunk_files)}...", flush=True)
+
+        print(f"Long-Form Transcription Complete. Total Length: {len(full_text)} chars", flush=True)
+        return full_text.strip(), make_serializable(full_timeline)
+
+    finally:
+        # Cleanup chunks
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+
 def process_asr(video_path: str):
     """
     GB10 Pipeline: Video -> FFmpeg(WAV) -> NeMo Parakeet (ASR)
@@ -70,75 +167,95 @@ def process_asr(video_path: str):
     if not extract_audio(video_path, temp_audio):
         return {"segments": [], "text": "Audio Extraction Failed"}
         
-    model = get_asr_model()
-    if not model:
-        return {"segments": [], "text": "NeMo Unavailable"}
-        
-    # 2. Transcribe
-    # NeMo expects list of paths
-    print(f"Transcribing {temp_audio}...")
+    full_text = ""
+    timeline = []
+    
     try:
-        # Optimization: Use greedy_batch for speed
-        if hasattr(model, 'change_decoding_strategy'):
-            try:
-                model.change_decoding_strategy(decoding_cfg={"strategy": "greedy_batch"})
-            except:
-                pass # Fallback if model doesn't support dynamic switch
-
-        with torch.no_grad():
-            # transcribe returns list of Hypothesis objects (if return_hypotheses=True)
-            # DGX Spark (GB10) has 128GB Unified Memory. Parakeet 1.1B is tiny.
-            # Increasing batch_size to 64 to saturate the 1000 TOPS Blackwell GPU.
-            hypotheses = model.transcribe([temp_audio], batch_size=64, verbose=False, return_hypotheses=True)
-            
-            # 4. Format Result with Timeline
-            full_text = ""
-            timeline = []
-            
-            if isinstance(hypotheses, list) and len(hypotheses) > 0:
-                hyp = hypotheses[0]
-                # Handle raw string case (legacy) vs Hypothesis object
-                if isinstance(hyp, str):
-                    full_text = hyp
+        # 2. Transcribe (Ephemeral Scope - ASR ONLY)
+        with ASRModelSession() as model:
+            if not model:
+                print("ASR Model failed to load.")
+            else:
+                # Decide Strategy based on Duration
+                duration = get_audio_duration(temp_audio)
+                print(f"Audio Duration: {duration:.2f}s", flush=True)
+                
+                if duration > 300: # > 5 minutes -> Use Chunking Strategy
+                    print("Large File Detected. Switching to Chunked Inference...", flush=True)
+                    full_text, timeline = process_long_form_asr(temp_audio, model)
                 else:
-                    full_text = hyp.text
-                    
-                    # Extract Timeline if available
-                    if hasattr(hyp, 'timestamp') and hasattr(hyp, 'tokens'):
-                        timeline = _reconstruct_timeline(hyp)
-            
-            # 3. Diarization (FR-5)
-            speaker_segments = []
-            try:
-                speaker_segments = process_diarization(temp_audio)
-                print(f"Diarization Complete: Found {len(speaker_segments)} segments")
-            except:
-                pass
+                    # Short File -> Standard Inference
+                    print(f"Transcribing {temp_audio} (Single Pass)...", flush=True)
+                    try:
+                        if hasattr(model, 'change_decoding_strategy'):
+                            try:
+                                model.change_decoding_strategy(decoding_cfg={"strategy": "greedy_batch"})
+                            except: pass 
+                            
+                        with torch.no_grad():
+                             hypotheses = model.transcribe([temp_audio], batch_size=1, verbose=False, return_hypotheses=True)
+                             if hypotheses:
+                                 hyp = hypotheses[0]
+                                 full_text = hyp.text
+                                 timeline = _reconstruct_timeline(hyp)
+                    except Exception as asr_e:
+                        print(f"NeMo Transcription Inner Failed: {asr_e}", flush=True)
+                        full_text = "Transcription Error"
 
-            # Cleanup
+        # 3. Diarization (FR-5) - STARTING NEW SCOPE
+        # ASR Model is strictly unloaded here due to 'with' block exit
+        speaker_segments = []
+        try:
             if os.path.exists(temp_audio):
-                 os.remove(temp_audio)
+                 # process_diarization loads its own models (Titanet)
+                 speaker_segments = process_diarization(temp_audio)
+                 print(f"Diarization Complete: Found {len(speaker_segments)} segments", flush=True)
+        except Exception as d_e:
+            print(f"Diarization Failed: {d_e}", flush=True)
 
-            return {
+        return make_serializable({
+            "text": full_text,
+            "timeline": timeline, 
+            "speaker_segments": speaker_segments,
+            "segments": [{
+                "start": 0.0,
+                "end": 999.0,
                 "text": full_text,
-                "timeline": timeline, 
-                "speaker_segments": speaker_segments,
-                "segments": [{
-                    "start": 0.0,
-                    "end": 999.0,
-                    "text": full_text,
-                    "speaker": "System"
-                }],
-                "language": "en"
-            }
+                "speaker": "System"
+            }],
+            "language": "en"
+        })
             
     except Exception as e:
-        print(f"NeMo Transcription Failed: {e}")
-        return {"segments": [], "text": "Transcription Error", "timeline": []}
+        print(f"Global ASR Process Failed: {e}", flush=True)
+        return {"segments": [], "text": "Global Error", "timeline": []}
+    finally:
+        # Cleanup
+        if os.path.exists(temp_audio):
+             try:
+                 os.remove(temp_audio)
+             except: pass
+
+def make_serializable(obj):
+    """
+    Recursively convert numpy/torch types to native Python types for JSON serialization.
+    """
+    import numpy as np
+    if isinstance(obj, dict):
+        return {k: make_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [make_serializable(v) for v in obj]
+    elif hasattr(obj, 'item'): # numpy/torch scalars
+        return obj.item()
+    elif hasattr(obj, 'tolist'): # numpy/torch arrays
+        return obj.tolist()
+    else:
+        return obj
 
 def get_diarizer_config(output_dir):
     """
     Generate a minimal Hydra-compatible config for ClusteringDiarizer.
+    Includes all necessary default parameters to pass NeMo's strict validation.
     """
     from omegaconf import OmegaConf
     return OmegaConf.create({
@@ -147,7 +264,7 @@ def get_diarizer_config(output_dir):
         "sample_rate": 16000,
         "batch_size": 16,
         "device": "cuda" if torch.cuda.is_available() else "cpu", 
-        "verbose": False, # Fix: NeMo expects this attribute
+        "verbose": False, 
         "diarizer": {
             "manifest_filepath": "?",
             "out_dir": output_dir,
@@ -162,18 +279,41 @@ def get_diarizer_config(output_dir):
                     "min_duration_on": 0.2, 
                     "min_duration_off": 0.1, 
                     "filter_speech_first": True,
-                    "window_length_in_sec": 0.63, # Required for Marblenet
+                    "window_length_in_sec": 0.63, 
                     "shift_length_in_sec": 0.08,
                     "smoothing": False,
-                    "overlap": 0.5 # Fix: Required for Marblenet
+                    "overlap": 0.5 
                 },
             },
             "speaker_embeddings": {
                 "model_path": "titanet_large",
-                "parameters": {"window_length_in_sec": 1.5, "shift_length_in_sec": 0.75, "multiscale_weights": [1,1,1,1,1], "save_embeddings": False},
+                "parameters": {
+                    "window_length_in_sec": 1.5, 
+                    "shift_length_in_sec": 0.75, 
+                    "multiscale_weights": [1,1,1,1,1], 
+                    "save_embeddings": False
+                },
             },
             "clustering": {
-                "parameters": {"max_num_speakers": 4}
+                "parameters": {
+                    "max_num_speakers": 4,
+                    "oracle_num_speakers": False,
+                    "max_rp_threshold": 0.25,
+                    "sparse_search_volume": 30,
+                    "maj_vote_spk_count": False # Common default
+                }
+            },
+            "msdd_model": { # Sometimes required even if not used
+                 "model_path": "diar_msdd_telephonic",
+                 "parameters": {
+                     "use_speaker_model_from_ckpt": True,
+                     "infer_batch_size": 25,
+                     "sigmoid_threshold": [0.7],
+                     "seq_eval_mode": False,
+                     "split_infer": True,
+                     "diar_window_length": 50,
+                     "overlap_infer": 10
+                 }
             }
         }
     })

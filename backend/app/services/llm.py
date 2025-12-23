@@ -243,3 +243,25 @@ def refine_instruction_with_rules(raw_text: str, rules: list) -> dict:
             "compliance_warnings": [],
             "criticality": "LOW"
         }
+
+def generate_structure(system_prompt: str, user_content: str, model: str = None) -> dict:
+    """
+    Generic structured generation using JSON mode.
+    Useful for heavy tasks like Curriculum Architecture.
+    Allows overriding the default model (e.g. for Long Context tasks).
+    """
+    target_model = model if model else MODEL_NAME
+    try:
+        response = client.chat.completions.create(
+            model=target_model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.1
+        )
+        return json.loads(response.choices[0].message.content)
+    except Exception as e:
+        print(f"Structure Generation Error: {e}")
+        return {"error": str(e), "status": "failed"}

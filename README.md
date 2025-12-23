@@ -1,6 +1,6 @@
 # TrainFlow AI: Enterprise Multimodal Workflow Agent
 
-**Version**: 3.0 (Hyper-Learning)
+**Version**: 5.13 (Curriculum Architect Release)
 **Author**: TrainFlow Engineering Team
 
 TrainFlow AI is an advanced "Field-to-Office" automation system that transforms raw video footage of industrial procedures into verifiable, step-by-step training guides. It leverages a sophisticated multimodal pipeline (ASR, Computer Vision, LLM Reasoning) and a **Knowledge Engine** to autonomously "watch" a video, understand the intent, and generate succinct, rule-compliant training modules.
@@ -144,7 +144,35 @@ The core IP resides in `backend/app/services/`.
     *   `step_number`: Int
     *   `action_details`: Text (LLM generated).
     *   `screenshot_path`: Path to generated thumbnail (served via static mount).
+    *   `screenshot_path`: Path to generated thumbnail (served via static mount).
     *   `video_clip_path`: Path to step-specific video loop.
+
+4.  **TrainingCurriculum** (New in V5.1)
+    *   `id`: PK
+    *   `title`: Generated Course Title.
+    *   `structured_json`: Complete hierarchical course plan (Modules -> Lessons -> Clips).
+    *   `created_at`: Timestamp.
+
+---
+
+## 🧠 Curriculum Architect ("The Brain")
+
+Released in V5.1, the **Curriculum Architect** automates the creation of full training courses from unorganized video dumps.
+
+1.  **Ingestion Strategy**: "Hybrid Smart-Context"
+    *   Automatically calculates token count of all ready videos.
+    *   **Direct Ingestion**: For contexts < 2M tokens (approx 80 hours of video), feeds *entire* transcripts and OCR logs into the LLM at once.
+    *   **Map-Reduce**: (Planned) Summarizes videos first for massive datasets.
+
+2.  **LLM Engine**:
+    *   **Model**: `x-ai/grok-4.1-fast` (via OpenRouter).
+    *   **Context Window**: 2,000,000 tokens.
+    *   **System Prompt**: "World-Class Instructional Designer".
+
+3.  **UI Workflow**:
+    *   **Corpus Ingestion**: Bulk upload and status tracking (`/jobs`).
+    *   **Generation**: One-click "Generate Course Structure".
+    *   **Viewer**: Dedicated interactive Course Plan Viewer (`/curriculum/[id]`).
 
 ---
 

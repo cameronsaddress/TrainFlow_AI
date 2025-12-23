@@ -94,3 +94,22 @@ async def update_rule(rule_id: int, updates: dict, db: Session = Depends(get_db)
         
     db.commit()
     return rule
+@router.delete("/documents/{doc_id}")
+async def delete_document(doc_id: int, db: Session = Depends(get_db)):
+    """Delete a document and its file."""
+    doc = db.query(k_models.KnowledgeDocument).filter(k_models.KnowledgeDocument.id == doc_id).first()
+    if not doc:
+        raise HTTPException(404, "Document not found")
+        
+    # Delete file from disk
+    if doc.file_path and os.path.exists(doc.file_path):
+        try:
+            os.remove(doc.file_path)
+        except Exception as e:
+            print(f"Error deleting file {doc.file_path}: {e}")
+            
+    # Delete from DB
+    db.delete(doc)
+    db.commit()
+    
+    return {"status": "deleted", "id": doc_id}

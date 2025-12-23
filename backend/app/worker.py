@@ -545,16 +545,51 @@ def process_video_job(video_id: int):
     finally:
         db.close()
         # Cleanup temp files
+        if os.path.exists(temp_path):
+            try:
+                os.remove(temp_path)
+                print(f"Cleaned up temp file: {temp_path}")
+            except Exception as e:
+                print(f"Failed to cleanup temp file {temp_path}: {e}")
 
 def start_worker():
     print("Worker started. Listening for jobs...")
-    pubsub = redis_client.pubsub()
-    pubsub.subscribe("video_jobs")
     
-    for message in pubsub.listen():
-        if message["type"] == "message":
-            video_id = int(message["data"])
-            process_video_job(video_id)
+    while True:
+        try:
+            # Re-initialize connection inside the loop to handle drops
+            redis_client = redis.from_url(REDIS_URL)
+            pubsub = redis_client.pubsub()
+            pubsub.subscribe("video_jobs")
+            pubsub.subscribe("corpus_jobs")
+            print("Redis Connection Established. Waiting for messages...")
+
+            for message in pubsub.listen():
+                if message["type"] == "message":
+                    channel = message["channel"].decode('utf-8')
+                    try:
+                        data = int(message["data"])
+                        
+                        if channel == "video_jobs":
+                            process_video_job(data)
+                        elif channel == "corpus_jobs":
+                            print(f"Worker received Corpus Job: {data}")
+                            from .services import corpus_ingestor
+                            try:
+                                corpus_ingestor.ingest_video(data)
+                            except Exception as e:
+                                print(f"Corpus Job Failed: {e}")
+                    except ValueError:
+                        print(f"Received invalid non-integer data: {message['data']}")
+        
+        except redis.ConnectionError:
+            print("Redis Connection Lost. Retrying in 5 seconds...")
+            import time
+            time.sleep(5)
+        except Exception as e:
+            print(f"Worker Loop Error: {e}. Retrying in 5 seconds...")
+            import time
+            time.sleep(5)
 
 if __name__ == "__main__":
     start_worker()

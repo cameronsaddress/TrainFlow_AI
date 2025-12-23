@@ -110,9 +110,10 @@ app.include_router(api.uploads_router, prefix="/api")
 app.include_router(api.analysis_router, prefix="/api") # New AI Field Assistant
 app.include_router(api.public_router, prefix="/api") # GPU Status, etc.
 
-from .routers import realtime, knowledge
+from .routers import realtime, knowledge, curriculum
 app.include_router(realtime.realtime_router)
 app.include_router(knowledge.router, prefix="/api") # Knowledge API
+app.include_router(curriculum.router, prefix="/api") # Curriculum API
 
 # Create Tables (for dev/prototype simplicity, usually use Alembic)
 from .db import engine, Base

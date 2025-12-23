@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Upload, FileText, CheckCircle, AlertCircle, Trash2, Edit, Save, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface Document {
     id: number;
@@ -59,14 +60,22 @@ export default function SettingsPage() {
         formData.append('file', e.target.files[0]);
 
         try {
-            await fetch('/api/knowledge/upload', {
+            // Use custom Proxy Route Handler to bypass 10MB limit
+            // This forwards to http://backend:8000/api/knowledge/upload
+            const res = await fetch('/api/proxy/upload', {
                 method: 'POST',
                 body: formData,
             });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || res.statusText);
+            }
+
             fetchDocuments();
         } catch (error) {
             console.error('Upload failed:', error);
-            alert('Upload failed');
+            alert('Upload failed: ' + error);
         } finally {
             setIsUploading(false);
         }
@@ -79,6 +88,17 @@ export default function SettingsPage() {
             body: JSON.stringify({ is_active: !currentStatus })
         });
         fetchRules();
+    };
+    const deleteDocument = async (id: number) => {
+        if (!confirm('Are you sure you want to delete this document? This will remove all associated rules.')) return;
+
+        try {
+            await fetch(`/api/knowledge/documents/${id}`, { method: 'DELETE' });
+            fetchDocuments();
+            fetchRules(); // Rules might be deleted cascade
+        } catch (e) {
+            console.error("Delete failed", e);
+        }
     };
 
     return (
@@ -109,16 +129,48 @@ export default function SettingsPage() {
                         {/* Upload Area */}
                         <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-6">
                             <h2 className="text-xl font-semibold mb-4 text-neutral-200">Upload SOPs</h2>
-                            <div className="border-2 border-dashed border-neutral-700 rounded-lg p-8 text-center hover:border-emerald-500 transition-colors cursor-pointer relative">
+                            <div className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-300 relative overflow-hidden group
+                                ${isUploading ? 'border-emerald-500 bg-emerald-900/10' : 'border-neutral-700 hover:border-emerald-500 cursor-pointer'}
+                            `}>
                                 <input
                                     type="file"
                                     accept=".pdf"
                                     onChange={handleUpload}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    disabled={isUploading}
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10"
                                 />
-                                <Upload className="w-10 h-10 text-neutral-500 mx-auto mb-2" />
-                                <p className="text-neutral-400 font-medium">{isUploading ? 'Uploading...' : 'Drop PDF here or Click to Upload'}</p>
-                                <p className="text-xs text-neutral-600 mt-2">Only .pdf supported for auto-indexing</p>
+
+                                {isUploading ? (
+                                    <div className="flex flex-col items-center justify-center">
+                                        <motion.div
+                                            animate={{ y: [0, -10, 0] }}
+                                            transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+                                            className="mb-2 relative"
+                                        >
+                                            <Upload className="w-10 h-10 text-emerald-500" />
+                                            {/* Rising particles effect (simple dots) */}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 0 }}
+                                                animate={{ opacity: [0, 1, 0], y: -20 }}
+                                                transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                                                className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-emerald-400 rounded-full"
+                                            />
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 0 }}
+                                                animate={{ opacity: [0, 1, 0], y: -15 }}
+                                                transition={{ repeat: Infinity, duration: 1.2, ease: "easeOut", delay: 0.5 }}
+                                                className="absolute -top-1 left-1/2 -ml-2 w-1 h-1 bg-emerald-400 rounded-full"
+                                            />
+                                        </motion.div>
+                                        <p className="text-emerald-400 font-medium animate-pulse">Uploading & Indexing...</p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <Upload className="w-10 h-10 text-neutral-500 mx-auto mb-2 group-hover:text-emerald-500 transition-colors" />
+                                        <p className="text-neutral-400 font-medium group-hover:text-neutral-200">Drop PDF here or Click to Upload</p>
+                                        <p className="text-xs text-neutral-600 mt-2">Only .pdf supported for auto-indexing</p>
+                                    </>
+                                )}
                             </div>
                         </div>
 
@@ -127,17 +179,28 @@ export default function SettingsPage() {
                             <h2 className="text-xl font-semibold mb-4 text-neutral-200">Indexed Documents</h2>
                             <div className="space-y-3">
                                 {documents.map(doc => (
-                                    <div key={doc.id} className="flex items-center justify-between p-3 bg-neutral-800/50 rounded-lg">
-                                        <div className="flex items-center gap-3">
-                                            <FileText className="w-5 h-5 text-emerald-500" />
-                                            <span className="text-sm font-medium text-neutral-300 truncate max-w-[150px]">{doc.filename}</span>
+                                    <div key={doc.id} className="flex items-center justify-between p-3 bg-neutral-800/50 rounded-lg group hover:bg-neutral-800 transition-colors">
+                                        <div className="flex items-center gap-3 flex-1 min-w-0 mr-4" title={doc.filename}>
+                                            <FileText className="w-5 h-5 text-emerald-500 shrink-0" />
+                                            <span className="text-sm font-medium text-neutral-300">
+                                                {doc.filename.length > 8 ? `${doc.filename.slice(0, 8)}...` : doc.filename}
+                                            </span>
                                         </div>
-                                        <span className={`text-xs px-2 py-1 rounded-full ${doc.status === 'READY' ? 'bg-emerald-500/10 text-emerald-500' :
+                                        <div className="flex items-center gap-3">
+                                            <span className={`text-xs px-2 py-1 rounded-full ${doc.status === 'READY' ? 'bg-emerald-500/10 text-emerald-500' :
                                                 doc.status === 'INDEXING' ? 'bg-blue-500/10 text-blue-500 animate-pulse' :
                                                     'bg-red-500/10 text-red-500'
-                                            }`}>
-                                            {doc.status}
-                                        </span>
+                                                }`}>
+                                                {doc.status}
+                                            </span>
+                                            <button
+                                                onClick={() => deleteDocument(doc.id)}
+                                                className="p-1.5 text-neutral-500 hover:text-rose-500 hover:bg-rose-500/10 rounded transition-colors opacity-0 group-hover:opacity-100"
+                                                title="Delete Document"
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
                                     </div>
                                 ))}
                                 {documents.length === 0 && <p className="text-neutral-500 text-sm">No documents found.</p>}
