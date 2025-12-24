@@ -1,274 +1,250 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Upload, Camera, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Send, Box, User, Sparkles, MessageSquare, Trash2, PanelLeft, FileText, Download, X } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import { cn } from '@/lib/utils';
 
-export default function FieldAssistantPage() {
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [analysis, setAnalysis] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+interface Message {
+    id: string;
+    role: 'user' | 'assistant';
+    content: string;
+    timestamp: Date;
+}
 
-    const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            setSelectedImage(file);
-            setPreviewUrl(URL.createObjectURL(file));
-            setAnalysis(null);
-            setError(null);
+import { LinkRenderer } from '@/components/LinkRenderer';
+import { PdfModal } from '@/components/PdfModal';
+
+export default function AIAnalysisPage() {
+    const [messages, setMessages] = useState<Message[]>([
+        {
+            id: '1',
+            role: 'assistant',
+            content: "Hey there, I'm Trainflow. What would you like to know about Utility Pole Work Order Generation?",
+            timestamp: new Date()
         }
+    ]);
+    const [inputValue, setInputValue] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+    const [pdfTitle, setPdfTitle] = useState<string>("");
+    const [mounted, setMounted] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    const analyzeImage = async () => {
-        if (!selectedImage) return;
+    useEffect(() => {
+        setMounted(true);
+        scrollToBottom();
+    }, [messages]);
 
+    const handleSend = async () => {
+        if (!inputValue.trim()) return;
+
+        const userMsg: Message = {
+            id: Date.now().toString(),
+            role: 'user',
+            content: inputValue,
+            timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, userMsg]);
+        setInputValue("");
         setLoading(true);
-        setError(null);
-        try {
-            const formData = new FormData();
-            formData.append('file', selectedImage);
 
-            const res = await fetch('/api/analysis/analyze_pole', {
+        try {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || `${protocol}//${hostname}:2027`;
+
+            const sessionId = sessionStorage.getItem('trainflow_chat_session') || `session_${Date.now()}`;
+            sessionStorage.setItem('trainflow_chat_session', sessionId);
+
+            const res = await fetch(`${apiUrl}/api/knowledge/ask`, {
                 method: 'POST',
-                body: formData,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: userMsg.content, session_id: sessionId })
             });
 
-            if (!res.ok) throw new Error('Analysis failed');
+            if (!res.ok) {
+                throw new Error(res.status === 429 ? "Rate limit exceeded (30 queries/hour)." : "Connection failed.");
+            }
 
             const data = await res.json();
-            setAnalysis(data);
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Unknown error');
+
+            const botMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: data.answer,
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, botMsg]);
+
+        } catch (e: any) {
+            const errorMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: `Error: ${e.message}`,
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, errorMsg]);
         } finally {
             setLoading(false);
         }
     };
 
-    // Draw Bounding Boxes
-    useEffect(() => {
-        if (!previewUrl || !analysis || !canvasRef.current) return;
-
-        const img = new Image();
-        img.src = previewUrl;
-        img.onload = () => {
-            const canvas = canvasRef.current!;
-            const ctx = canvas.getContext('2d')!;
-
-            // Resize canvas to match image display size (responsive)
-            // For simplicity here, we match natural size or fixed container
-            // A better way is to use overlay div, but canvas is fine.
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            ctx.drawImage(img, 0, 0);
-
-            if (analysis.defects) {
-                // Pre-calculate positions to avoid overlap
-                const labels: any[] = [];
-                const padding = 10;
-                const lineHeight = 30;
-
-                // Sort by Y to organize top-to-bottom
-                const sortedDefects = [...analysis.defects].sort((a, b) => {
-                    const boxA = a.box_2d || [0, 0, 0, 0];
-                    const boxB = b.box_2d || [0, 0, 0, 0];
-                    return boxA[0] - boxB[0];
-                });
-
-                let leftStackY = 20;  // Start slightly down
-                let rightStackY = 20;
-
-                sortedDefects.forEach((defect: any) => {
-                    const [ymin, xmin, ymax, xmax] = defect.box_2d || [0, 0, 0, 0];
-                    const w = canvas.width;
-                    const h = canvas.height;
-
-                    // Coordinates
-                    const x = (xmin / 1000) * w;
-                    const y = (ymin / 1000) * h;
-                    const bw = ((xmax - xmin) / 1000) * w;
-                    const bh = ((ymax - ymin) / 1000) * h;
-                    const centerX = x + bw / 2;
-                    const centerY = y + bh / 2;
-
-                    // 1. Draw Crisp Box (Double Stroke for Contrast)
-                    ctx.save();
-                    ctx.shadowBlur = 0;
-                    ctx.lineWidth = 5;
-                    ctx.strokeStyle = 'black'; // Outline
-                    ctx.strokeRect(x, y, bw, bh);
-
-                    ctx.lineWidth = 3;
-                    ctx.strokeStyle = defect.severity === 'Critical' ? '#ff3333' : '#00ffd5'; // Cyan/Red
-                    ctx.strokeRect(x, y, bw, bh);
-                    ctx.restore();
-
-                    // 2. Smart Label Placement
-                    // Determine side based on center
-                    const isLeft = centerX < w / 2;
-
-                    let labelY = isLeft ? leftStackY : rightStackY;
-                    // Ensure label acts as a pointer to the box, but doesn't drift too far up if box is low
-                    // Ideally, label Y should be close to box Y, but bounded by stack
-                    labelY = Math.max(labelY, y);
-
-                    // Update stack for next item
-                    if (isLeft) leftStackY = labelY + lineHeight + 5;
-                    else rightStackY = labelY + lineHeight + 5;
-
-                    const labelX = isLeft ? 10 : w - 210; // Fixed columns
-
-                    // Draw Connecting Line (Elbow connector)
-                    ctx.beginPath();
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = defect.severity === 'Critical' ? '#ff3333' : '#00ffd5';
-                    ctx.moveTo(isLeft ? labelX + 200 : labelX, labelY + 15); // From Label
-                    ctx.lineTo(centerX, centerY); // To Box Center
-                    ctx.stroke();
-
-                    // Draw Label Background
-                    ctx.fillStyle = "rgba(10, 10, 20, 0.85)";
-                    ctx.fillRect(labelX, labelY, 200, lineHeight);
-                    ctx.strokeStyle = "rgba(255,255,255,0.2)";
-                    ctx.strokeRect(labelX, labelY, 200, lineHeight);
-
-                    // Draw Text
-                    ctx.fillStyle = "white";
-                    ctx.font = "bold 13px Inter, sans-serif";
-                    ctx.textAlign = "left";
-                    ctx.textBaseline = "middle";
-                    ctx.fillText(defect.label, labelX + 10, labelY + lineHeight / 2);
-                });
-            }
-        };
-    }, [analysis, previewUrl]);
-
     return (
-        <div className="min-h-screen bg-gray-900 text-white p-8">
-            <header className="mb-8 flex justify-between items-center">
-                <div>
-                    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                        AI Assistant
-                    </h1>
-                    <p className="text-gray-400">Automated Defect Detection & Repair Recommendations</p>
-                </div>
-            </header>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                {/* Upload / Preview Area */}
-                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                    {!previewUrl ? (
-                        <div className="border-2 border-dashed border-gray-600 rounded-lg h-96 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors">
-                            <label className="cursor-pointer flex flex-col items-center">
-                                <Upload className="w-16 h-16 text-gray-500 mb-4" />
-                                <span className="text-lg text-gray-300">Upload Inspection Photo</span>
-                                <input type="file" accept="image/*" className="hidden" onChange={handleImageSelect} />
-                            </label>
-                        </div>
-                    ) : (
-                        <div className="relative rounded-lg overflow-hidden h-fit">
-                            {/* Use Canvas for Drawing Overlays */}
-                            {analysis ? (
-                                <canvas ref={canvasRef} className="w-full h-auto" />
-                            ) : (
-                                <img src={previewUrl} alt="Preview" className="w-full h-auto" />
-                            )}
-
-                            {loading && (
-                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    <div className="mt-4 flex gap-4">
+        <div className="flex h-screen bg-[#050505] text-white font-sans overflow-hidden">
+            {/* Sidebar (History) */}
+            {isSidebarOpen && (
+                <aside className="w-64 bg-black/40 border-r border-white/10 flex flex-col pt-16">
+                    <div className="p-4 border-b border-white/10">
                         <button
-                            onClick={() => (document.querySelector('input[type="file"]') as HTMLElement)?.click()}
-                            className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg flex items-center gap-2 transition"
+                            onClick={() => setMessages([messages[0]])}
+                            className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-4 py-3 transition-colors text-sm font-medium"
                         >
-                            <Camera size={20} /> New Photo
+                            <Sparkles className="w-4 h-4 text-blue-400" />
+                            New Chat
                         </button>
-                        {previewUrl && !loading && (
-                            <button
-                                onClick={analyzeImage}
-                                className="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg font-bold flex-1 shadow-lg shadow-blue-500/20 transition"
-                            >
-                                Analyze Defects
-                            </button>
-                        )}
                     </div>
-                    {error && <p className="text-red-400 mt-4 bg-red-900/20 p-3 rounded">{error}</p>}
-                </div>
+                    <div className="flex-1 overflow-y-auto p-2 space-y-1">
+                        <div className="px-3 py-2 text-xs font-semibold text-white/30 uppercase tracking-wider">Today</div>
+                        <button className="w-full text-left px-3 py-2 rounded-lg bg-white/5 text-sm text-white/80 truncate">
+                            How to file invoices?
+                        </button>
+                    </div>
+                    {/* User profile removed as requested */}
+                </aside>
+            )}
 
-                {/* Results Area */}
-                <div className="space-y-6">
-                    {analysis && analysis.defects && (
-                        <>
-                            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
-                                <div className="flex justify-between items-center mb-4">
-                                    <h2 className="text-xl font-bold flex items-center gap-2">
-                                        <AlertTriangle className="text-yellow-500" /> Detected Defects
-                                    </h2>
-                                    <button
-                                        onClick={() => {
-                                            const text = `SUMMARY:\n${analysis.pole_summary || 'N/A'}\n\nDEFECTS:\n` +
-                                                analysis.defects.map((d: any) => `- ${d.label} (${d.severity}): ${d.repair_action}`).join('\n');
-                                            navigator.clipboard.writeText(text);
-                                            alert("Copied Analysis to Clipboard!"); // Simple feedback
-                                        }}
-                                        className="bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1 rounded text-white transition border border-gray-600"
-                                    >
-                                        Copy Analysis
-                                    </button>
+            {/* Main Chat Area */}
+            <main className="flex-1 flex flex-col relative transition-all duration-300">
+                {/* Header */}
+                <header className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-xl border-b border-white/5 flex items-center px-4 z-10 justify-between">
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            className="p-2 rounded-lg hover:bg-white/5 text-muted-foreground hover:text-white transition-colors"
+                        >
+                            <PanelLeft className="w-5 h-5" />
+                        </button>
+                        <div className="flex items-center gap-2">
+                            {/* Use Box (Logo) instead of Bot */}
+                            <Box className="w-5 h-5 text-blue-500" />
+                            <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                                TrainFlow Assistant
+                            </span>
+                        </div>
+                    </div>
+                </header>
+
+                {/* Maximized Chat Container (Removed large px padding) */}
+                <div className="flex-1 overflow-y-auto pt-20 pb-32 px-0 scroll-smooth">
+                    {messages.map((msg) => (
+                        <div
+                            key={msg.id}
+                            className={`flex gap-4 mb-6 px-4 md:px-6 lg:px-8 ${msg.role === 'assistant' ? '' : 'justify-end'}`}
+                        >
+                            {msg.role === 'assistant' && (
+                                <div className="w-8 h-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-white/5">
+                                    <Box className="w-5 h-5 text-blue-500" />
                                 </div>
-                                <div className="space-y-4">
-                                    {analysis.defects.map((defect: any, idx: number) => (
-                                        <div key={idx} className="bg-gray-900 p-4 rounded-lg border border-gray-700 flex flex-col gap-2">
-                                            <div className="flex justify-between items-start">
-                                                <span className="font-bold text-lg text-white">{defect.label}</span>
-                                                <span className={`px-2 py-1 rounded text-xs font-bold ${defect.severity === 'Critical' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'
-                                                    }`}>
-                                                    {defect.severity}
-                                                </span>
-                                            </div>
-                                            <div className="text-green-400 mt-2 flex items-start gap-2">
-                                                <CheckCircle size={16} className="mt-1 shrink-0" />
-                                                <div>
-                                                    <strong className="block text-xs uppercase tracking-wider text-green-500/70 mb-1">Recommended Action</strong>
-                                                    {defect.repair_action}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
+                            )}
+
+
+
+
+
+                            <div className={`flex flex-col max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                <div className={`px-5 py-4 rounded-2xl ${msg.role === 'user'
+                                    ? 'bg-white/10 text-white rounded-br-none' // Neutral background for user
+                                    : 'bg-white/5 border border-white/10 text-gray-100 rounded-tl-none'
+                                    } shadow-sm`}>
+                                    <div className="prose prose-invert prose-sm max-w-none leading-relaxed">
+                                        <ReactMarkdown
+                                            components={{
+                                                a: (props) => <LinkRenderer {...props} onPreview={(url, title) => {
+                                                    setPdfUrl(url);
+                                                    setPdfTitle(title);
+                                                }} />
+                                            }}
+                                        >
+                                            {msg.content.replace(/\] \(\/api/g, '](/api')}
+                                        </ReactMarkdown>
+                                    </div>
                                 </div>
+                                <span className="text-[10px] text-white/20 mt-2 px-1">
+                                    {mounted ? msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
+                                </span>
                             </div>
-                        </>
-                    )}
 
-                    {analysis && analysis.pole_summary && (
-                        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 mt-6">
-                            <h2 className="text-xl font-bold mb-4 text-blue-400">
-                                📋 Field Notes & Setup Summary
-                            </h2>
-                            <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">
-                                {analysis.pole_summary}
-                            </p>
+                            {msg.role === 'user' && (
+                                <div className="w-8 h-8 shrink-0 rounded-lg bg-white/10 flex items-center justify-center border border-white/10">
+                                    <User className="w-4 h-4 text-white" />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+
+                    {loading && (
+                        <div className="flex gap-4 mb-8">
+                            <div className="w-8 h-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-white/5">
+                                <Box className="w-5 h-5 text-blue-500" />
+                            </div>
+                            <div className="bg-white/5 border border-white/10 px-5 py-4 rounded-2xl rounded-tl-none flex gap-1 items-center">
+                                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce" />
+                            </div>
                         </div>
                     )}
-
-                    {!analysis && !loading && (
-                        <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700 text-center text-gray-500">
-                            <p>Upload an image and click "Analyze" to detect defects using TrainFlow AI.</p>
-                            <p className="text-xs mt-2 opacity-50">Powered by Gemini 2.0 Flash + RAG Knowledge Base</p>
-                        </div>
-                    )}
+                    <div ref={messagesEndRef} />
                 </div>
 
-            </div>
+                {/* Input Area (Transparent Container, Centered Input) */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none">
+                    {/* Constrain width to avoid 'bar' look, keep centered. Pointer events enabled for input. */}
+                    <div className="max-w-4xl mx-auto relative group pointer-events-auto">
+                        {/* Blue Glow Effect Restored */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
+                        <div className="relative flex items-center bg-[#151515] border border-white/10 rounded-xl px-4 py-3 shadow-2xl">
+                            <input
+                                type="text"
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                                placeholder="Ask about specific SOPs, rules, or procedures..."
+                                className="flex-1 bg-transparent border-none focus:ring-0 outline-none text-white placeholder:text-white/30 text-base"
+                                disabled={loading}
+                                autoFocus
+                            />
+                            <button
+                                onClick={handleSend}
+                                disabled={!inputValue.trim() || loading}
+                                className={`p-2 rounded-lg transition-all duration-300 ${inputValue.trim() && !loading
+                                    ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg'
+                                    : 'bg-white/5 text-white/20 cursor-not-allowed'
+                                    }`}
+                            >
+                                <Send className="w-5 h-5" />
+                            </button>
+                        </div>
+                        {/* Footer text removed as requested */}
+                    </div>
+                </div>
+
+                {/* PDF Modal */}
+                <PdfModal
+                    isOpen={!!pdfUrl}
+                    onClose={() => setPdfUrl(null)}
+                    pdfUrl={pdfUrl}
+                    pdfTitle={pdfTitle}
+                />
+            </main>
         </div>
     );
 }
+

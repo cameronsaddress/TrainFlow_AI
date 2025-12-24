@@ -92,23 +92,24 @@ async def delete_video(video_id: int, db: Session = Depends(get_db)):
 
 @router.post("/generate_structure")
 async def generate_structure_endpoint(db: Session = Depends(get_db)):
-    """Trigger the 'Top-Level' logic: Curriculum Architect."""
-    # This might take 30-60s for LLM generation. 
-    # For MVP we can await it. For Prod, use background tasks.
-    # Given 128k context, it might be 60s+.
+    """Trigger the 'Top-Level' logic: Curriculum Architect (Streaming)."""
     
     from ..services import curriculum_architect
+    import json
 
-    try:
-        # Changed to return dict with ID
-        result = curriculum_architect.generate_curriculum(db)
-        if "error" in result:
-             raise HTTPException(status_code=400, detail=result["error"])
-        return result 
-    except Exception as e:
-        print(f"Error generating structure: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    async def event_generator():
+        try:
+            # The service is now a generator
+            iterator = curriculum_architect.generate_curriculum(db)
+            
+            for item in iterator:
+                yield json.dumps(item) + "\n"
+                
+        except Exception as e:
+            print(f"Error generating structure: {e}")
+            yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
 
+    return StreamingResponse(event_generator(), media_type="application/x-ndjson")
 @router.get("/plans")
 async def list_curricula(db: Session = Depends(get_db)):
     return db.query(k_models.TrainingCurriculum).order_by(k_models.TrainingCurriculum.created_at.desc()).all()
@@ -140,6 +141,29 @@ async def get_curriculum(plan_id: int, db: Session = Depends(get_db)):
         "created_at": plan.created_at,
         "file_map": file_map # Frontend will use this lookup
     }
+
+from pydantic import BaseModel
+from typing import Dict, Any, List
+
+class CurriculumUpdateSchema(BaseModel):
+    title: str
+    structured_json: Dict[str, Any]
+
+@router.put("/plans/{plan_id}")
+async def update_curriculum(plan_id: int, payload: CurriculumUpdateSchema, db: Session = Depends(get_db)):
+    """Update curriculum structure (Visual Editor save)."""
+    plan = db.query(k_models.TrainingCurriculum).filter(k_models.TrainingCurriculum.id == plan_id).first()
+    if not plan:
+        raise HTTPException(status_code=404, detail="Curriculum Plan not found")
+        
+    # Update Fields
+    plan.title = payload.title
+    # Sanitize or Validate if needed (for now transparent pass-through)
+    plan.structured_json = payload.structured_json
+    
+    db.commit()
+    db.refresh(plan)
+    return {"status": "updated", "id": plan.id}
 
 @router.get("/stream/{filename}")
 async def stream_video(

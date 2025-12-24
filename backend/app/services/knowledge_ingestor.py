@@ -38,31 +38,41 @@ def ingest_document(doc_id: int):
         page_count = len(reader.pages)
         print(f"Extracting text from {page_count} pages...", flush=True)
         
-        for i, page in enumerate(reader.pages):
-            full_text += page.extract_text() + "\n"
-            if i % 50 == 0:
-                print(f"Extracted page {i}/{page_count}...", flush=True)
-
-        # 2. Chunking
-        print(f"Chunking {len(full_text)} characters...", flush=True)
+        # 1. Page-Aware Extraction & Chunking
+        print(f"Loading PDF: {doc.file_path}", flush=True)
+        reader = PdfReader(doc.file_path)
+        page_count = len(reader.pages)
+        print(f"Processing {page_count} pages...", flush=True)
+        
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=100
         )
-        texts = splitter.split_text(full_text)
         
-        # 3. Embeddings (Mocked for now or call LLM service)
-        # TODO: Implement real embedding call via 'llm.get_embedding(text)'
-        # For prototype, we will just store text.
+        full_text_for_rules = "" # Keep full text for rule extraction later
         
-        for t in texts:
-            chunk = k_models.KnowledgeChunk(
-                document_id=doc.id,
-                content=t,
-                embedding=None, # Pending calc
-                metadata_json={"source": "pdf"}
-            )
-            db.add(chunk)
+        for i, page in enumerate(reader.pages):
+            page_num = i + 1
+            page_text = page.extract_text()
+            full_text_for_rules += page_text + "\n"
+            
+            # Chunk THIS page
+            texts = splitter.split_text(page_text)
+            
+            for t in texts:
+                chunk = k_models.KnowledgeChunk(
+                    document_id=doc.id,
+                    content=t,
+                    embedding=None, 
+                    metadata_json={"source": "pdf", "page_number": page_num}
+                )
+                db.add(chunk)
+                
+            if i % 10 == 0:
+                print(f"Processed page {page_num}/{page_count}...", flush=True)
+        
+        # Renaming for compatibility with rule extraction below
+        full_text = full_text_for_rules
             
         # 4. Independent Rule Extraction (LLM) - Scaled for Large Docs
         from ..services import llm

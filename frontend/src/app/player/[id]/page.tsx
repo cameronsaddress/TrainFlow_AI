@@ -5,6 +5,9 @@ import { useParams } from 'next/navigation';
 import { Play, Pause, BookOpen, AlertCircle, Search, Sparkles, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import { LinkRenderer } from '@/components/LinkRenderer';
+import { PdfModal } from '@/components/PdfModal';
+import { Box, Send, User } from 'lucide-react';
 
 interface KnowledgeChunk {
     content: string;
@@ -19,60 +22,77 @@ export default function SmartPlayerPage() {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [currentTime, setCurrentTime] = useState(0);
-    const [contextChunks, setContextChunks] = useState<KnowledgeChunk[]>([]);
     const [currentStepText, setCurrentStepText] = useState("Waiting for video start...");
-    const [isSyncing, setIsSyncing] = useState(false);
+    const [currentIntent, setCurrentIntent] = useState(""); // Track intent for quick ask
 
-    // Mock Transcript Sync (In real app, fetch from TrainingStep API)
+    // Chat State
+    const [messages, setMessages] = useState<any[]>([]);
+    const [inputValue, setInputValue] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+    const [pdfTitle, setPdfTitle] = useState<string>("");
+
+    // Auto-scroll
+    const messagesEndRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const fetchContext = async () => {
-            setIsSyncing(true);
-            // 1. Determine "Current Action" (Mocked logic)
-            let searchText = "";
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
+    // Transcript Sync (Detect Intent)
+    useEffect(() => {
+        const detectContext = () => {
             let intent = "";
+            let action = "";
 
             if (currentTime > 0 && currentTime < 5) {
-                searchText = "login";
-                intent = "Authenticating";
+                action = "Authenticating";
+                intent = "login to the system";
             } else if (currentTime >= 5 && currentTime < 15) {
-                searchText = "GIS";
-                intent = "Editing Map Assets";
+                action = "Editing Assets";
+                intent = "edit a map asset";
             } else if (currentTime >= 15) {
-                searchText = "Work Order";
-                intent = "Creating WO";
+                action = "Creating Work Order";
+                intent = "create a work order";
             }
 
-            if (intent) setCurrentStepText(`Detected Action: ${intent}`);
-
-            // 2. Query Knowledge Engine
-            if (searchText) {
-                try {
-                    const res = await fetch('/api/knowledge/context', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ text: searchText })
-                    });
-                    if (res.ok) {
-                        const data = await res.json();
-                        // Mock enriching with types for UI demo
-                        const enriched = data.map((d: any) => ({
-                            ...d,
-                            type: d.content.toLowerCase().includes('must') || d.content.toLowerCase().includes('rule') ? 'RULE' : 'DEFINITION'
-                        }));
-                        setContextChunks(enriched);
-                    }
-                } catch (e) {
-                    console.error(e);
-                }
-            } else {
-                setContextChunks([]);
+            if (action) {
+                setCurrentStepText(`${action}`);
+                setCurrentIntent(intent);
             }
-            setIsSyncing(false);
         };
 
-        const interval = setInterval(fetchContext, 5000); // 5s refresh
+        const interval = setInterval(detectContext, 1000);
         return () => clearInterval(interval);
     }, [currentTime]);
+
+    const handleSend = async (text: string) => {
+        if (!text.trim()) return;
+
+        const userMsg = { role: 'user', content: text, id: Date.now().toString() };
+        setMessages(prev => [...prev, userMsg]);
+        setInputValue("");
+        setLoading(true);
+
+        try {
+            const res = await fetch('/api/knowledge/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: text, session_id: `player_${id}` })
+            });
+            const data = await res.json();
+
+            setMessages(prev => [...prev, {
+                role: 'assistant',
+                content: data.answer || "I couldn't find an answer for that.",
+                id: (Date.now() + 1).toString()
+            }]);
+        } catch (e) {
+            console.error(e);
+            setMessages(prev => [...prev, { role: 'assistant', content: "Error connecting to AI.", id: Date.now().toString() }]);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleTimeUpdate = () => {
         if (videoRef.current) {
@@ -119,76 +139,63 @@ export default function SmartPlayerPage() {
                             <div className="p-1.5 bg-emerald-500/10 rounded-lg">
                                 <Sparkles className="w-5 h-5 text-emerald-400" />
                             </div>
-                            <h2 className="font-bold text-emerald-400 tracking-tight">Smart Context</h2>
+                            <h2 className="font-bold text-emerald-400 tracking-tight">TrainFlow Assistant</h2>
                         </div>
-                        {isSyncing && (
-                            <span className="text-[10px] text-emerald-500/70 font-mono animate-pulse">SYNCING...</span>
-                        )}
                     </div>
-                    <p className="text-xs text-neutral-400 leading-relaxed">
-                        Real-time SOPs and Compliance Rules synchronized with video playback.
-                    </p>
+                    {/* Quick Ask Context Button */}
+                    {currentIntent && (
+                        <button
+                            onClick={() => handleSend(`How do I ${currentIntent}?`)}
+                            className="text-xs w-full mt-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 py-2 px-3 rounded-lg border border-emerald-500/20 transition-all flex items-center justify-center gap-2"
+                        >
+                            <Sparkles className="w-3 h-3" />
+                            Ask: "How do I {currentIntent}?"
+                        </button>
+                    )}
                 </div>
 
-                {/* Content Area */}
+                {/* Chat Area */}
                 <div className="flex-1 overflow-y-auto p-5 scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-transparent">
-                    <AnimatePresence mode="popLayout">
-                        {contextChunks.length === 0 ? (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="text-center py-20 text-neutral-600 space-y-3"
-                            >
-                                <div className="w-16 h-16 bg-neutral-800/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Search className="w-8 h-8 opacity-40" />
-                                </div>
-                                <p className="text-sm">Listening for recognized actions...</p>
-                            </motion.div>
-                        ) : (
-                            contextChunks.map((chunk, idx) => (
-                                <motion.div
-                                    key={`${idx}-${chunk.source_doc}`} // Ideally use unique ID
-                                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.3, delay: idx * 0.1 }}
-                                    className={`mb-4 rounded-xl border p-4 shadow-sm relative overflow-hidden group
-                                        ${chunk.type === 'RULE'
-                                            ? 'bg-rose-950/20 border-rose-500/30 hover:border-rose-500/50'
-                                            : 'bg-neutral-800/50 border-white/10 hover:border-emerald-500/30'
-                                        }`}
-                                >
-                                    {/* Type Badge */}
-                                    <div className="flex items-center gap-2 mb-3">
-                                        {chunk.type === 'RULE' ? (
-                                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/20 flex items-center gap-1">
-                                                <ShieldCheck className="w-3 h-3" /> COMPLIANCE RULE
-                                            </span>
+                    {messages.length === 0 ? (
+                        <div className="text-center py-20 text-neutral-600 space-y-3">
+                            <div className="w-16 h-16 bg-neutral-800/50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Search className="w-8 h-8 opacity-40" />
+                            </div>
+                            <p className="text-sm">Ask about procedures or click the quick prompt above.</p>
+                        </div>
+                    ) : (
+                        <div className="space-y-6">
+                            {messages.map((msg) => (
+                                <div key={msg.id} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                    <div className={`max-w-[90%] rounded-2xl p-4 ${msg.role === 'user' ? 'bg-white/10 text-white rounded-br-none' : 'bg-white/5 border border-white/10 text-neutral-200 rounded-tl-none'}`}>
+                                        {msg.role === 'user' ? (
+                                            <p className="text-sm">{msg.content}</p>
                                         ) : (
-                                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 flex items-center gap-1">
-                                                <BookOpen className="w-3 h-3" /> DEFINITION
-                                            </span>
+                                            <div className="prose prose-invert prose-sm max-w-none">
+                                                <ReactMarkdown
+                                                    components={{
+                                                        a: (props) => <LinkRenderer {...props} onPreview={(url, title) => {
+                                                            setPdfUrl(url);
+                                                            setPdfTitle(title);
+                                                        }} />
+                                                    }}
+                                                >
+                                                    {msg.content.replace(/\] \(\/api/g, '](/api')}
+                                                </ReactMarkdown>
+                                            </div>
                                         )}
-                                        <span className="text-[10px] text-neutral-500 ml-auto font-mono">
-                                            {Math.round(chunk.score * 100)}% Match
-                                        </span>
                                     </div>
-
-                                    {/* Markdown Content */}
-                                    <div className="prose prose-invert prose-sm prose-p:leading-relaxed prose-headings:text-neutral-200 text-neutral-300">
-                                        <ReactMarkdown>{chunk.content}</ReactMarkdown>
-                                    </div>
-
-                                    {/* Footer / Hover Action */}
-                                    <div className="mt-3 pt-3 border-t border-white/5 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button className="text-xs text-white bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded transition-colors">
-                                            View Source Document
-                                        </button>
-                                    </div>
-                                </motion.div>
-                            ))
-                        )}
-                    </AnimatePresence>
+                                </div>
+                            ))}
+                            {loading && (
+                                <div className="flex gap-2 items-center text-xs text-neutral-500">
+                                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" />
+                                    Thinking...
+                                </div>
+                            )}
+                            <div ref={messagesEndRef} />
+                        </div>
+                    )}
                 </div>
 
                 {/* Input */}
@@ -197,12 +204,22 @@ export default function SmartPlayerPage() {
                         <Search className="absolute left-3 top-2.5 w-4 h-4 text-neutral-500" />
                         <input
                             type="text"
-                            placeholder="Ask the Knowledge Base a question..."
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleSend(inputValue)}
+                            placeholder="Ask the Assistant..."
                             className="w-full bg-black/40 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                         />
                     </div>
                 </div>
             </div>
+
+            <PdfModal
+                isOpen={!!pdfUrl}
+                onClose={() => setPdfUrl(null)}
+                pdfUrl={pdfUrl}
+                pdfTitle={pdfTitle}
+            />
         </div>
     );
 }

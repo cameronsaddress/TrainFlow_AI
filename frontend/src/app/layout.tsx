@@ -6,6 +6,8 @@ import { Sidebar } from "@/components/Sidebar";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
+import MainContent from "@/components/MainContent";
+
 export const metadata: Metadata = {
     title: "TrainFlow AI",
     description: "Enterprise AI Training Generator",
@@ -20,9 +22,9 @@ export default function RootLayout({
         <html lang="en" className="dark">
             <body className={`${inter.variable} ${outfit.variable} font-sans bg-background text-foreground flex min-h-screen`}>
                 <Sidebar />
-                <main className="flex-1 p-8 overflow-y-auto">
+                <MainContent>
                     {children}
-                </main>
+                </MainContent>
             </body>
         </html>
     );

@@ -155,13 +155,15 @@ def segment_transcript(full_text: str):
                 
         return all_steps
 
-def generate_text(prompt: str) -> str:
+def generate_text(prompt: str, model: str = None) -> str:
     """
     Generic text generation utility for Knowledge Engine.
+    Allows overriding the default model.
     """
+    target_model = model if model else MODEL_NAME
     try:
         response = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=target_model,
             messages=[
                 {"role": "system", "content": "You are a helpful AI assistant."},
                 {"role": "user", "content": prompt}

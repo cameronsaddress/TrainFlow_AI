@@ -17,7 +17,7 @@ services:
       # OpenRouter Config (Shared)
       - LLM_API_BASE=https://openrouter.ai/api/v1
       - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
-      - LLM_MODEL=google/gemini-3-flash-preview
+      - LLM_MODEL=meta-llama/llama-3-70b-instruct
     depends_on:
       - db
       - redis
