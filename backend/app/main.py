@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(
     title="TrainFlow_AI API",
     description="Enterprise AI-Assisted Training & Work Order Creation Guide Generator",
-    version="1.0.0"
+    version="7.33.0"
 )
 
 from fastapi.staticfiles import StaticFiles

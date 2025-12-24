@@ -21,6 +21,17 @@ def print_gpu_stats():
         free, total = torch.cuda.mem_get_info()
         print(f"[CLI-MEM] GPU Free: {free/1e9:.2f}GB / {total/1e9:.2f}GB | Limit: 80%", flush=True)
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        import numpy as np
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NumpyEncoder, self).default(obj)
+
 def run_asr(video_path, output_path):
     print_gpu_stats()
     from app.services import asr
@@ -29,7 +40,7 @@ def run_asr(video_path, output_path):
     try:
         result = asr.process_asr(video_path)
         with open(output_path, 'w') as f:
-            json.dump(result, f)
+            json.dump(result, f, cls=NumpyEncoder)
         logger.info("Subprocess: ASR Complete")
     except Exception as e:
         logger.error(f"Subprocess ASR Failed: {e}")
@@ -45,7 +56,7 @@ def run_ocr_sampling(video_path, output_path):
     try:
         result = cv.process_ocr_sampling(video_path)
         with open(output_path, 'w') as f:
-            json.dump(result, f)
+            json.dump(result, f, cls=NumpyEncoder)
         logger.info("Subprocess: OCR Complete")
     except Exception as e:
         logger.error(f"Subprocess OCR Failed: {e}")
