@@ -1,7 +1,9 @@
 import json
 import logging
+import asyncio
 from sqlalchemy.orm import Session
 from ..models import knowledge as k_models
+from ..schemas.curriculum import Module
 from . import llm
 
 logger = logging.getLogger(__name__)
@@ -54,19 +56,25 @@ You MUST VALIDATE that the timestamps you cite actually exist in the source vide
 }
 """
 
-def generate_curriculum(db: Session, context_rules: str = "") -> dict:
+async def generate_curriculum(db: Session, context_rules: str = ""):
     """
-    The Brain: Aggregates all READY videos and generates a course structure.
+    The Brain: Aggregates all READY videos and generates a course structure (Async).
     Uses Hybrid Strategy: Direct Ingestion vs Map-Reduce.
+    YIELDS: Status strings (str) OR Final Dictionary (dict)
     """
     # 1. Fetch All Ready Videos
+    yield "Scanning Video Corpus..."
+    # DB calls are sync, but fast enough to block briefly. 
+    # Logic remains strict sync for DB, async for LLM.
     videos = db.query(k_models.VideoCorpus).filter(
         k_models.VideoCorpus.status == k_models.DocStatus.READY
     ).all()
     
     if not videos:
-        return {"error": "No READY videos found in corpus."}
+        yield {"error": "No READY videos found in corpus."}
+        return
         
+    yield f"Curriculum Architect: Analyzing {len(videos)} videos..."
     print(f"Curriculum Architect: Analyzing {len(videos)} videos...", flush=True)
     
     # 2. Build Context Payload
@@ -74,14 +82,28 @@ def generate_curriculum(db: Session, context_rules: str = "") -> dict:
     total_chars = len(full_context_str)
     
     print(f"Total Context Size: {total_chars} chars (~{total_chars/4:.0f} tokens)", flush=True)
+    yield f"Context Window: {total_chars:,} chars. Selecting AI Strategy..."
     
     # 3. Select Strategy
     if total_chars < 3200000: # ~800k tokens (Safe for 1M window)
         print("Strategy: DIRECT INGESTION (Context fits in 1M window)", flush=True)
-        return execute_direct_strategy(db, full_context_str, context_rules)
+        yield "Strategy: Direct Context Ingestion. Architecting Course..."
+        
+        # Iterate Direct Strategy Generator
+        async for status in execute_direct_strategy(db, full_context_str, context_rules):
+            yield status
+            
     else:
         print("Strategy: MAP-REDUCE (Context too large, summarizing first)", flush=True)
-        return execute_map_reduce_strategy(db, videos, context_rules)
+        yield "Strategy: Map-Reduce (Large Context). Summarizing footage..."
+        
+        # Iterate Map-Reduce Strategy Generator
+        async for status in execute_map_reduce_strategy(db, videos, context_rules):
+            yield status
+            
+    # Note: Phase 4 is now inside the strategies, so we are done.
+    # The last yielded item from the strategies is the Result Dict.
+    return
 
 def build_full_context(videos: list) -> str:
     """
@@ -90,28 +112,11 @@ def build_full_context(videos: list) -> str:
     context_parts = []
     
     for video in videos:
-        # Transcript Logic:
-        # Ideally we use the JSON timeline for precision, but it can be huge.
-        # For the Prompt, a readable format with timestamps is best.
-        # Let's create a "Dense Log" format.
-        
         dense_log = f"<VIDEO filename='{video.filename}' duration='{video.duration_seconds}'>\n"
-        
-        # 1. Add Transcript Segments (if available in JSON)
-        # We prefer the raw JSON if available to get word-level precision, 
-        # but to save tokens, we might group by 5-10 second chunks.
-        # For now, let's use the full text but maybe we should rely on the timeline if possible.
-        # Actually, let's just dump the raw Transcript Text first, but we need timestamps.
-        # If transcript_json exists, we reconstruct a "Timestamped Script".
         
         if video.transcript_json:
             timeline = video.transcript_json.get("segments", []) 
-            # Note: ASR 'segments' usually have 'start', 'end', 'text'.
-            # ASR 'timeline' has word-level.
-            # We used 'segments' in asr.py return for the high level chunks.
-            
             if not timeline and video.transcript_text:
-                 # Fallback to mostly text if segments missing
                  dense_log += f"<TRANSCRIPT>\n{video.transcript_text}\n</TRANSCRIPT>\n"
             else:
                 dense_log += "<TRANSCRIPT_TIMELINE>\n"
@@ -122,14 +127,11 @@ def build_full_context(videos: list) -> str:
                     dense_log += f"[{start:.2f}-{end:.2f}] {text}\n"
                 dense_log += "</TRANSCRIPT_TIMELINE>\n"
         
-        # 2. Add OCR Events
         if video.ocr_json:
              dense_log += "<ON_SCREEN_TEXT>\n"
-             # ocr_json is list of {timestamp, text_content}
              for item in video.ocr_json:
                  ts = item.get('timestamp')
                  txt = item.get('text', '')
-                 # Filter trivial text to save tokens?
                  if len(txt) > 5: 
                      dense_log += f"[{ts:.2f}s] {txt}\n"
              dense_log += "</ON_SCREEN_TEXT>\n"
@@ -139,62 +141,54 @@ def build_full_context(videos: list) -> str:
         
     return "\n".join(context_parts)
 
-def execute_direct_strategy(db: Session, context_str: str, rules: str):
+async def execute_direct_strategy(db: Session, full_context_str: str, context_rules: str = ""):
     """
-    Single-shot generation using the massive context.
+    Direct Ingestion Strategy (Streaming)
     """
-    # We can override model here if we want to ensure Flash 3 is used.
-    # For now, we trust the env var or default, but we should likely 
-    # allow 'google/gemini-flash-1.5-8b' or similar if configured.
-    
     user_message = f"""
-    {rules}
-    
-    Here is the Raw Video Data:
-    {context_str}
+    Context Data:
+    {full_context_str}
     
     Generate the Course Plan now.
     """
     
-    result_json = llm.generate_structure(
+    yield "Phase 2: Direct Architecture Generation..."
+    result_json = await llm.generate_structure(
         system_prompt=INSTRUCTIONAL_DESIGNER_PROMPT, 
         user_content=user_message,
-        model="x-ai/grok-4.1-fast" # Explicitly request high-context model if available
+        model="x-ai/grok-4.1-fast" 
     )
 
-    # Phase 4: Enrich (Even for Direct Strategy)
-    result_json = enrich_curriculum_with_knowledge(result_json, db)
+    # Phase 4: Enrich (Streamed)
+    if "modules" in result_json:
+        async for status in enrich_curriculum_generator(result_json, db):
+            yield status
+            if isinstance(status, dict):
+                 result_json = status
+                 
+    yield result_json
 
-    # 3. Persist to DB
-    new_curriculum = k_models.TrainingCurriculum(
-        title=result_json.get("course_title", "Untitled Course"),
-        structured_json=result_json
-    )
-    db.add(new_curriculum)
-    db.commit()
-    db.refresh(new_curriculum)
-    
-    return {"id": new_curriculum.id, "result": result_json}
-
-def execute_map_reduce_strategy(db: Session, videos: list, rules: str) -> dict:
+async def execute_map_reduce_strategy(db: Session, videos: list, rules: str):
     """
-    Scalable Course Generation:
+    Scalable Course Generation (Streaming):
     1. Map: Summarize each video (if not already cached).
     2. Reduce: Create Master Plan from summaries.
     3. Detail: Expand each module with full context.
+    4. Enrich: Smart Assist.
     """
     print("--- Phase 1: Summary Map ---", flush=True)
+    yield "Phase 1: Generating Video Summaries (Map)..."
     summaries = []
     
-    for v in videos:
-        # Check cache in metadata_json
+    for i, v in enumerate(videos):
         meta = v.metadata_json or {}
         summary = meta.get("summary")
         
         if not summary:
             print(f"Summarizing {v.filename}...", flush=True)
+            yield f"Summarizing Video {i+1}/{len(videos)}: {v.filename}..."
             try:
-                summary = summarize_video_content(v)
+                summary = await summarize_video_content(v)
                 # Store in DB
                 meta["summary"] = summary
                 v.metadata_json = meta
@@ -204,51 +198,63 @@ def execute_map_reduce_strategy(db: Session, videos: list, rules: str) -> dict:
                 summary = f"Error summarizing video: {v.filename}"
         else:
             print(f"Using Cached Summary for {v.filename}", flush=True)
+            yield f"Using Cached Summary for {v.filename}..."
             
         summaries.append(f"<VIDEO_SUMMARY filename='{v.filename}'>\n{summary}\n</VIDEO_SUMMARY>")
     
     full_summary_context = "\n".join(summaries)
     
     print("--- Phase 2: Master Plan Reduce ---", flush=True)
-    master_plan = generate_master_plan(full_summary_context, rules)
+    yield "Phase 2: Architecting Master Course Plan (Reduce)..."
+    master_plan = await generate_master_plan(full_summary_context, rules)
     print(f"Master Plan Generated: {len(master_plan.get('modules', []))} Modules", flush=True)
     
     print("--- Phase 3: Detail Expansion ---", flush=True)
+    yield f"Phase 3: Expanding {len(master_plan.get('modules', []))} Modules with Deep Context..."
     final_modules = []
     
-    for module in master_plan.get("modules", []):
-        print(f"Expansing Module: {module.get('title')}...", flush=True)
+    for i, module in enumerate(master_plan.get("modules", [])):
+        print(f"Expanding Module: {module.get('title')}...", flush=True)
+        yield f"Drafting Module {i+1}/{len(master_plan.get('modules', []))}: {module.get('title')}..."
         
         # Determine context for this module
         source_filenames = module.get("recommended_source_videos", [])
         module_videos = [v for v in videos if v.filename in source_filenames]
         
         if not module_videos:
-             print("No specific source video cited for module, using all summaries context for detail (fallback).")
+             print("No specific source video cited for module, using GLOBAL SUMMARIES context for detail (fallback).", flush=True)
              module_context = full_summary_context
         else:
              module_context = build_full_context(module_videos)
              
-        detailed_module = generate_detailed_module(module, module_context)
-        final_modules.append(detailed_module)
-        
+        # Detect empty context (e.g. video has no transcripts)
+        if not module_context or not module_context.strip():
+             print("Specific context was empty. Falling back to GLOBAL SUMMARIES context.", flush=True)
+             module_context = full_summary_context
+             
+        try:
+            detailed_module = await generate_detailed_module_validated(module, module_context)
+            final_modules.append(detailed_module)
+            yield f"Completed Module {i+1}. Result: {len(detailed_module.get('lessons', []))} Lessons."
+        except Exception as e:
+            print(f"FAILED Expanding Module {i+1}: {e}")
+            yield f"Failed Module {i+1}: {e}. Skipping temporarily."
+            # We preserve the skeletons? Or just skip? 
+            # If validated failed, let's keep the skeleton but mark as raw.
+            module["error"] = str(e)
+            final_modules.append(module)
+
     master_plan["modules"] = final_modules
     
     # Phase 4: Enrich
-    master_plan = enrich_curriculum_with_knowledge(master_plan, db)
+    async for status in enrich_curriculum_generator(master_plan, db):
+        yield status
+        if isinstance(status, dict):
+             master_plan = status
 
-    # Persist
-    new_curriculum = k_models.TrainingCurriculum(
-        title=master_plan.get("course_title", "Untitled Course"),
-        structured_json=master_plan
-    )
-    db.add(new_curriculum)
-    db.commit()
-    db.refresh(new_curriculum)
-    
-    return {"id": new_curriculum.id, "result": master_plan}
+    yield master_plan
 
-def summarize_video_content(video) -> str:
+async def summarize_video_content(video) -> str:
     """
     Phase 1: Compress Video Context
     """
@@ -267,9 +273,9 @@ def summarize_video_content(video) -> str:
     (Truncated safety limit applied if huge)
     """
     
-    return llm.generate_text_simple(prompt)
+    return await llm.generate_text(prompt)
 
-def generate_master_plan(summary_context: str, rules: str) -> dict:
+async def generate_master_plan(summary_context: str, rules: str) -> dict:
     """
     Phase 2: Master Skeleton
     """
@@ -302,15 +308,18 @@ def generate_master_plan(summary_context: str, rules: str) -> dict:
     Video Summaries:
     {summary_context}
     """
-    return llm.generate_structure(
+    return await llm.generate_structure(
         system_prompt="You are an expert Instructional Designer.",
         user_content=prompt,
         model="x-ai/grok-4.1-fast" 
     )
 
-def generate_detailed_module(module_skeleton: dict, context_str: str) -> dict:
+async def generate_detailed_module_validated(module_skeleton: dict, context_str: str) -> dict:
     """
-    Phase 3: Deep Dive
+    Phase 3: Deep Dive (Validated with Pydantic)
+    Strategy:
+    1. Try Standard Full-Context Generation.
+    2. If fails (Context too large/JSON cutoff), Switch to "Split & Recombine" (Chunking).
     """
     prompt = f"""
     You are the Content Developer.
@@ -326,54 +335,129 @@ def generate_detailed_module(module_skeleton: dict, context_str: str) -> dict:
     
     Output JSON (Module Object only):
     {{
-        "title": "...",
-        "lessons": [ ... (full lesson structure with voiceover_script and source_clips) ... ]
+        "title": "{module_skeleton.get('title')}",
+        "lessons": [ ... (full lesson structure with voiceover_script and source_clips) ... ],
+        "recommended_source_videos": {json.dumps(module_skeleton.get('recommended_source_videos', []))}
     }}
     """
     
-    return llm.generate_structure(
-        system_prompt="You are a meticulous content developer. Focus on timestamp accuracy.",
-        user_content=prompt,
-        model="x-ai/grok-4.1-fast"
-    )
+    try:
+        # Attempt 1: Standard
+        module_model = await llm.generate_structure_validated(
+            system_prompt="You are a meticulous content developer. Focus on timestamp accuracy and strict JSON structure.",
+            user_content=prompt,
+            model_class=Module,
+            model="x-ai/grok-4.1-fast",
+            max_retries=1 
+        )
+        # Validate content fidelity
+        if not module_model.lessons or len(module_model.lessons) == 0:
+            print("  ⚠️ Standard Generation produced 0 lessons. Treating as failure -> Switching to CHUNKING...", flush=True)
+            return await generate_module_in_chunks(module_skeleton, context_str)
+            
+        return module_model.model_dump()
+        
+    except Exception as e:
+        print(f"  ⚠️ Standard Generation Failed: {e}. Switching to SPLIT & RECOMBINE Strategy...", flush=True)
+        return await generate_module_in_chunks(module_skeleton, context_str)
 
-def enrich_curriculum_with_knowledge(curriculum_data: dict, db: Session = None) -> dict:
+async def generate_module_in_chunks(module_skeleton: dict, context_str: str) -> dict:
     """
-    Phase 4: Knowledge Enrichment (The "Smart Assist" Layer)
+    Fidelity Fix: Splits massive context into chunks, generates lessons for each, and merges.
+    """
+    # 1. Split Context into Chunks
+    # Simple overlap splitting
+    CHUNK_SIZE = 100000 # 100k chars (~25k tokens)
+    OVERLAP = 5000
     
-    Iterates through the generated curriculum and injects "Just-in-Time" context 
-    from the RAG Knowledge Base directly into the lesson structure.
+    chunks = []
+    start = 0
+    while start < len(context_str):
+        end = min(start + CHUNK_SIZE, len(context_str))
+        chunk = context_str[start:end]
+        chunks.append(chunk)
+        if end == len(context_str):
+            break
+        start = end - OVERLAP
+        
+    print(f"  🔄 Splitting into {len(chunks)} chunks for High Fidelity...", flush=True)
     
-    This runs at GENERATION TIME to avoid runtime latency.
+    all_lessons = []
+    
+    for i, chunk in enumerate(chunks):
+        print(f"  📝 Processing Chunk {i+1}/{len(chunks)}...", flush=True)
+        chunk_prompt = f"""
+        You are the Content Developer.
+        We are detailing a SECTION of the Module: "{module_skeleton.get('title')}".
+        
+        PARTIAL Context Data (Part {i+1}/{len(chunks)}):
+        {chunk}
+        
+        Task:
+        1. Extract and create detailed Lessons FOUND ONLY IN THIS PARTIAL CONTEXT.
+        2. Do not hallucinate lessons from other parts.
+        3. Include "source_clips" with timestamps.
+        
+        Output JSON:
+        {{
+            "title": "{module_skeleton.get('title')} (Part {i+1})",
+            "lessons": [ ... ]
+        }}
+        """
+        
+        try:
+            partial_module = await llm.generate_structure_validated(
+                system_prompt="You are a meticulous content developer. Extract lessons from this specific segment.",
+                user_content=chunk_prompt,
+                model_class=Module,
+                model="x-ai/grok-4.1-fast"
+            )
+            all_lessons.extend(partial_module.lessons)
+            
+        except Exception as e:
+            print(f"  ❌ Failed to process chunk {i+1}: {e}", flush=True)
+            # Continue to next chunks to save what we can
+            
+    # Merge
+    print(f"  ✅ Recombined {len(all_lessons)} lessons from {len(chunks)} chunks.", flush=True)
+    return {
+        "title": module_skeleton.get("title"),
+        "lessons": [l.model_dump() for l in all_lessons],
+        "recommended_source_videos": module_skeleton.get("recommended_source_videos", [])
+    }
+
+async def enrich_curriculum_generator(curriculum_data: dict, db: Session = None):
+    """
+    Phase 4: Knowledge Enrichment (Streaming Version)
+    Yields status strings, then yields final enriched Dict.
     """
     print("--- Phase 4: Knowledge Enrichment (Smart Assist) ---", flush=True)
-    
-    # Pre-fetch Global Context (Rules/Glossary) to save tokens?
-    # Actually, let's let the LLM decide relevance based on the script.
-    # Ideally, we would vector search here.
-    # For now, we will use a purely generative approach with Gemini Flash relative to the "Rules" context we already have.
-    # If we had a Vector DB active, we would query it here.
+    yield "Phase 4: Starting Knowledge Enrichment..."
     
     modules = curriculum_data.get("modules", [])
     total_lessons = sum(len(m.get("lessons", [])) for m in modules)
-    print(f"Enriching {total_lessons} lessons with Contextual Guardrails...", flush=True)
+    yield f"Smart Assist: Analyzing {total_lessons} Lessons for Compliance..."
 
     enriched_modules = []
+    lesson_count = 0
     
     for module in modules:
         enriched_lessons = []
         for lesson in module.get("lessons", []):
+            lesson_count += 1
+            title = lesson.get("title", f"Lesson {lesson_count}")
+            # yield f"Smart Assist: Analyzing Lesson {lesson_count}/{total_lessons}: {title}..."
+            
+            # Reduce verbosity slightly for UI
+            if lesson_count % 3 == 0: 
+               yield f"Smart Assist: Analyzing Lesson {lesson_count}/{total_lessons}..."
+
             script = lesson.get("voiceover_script", "")
             if not script:
                 enriched_lessons.append(lesson)
                 continue
                 
-            # The "Deep Search" / Synthesis Step
             try:
-                # We ask Gemini to hallucinations "safe" generic advice if it doesn't have specific vectors yet,
-                # BUT since we passed "rules" earlier to the Architect, we can assume some rule context is known.
-                # However, to be robust, let's pretend we are doing a "Pass 2" analysis.
-                
                 context_prompt = f"""
                 Analyze this Training Script and generate "Smart Assist" metadata.
                 
@@ -392,16 +476,16 @@ def enrich_curriculum_with_knowledge(curriculum_data: dict, db: Session = None) 
                 }}
                 """
                 
-                smart_context = llm.generate_structure(
+                smart_context = await llm.generate_structure(
                     system_prompt="You are a Compliance & Support AI. Extract actionable guardrails.",
                     user_content=context_prompt,
-                    model="x-ai/grok-4.1-fast" # Generation Time: One-time Grok Call
+                    model="x-ai/grok-4.1-fast"
                 )
                 
                 lesson["smart_context"] = smart_context
                 
             except Exception as e:
-                print(f"Failed to enrich lesson '{lesson.get('title')}': {e}", flush=True)
+                print(f"Failed to enrich lesson '{title}': {e}", flush=True)
                 lesson["smart_context"] = {} # Fallback
                 
             enriched_lessons.append(lesson)
@@ -410,5 +494,5 @@ def enrich_curriculum_with_knowledge(curriculum_data: dict, db: Session = None) 
         enriched_modules.append(module)
         
     curriculum_data["modules"] = enriched_modules
-    return curriculum_data
-
+    yield "Enrichment Complete. Finalizing Course Plan..."
+    yield curriculum_data

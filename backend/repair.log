@@ -1,0 +1,1786 @@
+Initializing LLM Client: https://openrouter.ai/api/v1 with model x-ai/grok-4.1-fast
+🏥 Starting Surgical Repair of Curriculum...
+✅ Found Curriculum: National Grid Utility Work Order Management and GIS Design Training (ID: 11)
+  📥 Pre-fetching global context (all summaries)...
+⚠️ Module 4 'Module 4: GIS Design Fundamentals -' has 0 lessons. Suspiciously low/empty. Marking for repair.
+🚑 REPAIRING Module 4 'Module 4: GIS Design Fundamentals -'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 106 validation errors for Module
+lessons.0.title
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.title
+  Field required [type=missing, input_value={'lesson': "To maintain d...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson': "To maintain d...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.title
+  Field required [type=missing, input_value={'lesson': "Downloads per...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Downloads per...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.title
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.title
+  Field required [type=missing, input_value={'lesson': "Assign the '2...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Assign the '2...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.title
+  Field required [type=missing, input_value={'lesson': 'In STORMS, na...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In STORMS, na...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.title
+  Field required [type=missing, input_value={'lesson': 'Combine expor...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Combine expor...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.title
+  Field required [type=missing, input_value={'lesson': "In final EON ...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In final EON ...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.title
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.title
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.title
+  Field required [type=missing, input_value={'lesson': 'In Smallworld...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In Smallworld...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.title
+  Field required [type=missing, input_value={'lesson': 'In GIS Layout...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS Layout...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.title
+  Field required [type=missing, input_value={'lesson': "Before GIS sk...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Before GIS sk...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.title
+  Field required [type=missing, input_value={'lesson': 'Add police pr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Add police pr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson': "For Dig Safe,...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson': "For Dig Safe,...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson': "Check 'Town b...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Check 'Town b...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson': 'For outages, ...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For outages, ...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson': 'Screen enviro...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Screen enviro...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson': "Add '655 Outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Add '655 Outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.title
+  Field required [type=missing, input_value={'lesson': 'For Capital v...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For Capital v...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.title
+  Field required [type=missing, input_value={'lesson': 'In GIS, repla...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS, repla...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.title
+  Field required [type=missing, input_value={'lesson': 'For streetlig...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For streetlig...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.title
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.24.title
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.25.title
+  Field required [type=missing, input_value={'lesson': 'Submit MassDO...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Submit MassDO...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.26.title
+  Field required [type=missing, input_value={'lesson': 'To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.26.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.26.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.27.title
+  Field required [type=missing, input_value={'lesson': 'Bypass 267 GI...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Bypass 267 GI...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.28.title
+  Field required [type=missing, input_value={'lesson': 'For Dig Safe/...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For Dig Safe/...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.29.title
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.30.title
+  Field required [type=missing, input_value={'lesson': 'Over-call tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.30.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Over-call tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.30.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.31.title
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.31.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.31.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.32.title
+  Field required [type=missing, input_value={'lesson': 'Ground CUs li...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.32.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Ground CUs li...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.32.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.33.title
+  Field required [type=missing, input_value={'lesson': 'Reconcile fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.33.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Reconcile fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.33.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.34.title
+  Field required [type=missing, input_value={'lesson': 'Police protec...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.34.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Police protec...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.34.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 35 lessons from 1 chunks.
+  ✅ Module 4 Repaired & SAVED Successfully.
+⚠️ Module 5 '' has 0 lessons. Suspiciously low/empty. Marking for repair.
+  ⚠️ Title is missing. Assigning generic title 'Module 5'.
+🚑 REPAIRING Module 5 'Module 5'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 103 validation errors for Module
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l001'...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l002'...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l003'...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l004'...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l005'...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l006'...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l007'...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l008'...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l009'...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l010'...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l011'...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l012'...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l013'...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l014'...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l015'...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l016'...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l017'...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l018'...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l019'...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l020'...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l021'...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l022'...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l023'...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l024'...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.24.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l025'...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.25.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l026'...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.26.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l027'...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.26.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.27.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l028'...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.28.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l029'...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.29.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l030'...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.30.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l031'...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.30.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.31.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l032'...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.31.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.32.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l033'...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.32.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.33.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l034'...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.33.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.34.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l035'...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.34.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.35.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l036'...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.35.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.35.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.36.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l037'...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.36.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.36.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.37.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l038'... Training - Day 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.37.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.38.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l039'...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.38.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.39.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l040'...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.39.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.40.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l041'...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.40.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.41.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l042'...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.41.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.42.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l043'...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.42.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.43.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l044'...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.43.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.44.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l045'...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.44.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.45.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l046'...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.45.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.46.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l047'...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.46.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.47.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l048'...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.47.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.48.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l049'...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.48.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.49.voiceover_script
+  Field required [type=missing, input_value={'lesson_id': 'm5p1-l050'...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.49.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 50 lessons from 1 chunks.
+  ✅ Module 5 Repaired & SAVED Successfully.
+⚠️ Module 6 'Module 6: Work Order Documentation - Dig Safe, Customer Outages, and Environmental Checks' has 0 lessons. Suspiciously low/empty. Marking for repair.
+🚑 REPAIRING Module 6 'Module 6: Work Order Documentation - Dig Safe, Customer Outages, and Environmental Checks'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 73 validation errors for Module
+lessons.0.title
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.title
+  Field required [type=missing, input_value={'lesson': "In STORMS, wh...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In STORMS, wh...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.title
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.title
+  Field required [type=missing, input_value={'lesson': "To prepare EO...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson': "To prepare EO...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.title
+  Field required [type=missing, input_value={'lesson': "After finaliz...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson': "After finaliz...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.title
+  Field required [type=missing, input_value={'lesson': "In GIS constr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In GIS constr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.title
+  Field required [type=missing, input_value={'lesson': 'Include polic...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Include polic...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.title
+  Field required [type=missing, input_value={'lesson': 'Dig Safe form...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Dig Safe form...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.title
+  Field required [type=missing, input_value={'lesson': 'For customer ...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For customer ...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.title
+  Field required [type=missing, input_value={'lesson': "Massachusetts...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Massachusetts...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.title
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.title
+  Field required [type=missing, input_value={'lesson': "Add '655 Outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Add '655 Outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.title
+  Field required [type=missing, input_value={'lesson': 'For Capital/M...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For Capital/M...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.title
+  Field required [type=missing, input_value={'lesson': 'In GIS, verif...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS, verif...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson': 'MassDOT permi...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'MassDOT permi...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson': 'To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson': 'Dig Safe/NOE:...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Dig Safe/NOE:...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.title
+  Field required [type=missing, input_value={'lesson': 'NE service ra...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'NE service ra...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.title
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.title
+  Field required [type=missing, input_value={'lesson': 'In GIS edits:...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS edits:...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.title
+  Field required [type=missing, input_value={'lesson': 'Roadside/off-...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Roadside/off-...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 24 lessons from 1 chunks.
+  ✅ Module 6 Repaired & SAVED Successfully.
+⚠️ Module 7 '' has 0 lessons. Suspiciously low/empty. Marking for repair.
+  ⚠️ Title is missing. Assigning generic title 'Module 7'.
+🚑 REPAIRING Module 7 'Module 7'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 63 validation errors for Module
+lessons.0.title
+  Field required [type=missing, input_value={'lesson_title': 'Manual ...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Manual ...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.title
+  Field required [type=missing, input_value={'lesson_title': 'STORMS ...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'STORMS ...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.title
+  Field required [type=missing, input_value={'lesson_title': 'EON Pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'EON Pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.title
+  Field required [type=missing, input_value={'lesson_title': 'EON Rep...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'EON Rep...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.title
+  Field required [type=missing, input_value={'lesson_title': 'Constru...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Constru...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.title
+  Field required [type=missing, input_value={'lesson_title': 'Constru...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Constru...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.title
+  Field required [type=missing, input_value={'lesson_title': 'Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.title
+  Field required [type=missing, input_value={'lesson_title': 'Custome...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Custome...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.title
+  Field required [type=missing, input_value={'lesson_title': 'Environ...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Environ...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.title
+  Field required [type=missing, input_value={'lesson_title': 'GIS Des...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'GIS Des...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.title
+  Field required [type=missing, input_value={'lesson_title': 'GIS Tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'GIS Tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.title
+  Field required [type=missing, input_value={'lesson_title': 'GIS Des...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'GIS Des...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.title
+  Field required [type=missing, input_value={'lesson_title': 'EON Gen... 'PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'EON Gen... 'PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.title
+  Field required [type=missing, input_value={'lesson_title': 'MassDOT...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'MassDOT...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson_title': 'Make-Re...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Make-Re...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson_title': 'Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson_title': 'Complex...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'Complex...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson_title': 'GIS Fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'GIS Fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson_title': 'WO Trai... Training - Day 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'WO Trai... Training - Day 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson_title': 'WO Trai...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson_title': 'WO Trai...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 20 lessons from 1 chunks.
+  ✅ Module 7 Repaired & SAVED Successfully.
+⚠️ Module 12 'Module 12: Preparing Exchange of Notice (EON) Documentation for Joint-Owned Assets' has 1 lessons. Suspiciously low/empty. Marking for repair.
+🚑 REPAIRING Module 12 'Module 12: Preparing Exchange of Notice (EON) Documentation for Joint-Owned Assets'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 72 validation errors for Module
+lessons.0.title
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.title
+  Field required [type=missing, input_value={'lesson': "Always use th...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Always use th...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.title
+  Field required [type=missing, input_value={'lesson': "For joint-own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson': "For joint-own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.title
+  Field required [type=missing, input_value={'lesson': "Assign the '2...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Assign the '2...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.title
+  Field required [type=missing, input_value={'lesson': 'To generate E...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'To generate E...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.title
+  Field required [type=missing, input_value={'lesson': 'Combine the f...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Combine the f...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.title
+  Field required [type=missing, input_value={'lesson': "In final EON ...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In final EON ...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.title
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.title
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.title
+  Field required [type=missing, input_value={'lesson': "In constructi...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In constructi...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.title
+  Field required [type=missing, input_value={'lesson': "Before export...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Before export...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.title
+  Field required [type=missing, input_value={'lesson': 'Include polic...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Include polic...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.title
+  Field required [type=missing, input_value={'lesson': 'For Dig Safe ...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For Dig Safe ...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.title
+  Field required [type=missing, input_value={'lesson': "Customer outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Customer outa...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson': "Conduct envir...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Conduct envir...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson': 'If Tel Gen Jo...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'If Tel Gen Jo...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson': 'For MassDOT h...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For MassDOT h...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson': "To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson': "To create Mak...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson': "Group Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Group Dig Saf...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.source_clips.1
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.title
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For complex p...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.title
+  Field required [type=missing, input_value={'lesson': 'Over-call tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Over-call tre...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.source_clips.2
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 22 lessons from 1 chunks.
+  ✅ Module 12 Repaired & SAVED Successfully.
+⚠️ Module 13 'Module' has 0 lessons. Suspiciously low/empty. Marking for repair.
+  ⚠️ Title is missing. Assigning generic title 'Module 13'.
+🚑 REPAIRING Module 13 'Module 13'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 92 validation errors for Module
+lessons.0.title
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'lesson': "When OneDrive...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.title
+  Field required [type=missing, input_value={'lesson': "In STORMS, wh...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'lesson': "In STORMS, wh...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.title
+  Field required [type=missing, input_value={'lesson': "Downloads per...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Downloads per...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.title
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'lesson': "For Joint Own...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.title
+  Field required [type=missing, input_value={'lesson': "Assign '270 r...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Assign '270 r...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.title
+  Field required [type=missing, input_value={'lesson': "Export four E...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Export four E...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.title
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'lesson': "After EON pre...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.title
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Save work loc...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.title
+  Field required [type=missing, input_value={'lesson': 'In Smallworld...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In Smallworld...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.title
+  Field required [type=missing, input_value={'lesson': "Before GIS sk...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Before GIS sk...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.title
+  Field required [type=missing, input_value={'lesson': 'Add police pr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Add police pr...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.title
+  Field required [type=missing, input_value={'lesson': 'For digging w...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For digging w...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.title
+  Field required [type=missing, input_value={'lesson': 'Use GIS downs...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Use GIS downs...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.title
+  Field required [type=missing, input_value={'lesson': 'Environmental...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Environmental...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Primary riser...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson': 'For Capital v...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For Capital v...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson': 'In GIS, split...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS, split...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.source_clips.1
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Grounding/bon...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'For EON, sync...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson': 'Copy SAD WR t...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Copy SAD WR t...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.title
+  Field required [type=missing, input_value={'lesson': 'NE bypasses r...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'NE bypasses r...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.title
+  Field required [type=missing, input_value={'lesson': 'Dig Safe/NOE:...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Dig Safe/NOE:...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.title
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In GIS design...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.title
+  Field required [type=missing, input_value={'lesson': 'NE service ra...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'NE service ra...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.24.title
+  Field required [type=missing, input_value={'lesson': 'Reconcile fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Reconcile fie...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.25.title
+  Field required [type=missing, input_value={'lesson': 'Complex riser...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Complex riser...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.26.title
+  Field required [type=missing, input_value={'lesson': 'No new steel ... terminations 18.2.20.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.26.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'No new steel ... terminations 18.2.20.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.title
+  Field required [type=missing, input_value={'source_clips': ['ComplexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.voiceover_script
+  Field required [type=missing, input_value={'source_clips': ['ComplexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.28.title
+  Field required [type=missing, input_value={'lesson': 'CMMS WO lifec...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'CMMS WO lifec...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.28.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.29.title
+  Field required [type=missing, input_value={'lesson': "If not docume...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.voiceover_script
+  Field required [type=missing, input_value={'lesson': "If not docume...ing - Day 1 Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 29 lessons from 1 chunks.
+  ✅ Module 13 Repaired & SAVED Successfully.
+⚠️ Module 15 'Module 15: End-to-End Work Order' has 0 lessons. Suspiciously low/empty. Marking for repair.
+🚑 REPAIRING Module 15 'Module 15: End-to-End Work Order'...
+  ⚠️ No specific videos found. Using GLOBAL SUMMARY context (16 videos).
+  🔄 Splitting into 1 chunks for High Fidelity...
+  📝 Processing Chunk 1/1...
+Validation Error (Attempt 1): 65 validation errors for Module
+lessons.0.voiceover_script
+  Field required [type=missing, input_value={'id': 1, 'title': 'Manua...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.0.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.1.voiceover_script
+  Field required [type=missing, input_value={'id': 2, 'title': 'STORM...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.1.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.2.voiceover_script
+  Field required [type=missing, input_value={'id': 3, 'title': 'Envir...neDriveNotSyncing.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.2.source_clips.0
+  Input should be an object [type=dict_type, input_value='GetDocs into STORMs - OneDriveNotSyncing.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.3.voiceover_script
+  Field required [type=missing, input_value={'id': 4, 'title': 'EON P...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.3.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.4.voiceover_script
+  Field required [type=missing, input_value={'id': 5, 'title': 'Virtu...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.4.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.5.voiceover_script
+  Field required [type=missing, input_value={'id': 6, 'title': 'EON B...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.5.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.6.voiceover_script
+  Field required [type=missing, input_value={'id': 7, 'title': 'Field...['PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.6.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.7.voiceover_script
+  Field required [type=missing, input_value={'id': 8, 'title': 'Const...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.7.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.8.voiceover_script
+  Field required [type=missing, input_value={'id': 9, 'title': 'Const...truction Sketches.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.8.source_clips.0
+  Input should be an object [type=dict_type, input_value='Setup and Updating Construction Sketches.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.voiceover_script
+  Field required [type=missing, input_value={'id': 10, 'title': 'Dig ...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.9.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.9.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.voiceover_script
+  Field required [type=missing, input_value={'id': 11, 'title': 'Cust...ustomerOutageList.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.10.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.10.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingCustomerOutageList.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.11.voiceover_script
+  Field required [type=missing, input_value={'id': 12, 'title': 'Mass...Day 3 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.11.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 3 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.12.voiceover_script
+  Field required [type=missing, input_value={'id': 13, 'title': 'GIS ...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.12.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.voiceover_script
+  Field required [type=missing, input_value={'id': 14, 'title': 'GIS ...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.13.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'id': 15, 'title': 'Serv...GIS_Design Part 1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'id': 16, 'title': 'Make...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'id': 17, 'title': 'Capi...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.source_clips.1
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'id': 18, 'title': 'GIS ...GIS_Design Part 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'id': 19, 'title': 'EON ...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'id': 20, 'title': 'Mass...Part2 (Documents).mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Da...3 Part2 (Documents).mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'id': 21, 'title': 'Comp...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'id': 22, 'title': 'DigS...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'id': 23, 'title': 'Rise...plexPCO_CUs_Part1.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='ComplexPCO_CUs_Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'id': 24, 'title': 'GIS ...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.24.voiceover_script
+  Field required [type=missing, input_value={'id': 25, 'title': 'Poli...ing - Day 1 Part2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.25.voiceover_script
+  Field required [type=missing, input_value={'id': 26, 'title': 'Dig ...aringDigSafesNOEs.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.25.source_clips.0
+  Input should be an object [type=dict_type, input_value='PreparingDigSafesNOEs.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.26.voiceover_script
+  Field required [type=missing, input_value={'id': 27, 'title': 'CMMS... Training - Day 2.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.26.source_clips.0
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 1 Part1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.26.source_clips.1
+  Input should be an object [type=dict_type, input_value='Work Order Training - Day 2.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.27.voiceover_script
+  Field required [type=missing, input_value={'id': 28, 'title': 'GIS ... 'PreparingtheEON.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.27.source_clips.0
+  Input should be an object [type=dict_type, input_value='WorkingThroughGIS_Design Part 1.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.27.source_clips.1
+  Input should be an object [type=dict_type, input_value='PreparingtheEON.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.28.voiceover_script
+  Field required [type=missing, input_value={'id': 29, 'title': 'Fina...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.28.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.29.voiceover_script
+  Field required [type=missing, input_value={'id': 30, 'title': 'Req ...Work Order Number.mp4']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.29.source_clips.0
+  Input should be an object [type=dict_type, input_value='Creating a Make Ready Work Order Number.mp4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+  ✅ Recombined 30 lessons from 1 chunks.
+  ✅ Module 15 Repaired & SAVED Successfully.
+✨ Repair Cycle Complete. Total Fixed: 7

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { fetchContextSuggestions, Suggestion } from '../services/ContextEngine';
 import { Lightbulb, AlertTriangle, ShieldCheck, Search, Settings, ToggleRight, ToggleLeft } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import { LinkRenderer } from './LinkRenderer';
 
 interface SmartAssistSidebarProps {
     contextScript: string;
+    preComputedContext?: any; // New: AI-Generated Config from DB
     onClose?: () => void;
 }
 
-export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextScript, onClose }) => {
+export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextScript, preComputedContext, onClose }) => {
     // Top Level Toggle
     const [isEnabled, setIsEnabled] = useState(true);
 
@@ -55,7 +58,7 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
     };
 
     useEffect(() => {
-        if (!isEnabled || !contextScript) {
+        if (!isEnabled || (!contextScript && !preComputedContext)) {
             setSuggestions([]);
             return;
         }
@@ -66,7 +69,38 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
             if (enableRules) providers.push('RULES');
             if (enableGlossary) providers.push('GLOSSARY');
 
-            const results = await fetchContextSuggestions(contextScript, providers);
+            // 1. Fetch Dynamic Suggestions (Client-Side Keyword Match)
+            let results = await fetchContextSuggestions(contextScript || "", providers);
+
+            // 2. Merge Pre-Computed AI Suggestions (High Priority)
+            if (preComputedContext) {
+                // Compliance Rules
+                if (enableRules && preComputedContext.compliance_rules && Array.isArray(preComputedContext.compliance_rules)) {
+                    const aiRules = preComputedContext.compliance_rules.map((r: any, idx: number) => ({
+                        id: `ai-rule-${idx}`,
+                        type: 'RULE',
+                        title: 'Compliance Guardrail (AI)',
+                        content: r.rule || r.description || JSON.stringify(r),
+                        confidence: 1.0,
+                        source: 'Curriculum Architect'
+                    }));
+                    results = [...aiRules, ...results];
+                }
+
+                // Troubleshooting Tips
+                if (enableGlossary && preComputedContext.troubleshooting_tips && Array.isArray(preComputedContext.troubleshooting_tips)) {
+                    const aiTips = preComputedContext.troubleshooting_tips.map((t: any, idx: number) => ({
+                        id: `ai-tip-${idx}`,
+                        type: 'GLOSSARY',
+                        title: `Troubleshooting: ${t.issue || 'General'}`,
+                        content: t.fix || t.resolution || JSON.stringify(t),
+                        confidence: 1.0,
+                        source: 'Curriculum Architect'
+                    }));
+                    results = [...aiTips, ...results];
+                }
+            }
+
             setSuggestions(results);
             setLoading(false);
         };
@@ -74,7 +108,7 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
         // Debounce slightly
         const timer = setTimeout(load, 500);
         return () => clearTimeout(timer);
-    }, [contextScript, isEnabled, enableRules, enableGlossary]);
+    }, [contextScript, preComputedContext, isEnabled, enableRules, enableGlossary]);
 
     return (
         <div className="w-80 h-full bg-[#0a0a0a] border-l border-white/10 flex flex-col">
@@ -98,6 +132,7 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
                         </div>
 
                         {!askResult ? (
+                            // ... (form remains same)
                             <form
                                 onSubmit={(e) => {
                                     e.preventDefault();
@@ -121,9 +156,15 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
                             </form>
                         ) : (
                             <div className="animate-fade-in">
-                                <p className="text-sm text-white/90 leading-relaxed mb-3">
-                                    {askResult.answer}
-                                </p>
+                                <div className="text-sm text-white/90 leading-relaxed mb-3 prose prose-invert max-w-none prose-p:my-1 prose-a:text-blue-400">
+                                    <ReactMarkdown
+                                        components={{
+                                            a: LinkRenderer
+                                        }}
+                                    >
+                                        {askResult.answer}
+                                    </ReactMarkdown>
+                                </div>
                                 <div className="flex justify-between items-center border-t border-white/10 pt-2">
                                     <button
                                         onClick={() => {

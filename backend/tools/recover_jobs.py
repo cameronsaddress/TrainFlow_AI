@@ -5,7 +5,7 @@ import logging
 import subprocess
 from app.db import SessionLocal
 from app.models import knowledge as k_models
-from app.services import corpus_ingestor # Import to reuse logic if possible, or replicate
+# from app.services import corpus_ingestor # REMOVED: Causes GPU Context Deadlock in Parent Process
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -68,14 +68,22 @@ def recover_video(video: k_models.VideoCorpus, db):
         
         # Update DB
         video.transcript_text = full_transcript
-        video.transcript_json = {
-            "timeline": asr_result.get("timeline", []),
-            "speaker_segments": asr_result.get("speaker_segments", []),
-            "segments": asr_result.get("segments", [])
-        }
+        video.transcript_text = full_transcript
+        
+        # 3. OMIT huge Transcript JSON (1GB+ for 4hr video). Keep on disk.
+        video.transcript_json = {}
+        
+        # Update DB - apply BEST PRACTICE for large blobs
+        # 1. Truncate OCR Text to ~1MB to prevent DB packet size errors.
+        if full_ocr and len(full_ocr) > 1000000:
+             logger.warning(f"Truncating OCR text from {len(full_ocr)} to 1,000,000 chars.")
+             full_ocr = full_ocr[:1000000] + "... [TRUNCATED]"
         
         video.ocr_text = full_ocr
-        video.ocr_json = ocr_json_data
+        
+        # 2. OMIT huge OCR JSON from DB. Keep it on disk.
+        # The file is 12MB+. Saving it to DB causes connection drops.
+        video.ocr_json = []
         video.duration_seconds = ocr_result_data.get("duration", 0.0)
         
         video.status = k_models.DocStatus.READY

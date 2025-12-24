@@ -99,14 +99,42 @@ async def generate_structure_endpoint(db: Session = Depends(get_db)):
 
     async def event_generator():
         try:
-            # The service is now a generator
-            iterator = curriculum_architect.generate_curriculum(db)
+            # Singleton Logic: Purge previous courses to "Overwrite"
+            db.query(k_models.TrainingCurriculum).delete()
+            db.commit()
             
-            for item in iterator:
-                yield json.dumps(item) + "\n"
+            # Iterate the service generator (Async)
+            generator = curriculum_architect.generate_curriculum(db)
+            
+            async for item in generator:
+                if isinstance(item, str):
+                    # Status Update
+                    yield json.dumps({"type": "status", "msg": item}) + "\n"
+                elif isinstance(item, dict):
+                    # Final Result
+                    
+                    # Ensure we persist it
+                    new_plan = k_models.TrainingCurriculum(
+                        title=item.get("course_title", "Untitled Course"),
+                        structured_json=item
+                    )
+                    db.add(new_plan)
+                    db.commit()
+                    db.refresh(new_plan)
+                    
+                    result_payload = {
+                        "id": new_plan.id,
+                        "title": new_plan.title,
+                        "modules_count": len(item.get("modules", []))
+                    }
+                    
+                    yield json.dumps({"type": "result", "payload": result_payload}) + "\n"
+                    break
                 
         except Exception as e:
             print(f"Error generating structure: {e}")
+            import traceback
+            traceback.print_exc()
             yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
 
     return StreamingResponse(event_generator(), media_type="application/x-ndjson")
@@ -195,20 +223,197 @@ async def stream_video(
         if duration <= 0:
             raise HTTPException(status_code=400, detail="Invalid duration")
             
-        print(f"DEBUG: Slicing {filename} | Start: {start} | End: {end} | Duration: {duration}")
+        # print(f"DEBUG: Slicing {filename} | Start: {start} | End: {end} | Duration: {duration}")
         
         # Use /dev/shm for fast RAM-based temp storage
-        # This allows us to create a standard MP4 (not fragmented) with 'faststart'
-        # which browsers iterate with much better than piped output.
         import uuid
         temp_filename = f"slice_{uuid.uuid4()}.mp4"
         temp_path = os.path.join("/dev/shm", temp_filename)
         
-        # Ensure /dev/shm exists (it should on Linux/Docker)
+        # Ensure /dev/shm exists
         if not os.path.exists("/dev/shm"):
-            # Fallback to /tmp if /dev/shm missing
             temp_path = os.path.join("/tmp", temp_filename)
 
+        # cmd: ffmpeg -ss {start} -i {input} -t {duration} -c copy -movflags faststart -y {output}
+        cmd = [
+            "ffmpeg",
+            "-ss", str(float(start)),
+            "-i", file_path,
+            "-t", str(float(duration)),
+            "-c", "copy",
+            "-movflags", "faststart",
+            "-y",
+            temp_path
+        ]
+        
+        import subprocess
+        try:
+            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except subprocess.CalledProcessError as e:
+             print(f"FFmpeg Slicing Error: {e}")
+             raise HTTPException(status_code=500, detail="Video slicing failed")
+
+        # Serve file, delete after sending
+        def cleanup():
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+                
+        background_task = BackgroundTasks()
+        background_task.add_task(cleanup)
+        
+        from fastapi.responses import FileResponse
+        return FileResponse(
+            temp_path, 
+            media_type="video/mp4", 
+            filename=f"clip_{start}_{end}.mp4",
+            background=background_task
+        )
+
+    # MODE B: Full File Static Streaming (with Range support)
+    file_size = os.path.getsize(file_path)
+    
+    # Handle Range Header
+    start_byte = 0
+    end_byte = file_size - 1
+    
+    if range:
+        try:
+            s_str, e_str = range.replace("bytes=", "").split("-")
+            start_byte = int(s_str)
+            if e_str:
+                end_byte = int(e_str)
+        except ValueError:
+            pass 
+            
+    if end_byte >= file_size:
+        end_byte = file_size - 1
+    if start_byte >= file_size:
+        raise HTTPException(status_code=416, detail="Range not satisfiable")
+
+    chunk_size = (end_byte - start_byte) + 1
+    
+    def iterfile():
+        with open(file_path, "rb") as f:
+            f.seek(start_byte)
+            bytes_to_read = chunk_size
+            while bytes_to_read > 0:
+                chunk = f.read(min(1024*64, bytes_to_read))
+                if not chunk:
+                    break
+                bytes_to_read -= len(chunk)
+                yield chunk
+                
+    headers = {
+        "Content-Range": f"bytes {start_byte}-{end_byte}/{file_size}",
+        "Accept-Ranges": "bytes",
+        "Content-Length": str(chunk_size),
+        "Content-Type": "video/mp4",
+    }
+    
+    return StreamingResponse(iterfile(), status_code=206, headers=headers)
+
+@router.get("/stream")
+async def stream_video(
+    filename: str, 
+    range: str = Header(None),
+    start: float = None,
+    end: float = None,
+    db: Session = Depends(get_db)
+):
+    """
+    Stream video via Query Param.
+    /stream?filename=Day%201.mp4&start=30&end=60
+    """
+    print(f"DEBUG: Streaming Request (Query). Filename: '{filename}' | Start: {start} | End: {end}")
+    
+    # 1. Resolve Path via DB
+    # Try finding by exact filename (FastAPI decodes query params)
+    decoded_filename = filename 
+    video = db.query(k_models.VideoCorpus).filter(k_models.VideoCorpus.filename == decoded_filename).first()
+
+    # --- FUZZY MATCHING LOGIC ---
+    if not video:
+        # A. Try replacing spaces with underscores (and vice versa)
+        # "Day 1.mp4" <-> "Day_1.mp4"
+        if " " in decoded_filename:
+            alt_name = decoded_filename.replace(" ", "_")
+        else:
+            alt_name = decoded_filename.replace("_", " ")
+            
+        print(f"DEBUG: Exact Match Miss. Trying Alt: '{alt_name}'")
+        video = db.query(k_models.VideoCorpus).filter(k_models.VideoCorpus.filename == alt_name).first()
+
+    if not video:
+        # B. Case-Insensitive Search (Postgres ILIKE behavior using func.lower)
+        from sqlalchemy import func
+        print(f"DEBUG: Exact/Alt Miss. Trying Case-Insensitive for '{decoded_filename}'")
+        video = db.query(k_models.VideoCorpus).filter(func.lower(k_models.VideoCorpus.filename) == decoded_filename.lower()).first()
+        
+    if not video:
+        # C. Regex/Partial Match (Last Resort: Contains & normalized)
+        # Try finding a video that *contains* the core name structure
+        # Heuristic: strip extension, strip non-alphanumeric, look for match
+        import re
+        core_name = re.sub(r'[^a-zA-Z0-9]', '', os.path.splitext(decoded_filename)[0].lower())
+        
+        # This is expensive, so we do it in Python for the small corpus (usually < 1000 items)
+        # If corpus > 10k, use pg_trgm or similar.
+        print(f"DEBUG: Deep Fuzzy Search for core signature: '{core_name}'")
+        all_videos = db.query(k_models.VideoCorpus).all()
+        for v in all_videos:
+            v_core = re.sub(r'[^a-zA-Z0-9]', '', os.path.splitext(v.filename)[0].lower())
+            if core_name in v_core or v_core in core_name:
+                video = v
+                print(f"DEBUG: Fuzzy Match Found! '{decoded_filename}' -> '{v.filename}'")
+                break
+
+    file_path = None
+    if video and video.file_path:
+        if os.path.exists(video.file_path):
+            file_path = video.file_path
+            print(f"DEBUG: Found via DB/Fuzzy: {file_path}")
+        else:
+            print(f"DEBUG: DB Record Found but File Missing: {video.file_path}")
+
+    if not file_path:
+        # Fallback: Maybe it IS the UUID (or simple filename)?
+        SAFE_FILENAME = os.path.basename(decoded_filename)
+        fallback_path = f"/app/data/corpus/{SAFE_FILENAME}"
+        if os.path.exists(fallback_path):
+            file_path = fallback_path
+            print(f"DEBUG: Found via Direct Path Fallback: {file_path}")
+        else:
+            # Try alternate fallback (swapped spaces/underscores)
+            if " " in SAFE_FILENAME:
+                alt = SAFE_FILENAME.replace(" ", "_")
+            else:
+                alt = SAFE_FILENAME.replace("_", " ")
+            
+            fallback_path_alt = f"/app/data/corpus/{alt}"
+            if os.path.exists(fallback_path_alt):
+                 file_path = fallback_path_alt
+                 print(f"DEBUG: Found via Direct Path Fallback (Alt): {file_path}")
+
+    if not file_path:
+        print(f"DEBUG: 404 Not Found for {decoded_filename} (and fuzzy variants)")
+        raise HTTPException(status_code=404, detail=f"Video not found: {decoded_filename}")
+
+    # MODE A: Server-Side Slicing (FFmpeg)
+    if start is not None and end is not None:
+        duration = end - start
+        if duration <= 0:
+            raise HTTPException(status_code=400, detail="Invalid duration")
+            
+        print(f"DEBUG: Slicing {filename} | Start: {start} | End: {end} | Duration: {duration}")
+        
+        # Use disk-based storage for large clips to avoid /dev/shm (64MB) limits
+        import uuid
+        temp_dir = "/app/data/temp_slices"
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        temp_filename = f"slice_{uuid.uuid4()}.mp4"
+        temp_path = os.path.join(temp_dir, temp_filename)
+        
         # cmd: ffmpeg -ss {start} -i {input} -t {duration} -c copy -movflags faststart -y {output}
         cmd = [
             "ffmpeg",
@@ -224,9 +429,12 @@ async def stream_video(
         import subprocess
         # Run blocking (fast for stream copy)
         try:
-            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        except subprocess.CalledProcessError:
-             raise HTTPException(status_code=500, detail="Video slicing failed")
+            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE) # Capture stderr
+        except subprocess.CalledProcessError as e:
+             # Decode and print error
+             error_log = e.stderr.decode() if e.stderr else "No stderr captured"
+             print(f"FFmpeg Slicing Error: {error_log}")
+             raise HTTPException(status_code=500, detail=f"Video slicing failed: {error_log}")
 
         # Serve file, delete after sending
         def cleanup():

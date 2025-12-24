@@ -1,6 +1,9 @@
-from openai import OpenAI
+from openai import AsyncOpenAI
 import os
 import json
+import httpx
+import re
+from pydantic import BaseModel, ValidationError
 
 # GB10 Optimization: Point to Local NIM
 # Defaults to local service in docker-compose, or falls back to public API
@@ -10,11 +13,10 @@ MODEL_NAME = os.getenv("LLM_MODEL", "meta/llama3-70b-instruct")
 
 print(f"Initializing LLM Client: {BASE_URL} with model {MODEL_NAME}")
 
-import httpx
-client = OpenAI(
+client = AsyncOpenAI(
     base_url=BASE_URL,
     api_key=API_KEY,
-    http_client=httpx.Client(trust_env=False) # Prevent auto-proxy detection causing arg errors
+    timeout=120.0
 )
 
 STEP_PROMPT = """
@@ -155,51 +157,90 @@ def segment_transcript(full_text: str):
                 
         return all_steps
 
-def generate_text(prompt: str, model: str = None) -> str:
+def repair_cutoff_json(json_str: str) -> str:
     """
-    Generic text generation utility for Knowledge Engine.
+    Attempts to repair a truncated JSON string by closing open braces/brackets.
+    """
+    json_str = json_str.strip()
+    
+    # 1. Simple check: if it looks complete, return it
+    if json_str.endswith("}") or json_str.endswith("]"):
+        return json_str
+        
+    # 2. Stack-based repair
+    stack = []
+    is_in_string = False
+    escape = False
+    
+    # If cut off inside a string, close the string first
+    # We need to scan to track state
+    for char in json_str:
+        if escape:
+            escape = False
+            continue
+            
+        if char == '\\':
+            escape = True
+            continue
+            
+        if char == '"':
+            is_in_string = not is_in_string
+            continue
+            
+        if not is_in_string:
+            if char == '{':
+                stack.append('}')
+            elif char == '[':
+                stack.append(']')
+            elif char == '}' or char == ']':
+                if stack:
+                    stack.pop()
+                    
+    # If ended inside string, close it
+    if is_in_string:
+        json_str += '"'
+        
+    # Pop remaining stack to close structure
+    while stack:
+        closer = stack.pop()
+        json_str += closer
+        
+    return json_str
+
+async def generate_text(prompt: str, model: str = None, max_tokens: int = 128000) -> str:
+    """
+    Generic text generation utility for Knowledge Engine (Async).
     Allows overriding the default model.
     """
     target_model = model if model else MODEL_NAME
     try:
-        response = client.chat.completions.create(
+        response = await client.chat.completions.create(
             model=target_model,
             messages=[
                 {"role": "system", "content": "You are a helpful AI assistant."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.1
+            temperature=0.1,
+            max_tokens=max_tokens
         )
         return response.choices[0].message.content
     except Exception as e:
         print(f"LLM Generation Error: {e}")
         return ""
 
-def get_embedding(text: str) -> list:
+async def get_embedding(text: str) -> list:
     """
-    Generates vector embedding for text using OpenAI/compatible API.
+    Generates vector embedding for text using OpenAI/compatible API (Async).
     Returns list of floats.
     """
     try:
-        # If using OpenRouter/NIM, check if they support embeddings endpoint.
-        # Otherwise might need a fallback or specific model.
-        # Defaulting to standard OpenAI call structure.
-        response = client.embeddings.create(
-            file=text, # Wrong arg? It's input=text usually. Let's check docs or use standard.
-            # Client wrapper might be strict.
-            model="text-embedding-3-small"
-        )
-        # Wait, OpenAI client uses `input`.
-        # Correct call:
-        response = client.embeddings.create(
+        response = await client.embeddings.create(
             input=text,
             model="text-embedding-3-small"
         )
         return response.data[0].embedding
     except Exception as e:
         print(f"Embedding Error: {e}")
-        # Return generic zero vector for safety? or None?
-        # knowledge_ingestor expects list or throws?
         return []
 
 SYNTHESIS_PROMPT = """
@@ -220,15 +261,15 @@ Output JSON:
 }
 """
 
-def refine_instruction_with_rules(raw_text: str, rules: list) -> dict:
+async def refine_instruction_with_rules(raw_text: str, rules: list) -> dict:
     """
-    Synthesizes a clean instruction merged with compliance rules.
+    Synthesizes a clean instruction merged with compliance rules (Async).
     """
     rules_text = "\n".join([f"- {r}" for r in rules])
     user_content = f"Raw Step: \"{raw_text}\"\nRelevant Rules:\n{rules_text}"
     
     try:
-        response = client.chat.completions.create(
+        response = await client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
                 {"role": "system", "content": SYNTHESIS_PROMPT},
@@ -246,24 +287,76 @@ def refine_instruction_with_rules(raw_text: str, rules: list) -> dict:
             "criticality": "LOW"
         }
 
-def generate_structure(system_prompt: str, user_content: str, model: str = None) -> dict:
+async def generate_structure(system_prompt: str, user_content: str, model: str = None, max_tokens: int = 128000) -> dict:
     """
-    Generic structured generation using JSON mode.
-    Useful for heavy tasks like Curriculum Architecture.
-    Allows overriding the default model (e.g. for Long Context tasks).
+    Generic structured generation using JSON mode (Async).
     """
     target_model = model if model else MODEL_NAME
     try:
-        response = client.chat.completions.create(
+        response = await client.chat.completions.create(
             model=target_model,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_content}
             ],
             response_format={"type": "json_object"},
-            temperature=0.1
+            temperature=0.1,
+            max_tokens=max_tokens
         )
-        return json.loads(response.choices[0].message.content)
+        content = response.choices[0].message.content
+        fixed_content = repair_cutoff_json(content)
+        return json.loads(fixed_content)
     except Exception as e:
         print(f"Structure Generation Error: {e}")
         return {"error": str(e), "status": "failed"}
+
+async def generate_structure_validated(
+    system_prompt: str, 
+    user_content: str, 
+    model_class: type[BaseModel], 
+    model: str = None,
+    max_retries: int = 2
+) -> BaseModel:
+    """
+    Robust generation with Pydantic Validation & Reflection Retry (Async).
+    """
+    target_model = model if model else MODEL_NAME
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content}
+    ]
+    
+    for attempt in range(max_retries + 1):
+        try:
+            response = await client.chat.completions.create(
+                model=target_model,
+                messages=messages,
+                response_format={"type": "json_object"},
+                temperature=0.1,
+                max_tokens=128000
+            )
+            raw_json = response.choices[0].message.content
+            
+            # Basic repair
+            raw_json = repair_cutoff_json(raw_json)
+            
+            # Validate
+            validated_obj = model_class.model_validate_json(raw_json)
+            return validated_obj
+            
+        except ValidationError as e:
+            print(f"Validation Error (Attempt {attempt+1}): {e}")
+            if attempt < max_retries:
+                messages.append({"role": "assistant", "content": raw_json})
+                messages.append({
+                    "role": "user", 
+                    "content": f"JSON Validation Failed. \nErrors: {e}\n\nPlease regenerate the JSON correcting exactly these errors."
+                })
+            else:
+                raise e
+        except Exception as e:
+            print(f"Gen Error (Attempt {attempt+1}): {e}")
+            if attempt == max_retries:
+                raise e
+                
+    raise Exception("Max retries exceeded")

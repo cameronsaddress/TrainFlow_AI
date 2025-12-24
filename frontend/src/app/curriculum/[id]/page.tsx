@@ -11,6 +11,7 @@ interface Lesson {
     title: string;
     learning_objective: string;
     voiceover_script: string;
+    transcript_text?: string; // Hydrated from VideoCorpus
     source_clips: Array<{
         video_filename: string;
         start_time: number;
@@ -50,7 +51,17 @@ const getApiUrl = () => {
         const url = localStorage.getItem('apiUrl');
         if (url) return url;
     }
-    return 'http://localhost:2027'; // Default for Dev
+
+    // Robust Logic:
+    // 1. If strict Env Var is set (and NOT the default localhost), use it.
+    // 2. Otherwise default to "" (Relative Path). 
+    //    This uses the Next.js Proxy (:3000/api -> :8000/api), which works universally.
+    const envUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (envUrl && !envUrl.includes('localhost')) {
+        return envUrl;
+    }
+
+    return '';
 };
 
 export default function CourseView() {
@@ -94,12 +105,23 @@ export default function CourseView() {
                         grouped[key].push(mod);
                     });
 
-                    const computedUnits: VideoUnit[] = Object.keys(grouped).map(key => ({
-                        source: key,
-                        title: key.replace(/\.[^/.]+$/, "").replace(/_/g, " "), // Remove extension, clean filename
-                        modules: grouped[key],
-                        duration: grouped[key].reduce((acc, m) => acc + (m.lessons.length * 3), 0) // Mock 3 mins per lesson
-                    }));
+                    const computedUnits: VideoUnit[] = Object.keys(grouped).map(key => {
+                        // FIX: Helper to detect real video files vs "General Knowledge"
+                        const isVideoFile = key.match(/\.(mp4|mov|avi|mkv|webm)$/i);
+
+                        // If it's a file, we MUST fetch it from the Backend Static Mount
+                        // URL: http://backend:2027/data/corpus/{filename}
+                        const sourceUrl = isVideoFile
+                            ? `${getApiUrl()}/data/corpus/${key}`
+                            : key; // Keep "General Knowledge" or external links as is
+
+                        return {
+                            source: sourceUrl,
+                            title: key.replace(/\.[^/.]+$/, "").replace(/_/g, " "), // Remove extension, clean filename
+                            modules: grouped[key],
+                            duration: grouped[key].reduce((acc, m) => acc + (m.lessons.length * 3), 0) // Mock 3 mins per lesson
+                        };
+                    });
 
                     setUnits(computedUnits);
 
@@ -244,8 +266,8 @@ export default function CourseView() {
                         <button
                             onClick={() => setShowSmartAssist(!showSmartAssist)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${showSmartAssist
-                                    ? 'bg-yellow-500/10 border-yellow-500/50 text-yellow-300 shadow-[0_0_20px_-5px_rgba(234,179,8,0.3)]'
-                                    : 'bg-white/5 border-white/10 text-white/60 hover:text-white'
+                                ? 'bg-yellow-500/10 border-yellow-500/50 text-yellow-300 shadow-[0_0_20px_-5px_rgba(234,179,8,0.3)]'
+                                : 'bg-white/5 border-white/10 text-white/60 hover:text-white'
                                 }`}
                         >
                             <Sparkles className="w-4 h-4" />
@@ -357,33 +379,44 @@ export default function CourseView() {
                                         </div>
 
                                         {/* Expanded Content */}
-                                        <div className={`transition-[max-height] duration-700 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[800px]' : 'max-h-0'}`}>
+                                        <div className={`transition-[max-height] duration-700 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[3000px]' : 'max-h-0'}`}>
                                             <div className="p-6 pt-0 border-t border-white/5">
                                                 {/* Video Player (Full Width) */}
-                                                <div className="mt-6 rounded-xl overflow-hidden bg-black aspect-video relative shadow-2xl border border-white/10">
+                                                <div className="mb-8 rounded-xl overflow-hidden bg-black aspect-video relative shadow-2xl border border-white/10">
                                                     {lesson.source_clips[0]?.video_filename && (
                                                         <VideoPlayer
-                                                            src={`${getApiUrl()}/api/stream/${lesson.source_clips[0].video_filename}`}
-                                                            className="w-full h-full object-contain"
-                                                            startTime={lesson.source_clips[0].start_time}
+                                                            src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(lesson.source_clips[0].video_filename)}&start=${lesson.source_clips[0].start_time}&end=${lesson.source_clips[0].end_time + 180}`}
+                                                            className="w-full h-full object-contain cursor-pointer"
                                                             autoplay={false}
                                                         />
                                                     )}
                                                 </div>
 
-                                                {/* Details Grid */}
-                                                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                                    <div>
-                                                        <h4 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3">Target Outcome</h4>
-                                                        <p className="text-white/80 leading-relaxed bg-blue-500/5 p-4 rounded-xl border border-blue-500/10">
-                                                            {lesson.learning_objective}
-                                                        </p>
+                                                <div className="mt-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                    <div className="space-y-8">
+                                                        {/* Target Outcome */}
+                                                        <div>
+                                                            <h4 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3">Target Outcome</h4>
+                                                            <p className="text-white/80 leading-relaxed bg-blue-500/5 p-4 rounded-xl border border-blue-500/10">
+                                                                {lesson.learning_objective}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Summary (Moved from Instructor) */}
+                                                        <div>
+                                                            <h4 className="text-xs font-bold text-violet-500 uppercase tracking-widest mb-3">Summary</h4>
+                                                            <p className="text-white/70 italic leading-relaxed pl-4 border-l-2 border-violet-500/30">
+                                                                "{lesson.voiceover_script}"
+                                                            </p>
+                                                        </div>
                                                     </div>
+
+                                                    {/* Instructor (Original Transcript) */}
                                                     <div>
-                                                        <h4 className="text-xs font-bold text-purple-500 uppercase tracking-widest mb-3">Voiceover Script</h4>
-                                                        <p className="text-white/60 font-serif italic text-lg leading-relaxed pl-4 border-l-2 border-purple-500/30">
-                                                            "{lesson.voiceover_script}"
-                                                        </p>
+                                                        <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3">Instructor (Original Transcript)</h4>
+                                                        <div className="text-white/60 font-mono text-xs leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar bg-black/20 p-4 rounded-xl border border-white/5">
+                                                            {lesson.transcript_text || "Transcript not available for this segment."}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -404,6 +437,11 @@ export default function CourseView() {
                             expandedLessonIdx !== null
                                 ? activeModule.lessons[expandedLessonIdx]?.voiceover_script
                                 : ""
+                        }
+                        preComputedContext={
+                            expandedLessonIdx !== null
+                                ? (activeModule.lessons[expandedLessonIdx] as any).smart_context
+                                : null
                         }
                     />
                 </div>
