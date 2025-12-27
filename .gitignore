@@ -30,3 +30,7 @@ stop_all.sh
 
 # Video files
 *.mp4
+
+# Database
+*.db
+*.sqlite3

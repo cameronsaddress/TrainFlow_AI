@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { useParams } from 'next/navigation';
 import { Video, Layers, Clock, ArrowRight, PlayCircle, Sparkles } from 'lucide-react';
-import { SmartAssistSidebar } from '@/components/SmartAssistSidebar'; // Feature: RAG Context
+import { SmartAssistSidebar } from '@/components/SmartAssistSidebar';
+import { LessonQuizTile } from '@/components/LessonQuizTile'; // Feature: RAG Context
+import { CourseDashboard } from './CourseDashboard';
 
 interface Lesson {
     title: string;
@@ -18,6 +20,14 @@ interface Lesson {
         end_time: number;
         reason: string;
     }>;
+    quiz?: {
+        questions: Array<{
+            question: string;
+            options: string[];
+            correct_answer: string;
+            explanation?: string;
+        }>;
+    };
 }
 
 interface Module {
@@ -80,9 +90,133 @@ export default function CourseView() {
     const [expandedLessonIdx, setExpandedLessonIdx] = useState<number | null>(null);
     const [showSmartAssist, setShowSmartAssist] = useState(false);
 
-    // Mock Progress
-    const courseProgress = 0;
-    const moduleProgress = 0;
+    // Progress Persistence
+    const [watchedProgress, setWatchedProgress] = useState<Record<string, number>>({});
+    const [quizProgress, setQuizProgress] = useState<Record<string, number>>({}); // Feature: Lesson Quizzes
+    const [courseProgress, setCourseProgress] = useState(0);
+
+    // Load Progress on Mount
+    useEffect(() => {
+        if (!id) return;
+        const saved = localStorage.getItem(`trainflow_progress_${id}`);
+        if (saved) {
+            try {
+                setWatchedProgress(JSON.parse(saved));
+            } catch (e) { console.error("Failed to parse progress", e); }
+        }
+
+        // Feature: Lesson Quizzes (stored globally or per course? Let's use global map for simplicity or per course)
+        // implementation_plan said `trainflow_quiz_progress`
+        const savedQuizzes = localStorage.getItem('trainflow_quiz_scores');
+        if (savedQuizzes) {
+            try {
+                setQuizProgress(JSON.parse(savedQuizzes));
+            } catch (e) { console.error("Failed to parse quizzes", e); }
+        }
+    }, [id]);
+
+    // Save Progress Helper
+    const handleVideoProgress = (filename: string, time: number) => {
+        setWatchedProgress(prev => {
+            const newMax = Math.max(prev[filename] || 0, time);
+            if (newMax > (prev[filename] || 0)) {
+                const newState = { ...prev, [filename]: newMax };
+                localStorage.setItem(`trainflow_progress_${id}`, JSON.stringify(newState));
+                return newState;
+            }
+            return prev;
+        });
+    };
+
+    const handleQuizComplete = (lessonId: string, score: number) => {
+        const newScores = { ...quizProgress, [lessonId]: score };
+        setQuizProgress(newScores);
+        localStorage.setItem('trainflow_quiz_scores', JSON.stringify(newScores));
+    };
+
+    // Calculate Course Progress Dynamically
+    useEffect(() => {
+        if (units.length === 0) return;
+
+        let totalDuration = 0;
+        let watchedDuration = 0;
+
+        units.forEach(u => {
+            u.modules.forEach(m => {
+                m.lessons.forEach(l => {
+                    l.source_clips.forEach(clip => {
+                        const clipDur = clip.end_time - clip.start_time;
+                        totalDuration += clipDur;
+
+                        // Calculate overlap between [0, maxWatched] and [clipStart, clipEnd]
+                        const maxWatched = watchedProgress[clip.video_filename] || 0;
+
+                        // Intersection of [0, maxWatched] and [clipStart, clipEnd]
+                        // Actually, we should assume the user watches linearly. 
+                        // If maxWatched > clipStart, they watched min(maxWatched, clipEnd) - clipStart
+                        const start = clip.start_time;
+                        const end = clip.end_time;
+
+                        // Valid watched range inside this clip
+                        const effectiveEnd = Math.min(maxWatched, end);
+                        const effectiveStart = start;
+
+                        if (effectiveEnd > effectiveStart) {
+                            watchedDuration += (effectiveEnd - effectiveStart);
+                        }
+                    });
+                });
+            });
+        });
+
+        setCourseProgress(totalDuration > 0 ? Math.round((watchedDuration / totalDuration) * 100) : 0);
+
+    }, [watchedProgress, units]);
+
+
+
+    // Calculate Unit Progress (Weighted: 80% Watch, 20% Quiz)
+    const unitProgress = React.useMemo(() => {
+        if (!selectedUnit) return 0;
+
+        let totalTime = 0;
+        let watchedTime = 0;
+        let totalQuizzes = 0;
+        let passedQuizzes = 0; // Or sum of scores? Let's use sum of scores / max possible
+
+        selectedUnit.modules.forEach(m => {
+            m.lessons.forEach((l, lIdx) => {
+                // Watch Time
+                l.source_clips.forEach(clip => {
+                    const start = Number(clip.start_time) || 0;
+                    const end = Number(clip.end_time) || 0;
+                    const dur = Math.max(0, end - start);
+                    totalTime += dur;
+
+                    const maxWatched = watchedProgress[clip.video_filename] || 0;
+                    const effectiveEnd = Math.min(maxWatched, end);
+                    if (effectiveEnd > start) {
+                        watchedTime += (effectiveEnd - start);
+                    }
+                });
+
+                // Quiz Score
+                if (l.quiz && l.quiz.questions && l.quiz.questions.length > 0) {
+                    totalQuizzes += 100; // Max score per quiz
+                    const quizId = `${m.title}-${lIdx}`; // Use same ID generation as tile
+                    passedQuizzes += (quizProgress[quizId] || 0);
+                }
+            });
+        });
+
+        const watchPercent = totalTime > 0 ? (watchedTime / totalTime) : 0;
+        const quizPercent = totalQuizzes > 0 ? (passedQuizzes / totalQuizzes) : 0; // If no quizzes, this is 0. 
+
+        // Weighting
+        if (totalQuizzes === 0) return Math.round(watchPercent * 100);
+        return Math.round((watchPercent * 0.8 + quizPercent * 0.2) * 100);
+
+    }, [selectedUnit, watchedProgress, quizProgress]);
 
     useEffect(() => {
         if (!id) return;
@@ -119,7 +253,19 @@ export default function CourseView() {
                             source: sourceUrl,
                             title: key.replace(/\.[^/.]+$/, "").replace(/_/g, " "), // Remove extension, clean filename
                             modules: grouped[key],
-                            duration: grouped[key].reduce((acc, m) => acc + (m.lessons.length * 3), 0) // Mock 3 mins per lesson
+                            lessonCount: grouped[key].reduce((acc, m) => acc + m.lessons.length, 0),
+                            duration: Math.round(grouped[key].reduce((acc, m) => {
+                                return acc + m.lessons.reduce((lAcc, lesson) => {
+                                    // Sum duration of all clips in lesson
+                                    const lessonDuration = lesson.source_clips.reduce((cAcc, clip) => {
+                                        const start = Number(clip.start_time) || 0;
+                                        const end = Number(clip.end_time) || 0;
+                                        // Ensure positive duration
+                                        return cAcc + Math.max(0, end - start);
+                                    }, 0);
+                                    return lAcc + lessonDuration;
+                                }, 0);
+                            }, 0) / 60) // Convert seconds to minutes
                         };
                     });
 
@@ -171,68 +317,25 @@ export default function CourseView() {
 
     const course = plan.structured_json;
 
+
+
     // --- RENDER: OVERVIEW LAYOUT (Grid of Units) ---
     if (!selectedUnit) {
+        // Use New Elite Dashboard
         return (
-            <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-blue-500/30">
-                <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5 h-20 flex items-center justify-between px-8">
-                    <div className="flex items-center gap-6">
-                        <Link href="/jobs" className="flex items-center gap-2 text-white/40 hover:text-white transition-colors group">
-                            <span className="text-sm font-medium tracking-wide">&larr; LIBRARY</span>
-                        </Link>
-                        <div className="h-8 w-px bg-white/10" />
-                        <h1 className="text-lg font-bold text-white/90 truncate">{course.course_title}</h1>
-                    </div>
-                    <div className="flex items-center gap-3 bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
-                        <span className="text-xs font-medium text-white/50 uppercase tracking-wider">Total Progress</span>
-                        <ProgressRing percentage={courseProgress} size={32} stroke={3} />
-                    </div>
-                </header>
-
-                <main className="pt-32 pb-20 max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent mb-4">Course Architecture</h2>
-                        <p className="text-white/40 max-w-2xl mx-auto text-lg font-light leading-relaxed">{course.course_description}</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {units.map((unit, idx) => (
-                            <div
-                                key={idx}
-                                onClick={() => {
-                                    setSelectedUnit(unit);
-                                    setCurrentModuleIdx(0); // Reset module ptr
-                                    setExpandedLessonIdx(null); // Reset lesson
-                                }}
-                                className="group relative bg-[#0f0f0f] border border-white/5 hover:border-blue-500/30 hover:bg-white/5 rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1"
-                            >
-                                <div className="absolute top-6 right-6 text-white/20 group-hover:text-blue-400 transition-colors">
-                                    <PlayCircle className="w-8 h-8" />
-                                </div>
-
-                                <span className="text-xs font-bold font-mono text-blue-500 tracking-widest uppercase mb-4 block">
-                                    Training Unit {idx + 1}
-                                </span>
-
-                                <h3 className="text-2xl font-bold text-white mb-3 line-clamp-2 leading-tight group-hover:text-blue-200 transition-colors">
-                                    {unit.title}
-                                </h3>
-
-                                <div className="flex items-center gap-4 text-sm text-white/40 font-mono mt-8 border-t border-white/5 pt-6 group-hover:border-white/10 transition-colors">
-                                    <span className="flex items-center gap-2">
-                                        <Layers className="w-4 h-4" />
-                                        {unit.modules.length} Modules
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4" />
-                                        ~{unit.duration}m
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </main>
-            </div>
+            <CourseDashboard
+                course={{
+                    course_title: course.course_title,
+                    course_description: course.course_description
+                }}
+                units={units}
+                onSelectUnit={(u) => {
+                    setSelectedUnit(u);
+                    setCurrentModuleIdx(0);
+                    setExpandedLessonIdx(null);
+                }}
+                courseProgress={courseProgress}
+            />
         );
     }
 
@@ -278,7 +381,7 @@ export default function CourseView() {
 
                         <div className="flex items-center gap-3 bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
                             <span className="text-xs font-medium text-white/50 uppercase tracking-wider">Unit Progress</span>
-                            <ProgressRing percentage={moduleProgress} size={32} stroke={3} />
+                            <ProgressRing percentage={unitProgress} size={32} stroke={3} />
                         </div>
 
                         {/* Module Navigation Buttons */}
@@ -316,7 +419,7 @@ export default function CourseView() {
                                     <p className="text-white/50 text-lg max-w-3xl leading-relaxed">{activeModule.description}</p>
                                 </div>
                                 <div className="flex flex-col items-center">
-                                    <ProgressRing percentage={moduleProgress} size={64} stroke={4} color="text-emerald-500" />
+                                    <ProgressRing percentage={unitProgress} size={64} stroke={4} color="text-emerald-500" />
                                     <span className="text-[10px] uppercase tracking-widest text-white/30 mt-2 font-bold">Completed</span>
                                 </div>
                             </div>
@@ -367,7 +470,7 @@ export default function CourseView() {
                                                     <div className="flex items-center gap-4 text-sm text-white/40">
                                                         <span className="flex items-center gap-1.5">
                                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                                            {((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0).toFixed(0)}s
+                                                            {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) / 60)}m {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) % 60)}s
                                                         </span>
                                                     </div>
                                                 )}
@@ -388,6 +491,7 @@ export default function CourseView() {
                                                             src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(lesson.source_clips[0].video_filename)}&start=${lesson.source_clips[0].start_time}&end=${lesson.source_clips[0].end_time + 180}`}
                                                             className="w-full h-full object-contain cursor-pointer"
                                                             autoplay={false}
+                                                            onProgress={(t) => handleVideoProgress(lesson.source_clips[0].video_filename, t)}
                                                         />
                                                     )}
                                                 </div>
@@ -402,22 +506,25 @@ export default function CourseView() {
                                                             </p>
                                                         </div>
 
-                                                        {/* Summary (Moved from Instructor) */}
-                                                        <div>
-                                                            <h4 className="text-xs font-bold text-violet-500 uppercase tracking-widest mb-3">Summary</h4>
-                                                            <p className="text-white/70 italic leading-relaxed pl-4 border-l-2 border-violet-500/30">
-                                                                "{lesson.voiceover_script}"
-                                                            </p>
-                                                        </div>
+
                                                     </div>
 
-                                                    {/* Instructor (Original Transcript) */}
+                                                    {/* Summary (LLM Voiceover Script) - Moved to Right Column */}
+                                                    <div>
+                                                        <h4 className="text-xs font-bold text-violet-500 uppercase tracking-widest mb-3">Summary</h4>
+                                                        <p className="text-white/70 italic leading-relaxed pl-4 border-l-2 border-violet-500/30">
+                                                            "{lesson.voiceover_script}"
+                                                        </p>
+                                                    </div>
+
+                                                    {/* Instructor (Transcript) - Hidden by request
                                                     <div>
                                                         <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3">Instructor (Original Transcript)</h4>
                                                         <div className="text-white/60 font-mono text-xs leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar bg-black/20 p-4 rounded-xl border border-white/5">
                                                             {lesson.transcript_text || "Transcript not available for this segment."}
                                                         </div>
-                                                    </div>
+                                                    </div> 
+                                                    */}
                                                 </div>
                                             </div>
                                         </div>
@@ -429,9 +536,8 @@ export default function CourseView() {
                 </main>
             </div>
 
-            {/* Smart Assist Sidebar (Right) */}
             {showSmartAssist && (
-                <div className="animate-fade-in-right">
+                <div className="fixed top-0 right-0 h-screen w-[400px] z-50 shadow-2xl animate-fade-in-right glass-panel border-l border-white/10">
                     <SmartAssistSidebar
                         contextScript={
                             expandedLessonIdx !== null
@@ -443,6 +549,7 @@ export default function CourseView() {
                                 ? (activeModule.lessons[expandedLessonIdx] as any).smart_context
                                 : null
                         }
+                        onClose={() => setShowSmartAssist(false)}
                     />
                 </div>
             )}

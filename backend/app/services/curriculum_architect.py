@@ -483,10 +483,44 @@ async def enrich_curriculum_generator(curriculum_data: dict, db: Session = None)
                 )
                 
                 lesson["smart_context"] = smart_context
+
+                # --- QUIZ GENERATION ---
+                quiz_prompt = f"""
+                Based on the Lesson Script below, generate a multiple-choice quiz to test understanding.
+                
+                Script: "{script}"
+                
+                Requirements:
+                1. Identify the most critical concepts.
+                2. Create multiple-choice questions (max 15, but use fewer if appropriate).
+                3. Provide 3-4 options per question.
+                4. Indicate the correct answer and a brief explanation.
+                
+                Output JSON:
+                {{
+                  "questions": [
+                    {{
+                      "question": "...",
+                      "options": ["Option A", "Option B", "Option C"],
+                      "correct_answer": "Option A",
+                      "explanation": "..."
+                    }}
+                  ]
+                }}
+                """
+                
+                quiz_data = await llm.generate_structure(
+                    system_prompt="You are an Instructional Designer. Create a knowledge check quiz.",
+                    user_content=quiz_prompt,
+                    model="x-ai/grok-4.1-fast"
+                )
+                
+                lesson["quiz"] = quiz_data
                 
             except Exception as e:
                 print(f"Failed to enrich lesson '{title}': {e}", flush=True)
                 lesson["smart_context"] = {} # Fallback
+                lesson["quiz"] = {} # Fallback
                 
             enriched_lessons.append(lesson)
         

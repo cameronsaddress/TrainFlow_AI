@@ -148,12 +148,36 @@ async def get_curriculum(plan_id: int, db: Session = Depends(get_db)):
     if not plan:
         raise HTTPException(status_code=404, detail="Curriculum Plan not found")
         
-    # Build Map: Friendly Name -> Serve URL (UUID)
-    # We query all ALL videos to be safe, or we could parse the JSON to find dependent videos.
-    # For MVP, querying all is fast enough for <1000 items. 
-    # Or better: Just query ones with matching filenames? 
-    # Let's query all for now to handle potential duplicates simply (take latest).
-    videos = db.query(k_models.VideoCorpus).all()
+    # OPTIMIZATION: "Smart Load"
+    # 1. Extract required filenames to filter the query
+    required_filenames = set()
+    if plan.structured_json and isinstance(plan.structured_json, dict) and "modules" in plan.structured_json:
+        for mod in plan.structured_json.get("modules", []):
+             # 1. Module level recommendations
+             if "recommended_source_videos" in mod:
+                 for vid in mod["recommended_source_videos"]:
+                     if vid: required_filenames.add(vid)
+             
+             # 2. Lesson clips
+             if "lessons" in mod:
+                 for lesson in mod["lessons"]:
+                     if "source_clips" in lesson:
+                         for clip in lesson["source_clips"]:
+                             if "video_filename" in clip and clip["video_filename"]:
+                                 required_filenames.add(clip["video_filename"])
+
+    # 2. Query only required videos AND defer heavy text fields
+    videos = []
+    if required_filenames:
+        videos = db.query(k_models.VideoCorpus).filter(
+            k_models.VideoCorpus.filename.in_(list(required_filenames))
+        ).options(
+            defer(k_models.VideoCorpus.transcript_text),
+            defer(k_models.VideoCorpus.transcript_json),
+            defer(k_models.VideoCorpus.ocr_text),
+            defer(k_models.VideoCorpus.ocr_json)
+        ).all()
+
     file_map = {}
     for v in videos:
         # We serve from /data/corpus/{os.path.basename(v.file_path)}

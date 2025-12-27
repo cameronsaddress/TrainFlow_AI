@@ -9,12 +9,20 @@ interface VideoPlayerProps {
     endTime?: number;   // Seconds
     autoplay?: boolean;
     className?: string;
+    onProgress?: (currentTime: number) => void;
 }
 
-export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autoplay = false }: VideoPlayerProps) {
+export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autoplay = false, onProgress }: VideoPlayerProps) {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Default to loading
     const videoRef = useRef<HTMLVideoElement>(null);
     const [currentTime, setCurrentTime] = useState(0);
+
+    // Reset loading state when src changes
+    useEffect(() => {
+        setIsLoading(true);
+        setIsPlaying(false);
+    }, [src]);
 
     // Initial Seek
     useEffect(() => {
@@ -36,13 +44,12 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
         if (videoRef.current) {
             const now = videoRef.current.currentTime;
             setCurrentTime(now);
+            if (onProgress) onProgress(now);
 
             // Clip End Logic
             if (endTime && now >= endTime) {
                 videoRef.current.pause();
                 setIsPlaying(false);
-                // Optional: Snap to end time visually
-                // videoRef.current.currentTime = endTime; 
             }
         }
     };
@@ -56,7 +63,7 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
     };
 
     return (
-        <div className="rounded-2xl overflow-hidden bg-black border border-white/10 relative group">
+        <div className="rounded-2xl overflow-hidden bg-black border border-white/10 relative group h-full w-full">
             <video
                 ref={videoRef}
                 src={src}
@@ -64,6 +71,9 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
                 onClick={togglePlay}
                 onTimeUpdate={handleTimeUpdate}
                 onEnded={() => setIsPlaying(false)}
+                onWaiting={() => setIsLoading(true)}
+                onCanPlay={() => setIsLoading(false)}
+                onLoadedData={() => setIsLoading(false)}
                 onLoadedMetadata={() => {
                     if (videoRef.current && startTime > 0) {
                         videoRef.current.currentTime = startTime;
@@ -71,8 +81,22 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
                 }}
             />
 
+            {/* Loading Skeleton & Spinner */}
+            {isLoading && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#0a0a0a]">
+                    {/* Shimmer Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]" />
+
+                    {/* Glowing Spinner */}
+                    <div className="relative">
+                        <div className="w-16 h-16 rounded-full border-4 border-blue-500/30 animate-pulse"></div>
+                        <div className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
+                    </div>
+                </div>
+            )}
+
             {/* Overlay Controls */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-4">
+            <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity flex items-center gap-4 ${isLoading ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}>
                 <button onClick={togglePlay} className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 </button>
@@ -96,7 +120,7 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
                     <Maximize className="w-4 h-4" />
                 </a>
 
-                {/* Progress Bar (Visual Only for now, mapped to full video duration usually, but could be clipped) */}
+                {/* Progress Bar */}
                 <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
                     <div
                         className="h-full bg-primary transition-all duration-200"
@@ -118,7 +142,7 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
             </div>
 
             {/* Big Play Button */}
-            {!isPlaying && (
+            {!isPlaying && !isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl backdrop-blur-sm">
                         <Play className="w-8 h-8 text-white ml-1" />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchContextSuggestions, Suggestion } from '../services/ContextEngine';
-import { Lightbulb, AlertTriangle, ShieldCheck, Search, Settings, ToggleRight, ToggleLeft } from 'lucide-react';
+import { Lightbulb, AlertTriangle, ShieldCheck, Search, Settings, ToggleRight, ToggleLeft, Sparkles, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { LinkRenderer } from './LinkRenderer';
 
@@ -111,14 +111,18 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
     }, [contextScript, preComputedContext, isEnabled, enableRules, enableGlossary]);
 
     return (
-        <div className="w-80 h-full bg-[#0a0a0a] border-l border-white/10 flex flex-col">
-            <div className="p-6 border-b border-white/10 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <Lightbulb className={`w-5 h-5 ${isEnabled ? 'text-yellow-400' : 'text-white/20'}`} />
-                    <h2 className="font-bold text-white tracking-wide">Smart Assist</h2>
+        <div className="w-full h-full bg-[#0a0a0a] flex flex-col">
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/40">
+                <div className="flex items-center gap-2 text-yellow-500">
+                    <Sparkles className="w-5 h-5 fill-yellow-500/20" />
+                    <h2 className="font-bold tracking-wide">Smart Assist</h2>
                 </div>
-                <button onClick={() => setIsEnabled(!isEnabled)} className="text-white/50 hover:text-white transition-colors">
-                    {isEnabled ? <ToggleRight className="w-8 h-8 text-blue-500" /> : <ToggleLeft className="w-8 h-8" />}
+                <button
+                    onClick={onClose}
+                    className="p-1 rounded-full hover:bg-white/10 text-white/40 hover:text-white transition-colors"
+                    title="Close Panel"
+                >
+                    <X className="w-5 h-5" />
                 </button>
             </div>
 
