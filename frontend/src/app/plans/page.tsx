@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, Clock, Layers, ArrowRight, Pencil } from 'lucide-react';
+import { BookOpen, Clock, Layers, ArrowRight, Pencil, Download } from 'lucide-react';
 
 interface Curriculum {
     id: number;
@@ -15,11 +15,8 @@ interface Curriculum {
 }
 
 const getApiUrl = () => {
-    if (typeof window !== 'undefined') {
-        const url = localStorage.getItem('apiUrl');
-        if (url) return url;
-    }
-    return 'http://localhost:2027';
+    if (typeof window === 'undefined') return 'http://backend:8000';
+    return '';
 };
 
 export default function PlansPage() {
@@ -110,7 +107,21 @@ export default function PlansPage() {
                             </div>
 
                             {/* Edit Action */}
-                            <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        const hostname = window.location.hostname;
+                                        // Use port 2027 (via proxy or direct) - actually just use relative path /api
+                                        // But our getApiUrl helper is tricky.
+                                        // Best to open a new tab with the direct download link.
+                                        window.open(`${getApiUrl()}/api/export/${plan.id}/scorm`, '_blank');
+                                    }}
+                                    className="p-2 bg-black/60 hover:bg-black/90 rounded-full border border-white/10 hover:border-green-500/50 text-white/60 hover:text-green-400 block"
+                                    title="Download SCORM 1.2 Package"
+                                >
+                                    <Download className="w-4 h-4" />
+                                </button>
                                 <Link
                                     href={`/curriculum/${plan.id}/edit`}
                                     onClick={(e) => e.stopPropagation()}

@@ -33,11 +33,7 @@ export function Sidebar() {
         const fetchStatus = async () => {
             try {
                 // Dynamically determine the API base URL to support remote access
-                // If accessing via localhost:2026, use localhost:2027
-                // If accessing via IP:2026, use IP:2027
-                const hostname = window.location.hostname;
-                const protocol = window.location.protocol;
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || `${protocol}//${hostname}:2027`;
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
                 const res = await fetch(`${apiUrl}/api/process/gpu-status`);
                 if (res.ok) {

@@ -58,7 +58,7 @@ export default function AIAnalysisPage() {
         try {
             const hostname = window.location.hostname;
             const protocol = window.location.protocol;
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL || `${protocol}//${hostname}:2027`;
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
             const sessionId = sessionStorage.getItem('trainflow_chat_session') || `session_${Date.now()}`;
             sessionStorage.setItem('trainflow_chat_session', sessionId);

@@ -109,6 +109,12 @@ def ingest_video(video_id: int):
         video.ocr_text = full_ocr
         video.ocr_json = ocr_json_data
         
+        # Metadata Calculation
+        word_count = len(full_transcript.split()) if full_transcript else 0
+        current_meta = video.metadata_json or {}
+        current_meta["word_count"] = word_count
+        video.metadata_json = current_meta
+
         video.status = k_models.DocStatus.READY
         db.commit()
         print(f"Ingestion Complete for Video {video_id}", flush=True)

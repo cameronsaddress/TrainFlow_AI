@@ -31,29 +31,35 @@ async def hydrate_quizzes():
             for l_idx, lesson in enumerate(lessons):
                 title = lesson.get("title", f"Lesson {l_idx}")
                 
-                # Check if quiz exists
-                if "quiz" in lesson and lesson["quiz"] and lesson["quiz"].get("questions"):
-                    print(f"  [Skip] Quiz exists for: {title}")
-                    continue
-                    
+                # FORCE OVERWRITE for refinement
+                # Only skipping if we already have the NEW high-quality structure (heuristic: check if questions < 1 for intro)
+                # For now, let's just re-run everything to be safe.
+                
                 script = lesson.get("voiceover_script", "")
                 if not script:
                     print(f"  [Skip] No script for: {title}")
                     continue
                     
-                print(f"  [Gen] Generating Quiz for: {title}...")
+                print(f"  [Gen] Generating Critical Quiz for: {title}...")
                 
                 try:
                     quiz_prompt = f"""
-                    Based on the Lesson Script below, generate a multiple-choice quiz to test understanding.
+                    You are a Senior Utility Operations Trainer. 
+                    Your students are "Work Order Clerks" who manage data for Utility Pole repairs.
+                    
+                    The Lesson Script below teaches general concepts (e.g. "Reactive Maintenance"), 
+                    but you must apply them to the specific job of **Utility Pole Inspection**.
                     
                     Script: "{script}"
                     
-                    Requirements:
-                    1. Identify the most critical concepts.
-                    2. Create multiple-choice questions (max 15, but use fewer if appropriate).
-                    3. Provide 3-4 options per question.
-                    4. Indicate the correct answer and a brief explanation.
+                    Task:
+                    Generate a "Job-Critical" multiple-choice quiz.
+                    
+                    Strict Guide:
+                    1. SCENARIO REQD: "A field agent sends a photo of [XYZ Defect]. How do you handle this?"
+                    2. APPLY CONCEPTS: If script defines "Reactive", ask: "Use the 'Reactive' type for which situation? (A) Snapped Crossarm (B) Scheduled Paint..."
+                    3. FOCUS ON DATA: Ask about Priority Level, Safety Flags, and Labor Estimates.
+                    4. ROLE: The student is sitting at a desk processing requests.
                     
                     Output JSON:
                     {{
@@ -83,19 +89,19 @@ async def hydrate_quizzes():
                 except Exception as e:
                     print(f"  [Error] Failed to generate quiz for {title}: {e}")
 
-        if updated_count > 0:
-            print(f"Saving {updated_count} new quizzes to DB...")
-            # Update the JSON column
-            plan.structured_json = data
-            
-            # Force update (SQLAlchemy tracks JSON changes but let's be explicit)
-            from sqlalchemy.orm.attributes import flag_modified
-            flag_modified(plan, "structured_json")
-            
-            db.commit()
-            print("Done!")
-        else:
-            print("No updates needed.")
+                except Exception as e:
+                    print(f"  [Error] Failed to generate quiz for {title}: {e}")
+
+            # Save incrementally after each module
+            if updated_count > 0:
+                print(f"  [Save] Committing module updates to DB...")
+                plan.structured_json = data
+                from sqlalchemy.orm.attributes import flag_modified
+                flag_modified(plan, "structured_json")
+                db.commit()
+                print("  [Save] Committed.")
+
+        print("Backfill complete.")
 
     finally:
         db.close()

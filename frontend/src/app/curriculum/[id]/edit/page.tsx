@@ -36,10 +36,8 @@ interface CourseStructure {
 
 // --- API HELPER ---
 const getApiUrl = () => {
-    if (typeof window !== 'undefined') {
-        return localStorage.getItem('apiUrl') || 'http://localhost:2027';
-    }
-    return 'http://localhost:2027';
+    if (typeof window === 'undefined') return 'http://backend:8000';
+    return '';
 };
 
 // --- DND HELPERS ---
@@ -260,8 +258,8 @@ export default function CourseEditorPage() {
                         <div
                             key={mod.id}
                             className={`w-96 flex flex-col h-full rounded-2xl border transition-colors duration-200 ${dragOverTarget?.type === DND_TYPE_MODULE && dragOverTarget?.index === mIdx
-                                    ? 'bg-blue-900/20 border-blue-500/50'
-                                    : 'bg-[#121212] border-white/5'
+                                ? 'bg-blue-900/20 border-blue-500/50'
+                                : 'bg-[#121212] border-white/5'
                                 }`}
                             draggable
                             onDragStart={(e) => onDragStart(e, DND_TYPE_MODULE, mIdx)}
@@ -314,8 +312,8 @@ export default function CourseEditorPage() {
                                     <div
                                         key={lesson.id}
                                         className={`p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/10 cursor-grab active:cursor-grabbing transition-all ${dragOverTarget?.type === DND_TYPE_LESSON && dragOverTarget?.index === lIdx && dragOverTarget?.parentIndex === mIdx
-                                                ? 'border-t-2 border-t-blue-500 translate-y-2'
-                                                : ''
+                                            ? 'border-t-2 border-t-blue-500 translate-y-2'
+                                            : ''
                                             }`}
                                         draggable
                                         onDragStart={(e) => onDragStart(e, DND_TYPE_LESSON, lIdx, mIdx)}

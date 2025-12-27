@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, XCircle, ChevronDown, ChevronUp, GraduationCap, AlertCircle, Award } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronDown, ChevronUp, AlertCircle, Circle, PlayCircle } from 'lucide-react';
 
 interface Question {
     question: string;
@@ -33,7 +33,6 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
             setSubmitted(parsed.submitted || false);
             setScore(parsed.score);
             if (parsed.submitted && onComplete) {
-                // Defer to avoid render loop
                 setTimeout(() => onComplete(parsed.score), 0);
             }
         }
@@ -54,7 +53,6 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
         setScore(calculatedScore);
         setSubmitted(true);
 
-        // Persist
         localStorage.setItem(`quiz_${lessonId}`, JSON.stringify({
             answers,
             submitted: true,
@@ -62,7 +60,7 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
         }));
 
         if (onComplete) onComplete(calculatedScore);
-        setIsExpanded(false); // Auto-collapse on done? Or stay open to show results? Let's keep open briefly or toggle.
+        // setIsExpanded(false); // Keep open to show results
     };
 
     if (!quizData || !quizData.questions || quizData.questions.length === 0) return null;
@@ -70,37 +68,47 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
     const isPassed = score !== null && score >= 80;
 
     return (
-        <div className="mt-2 ml-8 mr-2 mb-4">
+        <div className="relative pl-12 pr-2 mb-2 group">
+            {/* Connector Line */}
+            <div className="absolute left-[30px] top-[-24px] bottom-[20px] w-px bg-gradient-to-b from-white/10 to-amber-500/30 group-hover:to-amber-500/60 transition-colors"></div>
+
+            {/* Curve to Node */}
+            <div className="absolute left-[30px] top-1/2 w-4 h-[1px] bg-amber-500/30 group-hover:bg-amber-500/60 transition-colors"></div>
+
             {/* Header / Trigger */}
             <div
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`
-                    cursor-pointer rounded-lg border px-4 py-3 flex items-center justify-between transition-all select-none
+                    relative z-10 cursor-pointer rounded-lg border px-4 py-2 flex items-center justify-between transition-all select-none
                     ${submitted
-                        ? (isPassed ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30')
-                        : 'bg-white/5 border-white/10 hover:bg-white/10'
+                        ? (isPassed ? 'bg-amber-500/10 border-amber-500/30 shadow-[0_0_15px_-3px_rgba(245,158,11,0.1)]' : 'bg-red-500/10 border-red-500/30')
+                        : 'bg-[#0a0a0a] border-amber-500/20 hover:bg-amber-500/5 hover:border-amber-500/40 hover:shadow-[0_0_15px_-3px_rgba(245,158,11,0.15)]'
                     }
                 `}
             >
                 <div className="flex items-center gap-3">
-                    <div className={`p-1.5 rounded-md ${submitted ? (isPassed ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400') : 'bg-blue-500/20 text-blue-400'}`}>
-                        {submitted ? <Award className="w-4 h-4" /> : <GraduationCap className="w-4 h-4" />}
+                    <div className={`transition-colors ${submitted ? (isPassed ? 'text-amber-400' : 'text-red-400') : 'text-amber-500/60 group-hover:text-amber-400'}`}>
+                        {submitted ? <CheckCircle className="w-4 h-4" /> : <Circle className="w-4 h-4 border-2 border-current rounded-full border-dashed p-[1px]" />}
                     </div>
-                    <div>
-                        <h4 className={`text-sm font-semibold ${submitted ? (isPassed ? 'text-green-200' : 'text-red-200') : 'text-blue-200'}`}>
-                            {submitted ? `Quiz Completed: ${score}%` : "Knowledge Check"}
+                    <div className="flex items-center gap-2">
+                        <h4 className={`text-xs font-bold uppercase tracking-wider ${submitted ? (isPassed ? 'text-amber-200' : 'text-red-200') : 'text-amber-500/80 group-hover:text-amber-200 transition-colors'}`}>
+                            {submitted ? `Knowledge Check: ${score}%` : "Knowledge Check"}
                         </h4>
                         {!submitted && (
-                            <p className="text-xs text-white/40">{quizData.questions.length} Questions</p>
+                            <span className="text-[10px] text-amber-500/40 bg-amber-500/5 px-1.5 py-0.5 rounded border border-amber-500/10">
+                                {quizData.questions.length} Qs
+                            </span>
                         )}
                     </div>
                 </div>
-                {isExpanded ? <ChevronUp className="w-4 h-4 text-white/30" /> : <ChevronDown className="w-4 h-4 text-white/30" />}
+                {isExpanded ? <ChevronUp className="w-3 h-3 text-amber-500/50" /> : <ChevronDown className="w-3 h-3 text-amber-500/50" />}
             </div>
 
             {/* Quiz Body */}
             {isExpanded && (
-                <div className="mt-2 p-4 bg-black/40 border border-white/10 rounded-lg animate-fade-in-down">
+                <div className="mt-2 ml-4 p-4 bg-black/40 border border-amber-500/10 rounded-lg animate-fade-in-down relative shadow-2xl">
+                    <div className="absolute -left-[17px] top-[-10px] bottom-1/2 w-4 h-px border-b border-l border-amber-500/20 rounded-bl-xl"></div>
+
                     <div className="space-y-6">
                         {quizData.questions.map((q, idx) => {
                             const userAnswer = answers[idx];
@@ -108,20 +116,20 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
                             const showResult = submitted;
 
                             return (
-                                <div key={idx} className="space-y-3">
+                                <div key={idx} className="space-y-2">
                                     <p className="text-sm font-medium text-white/90">
-                                        {idx + 1}. {q.question}
+                                        <span className="text-amber-500/60 mr-2">{idx + 1}.</span> {q.question}
                                     </p>
-                                    <div className="space-y-2 pl-2 border-l-2 border-white/5">
+                                    <div className="space-y-1.5 pl-2 border-l border-white/5">
                                         {q.options.map((opt, optIdx) => {
-                                            let optionClass = "border-white/10 bg-white/5 text-white/60 hover:bg-white/10";
+                                            let optionClass = "border-white/5 bg-white/5 text-white/50 hover:bg-white/10";
 
                                             if (showResult) {
-                                                if (opt === q.correct_answer) optionClass = "border-green-500/50 bg-green-500/20 text-green-300"; // Correct
-                                                else if (opt === userAnswer && !isCorrect) optionClass = "border-red-500/50 bg-red-500/20 text-red-300"; // Wrong pick
-                                                else optionClass = "border-white/5 bg-transparent text-white/30"; // Irrelevant
+                                                if (opt === q.correct_answer) optionClass = "border-green-500/40 bg-green-500/10 text-green-300"; // Correct
+                                                else if (opt === userAnswer && !isCorrect) optionClass = "border-red-500/40 bg-red-500/10 text-red-300"; // Wrong pick
+                                                else optionClass = "border-white/5 bg-transparent text-white/20 opacity-50"; // Irrelevant
                                             } else {
-                                                if (userAnswer === opt) optionClass = "border-blue-500/50 bg-blue-500/20 text-white";
+                                                if (userAnswer === opt) optionClass = "border-amber-500/50 bg-amber-500/20 text-white shadow-[0_0_10px_-2px_rgba(245,158,11,0.2)]";
                                             }
 
                                             return (
@@ -129,19 +137,19 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
                                                     key={optIdx}
                                                     onClick={() => handleOptionSelect(idx, opt)}
                                                     disabled={submitted}
-                                                    className={`w-full text-left px-3 py-2 rounded text-sm border transition-all flex justify-between items-center ${optionClass}`}
+                                                    className={`w-full text-left px-3 py-1.5 rounded text-xs border transition-all flex justify-between items-center ${optionClass}`}
                                                 >
                                                     <span>{opt}</span>
-                                                    {showResult && opt === q.correct_answer && <CheckCircle className="w-4 h-4 text-green-400" />}
-                                                    {showResult && opt === userAnswer && !isCorrect && <XCircle className="w-4 h-4 text-red-400" />}
+                                                    {showResult && opt === q.correct_answer && <CheckCircle className="w-3 h-3 text-green-400" />}
+                                                    {showResult && opt === userAnswer && !isCorrect && <XCircle className="w-3 h-3 text-red-400" />}
                                                 </button>
                                             );
                                         })}
                                     </div>
 
                                     {showResult && !isCorrect && q.explanation && (
-                                        <div className="text-xs text-white/50 bg-white/5 p-2 rounded flex gap-2 items-start">
-                                            <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" />
+                                        <div className="text-xs text-amber-200/60 bg-amber-500/5 border border-amber-500/10 p-2 rounded flex gap-2 items-start mt-2">
+                                            <AlertCircle className="w-3 h-3 mt-0.5 shrink-0 text-amber-500" />
                                             <span>{q.explanation}</span>
                                         </div>
                                     )}
@@ -151,15 +159,15 @@ export const LessonQuizTile: React.FC<LessonQuizTileProps> = ({ lessonId, quizDa
                     </div>
 
                     {!submitted && (
-                        <div className="mt-6 pt-4 border-t border-white/10 flex justify-end">
+                        <div className="mt-4 pt-3 border-t border-white/5 flex justify-end">
                             <button
                                 onClick={handleSubmit}
                                 disabled={Object.keys(answers).length < quizData.questions.length}
                                 className={`
-                                    px-6 py-2 rounded-lg font-bold text-sm shadow-lg transition-all
+                                    px-4 py-1.5 rounded font-bold text-xs shadow-lg transition-all border
                                     ${Object.keys(answers).length < quizData.questions.length
-                                        ? 'bg-white/10 text-white/30 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white'
+                                        ? 'bg-white/5 border-white/5 text-white/20 cursor-not-allowed'
+                                        : 'bg-amber-600 border-amber-500 text-white hover:bg-amber-500 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                                     }
                                 `}
                             >

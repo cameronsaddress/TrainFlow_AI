@@ -21,10 +21,10 @@ export interface ContextProvider {
 // --- API Helpers (Mocked/Real) ---
 
 const getApiUrl = () => {
-    if (typeof window !== 'undefined') {
-        return localStorage.getItem('apiUrl') || 'http://localhost:2027';
+    if (typeof window === 'undefined') {
+        return 'http://backend:8000';
     }
-    return 'http://localhost:2027';
+    return localStorage.getItem('apiUrl') || '';
 };
 
 // --- Providers ---

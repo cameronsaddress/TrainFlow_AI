@@ -376,7 +376,7 @@ async def ask_trainflow(payload: AskRequest, db: Session = Depends(get_db)):
     
     try:
         # Use generate_text for natural language response
-        final_answer = llm.generate_text(
+        final_answer = await llm.generate_text(
             prompt=prompt,
             model="x-ai/grok-4.1-fast" 
         )

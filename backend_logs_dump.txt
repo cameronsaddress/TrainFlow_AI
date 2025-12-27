@@ -1,0 +1,200 @@
+lessons.13.source_clips.2
+  Input should be an object [type=dict_type, input_value='[2324.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.3
+  Input should be an object [type=dict_type, input_value='[2329.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.4
+  Input should be an object [type=dict_type, input_value='[2334.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.5
+  Input should be an object [type=dict_type, input_value='[2339.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.6
+  Input should be an object [type=dict_type, input_value='[2344.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.7
+  Input should be an object [type=dict_type, input_value='[2349.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.8
+  Input should be an object [type=dict_type, input_value='[2354.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.9
+  Input should be an object [type=dict_type, input_value='[2359.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.10
+  Input should be an object [type=dict_type, input_value='[2364.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.11
+  Input should be an object [type=dict_type, input_value='[2369.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.12
+  Input should be an object [type=dict_type, input_value='[2374.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.13
+  Input should be an object [type=dict_type, input_value='[2379.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.14
+  Input should be an object [type=dict_type, input_value='[2384.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.15
+  Input should be an object [type=dict_type, input_value='[2389.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.16
+  Input should be an object [type=dict_type, input_value='[2394.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.17
+  Input should be an object [type=dict_type, input_value='[2399.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.13.source_clips.18
+  Input should be an object [type=dict_type, input_value='[2454.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.title
+  Field required [type=missing, input_value={'lesson': 'In STORMS, Di...54.96s]', '[2359.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In STORMS, Di...54.96s]', '[2359.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.14.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2354.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.14.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2359.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.title
+  Field required [type=missing, input_value={'lesson': 'Reference rel...04.96s]', '[2409.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Reference rel...04.96s]', '[2409.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.15.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2274.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2279.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.2
+  Input should be an object [type=dict_type, input_value='[2284.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.3
+  Input should be an object [type=dict_type, input_value='[2289.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.4
+  Input should be an object [type=dict_type, input_value='[2404.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.15.source_clips.5
+  Input should be an object [type=dict_type, input_value='[2409.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.16.title
+  Field required [type=missing, input_value={'lesson': 'Updated by fi..._clips': ['[2309.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Updated by fi..._clips': ['[2309.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.16.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2309.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.17.title
+  Field required [type=missing, input_value={'lesson': "Include scope..._clips': ['[2294.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.voiceover_script
+  Field required [type=missing, input_value={'lesson': "Include scope..._clips': ['[2294.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.17.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2294.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.title
+  Field required [type=missing, input_value={'lesson': 'Excavation fo...94.96s]', '[2309.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Excavation fo...94.96s]', '[2309.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.18.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2294.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.18.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2309.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.title
+  Field required [type=missing, input_value={'lesson': 'In design tas...34.96s]', '[2339.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'In design tas...34.96s]', '[2339.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.19.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2334.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.19.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2339.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.title
+  Field required [type=missing, input_value={'lesson': 'Work request ...24.96s]', '[2329.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Work request ...24.96s]', '[2329.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.20.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2324.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.20.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2329.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.title
+  Field required [type=missing, input_value={'lesson': 'Contact: Hick...24.96s]', '[2329.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Contact: Hick...24.96s]', '[2329.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.21.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2324.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.21.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2329.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.title
+  Field required [type=missing, input_value={'lesson': 'Requirements ...34.96s]', '[2339.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Requirements ...34.96s]', '[2339.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.22.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2334.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.22.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2339.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.title
+  Field required [type=missing, input_value={'lesson': 'Design tasks ...94.96s]', '[2399.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Design tasks ...94.96s]', '[2399.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.23.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2369.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.1
+  Input should be an object [type=dict_type, input_value='[2374.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.2
+  Input should be an object [type=dict_type, input_value='[2379.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.3
+  Input should be an object [type=dict_type, input_value='[2384.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.4
+  Input should be an object [type=dict_type, input_value='[2389.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.5
+  Input should be an object [type=dict_type, input_value='[2394.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.23.source_clips.6
+  Input should be an object [type=dict_type, input_value='[2399.96s]', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/dict_type
+lessons.24.title
+  Field required [type=missing, input_value={'lesson': 'Update dates ..._clips': ['[2369.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.voiceover_script
+  Field required [type=missing, input_value={'lesson': 'Update dates ..._clips': ['[2369.96s]']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+lessons.24.source_clips.0
+  Input should be an object [type=dict_type, input_value='[2369.96s]', input_type=str]

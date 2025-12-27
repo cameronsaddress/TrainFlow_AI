@@ -7,6 +7,16 @@ TrainFlow AI is an advanced "Field-to-Office" automation system that transforms 
 
 ---
 
+
+---
+
+## 🚨 Critical Rules & Standards
+
+1.  **Grok Model**: ALWAYS use `x-ai/grok-4.1-fast` for all high-speed inference tasks (Search, Reasoning). This is the mandated model for the 2M context window.
+2.  **Context Window**: Leverage the 2M token window of Grok 4.1 Fast for full-course context analysis.
+
+---
+
 ## 🚀 Recent Feature Updates (v8.0)
 
 ### 1. Elite UI & Learning Command Center
@@ -154,3 +164,19 @@ docker exec trainflow-backend pytest tests/
 ├── docker-compose.yml           # Infrastructure Definition
 └── README.md                    # System Documentation
 ```
+
+## 💾 Database Recovery & Backups
+
+This repository includes documentation on database snapshots. Critical backups are stored locally on the deployment server and are **git-ignored** for security.
+
+### Verified Snapshots
+- **`trainflow_backup_complete.sql`** (Created: 2025-12-27):
+    - **Logic**: Full PostgreSQL dump of `trainflow-db`.
+    - **Contents**: 100% verified state including:
+        - Course 12: BJJ Fundamentals (Verified).
+        - Course 14: Utility Training (Verified - 1347 Lessons).
+    - **Usage**: To restore, run:
+      ```bash
+      cat trainflow_backup_complete.sql | docker exec -i trainflow-db psql -U user trainflow
+      ```
+

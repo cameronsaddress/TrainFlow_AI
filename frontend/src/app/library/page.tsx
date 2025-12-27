@@ -10,8 +10,8 @@ export default function LibraryPage() {
     const [loadingTranscription, setLoadingTranscription] = useState(false);
 
     const getApiUrl = () => {
-        if (typeof window === 'undefined') return 'http://localhost:2027';
-        return `${window.location.protocol}//${window.location.hostname}:2027`;
+        if (typeof window === 'undefined') return 'http://backend:8000';
+        return '';
     };
 
     const fetchTranscription = async (videoId: number) => {

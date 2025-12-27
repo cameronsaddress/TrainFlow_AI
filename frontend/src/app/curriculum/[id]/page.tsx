@@ -244,7 +244,7 @@ export default function CourseView() {
                         const isVideoFile = key.match(/\.(mp4|mov|avi|mkv|webm)$/i);
 
                         // If it's a file, we MUST fetch it from the Backend Static Mount
-                        // URL: http://backend:2027/data/corpus/{filename}
+                        // URL: /api/data/corpus/{filename}
                         const sourceUrl = isVideoFile
                             ? `${getApiUrl()}/data/corpus/${key}`
                             : key; // Keep "General Knowledge" or external links as is
@@ -441,83 +441,83 @@ export default function CourseView() {
                                 const isExpanded = expandedLessonIdx === idx;
 
                                 return (
-                                    <div
-                                        key={idx}
-                                        className={`
-                                            rounded-2xl border transition-all duration-500 ease-out overflow-hidden
-                                            ${isExpanded
-                                                ? 'bg-[#0f0f0f] border-blue-500/30 shadow-2xl shadow-blue-900/10 scale-[1.02]'
-                                                : 'bg-[#0a0a0a] border-white/5 hover:border-white/10 hover:bg-[#0e0e0e]'}
-                                        `}
-                                    >
-                                        {/* Collapsed Header */}
+                                    <div key={idx} className="flex flex-col relative w-full">
                                         <div
-                                            onClick={() => toggleLesson(idx)}
-                                            className="p-6 cursor-pointer flex items-center gap-6"
+                                            className={`
+                                                relative z-10 rounded-2xl border transition-all duration-500 ease-out overflow-hidden
+                                                ${isExpanded
+                                                    ? 'bg-[#0f0f0f] border-blue-500/30 shadow-2xl shadow-blue-900/10 scale-[1.02]'
+                                                    : 'bg-[#0a0a0a] border-white/5 hover:border-white/10 hover:bg-[#0e0e0e]'}
+                                            `}
                                         >
-                                            <div className={`
+                                            {/* Collapsed Header */}
+                                            <div
+                                                onClick={() => toggleLesson(idx)}
+                                                className="p-6 cursor-pointer flex items-center gap-6"
+                                            >
+                                                <div className={`
                                                 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-colors shrink-0
                                                 ${isExpanded ? 'bg-blue-500 text-white' : 'bg-white/5 text-white/30'}
                                             `}>
-                                                {idx + 1}
-                                            </div>
+                                                    {idx + 1}
+                                                </div>
 
-                                            <div className="flex-1">
-                                                <h3 className={`text-xl font-semibold mb-1 transition-colors ${isExpanded ? 'text-white' : 'text-white/80'}`}>
-                                                    {lesson.title}
-                                                </h3>
-                                                {!isExpanded && (
-                                                    <div className="flex items-center gap-4 text-sm text-white/40">
-                                                        <span className="flex items-center gap-1.5">
-                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                                            {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) / 60)}m {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) % 60)}s
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            <div className={`p-2 rounded-full border border-white/5 bg-white/5 text-white/40 transition-transform duration-500 ${isExpanded ? 'rotate-180 bg-white/10 text-white' : ''}`}>
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                            </div>
-                                        </div>
-
-                                        {/* Expanded Content */}
-                                        <div className={`transition-[max-height] duration-700 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[3000px]' : 'max-h-0'}`}>
-                                            <div className="p-6 pt-0 border-t border-white/5">
-                                                {/* Video Player (Full Width) */}
-                                                <div className="mb-8 rounded-xl overflow-hidden bg-black aspect-video relative shadow-2xl border border-white/10">
-                                                    {lesson.source_clips[0]?.video_filename && (
-                                                        <VideoPlayer
-                                                            src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(lesson.source_clips[0].video_filename)}&start=${lesson.source_clips[0].start_time}&end=${lesson.source_clips[0].end_time + 180}`}
-                                                            className="w-full h-full object-contain cursor-pointer"
-                                                            autoplay={false}
-                                                            onProgress={(t) => handleVideoProgress(lesson.source_clips[0].video_filename, t)}
-                                                        />
+                                                <div className="flex-1">
+                                                    <h3 className={`text-xl font-semibold mb-1 transition-colors ${isExpanded ? 'text-white' : 'text-white/80'}`}>
+                                                        {lesson.title}
+                                                    </h3>
+                                                    {!isExpanded && (
+                                                        <div className="flex items-center gap-4 text-sm text-white/40">
+                                                            <span className="flex items-center gap-1.5">
+                                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                                {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) / 60)}m {Math.floor(((lesson.source_clips[0]?.end_time - lesson.source_clips[0]?.start_time) || 0) % 60)}s
+                                                            </span>
+                                                        </div>
                                                     )}
                                                 </div>
 
-                                                <div className="mt-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                                    <div className="space-y-8">
-                                                        {/* Target Outcome */}
+                                                <div className={`p-2 rounded-full border border-white/5 bg-white/5 text-white/40 transition-transform duration-500 ${isExpanded ? 'rotate-180 bg-white/10 text-white' : ''}`}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                </div>
+                                            </div>
+
+                                            {/* Expanded Content */}
+                                            <div className={`transition-[max-height] duration-700 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[3000px]' : 'max-h-0'}`}>
+                                                <div className="p-6 pt-0 border-t border-white/5">
+                                                    {/* Video Player (Full Width) */}
+                                                    <div className="mb-8 rounded-xl overflow-hidden bg-black aspect-video relative shadow-2xl border border-white/10">
+                                                        {lesson.source_clips[0]?.video_filename && (
+                                                            <VideoPlayer
+                                                                src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(lesson.source_clips[0].video_filename)}&start=${lesson.source_clips[0].start_time}&end=${lesson.source_clips[0].end_time + 180}`}
+                                                                className="w-full h-full object-contain cursor-pointer"
+                                                                autoplay={false}
+                                                                onProgress={(t) => handleVideoProgress(lesson.source_clips[0].video_filename, t)}
+                                                            />
+                                                        )}
+                                                    </div>
+
+                                                    <div className="mt-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                        <div className="space-y-8">
+                                                            {/* Target Outcome */}
+                                                            <div>
+                                                                <h4 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3">Target Outcome</h4>
+                                                                <p className="text-white/80 leading-relaxed bg-blue-500/5 p-4 rounded-xl border border-blue-500/10">
+                                                                    {lesson.learning_objective}
+                                                                </p>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        {/* Summary (LLM Voiceover Script) - Moved to Right Column */}
                                                         <div>
-                                                            <h4 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3">Target Outcome</h4>
-                                                            <p className="text-white/80 leading-relaxed bg-blue-500/5 p-4 rounded-xl border border-blue-500/10">
-                                                                {lesson.learning_objective}
+                                                            <h4 className="text-xs font-bold text-violet-500 uppercase tracking-widest mb-3">Summary</h4>
+                                                            <p className="text-white/70 italic leading-relaxed pl-4 border-l-2 border-violet-500/30">
+                                                                "{lesson.voiceover_script}"
                                                             </p>
                                                         </div>
 
-
-                                                    </div>
-
-                                                    {/* Summary (LLM Voiceover Script) - Moved to Right Column */}
-                                                    <div>
-                                                        <h4 className="text-xs font-bold text-violet-500 uppercase tracking-widest mb-3">Summary</h4>
-                                                        <p className="text-white/70 italic leading-relaxed pl-4 border-l-2 border-violet-500/30">
-                                                            "{lesson.voiceover_script}"
-                                                        </p>
-                                                    </div>
-
-                                                    {/* Instructor (Transcript) - Hidden by request
+                                                        {/* Instructor (Transcript) - Hidden by request
                                                     <div>
                                                         <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3">Instructor (Original Transcript)</h4>
                                                         <div className="text-white/60 font-mono text-xs leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar bg-black/20 p-4 rounded-xl border border-white/5">
@@ -525,9 +525,19 @@ export default function CourseView() {
                                                         </div>
                                                     </div> 
                                                     */}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {/* Quiz Tile */}
+                                        {lesson.quiz && (
+                                            <LessonQuizTile
+                                                lessonId={`${plan?.id}_m${currentModuleIdx}_l${idx}`}
+                                                quizData={lesson.quiz}
+                                                onComplete={(score) => handleQuizComplete(`${plan?.id}_m${currentModuleIdx}_l${idx}`, score)}
+                                            />
+                                        )}
                                     </div>
                                 );
                             })}

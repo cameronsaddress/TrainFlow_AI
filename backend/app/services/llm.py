@@ -4,6 +4,10 @@ import json
 import httpx
 import re
 from pydantic import BaseModel, ValidationError
+import hashlib
+from sqlalchemy.orm import Session
+from ..db import SessionLocal
+from ..models import knowledge as k_models
 
 # GB10 Optimization: Point to Local NIM
 # Defaults to local service in docker-compose, or falls back to public API
@@ -44,6 +48,71 @@ Output JSON format:
     "conditions": ["Condition A", "Condition B"]
 }
 """
+
+
+
+# --- CACHE HELPERS ---
+def get_input_hash(text: str) -> str:
+    return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+def get_cached_response(prompt_content: str, system_content: str, model: str) -> str:
+    """Synchronous check of DB cache (Blocking, but fast)."""
+    # Hash the COMBINED input to ensure uniqueness
+    # We treat system_content as part of the unique key or just hash everything.
+    # To be safe: Hash = sha256(model + system + prompt)
+    combined = model + system_content + prompt_content
+    req_hash = get_input_hash(combined)
+    
+    db = SessionLocal()
+    try:
+        entry = db.query(k_models.LLMRequestCache).filter(k_models.LLMRequestCache.request_hash == req_hash).first()
+        if entry:
+            # We store it as JSON object in DB, but return as string for consistency with ref API
+            # Wait, the DB column is JSON. SQLAlchemy returns python dict/list.
+            # We need to return string so the caller can json.loads() it (or validate it).
+            return json.dumps(entry.response_json)
+    except Exception as e:
+        print(f"Cache Read Error: {e}")
+    finally:
+        db.close()
+    return None
+
+def save_cached_response(prompt_content: str, system_content: str, response_json_str: str, model: str):
+    """Saves valid JSON response to DB."""
+    combined = model + system_content + prompt_content
+    req_hash = get_input_hash(combined)
+    
+    db = SessionLocal()
+    try:
+        # Parse string to dict for JSONB column
+        try:
+            data_obj = json.loads(response_json_str)
+        except:
+            print(f"Skipping Cache Save: Response is not valid JSON.")
+            return
+
+        # Check dupes
+        existing = db.query(k_models.LLMRequestCache).filter(k_models.LLMRequestCache.request_hash == req_hash).first()
+        if existing:
+            return
+
+        new_entry = k_models.LLMRequestCache(
+            request_hash=req_hash,
+            prompt_content=prompt_content, # We store the combined prompt here effectively? No, caller passes prompt_content.
+            # Actually, let's just store the inputs.
+            # wait, helper signature says prompt_content is "combined"?
+            # usage above: save_cached_response(full_prompt, ...)
+            # Let's align.
+            system_content=system_content,
+            response_json=data_obj,
+            model=model
+        )
+        db.add(new_entry)
+        db.commit()
+    except Exception as e:
+        print(f"Cache Write Error: {e}")
+    finally:
+        db.close()
 
 def refine_step(raw_text: str, ui_context: str):
     """
@@ -292,6 +361,15 @@ async def generate_structure(system_prompt: str, user_content: str, model: str =
     Generic structured generation using JSON mode (Async).
     """
     target_model = model if model else MODEL_NAME
+    
+    # 1. Cache Check
+    full_prompt = system_prompt + user_content
+    response_format_str = "json_object"
+    cached_json_str = get_cached_response(full_prompt, response_format_str, target_model)
+    if cached_json_str:
+        print("[CACHE HIT] generate_structure returning stored JSON.")
+        return json.loads(cached_json_str)
+
     try:
         response = await client.chat.completions.create(
             model=target_model,
@@ -305,6 +383,10 @@ async def generate_structure(system_prompt: str, user_content: str, model: str =
         )
         content = response.choices[0].message.content
         fixed_content = repair_cutoff_json(content)
+        
+        # Cache Save
+        save_cached_response(full_prompt, response_format_str, fixed_content, target_model)
+        
         return json.loads(fixed_content)
     except Exception as e:
         print(f"Structure Generation Error: {e}")
@@ -321,6 +403,18 @@ async def generate_structure_validated(
     Robust generation with Pydantic Validation & Reflection Retry (Async).
     """
     target_model = model if model else MODEL_NAME
+    
+    # 1. Cache Check
+    full_prompt = system_prompt + user_content
+    # Simple hash of inputs
+    cached_json_str = get_cached_response(full_prompt, "json_object", target_model)
+    if cached_json_str:
+        try:
+            print("[CACHE HIT] generate_structure_validated returning stored JSON.")
+            return model_class.model_validate_json(cached_json_str)
+        except Exception as e:
+            print(f"[CACHE CORRUPT] Cached JSON failed info validation: {e}. Re-generating.")
+    
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_content}
@@ -340,8 +434,12 @@ async def generate_structure_validated(
             # Basic repair
             raw_json = repair_cutoff_json(raw_json)
             
-            # Validate
+            # Validate FIRST
             validated_obj = model_class.model_validate_json(raw_json)
+
+            # Cache Save (Only if Valid)
+            save_cached_response(full_prompt, "json_object", raw_json, target_model)
+
             return validated_obj
             
         except ValidationError as e:

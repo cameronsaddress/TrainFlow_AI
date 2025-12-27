@@ -33,17 +33,20 @@ export default function FlowEditor({ flowId }: FlowEditorProps) {
     const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
     const getApiUrl = () => {
-        if (typeof window === 'undefined') return 'http://localhost:2027';
-        return `${window.location.protocol}//${window.location.hostname}:2027`;
+        if (typeof window === 'undefined') return 'http://backend:8000';
+        return '';
+    };
+
+    const getWsUrl = (flowId: string) => {
+        if (typeof window === 'undefined') return '';
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        return `${protocol}//${window.location.host}/ws/${flowId}`;
     };
 
     // FR-15: Real-Time Collaboration (WebSockets)
     useEffect(() => {
         // Connect to WebSocket using flowId as room
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        // Assuming backend is proxy pass mapped or direct port (dev: 2027)
-        // In this dev scaffold, backend is on port 8000 inside container, exposed 2027
-        const wsUrl = `${protocol}//${window.location.hostname}:2027/ws/${flowId}`;
+        const wsUrl = getWsUrl(flowId.toString());
 
         const ws = new WebSocket(wsUrl);
 
@@ -401,6 +404,7 @@ export default function FlowEditor({ flowId }: FlowEditorProps) {
                         </div>
                         <button
                             onClick={() => {
+                                const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
                                 // Generate HTML for printing
                                 const printContent = `
                                         <html>

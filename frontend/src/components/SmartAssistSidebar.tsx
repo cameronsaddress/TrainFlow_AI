@@ -35,7 +35,7 @@ export const SmartAssistSidebar: React.FC<SmartAssistSidebarProps> = ({ contextS
             // Get API URL (TODO: Centralize this helper)
             const hostname = window.location.hostname;
             const protocol = window.location.protocol;
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL || `${protocol}//${hostname}:2027`;
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
             const res = await fetch(`${apiUrl}/api/knowledge/ask`, {
                 method: 'POST',

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Upload, ArrowRight, Play, FileText, CheckCircle2, Download } from 'lucide-react';
+import { Upload, ArrowRight, Play, FileText, CheckCircle2, Download, BookOpen, Database, Activity, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Home() {
@@ -10,17 +10,60 @@ export default function Home() {
     const [progress, setProgress] = useState(0);
     const [activeJob, setActiveJob] = useState<any>(null);
     const [jobs, setJobs] = useState<any[]>([]);
-    const [stats, setStats] = useState({ active: 0, guides: 0, successRate: "100%" });
+
+    // Real System Metrics
+    const [metrics, setMetrics] = useState({
+        plansCount: 0,
+        videosCount: 0,
+        systemStatus: 'OFFLINE', // ONLINE | OFFLINE
+        gpuModel: ''
+    });
 
     useEffect(() => {
-        fetchJobs();
-        const interval = setInterval(fetchJobs, 3000);
+        fetchAllData();
+        const interval = setInterval(fetchAllData, 5000); // Poll every 5s
         return () => clearInterval(interval);
     }, []);
 
     const getApiUrl = () => {
-        if (typeof window === 'undefined') return 'http://localhost:2027';
-        return `${window.location.protocol}//${window.location.hostname}:2027`;
+        if (typeof window === 'undefined') return 'http://backend:8000';
+        return '';
+    };
+
+    const fetchAllData = async () => {
+        await Promise.all([fetchJobs(), fetchSystemMetrics()]);
+    };
+
+    const fetchSystemMetrics = async () => {
+        try {
+            const apiUrl = getApiUrl();
+
+            // 1. Fetch Plans Count
+            const plansRes = await fetch(`${apiUrl}/api/curriculum/plans`);
+            const plansData = plansRes.ok ? await plansRes.json() : [];
+            const plansCount = Array.isArray(plansData) ? plansData.length : 0;
+
+            // 2. Fetch Videos Count
+            const videosRes = await fetch(`${apiUrl}/api/curriculum/videos`);
+            const videosData = videosRes.ok ? await videosRes.json() : [];
+            const videosCount = Array.isArray(videosData) ? videosData.length : 0;
+
+            // 3. Fetch System Status
+            const statusRes = await fetch(`${apiUrl}/api/process/gpu-status`);
+            let systemStatus = 'OFFLINE';
+            let gpuModel = '';
+
+            if (statusRes.ok) {
+                const statusData = await statusRes.json();
+                systemStatus = 'ONLINE';
+                gpuModel = statusData.model || '';
+            }
+
+            setMetrics({ plansCount, videosCount, systemStatus, gpuModel });
+
+        } catch (e) {
+            console.error("Failed to fetch metrics", e);
+        }
     };
 
     const fetchJobs = async () => {
@@ -30,23 +73,9 @@ export default function Home() {
             });
             if (res.ok) {
                 let data = await res.json();
-
                 // Auto remove failed entries from UI
                 data = data.filter((j: any) => j.status?.toUpperCase() !== 'FAILED');
-
                 setJobs(data);
-
-                // Calculate Stats
-                const active = data.filter((j: any) =>
-                    j.status?.toUpperCase() !== 'COMPLETED' && j.status?.toUpperCase() !== 'FAILED'
-                ).length;
-                const completed = data.filter((j: any) => j.status?.toUpperCase() === 'COMPLETED').length;
-                const failed = data.filter((j: any) => j.status?.toUpperCase() === 'FAILED').length;
-                const totalFinished = completed + failed;
-                const successRate = totalFinished > 0 ? Math.round((completed / totalFinished) * 100) + "%" : "100%";
-                const guides = data.filter((j: any) => j.has_guide).length;
-
-                setStats({ active, guides, successRate });
             }
         } catch (err) {
             console.error("Failed to fetch jobs", err);
@@ -60,89 +89,12 @@ export default function Home() {
             <div className="flex justify-between items-end">
                 <div>
                     <h2 className="text-4xl font-bold text-white mb-2">Dashboard</h2>
-                    <p className="text-muted-foreground">Manage your AI training generation pipeline.</p>
+                    <p className="text-muted-foreground">System Overview & Pipeline Management</p>
                 </div>
-                <div className="relative">
-                    <input
-                        type="file"
-                        accept="video/*"
-                        id="video-upload"
-                        className="hidden"
-                        onChange={async (e) => {
-                            const file = e.target.files?.[0];
-                            if (!file) return;
-
-                            setUploading(true);
-                            setProgress(10); // Start progress
-
-                            try {
-                                const formData = new FormData();
-                                formData.append("file", file);
-
-                                // Upload
-                                const res = await fetch(`${getApiUrl()}/api/uploads/`, {
-                                    method: "POST",
-                                    body: formData,
-                                    headers: { "Authorization": "Bearer dev-admin-token" }
-                                });
-
-                                if (res.ok) {
-                                    const data = await res.json();
-                                    setActiveJob(data);
-                                    setProgress(30);
-                                    // Upload started successfully. 
-                                    // Validating seamless transition to polling.
-
-                                    // Start Polling
-                                    const pollInterval = setInterval(async () => {
-                                        try {
-                                            const statusRes = await fetch(`${getApiUrl()}/api/process/${data.id}/status`, {
-                                                headers: { "Authorization": "Bearer dev-admin-token" }
-                                            });
-                                            if (statusRes.ok) {
-                                                const statusData = await statusRes.json();
-                                                // Mock progress increment if backend is static 45
-                                                setProgress(prev => Math.min(prev + 5, 90));
-
-                                                if (statusData.status?.toLowerCase() === 'completed' || statusData.progress === 100) {
-                                                    clearInterval(pollInterval);
-                                                    setProgress(100);
-                                                    setUploading(false);
-                                                    fetchJobs(); // Refresh list
-                                                    // window.location.reload(); // Don't reload, just refresh list
-                                                }
-                                            }
-                                        } catch (err) {
-                                            console.error("Polling error", err);
-                                        }
-                                    }, 2000);
-
-                                } else {
-                                    const err = await res.json();
-                                    alert(`Upload failed: ${err.detail || 'Unknown error'}`);
-                                    setUploading(false);
-                                }
-                            } catch (err) {
-                                console.error(err);
-                                alert("Upload failed: Network error");
-                                setUploading(false);
-                            }
-                        }}
-                    />
-                    <label
-                        htmlFor="video-upload"
-                        className={`bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium transition-all shadow-lg shadow-primary/25 flex items-center gap-2 cursor-pointer ${uploading ? 'opacity-50 pointer-events-none' : ''}`}
-                    >
-                        {uploading ? (
-                            <><div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div> Processing...</>
-                        ) : (
-                            <><Upload className="w-4 h-4" /> New Import</>
-                        )}
-                    </label>
-                </div>
+                {/* New Import Button Removed for Demo Lock */}
             </div>
 
-            {/* Progress Bar (Visible when uploading) */}
+            {/* Progress Bar (Visible when importing) */}
             {uploading && (
                 <div className="bg-black/40 border border-white/10 rounded-2xl p-6 backdrop-blur-md animate-in fade-in slide-in-from-top-4">
                     <div className="flex justify-between text-sm text-white mb-2">
@@ -159,30 +111,73 @@ export default function Home() {
                 </div>
             )}
 
-            {/* Stats Row */}
+            {/* Real Stats Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                    { label: "Active Jobs", value: stats.active.toString(), icon: Play },
-                    { label: "Generated Guides", value: stats.guides.toString(), icon: FileText },
-                    { label: "Success Rate", value: stats.successRate, icon: CheckCircle2, color: "text-green-500" }
-                ].map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="p-6 rounded-3xl bg-black/40 border border-white/10 shadow-2xl backdrop-blur-md relative overflow-hidden group"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform duration-500">
-                            <stat.icon size={100} />
+
+                {/* 1. Training Plans */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="p-6 rounded-3xl bg-black/40 border border-white/10 shadow-2xl backdrop-blur-md relative overflow-hidden group"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform duration-500">
+                        <BookOpen size={100} />
+                    </div>
+                    <div className="relative z-10">
+                        <p className="text-muted-foreground font-medium mb-1">Training Plans</p>
+                        <h3 className="text-4xl font-bold text-white">{metrics.plansCount}</h3>
+                        <p className="text-xs text-white/40 mt-2">Generated Curricula</p>
+                    </div>
+                </motion.div>
+
+                {/* 2. Indexed Footage */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="p-6 rounded-3xl bg-black/40 border border-white/10 shadow-2xl backdrop-blur-md relative overflow-hidden group"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform duration-500">
+                        <Database size={100} />
+                    </div>
+                    <div className="relative z-10">
+                        <p className="text-muted-foreground font-medium mb-1">Indexed Footage</p>
+                        <h3 className="text-4xl font-bold text-white">{metrics.videosCount}</h3>
+                        <p className="text-xs text-white/40 mt-2">Source Videos Ingested</p>
+                    </div>
+                </motion.div>
+
+                {/* 3. System Status */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="p-6 rounded-3xl bg-black/40 border border-white/10 shadow-2xl backdrop-blur-md relative overflow-hidden group"
+                >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${metrics.systemStatus === 'ONLINE' ? 'from-green-500/10' : 'from-red-500/10'} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform duration-500">
+                        <Cpu size={100} />
+                    </div>
+                    <div className="relative z-10">
+                        <p className="text-muted-foreground font-medium mb-1">System Status</p>
+                        <div className="flex items-center gap-3">
+                            <h3 className={`text-4xl font-bold ${metrics.systemStatus === 'ONLINE' ? 'text-green-500' : 'text-red-500'}`}>
+                                {metrics.systemStatus}
+                            </h3>
+                            {metrics.systemStatus === 'ONLINE' && (
+                                <span className="flex h-3 w-3 relative">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                </span>
+                            )}
                         </div>
-                        <div className="relative z-10">
-                            <p className="text-muted-foreground font-medium mb-1">{stat.label}</p>
-                            <h3 className={`text-4xl font-bold text-white ${stat.color || ''}`}>{stat.value}</h3>
-                        </div>
-                    </motion.div>
-                ))}
+                        <p className="text-xs text-white/40 mt-2">{metrics.gpuModel || 'Inference Node'}</p>
+                    </div>
+                </motion.div>
+
             </div>
 
             {/* Recent Activity */}

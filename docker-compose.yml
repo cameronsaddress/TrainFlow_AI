@@ -99,7 +99,7 @@ services:
     environment:
       - NODE_ENV=development
       # Critical for Client-Side Fetching (when browser accesses app)
-      - NEXT_PUBLIC_API_URL=http://localhost:2027
+      # - NEXT_PUBLIC_API_URL=http://localhost:2027
     depends_on:
       - backend
     networks:

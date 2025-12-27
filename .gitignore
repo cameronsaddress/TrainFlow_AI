@@ -34,3 +34,15 @@ stop_all.sh
 # Database
 *.db
 *.sqlite3
+*.sql
+
+# Media
+*.wav
+*.mp3
+*.mov
+*.avi
+*.mkv
+
+# Data dirs
+# Data dirs
+backend/data/

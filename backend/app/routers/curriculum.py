@@ -66,15 +66,111 @@ async def ingest_video(
     
     return {"status": "uploaded", "id": video.id, "filename": video.filename}
 
+# --- YOUTUBE INGESTION ---
+from pydantic import BaseModel
+
+class YoutubeIngestRequest(BaseModel):
+    url: str
+
+@router.post("/ingest_youtube")
+async def ingest_youtube(
+    payload: YoutubeIngestRequest,
+    background_tasks: BackgroundTasks
+):
+    """
+    Queue a YouTube video for download and ingestion.
+    Returns immediately with a 'queued' status.
+    """
+    url = payload.url
+    
+    # Define Worker Function
+    def process_youtube_download(target_url: str):
+        # We need a NEW DB Session because the Dependency one is closed after response
+        from ..db import SessionLocal
+        local_db = SessionLocal()
+        import yt_dlp
+        
+        try:
+            print(f"[YoutubeWorker] Starting download for: {target_url}")
+            ydl_opts = {
+                'format': 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best[ext=mp4]',
+                'outtmpl': os.path.join(DATA_DIR, '%(title)s.%(ext)s'),
+                'restrictfilenames': True,
+                'noplaylist': True,
+                'http_headers': {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                },
+            }
+            
+            filename = None
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(target_url, download=True)
+                filename = ydl.prepare_filename(info)
+            
+            if filename and os.path.exists(filename):
+                final_filename = os.path.basename(filename)
+                
+                # Check for duplicate
+                existing = local_db.query(k_models.VideoCorpus).filter(k_models.VideoCorpus.filename == final_filename).first()
+                if existing:
+                    if existing.is_archived:
+                        print(f"[YoutubeWorker] Found Archived Duplicate: {final_filename}. Unarchiving...")
+                        existing.is_archived = False
+                        local_db.commit()
+                        # We don't need to re-download or re-ingest if it's already there.
+                        # But if you want to re-process, we could, but let's just restore it for now.
+                    else:
+                        print(f"[YoutubeWorker] Skipping active duplicate: {final_filename}")
+                    
+                    local_db.close()
+                    return
+
+                # Create DB Entry
+                video = k_models.VideoCorpus(
+                    filename=final_filename,
+                    file_path=filename,
+                    status=k_models.DocStatus.PENDING
+                )
+                local_db.add(video)
+                local_db.commit()
+                local_db.refresh(video)
+                
+                # Trigger Ingestion
+                import redis
+                REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
+                try:
+                    r = redis.from_url(REDIS_URL)
+                    r.publish("corpus_jobs", str(video.id))
+                    print(f"[YoutubeWorker] Queued ingestion for {video.id}")
+                except Exception as e:
+                    print(f"[YoutubeWorker] Redis Error: {e}")
+            else:
+                print(f"[YoutubeWorker] Download failed or file missing for {target_url}")
+
+        except Exception as e:
+            print(f"[YoutubeWorker] Error processing {target_url}: {e}")
+        finally:
+            local_db.close()
+
+    # Dispatch to Background
+    background_tasks.add_task(process_youtube_download, url)
+    
+    return {"status": "queued", "message": "Download started in background"}
+
 @router.get("/videos")
-async def list_videos(db: Session = Depends(get_db)):
-    """List all indexed video corpus items."""
-    return db.query(k_models.VideoCorpus).options(
+async def list_videos(include_archived: bool = False, db: Session = Depends(get_db)):
+    """List active video corpus items (exclude archived by default)."""
+    query = db.query(k_models.VideoCorpus).options(
         defer(k_models.VideoCorpus.transcript_text),
         defer(k_models.VideoCorpus.transcript_json),
         defer(k_models.VideoCorpus.ocr_text),
         defer(k_models.VideoCorpus.ocr_json)
-    ).order_by(k_models.VideoCorpus.created_at.desc()).all()
+    )
+    
+    if not include_archived:
+        query = query.filter(k_models.VideoCorpus.is_archived == False)
+        
+    return query.order_by(k_models.VideoCorpus.created_at.desc()).all()
 
 @router.delete("/videos/{video_id}")
 async def delete_video(video_id: int, db: Session = Depends(get_db)):
@@ -90,6 +186,22 @@ async def delete_video(video_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"status": "deleted"}
 
+    return {"status": "deleted"}
+
+@router.post("/archive_all_corpus")
+async def archive_all_corpus(db: Session = Depends(get_db)):
+    """
+    Mark all current videos as 'Archived'.
+    They will no longer be used for new Curriculum generation, 
+    but remain in the database/disk for reference.
+    """
+    count = db.query(k_models.VideoCorpus).filter(
+        k_models.VideoCorpus.is_archived == False
+    ).update({k_models.VideoCorpus.is_archived: True})
+    
+    db.commit()
+    return {"status": "archived", "count": count}
+
 @router.post("/generate_structure")
 async def generate_structure_endpoint(db: Session = Depends(get_db)):
     """Trigger the 'Top-Level' logic: Curriculum Architect (Streaming)."""
@@ -100,8 +212,9 @@ async def generate_structure_endpoint(db: Session = Depends(get_db)):
     async def event_generator():
         try:
             # Singleton Logic: Purge previous courses to "Overwrite"
-            db.query(k_models.TrainingCurriculum).delete()
-            db.commit()
+            # UPDATE: Multi-Course Support Enabled. Do NOT delete previous plans.
+            # db.query(k_models.TrainingCurriculum).delete()
+            # db.commit()
             
             # Iterate the service generator (Async)
             generator = curriculum_architect.generate_curriculum(db)
@@ -112,29 +225,60 @@ async def generate_structure_endpoint(db: Session = Depends(get_db)):
                     yield json.dumps({"type": "status", "msg": item}) + "\n"
                 elif isinstance(item, dict):
                     # Final Result
-                    
-                    # Ensure we persist it
-                    new_plan = k_models.TrainingCurriculum(
-                        title=item.get("course_title", "Untitled Course"),
-                        structured_json=item
-                    )
-                    db.add(new_plan)
-                    db.commit()
-                    db.refresh(new_plan)
-                    
-                    result_payload = {
-                        "id": new_plan.id,
-                        "title": new_plan.title,
-                        "modules_count": len(item.get("modules", []))
-                    }
-                    
-                    yield json.dumps({"type": "result", "payload": result_payload}) + "\n"
-                    break
+                    print("DEBUG: Router received Dict from Generator. Saving...", flush=True)
+                    try:
+                        # Ensure we persist it
+                        # DEDUPLICATION LOGIC: Check if course exists by title
+                        existing_plan = db.query(k_models.TrainingCurriculum).filter(
+                            k_models.TrainingCurriculum.title == item.get("course_title")
+                        ).first()
+
+                        if existing_plan:
+                            print(f"DEBUG: Found existing course '{existing_plan.title}' (ID {existing_plan.id}). Updating...", flush=True)
+                            existing_plan.structured_json = item
+                            # Force update for JSON field
+                            from sqlalchemy.orm.attributes import flag_modified
+                            flag_modified(existing_plan, "structured_json")
+                            db.commit()
+                            db.refresh(existing_plan)
+                            new_plan = existing_plan # for downstream ref
+                        else:
+                            new_plan = k_models.TrainingCurriculum(
+                                title=item.get("course_title", "Untitled Course"),
+                                structured_json=item
+                            )
+                            db.add(new_plan)
+                            db.commit()
+                            db.refresh(new_plan)
+                            print(f"DEBUG: Saved NEW Curriculum ID {new_plan.id}", flush=True)
+                        
+                        # POST-GENERATION: Auto-Archive used videos to "Clear the Queue"
+                        updated_count = db.query(k_models.VideoCorpus).filter(
+                            k_models.VideoCorpus.status == k_models.DocStatus.READY,
+                            k_models.VideoCorpus.is_archived == False
+                        ).update({k_models.VideoCorpus.is_archived: True})
+                        db.commit()
+                        print(f"DEBUG: Auto-Archived {updated_count} videos to clear the queue.", flush=True)
+                        
+                        result_payload = {
+                            "id": new_plan.id,
+                            "title": new_plan.title,
+                            "modules_count": len(item.get("modules", []))
+                        }
+                        
+                        yield json.dumps({"type": "result", "payload": result_payload}) + "\n"
+                        break
+                    except Exception as e:
+                        print(f"CRITICAL: Failed to save Curriculum to DB: {e}", flush=True)
+                        import traceback
+                        traceback.print_exc()
+                        yield json.dumps({"type": "error", "msg": f"DB Save Failed: {str(e)}"}) + "\n"
                 
         except Exception as e:
-            print(f"Error generating structure: {e}")
+            print(f"Error generating structure: {e}", flush=True)
             import traceback
             traceback.print_exc()
+            yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
             yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
 
     return StreamingResponse(event_generator(), media_type="application/x-ndjson")

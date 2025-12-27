@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Loader2, FileVideo, UploadCloud, Database, Trash2, CheckCircle2 } from 'lucide-react';
+import { Loader2, FileVideo, UploadCloud, Database, Trash2, CheckCircle2, Youtube, Plus, X, Globe } from 'lucide-react';
+import { AddVideoModal } from '@/components/AddVideoModal';
 
 // Types
 interface CorpusVideo {
@@ -21,13 +22,16 @@ export default function JobsPage() {
     const [uploadProgress, setUploadProgress] = useState("");
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    // External Video State
+    const [isAddVideoModalOpen, setIsAddVideoModalOpen] = useState(false);
+
     // Curriculum State
     const [curriculumResult, setCurriculumResult] = useState<any>(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
     const getApiUrl = () => {
-        if (typeof window === 'undefined') return 'http://localhost:2027';
-        return `${window.location.protocol}//${window.location.hostname}:2027`;
+        if (typeof window === 'undefined') return 'http://backend:8000';
+        return '';
     };
 
     // --- CORPUS ACTIONS ---
@@ -42,6 +46,48 @@ export default function JobsPage() {
             console.error("Failed to fetch corpus", err);
         } finally {
             setLoadingCorpus(false);
+        }
+    };
+
+    const handleQueueUrl = async (url: string) => {
+        setUploadProgress(`Queuing External Video...`);
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            try {
+                const res = await fetch(`${getApiUrl()}/api/curriculum/ingest_youtube`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+
+                if (res.ok) {
+                    fetchCorpusVideos();
+                    alert(`Successfully queued: ${url}`);
+                    setUploadProgress("");
+                    return; // Success
+                } else {
+                    const errText = await res.text();
+                    // If server error, maybe retry?
+                    if (res.status >= 500) {
+                        throw new Error(`Server Error: ${res.status}`);
+                    }
+                    alert(`Failed to queue video: ${errText}`);
+                    setUploadProgress("");
+                    return; // Fail (non-retryable)
+                }
+            } catch (err) {
+                attempts++;
+                console.error(`Ingest Error (Attempt ${attempts}):`, err);
+                if (attempts >= maxAttempts) {
+                    alert("Error queuing video after 3 attempts. Backend may be overloaded.");
+                    setUploadProgress("");
+                    return;
+                }
+                // Wait 2s before retry
+                await new Promise(r => setTimeout(r, 2000));
+            }
         }
     };
 
@@ -188,7 +234,21 @@ export default function JobsPage() {
                         <br /><span className="text-xs text-gray-500">(Does not trigger object detection or editing)</span>
                     </p>
 
-                    <div className="relative">
+                    <div className="relative flex justify-center gap-4 flex-wrap">
+                        <button
+                            onClick={async () => {
+                                if (!confirm("ARCHIVE ALL current videos? They will be hidden from new Curriculums but saved in DB.")) return;
+                                const res = await fetch(`${getApiUrl()}/api/curriculum/archive_all_corpus`, { method: 'POST' });
+                                if (res.ok) {
+                                    alert("All videos archived. Upload new ones for the new system.");
+                                    fetchCorpusVideos();
+                                }
+                            }}
+                            className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-3 rounded-xl font-medium transition-all text-sm border border-white/10"
+                        >
+                            <Trash2 className="w-4 h-4" />
+                            Archive Old Corpus
+                        </button>
                         <input
                             type="file"
                             ref={fileInputRef}
@@ -200,10 +260,19 @@ export default function JobsPage() {
                         <button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={isUploading}
-                            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-xl font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed max-w-md mx-auto truncate"
+                            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg hover:shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isUploading ? <Loader2 className="animate-spin w-5 h-5 shrink-0" /> : <UploadCloud className="w-5 h-5 shrink-0" />}
-                            <span className="truncate">{isUploading ? (uploadProgress || "Ingesting...") : "Queue All Videos"}</span>
+                            <span className="truncate">{isUploading ? (uploadProgress || "Uploading...") : "Upload Files"}</span>
+                        </button>
+
+                        <button
+                            onClick={() => setIsAddVideoModalOpen(true)}
+                            disabled={isUploading}
+                            className="flex items-center gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg hover:shadow-fuchsia-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            <Globe className="w-5 h-5 shrink-0" />
+                            <span>Add External Video</span>
                         </button>
                     </div>
 
@@ -215,7 +284,10 @@ export default function JobsPage() {
                         <button
                             onClick={handleGenerateCurriculum}
                             disabled={isGenerating}
-                            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+                            className={`flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg transition-all ${isGenerating
+                                ? "bg-gray-800 text-gray-400 cursor-wait"
+                                : "bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/20 hover:scale-105 active:scale-95"
+                                }`}
                         >
                             {isGenerating ? (
                                 <>
@@ -257,15 +329,15 @@ export default function JobsPage() {
                             <div className="p-8 text-center text-gray-500">No footage indexed yet. Upload a video above.</div>
                         ) : corpusVideos.map((vid: CorpusVideo) => (
                             <div key={vid.id} className="p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center">
+                                <div className="flex items-center gap-4 flex-1 min-w-0">
+                                    <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
                                         <FileVideo className="w-5 h-5 text-gray-400" />
                                     </div>
-                                    <div>
-                                        <p className="text-white font-medium">{vid.filename}</p>
+                                    <div className="min-w-0 flex-1">
+                                        <p className="text-white font-medium truncate" title={vid.filename}>{vid.filename}</p>
                                         <div className="flex gap-4 text-xs text-gray-500 mt-1">
                                             <span>Duration: {vid.duration_seconds ? vid.duration_seconds.toFixed(1) + 's' : '--'}</span>
-                                            <span>Words: {vid.transcript_text ? vid.transcript_text.length : 0}</span>
+                                            <span>Words: {vid.metadata_json?.word_count ?? (vid.transcript_text ? vid.transcript_text.length : 0)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -277,18 +349,27 @@ export default function JobsPage() {
                                         }`}>
                                         {vid.status}
                                     </span>
+                                    {/* DEMO LOCK: Delete button removed 
                                     <button
                                         onClick={() => handleDeleteCorpusVideo(vid.id)}
                                         className="p-2 hover:bg-white/10 rounded-lg text-gray-500 hover:text-red-400 transition-colors"
                                     >
                                         <Trash2 className="w-4 h-4" />
                                     </button>
+                                    */}
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-        </div>
+
+            {/* Add Video Modal */}
+            <AddVideoModal
+                isOpen={isAddVideoModalOpen}
+                onClose={() => setIsAddVideoModalOpen(false)}
+                onQueue={handleQueueUrl}
+            />
+        </div >
     );
 }

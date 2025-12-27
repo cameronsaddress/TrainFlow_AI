@@ -81,6 +81,7 @@ class VideoCorpus(Base):
     ocr_json = Column(JSON, nullable=True)       # Rich Data: Sampled Frames with Timestamps
     duration_seconds = Column(Float, nullable=True)
     status = Column(Enum(DocStatus), default=DocStatus.PENDING)
+    is_archived = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Metadata for potential future expansion (resolution, codec, etc)
@@ -92,4 +93,15 @@ class TrainingCurriculum(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
     structured_json = Column(JSON) # The full course plan
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+class LLMRequestCache(Base):
+    __tablename__ = "llm_request_cache"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    request_hash = Column(String, unique=True, index=True)
+    prompt_content = Column(Text)
+    system_content = Column(Text)
+    response_json = Column(JSON)
+    model = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
