@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, FileVideo, Settings, Activity, Box, Camera, BookOpen } from 'lucide-react';
+import { Home, FileVideo, Settings, Activity, Box, Camera, BookOpen, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 const navItems = [
     { href: '/plans', label: 'Training Plans', icon: BookOpen },
+    { href: '/library', label: 'Video Library', icon: FileVideo },
     { href: '/jobs', label: 'Processing Jobs', icon: Activity },
+    { href: '/hybrid', label: 'Hybrid Courses', icon: Layers },
     { href: '/analysis', label: 'AI Assistant', icon: Camera },
     { href: '/settings', label: 'Settings', icon: Settings },
 ];

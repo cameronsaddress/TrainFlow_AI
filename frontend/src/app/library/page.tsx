@@ -1,228 +1,240 @@
 'use client';
+
 import { useState, useEffect } from 'react';
-import { FileVideo, Search, Filter, Trash2 } from 'lucide-react';
-import Link from 'next/link';
+import { Loader2, FileVideo, CheckCircle2, Archive, Play, AlertCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+interface CorpusVideo {
+    id: number;
+    filename: string;
+    status: string;
+    is_archived: boolean;
+    duration_seconds?: number;
+    metadata_json?: any;
+    created_at: string;
+}
 
 export default function LibraryPage() {
-    const [flows, setFlows] = useState<any[]>([]);
-    const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
-    const [transcriptionData, setTranscriptionData] = useState<any>(null);
-    const [loadingTranscription, setLoadingTranscription] = useState(false);
+    const router = useRouter();
+    const [videos, setVideos] = useState<CorpusVideo[]>([]);
+    const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+    const [isLoading, setIsLoading] = useState(true);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [processStatus, setProcessStatus] = useState("");
 
     const getApiUrl = () => {
         if (typeof window === 'undefined') return 'http://backend:8000';
         return '';
     };
 
-    const fetchTranscription = async (videoId: number) => {
-        setLoadingTranscription(true);
-        setSelectedVideoId(videoId);
-        setTranscriptionData(null); // Reset
+    // 1. Fetch All Videos (Active + Archived)
+    const fetchLibrary = async () => {
         try {
-            const res = await fetch(`${getApiUrl()}/api/uploads/${videoId}/transcription`, {
-                headers: { "Authorization": "Bearer dev-viewer-token" }
-            });
+            const res = await fetch(`${getApiUrl()}/api/curriculum/videos?include_archived=true`);
             if (res.ok) {
                 const data = await res.json();
-                setTranscriptionData(data);
+                setVideos(data);
+                // Default: Select currently active (READY + !Archived) videos
+                const activeIds = data
+                    .filter((v: CorpusVideo) => !v.is_archived && v.status === 'READY')
+                    .map((v: CorpusVideo) => v.id);
+                setSelectedIds(new Set(activeIds));
             }
         } catch (err) {
-            console.error("Failed to fetch transcription", err);
+            console.error("Failed to fetch library", err);
         } finally {
-            setLoadingTranscription(false);
-        }
-    };
-
-    const closeModal = () => {
-        setSelectedVideoId(null);
-        setTranscriptionData(null);
-    };
-
-    const handleDelete = async (id: number) => {
-        try {
-            const res = await fetch(`${getApiUrl()}/api/uploads/${id}`, {
-                method: 'DELETE',
-                headers: { "Authorization": "Bearer dev-viewer-token" }
-            });
-            if (res.ok) {
-                // Remove from state
-                setFlows(prev => prev.filter(f => f.id !== id));
-            } else {
-                alert("Failed to delete video");
-            }
-        } catch (err) {
-            console.error("Failed to delete", err);
-            alert("Error deleting video");
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
-        const fetchFlows = async () => {
-            try {
-                const res = await fetch(`${getApiUrl()}/api/uploads/`, {
-                    headers: { "Authorization": "Bearer dev-viewer-token" }
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    // Filter videos that have a flow_id
-                    const validFlows = data.filter((v: any) => v.flow_id !== null);
-                    setFlows(validFlows);
-                }
-            } catch (err) {
-                console.error("Failed to fetch flows", err);
-            }
-        };
-        fetchFlows();
+        fetchLibrary();
     }, []);
 
+    const toggleSelection = (id: number) => {
+        const newSet = new Set(selectedIds);
+        if (newSet.has(id)) {
+            newSet.delete(id);
+        } else {
+            newSet.add(id);
+        }
+        setSelectedIds(newSet);
+    };
+
+    const toggleAll = () => {
+        if (selectedIds.size === videos.length) {
+            setSelectedIds(new Set());
+        } else {
+            setSelectedIds(new Set(videos.map(v => v.id)));
+        }
+    };
+
+    // 2. Main Action: Set Active & Generate
+    const handleGenerate = async () => {
+        if (selectedIds.size === 0) {
+            alert("Please select at least one video.");
+            return;
+        }
+
+        if (!confirm(`Generate a new Course from the ${selectedIds.size} selected videos?`)) return;
+
+        setIsProcessing(true);
+        setProcessStatus("Setting Active Corpus...");
+
+        try {
+            // Step 1: Set Active Corpus
+            const setRes = await fetch(`${getApiUrl()}/api/curriculum/corpus/set_active`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ video_ids: Array.from(selectedIds) })
+            });
+
+            if (!setRes.ok) throw new Error("Failed to set active corpus.");
+
+            // Step 2: Trigger Generation
+            setProcessStatus("Initializing Curriculum Architect...");
+            const genRes = await fetch(`${getApiUrl()}/api/curriculum/generate_structure`, {
+                method: 'POST'
+            });
+
+            if (!genRes.body) throw new Error("No response body from generator.");
+
+            // Step 3: Stream Response
+            const reader = genRes.body.getReader();
+            const decoder = new TextDecoder();
+            let accumulated = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                accumulated += decoder.decode(value, { stream: true });
+                const lines = accumulated.split("\n");
+                accumulated = lines.pop() || "";
+
+                for (const line of lines) {
+                    if (!line.trim()) continue;
+                    try {
+                        const data = JSON.parse(line);
+                        if (data.type === "status") {
+                            setProcessStatus(data.msg);
+                        } else if (data.type === "result") {
+                            console.log("Curriculum Complete:", data.payload);
+                            setProcessStatus("Redirecting...");
+                            router.push(`/curriculum/${data.payload.id}`);
+                            return;
+                        } else if (data.type === "error") {
+                            throw new Error(data.msg);
+                        }
+                    } catch (e) {
+                        console.warn("Stream parse warning", e);
+                    }
+                }
+            }
+
+        } catch (err: any) {
+            console.error("Workflow Error", err);
+            alert(`Error: ${err.message || 'Unknown error'}`);
+            setIsProcessing(false);
+        }
+    };
+
     return (
-        <div className="max-w-7xl mx-auto space-y-8 relative">
+        <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-white">Content Library</h1>
+                <div>
+                    <h1 className="text-3xl font-bold text-white mb-2">Video Library</h1>
+                    <p className="text-muted-foreground">Select videos to include in your Training Course.</p>
+                </div>
                 <div className="flex gap-4">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <button
+                        onClick={handleGenerate}
+                        disabled={isProcessing || selectedIds.size === 0}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all shadow-lg ${isProcessing
+                            ? "bg-gray-800 text-gray-400 cursor-wait"
+                            : "bg-violet-600 hover:bg-violet-500 text-white hover:shadow-violet-500/25"
+                            }`}
+                    >
+                        {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <Play className="w-5 h-5 fill-current" />}
+                        <span>{isProcessing ? processStatus : `Generate Course (${selectedIds.size})`}</span>
+                    </button>
+                </div>
+            </div>
+
+            <div className="bg-black/40 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-md">
+                {/* Table Header */}
+                <div className="grid grid-cols-12 gap-4 p-4 border-b border-white/10 bg-white/5 text-sm font-medium text-gray-400">
+                    <div className="col-span-1 flex items-center justify-center">
                         <input
-                            type="text"
-                            placeholder="Search guides..."
-                            className="bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-primary/50 w-64"
+                            type="checkbox"
+                            checked={videos.length > 0 && selectedIds.size === videos.length}
+                            onChange={toggleAll}
+                            className="w-5 h-5 rounded bg-gray-800 border-gray-600 text-violet-600 focus:ring-violet-500"
                         />
                     </div>
+                    <div className="col-span-5">Filename</div>
+                    <div className="col-span-2">Duration</div>
+                    <div className="col-span-2">Status</div>
+                    <div className="col-span-2">State</div>
                 </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {flows.length === 0 ? (
-                    <div className="col-span-full py-20 text-center border-2 border-dashed border-white/10 rounded-3xl">
-                        <FileVideo className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-                        <h3 className="text-xl font-medium text-white mb-2">No Content Yet</h3>
-                        <p className="text-muted-foreground">Upload a video to generate your first training guide.</p>
-                    </div>
-                ) : (
-                    flows.map((flow) => (
-                        <div key={flow.id} className="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-blue-500/50 transition duration-300">
-                            <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        if (confirm('Are you sure you want to delete this guide? This cannot be undone.')) {
-                                            handleDelete(flow.id);
-                                        }
-                                    }}
-                                    className="p-2 bg-black/60 hover:bg-red-500/80 text-white rounded-full backdrop-blur-sm transition-colors"
-                                    title="Delete Guide"
+                {/* Table Body */}
+                <div className="divide-y divide-white/5">
+                    {isLoading ? (
+                        <div className="p-8 text-center text-gray-500 flex items-center justify-center gap-2">
+                            <Loader2 className="w-5 h-5 animate-spin" /> Loading library...
+                        </div>
+                    ) : videos.length === 0 ? (
+                        <div className="p-8 text-center text-gray-500">No videos found.</div>
+                    ) : (
+                        videos.map((vid) => {
+                            const isSelected = selectedIds.has(vid.id);
+                            return (
+                                <div
+                                    key={vid.id}
+                                    onClick={() => toggleSelection(vid.id)}
+                                    className={`grid grid-cols-12 gap-4 p-4 items-center hover:bg-white/5 transition-colors cursor-pointer ${isSelected ? 'bg-violet-500/5' : ''
+                                        }`}
                                 >
-                                    <Trash2 className="w-4 h-4" />
-                                </button>
-                            </div>
-                            <Link href={`/editor/${flow.flow_id}`} className="block">
-                                <div className="h-48 bg-slate-800 flex items-center justify-center relative overflow-hidden">
-                                    {flow.thumbnail_url ? (
-                                        <img
-                                            src={`${getApiUrl()}${flow.thumbnail_url}`}
-                                            alt={flow.filename}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            onError={(e) => {
-                                                // Fallback if image fails
-                                                (e.target as HTMLImageElement).style.display = 'none';
-                                                (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                                            }}
+                                    <div className="col-span-1 flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={isSelected}
+                                            onChange={() => { }} // Handled by row click
+                                            className="w-5 h-5 rounded bg-gray-800 border-gray-600 text-violet-600 focus:ring-violet-500 pointer-events-none"
                                         />
-                                    ) : null}
-                                    <div className={`absolute inset-0 flex items-center justify-center ${flow.thumbnail_url ? 'hidden' : ''}`}>
-                                        <FileVideo className="w-12 h-12 text-slate-600 group-hover:text-blue-500 transition" />
                                     </div>
-
-                                    {/* Play Overlay */}
-                                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                        <span className="bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium">Open Editor</span>
+                                    <div className="col-span-5 truncate font-medium text-white" title={vid.filename}>
+                                        {vid.filename}
+                                    </div>
+                                    <div className="col-span-2 text-sm text-gray-400">
+                                        {vid.duration_seconds ? (vid.duration_seconds / 60).toFixed(1) + ' min' : '--'}
+                                    </div>
+                                    <div className="col-span-2">
+                                        <span className={`text-xs px-2 py-1 rounded-full border ${vid.status === 'READY' ? 'bg-green-500/10 text-green-400 border-green-500/20' :
+                                            vid.status === 'FAILED' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+                                                'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                                            }`}>
+                                            {vid.status}
+                                        </span>
+                                    </div>
+                                    <div className="col-span-2 flex items-center gap-2">
+                                        {vid.is_archived ? (
+                                            <span className="flex items-center gap-1 text-xs text-orange-400">
+                                                <Archive className="w-3 h-3" /> Archived
+                                            </span>
+                                        ) : (
+                                            <span className="flex items-center gap-1 text-xs text-green-400">
+                                                <CheckCircle2 className="w-3 h-3" /> Active
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
-                            </Link>
-
-                            <div className="p-4 relative">
-                                <Link href={`/editor/${flow.flow_id}`}>
-                                    <h3 className="font-semibold text-white group-hover:text-blue-400 transition truncate">{flow.filename}</h3>
-                                </Link>
-                                <div className="flex justify-between items-center mt-3">
-                                    <span className="text-sm text-gray-400">{flow.steps_count} Steps</span>
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            fetchTranscription(flow.id);
-                                        }}
-                                        className="text-xs bg-slate-800 hover:bg-slate-700 text-blue-400 px-3 py-1.5 rounded-full transition-colors border border-white/5"
-                                    >
-                                        View Transcription
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                )}
-            </div>
-
-            {/* Transcription Modal */}
-            {selectedVideoId && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={closeModal}>
-                    <div className="bg-slate-900 border border-white/10 rounded-2xl w-full max-w-4xl max-h-[80vh] flex flex-col shadow-2xl" onClick={e => e.stopPropagation()}>
-                        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-slate-900/50 rounded-t-2xl">
-                            <h2 className="text-xl font-bold text-white">Full Transcription Log</h2>
-                            <button onClick={closeModal} className="text-gray-400 hover:text-white">✕</button>
-                        </div>
-
-                        <div className="flex-1 overflow-y-auto p-6 space-y-4 font-mono text-sm">
-                            {loadingTranscription ? (
-                                <div className="flex justify-center py-10">
-                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                                </div>
-                            ) : transcriptionData ? (
-                                <>
-                                    <div className="grid grid-cols-2 gap-4 h-full">
-                                        <div className="border-r border-white/10 pr-4">
-                                            <h3 className="text-blue-400 font-bold mb-3 sticky top-0 bg-slate-900 py-2">ASR (Spoken Audio)</h3>
-                                            <div className="space-y-6">
-                                                {transcriptionData.transcription_log?.map((step: any, idx: number) => (
-                                                    <div key={idx} className="group">
-                                                        <div className="flex items-center gap-2 text-xs text-slate-500 mb-1">
-                                                            <span>{step.start_ts?.toFixed(1)}s - {step.end_ts?.toFixed(1)}s</span>
-                                                            <span className="bg-slate-800 px-1 rounded">Step {step.step_number}</span>
-                                                        </div>
-                                                        <p className="text-slate-300 leading-relaxed group-hover:text-white transition-colors">
-                                                            {step.action_details}
-                                                        </p>
-                                                    </div>
-                                                ))}
-                                                {(!transcriptionData.transcription_log || transcriptionData.transcription_log.length === 0) && (
-                                                    <p className="text-slate-500 italic">No audio transcription available.</p>
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="pl-4">
-                                            <h3 className="text-green-400 font-bold mb-3 sticky top-0 bg-slate-900 py-2">OCR (Screen Text)</h3>
-                                            <div className="space-y-2">
-                                                {transcriptionData.ocr_log?.map((evt: any, idx: number) => (
-                                                    <div key={idx} className="bg-black/20 p-2 rounded border border-white/5 hover:border-white/10 transition-colors">
-                                                        <div className="text-xs text-slate-500 mb-1">{evt.timestamp?.toFixed(1)}s</div>
-                                                        <p className="text-green-200/80 break-words">{evt.ocr_text}</p>
-                                                    </div>
-                                                ))}
-                                                {(!transcriptionData.ocr_log || transcriptionData.ocr_log.length === 0) && (
-                                                    <p className="text-slate-500 italic">No text detected on screen.</p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="text-center text-red-400">Failed to load transcription data.</div>
-                            )}
-                        </div>
-                    </div>
+                            );
+                        })
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     );
 }

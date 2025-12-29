@@ -29,6 +29,7 @@ class KnowledgeDocument(Base):
     file_path = Column(String) # MinIO path or local
     status = Column(Enum(DocStatus), default=DocStatus.PENDING)
     error_message = Column(String, nullable=True)
+    extracted_text = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships
@@ -105,3 +106,24 @@ class LLMRequestCache(Base):
     response_json = Column(JSON)
     model = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+class HybridCurriculum(Base):
+    """
+    Dedicated table for the 'Published' Hybrid Courses.
+    Separates the 'Production' courses from the experimental 'TrainingCurriculum' table.
+    """
+    __tablename__ = "hybrid_curricula"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    original_curriculum_id = Column(Integer, ForeignKey("training_curricula.id"), nullable=True)
+    title = Column(String)
+    description = Column(String)
+    structured_json = Column(JSON) # Stores the finalized Module/Lesson structure
+    
+    # Metadata for UI
+    total_modules = Column(Integer, default=0)
+    total_lessons = Column(Integer, default=0)
+    total_duration_minutes = Column(Float, default=0.0)
+    
+    created_at = Column(DateTime, default=datetime.utcnow)
+

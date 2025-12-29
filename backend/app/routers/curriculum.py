@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, BackgroundTasks, Header
+from typing import List
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session, defer
 from ..db import get_db
@@ -12,6 +13,18 @@ router = APIRouter(prefix="/curriculum", tags=["curriculum"])
 
 DATA_DIR = "/app/data/corpus"
 os.makedirs(DATA_DIR, exist_ok=True)
+
+
+@router.get("/hybrid_courses")
+async def list_hybrid_courses(db: Session = Depends(get_db)):
+    return db.query(k_models.HybridCurriculum).order_by(k_models.HybridCurriculum.created_at.desc()).all()
+
+@router.get("/hybrid_courses/{course_id}")
+async def get_hybrid_course(course_id: int, db: Session = Depends(get_db)):
+    course = db.query(k_models.HybridCurriculum).get(course_id)
+    if not course:
+        raise HTTPException(404, "Hybrid Course not found")
+    return course
 
 @router.post("/ingest_video")
 async def ingest_video(
@@ -202,6 +215,33 @@ async def archive_all_corpus(db: Session = Depends(get_db)):
     db.commit()
     return {"status": "archived", "count": count}
 
+
+
+class SetActiveCorpusRequest(BaseModel):
+    video_ids: list[int]
+
+@router.post("/corpus/set_active")
+async def set_active_corpus(payload: SetActiveCorpusRequest, db: Session = Depends(get_db)):
+    """
+    Bulk Update:
+    1. Archive ALL videos.
+    2. Un-archive and set to READY for specific video_ids.
+    """
+    # 1. Archive ALL
+    db.query(k_models.VideoCorpus).update({k_models.VideoCorpus.is_archived: True})
+    
+    # 2. Activate Selected
+    if payload.video_ids:
+        db.query(k_models.VideoCorpus).filter(
+            k_models.VideoCorpus.id.in_(payload.video_ids)
+        ).update({
+            k_models.VideoCorpus.is_archived: False,
+            k_models.VideoCorpus.status: k_models.DocStatus.READY
+        }, synchronize_session=False)
+    
+    db.commit()
+    return {"status": "updated", "active_count": len(payload.video_ids)}
+
 @router.post("/generate_structure")
 async def generate_structure_endpoint(db: Session = Depends(get_db)):
     """Trigger the 'Top-Level' logic: Curriculum Architect (Streaming)."""
@@ -225,54 +265,30 @@ async def generate_structure_endpoint(db: Session = Depends(get_db)):
                     yield json.dumps({"type": "status", "msg": item}) + "\n"
                 elif isinstance(item, dict):
                     # Final Result
-                    print("DEBUG: Router received Dict from Generator. Saving...", flush=True)
-                    try:
-                        # Ensure we persist it
-                        # DEDUPLICATION LOGIC: Check if course exists by title
-                        existing_plan = db.query(k_models.TrainingCurriculum).filter(
-                            k_models.TrainingCurriculum.title == item.get("course_title")
-                        ).first()
+                    # NOTE: Persistence is now handled internally by the Service (curriculum_architect)
+                    # to support incremental saves and parallel updates.
+                    # We do NOT save here to avoid deduplication conflicts or overwrites.
+                    print("DEBUG: Router received Final Dict. Service has already persisted it.", flush=True)
 
-                        if existing_plan:
-                            print(f"DEBUG: Found existing course '{existing_plan.title}' (ID {existing_plan.id}). Updating...", flush=True)
-                            existing_plan.structured_json = item
-                            # Force update for JSON field
-                            from sqlalchemy.orm.attributes import flag_modified
-                            flag_modified(existing_plan, "structured_json")
-                            db.commit()
-                            db.refresh(existing_plan)
-                            new_plan = existing_plan # for downstream ref
-                        else:
-                            new_plan = k_models.TrainingCurriculum(
-                                title=item.get("course_title", "Untitled Course"),
-                                structured_json=item
-                            )
-                            db.add(new_plan)
-                            db.commit()
-                            db.refresh(new_plan)
-                            print(f"DEBUG: Saved NEW Curriculum ID {new_plan.id}", flush=True)
-                        
-                        # POST-GENERATION: Auto-Archive used videos to "Clear the Queue"
+                    yield json.dumps(item) + "\n"
+                    # POST-GENERATION: Auto-Archive used videos to "Clear the Queue"
+                    try:
                         updated_count = db.query(k_models.VideoCorpus).filter(
                             k_models.VideoCorpus.status == k_models.DocStatus.READY,
                             k_models.VideoCorpus.is_archived == False
                         ).update({k_models.VideoCorpus.is_archived: True})
                         db.commit()
-                        print(f"DEBUG: Auto-Archived {updated_count} videos to clear the queue.", flush=True)
-                        
-                        result_payload = {
-                            "id": new_plan.id,
-                            "title": new_plan.title,
-                            "modules_count": len(item.get("modules", []))
-                        }
-                        
-                        yield json.dumps({"type": "result", "payload": result_payload}) + "\n"
-                        break
+                        print(f"DEBUG: Auto-Archived {updated_count} videos.", flush=True)
                     except Exception as e:
-                        print(f"CRITICAL: Failed to save Curriculum to DB: {e}", flush=True)
-                        import traceback
-                        traceback.print_exc()
-                        yield json.dumps({"type": "error", "msg": f"DB Save Failed: {str(e)}"}) + "\n"
+                        print(f"WARNING: Failed to auto-archive videos: {e}")
+
+                    result_payload = {
+                        "id": item.get("id"),
+                        "title": item.get("course_title"),
+                        "modules_count": len(item.get("modules", []))
+                    }
+                    
+                    yield json.dumps({"type": "result", "payload": result_payload}) + "\n"
                 
         except Exception as e:
             print(f"Error generating structure: {e}", flush=True)
@@ -282,6 +298,28 @@ async def generate_structure_endpoint(db: Session = Depends(get_db)):
             yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
 
     return StreamingResponse(event_generator(), media_type="application/x-ndjson")
+
+class HybridGenerationRequest(BaseModel):
+    document_ids: List[int]
+    video_ids: List[int]
+
+@router.post("/generate_hybrid")
+async def generate_hybrid_endpoint(payload: HybridGenerationRequest, db: Session = Depends(get_db)):
+    """Trigger the 'Hybrid' generation pipeline."""
+    from ..services import document_curriculum
+    
+    try:
+        # Long-running async task (approx 30-60s)
+        curriculum = await document_curriculum.generate_hybrid_curriculum(
+            db, payload.document_ids, payload.video_ids
+        )
+        return {"status": "success", "curriculum_id": curriculum.id}
+    except Exception as e:
+        print(f"Hybrid Generation Error: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.get("/plans")
 async def list_curricula(db: Session = Depends(get_db)):
     return db.query(k_models.TrainingCurriculum).order_by(k_models.TrainingCurriculum.created_at.desc()).all()
@@ -357,9 +395,52 @@ async def update_curriculum(plan_id: int, payload: CurriculumUpdateSchema, db: S
     # Sanitize or Validate if needed (for now transparent pass-through)
     plan.structured_json = payload.structured_json
     
+@router.delete("/plans/{plan_id}")
+async def delete_curriculum(plan_id: int, db: Session = Depends(get_db)):
+    """Delete a curriculum plan."""
+    plan = db.query(k_models.TrainingCurriculum).get(plan_id)
+    if not plan:
+        raise HTTPException(status_code=404, detail="Curriculum Plan not found")
+        
+    db.delete(plan)
     db.commit()
-    db.refresh(plan)
-    return {"status": "updated", "id": plan.id}
+    return {"status": "deleted", "id": plan_id}
+
+class RepairRequest(BaseModel):
+    phases: List[str] = ["phase_3", "phase_4"]
+
+@router.post("/plans/{plan_id}/repair")
+async def repair_curriculum_endpoint(plan_id: int, payload: RepairRequest, db: Session = Depends(get_db)):
+    """
+    Trigger Surgical Repair:
+    - Scans existing plan for gaps.
+    - Re-runs generation ONLY for missing pieces.
+    """
+    from ..services import curriculum_architect
+    import json
+
+    async def event_generator():
+        try:
+            # Yield initial status
+            yield json.dumps({"type": "status", "msg": f"Starting Repair Diagnostic ({payload.phases})..."}) + "\n"
+            
+            generator = curriculum_architect.repair_curriculum(db, plan_id, target_phases=payload.phases)
+            
+            async for item in generator:
+                if isinstance(item, str):
+                    yield json.dumps({"type": "status", "msg": item}) + "\n"
+                elif isinstance(item, dict):
+                    # Final Plan or Error
+                    if "modules" in item:
+                        yield json.dumps({"type": "result", "payload": item}) + "\n"
+                    else:
+                        yield json.dumps(item) + "\n"
+                
+        except Exception as e:
+            print(f"Error repairing curriculum: {e}")
+            yield json.dumps({"type": "error", "msg": str(e)}) + "\n"
+
+    return StreamingResponse(event_generator(), media_type="application/x-ndjson")
 
 @router.get("/stream/{filename}")
 async def stream_video(

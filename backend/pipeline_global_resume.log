@@ -1,0 +1,50 @@
+Initializing LLM Client: https://openrouter.ai/api/v1 with model x-ai/grok-4.1-fast
+--- STARTING STAGE 1: GROK GENERATION (RESUME) ---
+Checking for cached text in Document 10...
+Using cached text (2265889 chars).
+Source Text Length: 2265889 chars.
+Validation Error (Attempt 1): 1 validation error for BlueprintCourseSkeleton
+  Invalid JSON: expected `:` at line 26 column 9 [type=json_invalid, input_value='{\n  "title": "Distribut... },\n    {\n      ""}]}', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.6/v/json_invalid
+Validation Error (Attempt 2): 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...escription': 'National'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+Validation Error (Attempt 3): 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...assemblies, along with'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+Validation Error (Attempt 4): 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...escription': 'National'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+Skeleton Gen Failed: 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...escription': 'National'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+Pipeline Failed: 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...escription': 'National'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing
+Traceback (most recent call last):
+  File "/app/tools/run_pipeline_v2.py", line 17, in main
+    course = await hybrid_pipeline_v2.stage_1_generate_course(db, doc_id=10)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/services/hybrid_pipeline_v2.py", line 287, in stage_1_generate_course
+    # Failover Title
+    ^^^^^^^
+  File "/app/app/services/hybrid_pipeline_v2.py", line 273, in stage_1_generate_course
+    CRITICAL REQUIREMENT:
+                   ^^^^^^
+  File "/app/app/services/llm.py", line 454, in generate_structure_validated
+    raise e
+  File "/app/app/services/llm.py", line 438, in generate_structure_validated
+    validated_obj = model_class.model_validate_json(raw_json)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 538, in model_validate_json
+    return cls.__pydantic_validator__.validate_json(json_data, strict=strict, context=context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for BlueprintCourseSkeleton
+modules
+  Field required [type=missing, input_value={'title': 'DISTRIBUTION O...escription': 'National'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.6/v/missing

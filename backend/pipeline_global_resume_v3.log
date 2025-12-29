@@ -1,0 +1,856 @@
+Initializing LLM Client: https://openrouter.ai/api/v1 with model x-ai/grok-4.1-fast
+--- STARTING STAGE 1: GROK GENERATION (RESUME) ---
+Checking for cached text in Document 10...
+Using cached text (2265889 chars).
+Source Text Length: 2265889 chars.
+ found existing course 'Distribution Overhead & Underground Construction Standards' (ID: 4). returning it.
+Resuming Content Generation for existing course...
+  ▶ STARTING: Introduction to the Foreword and Standards Overview...
+  ▶ STARTING: Purpose and Scope of the Standards...
+  ▶ STARTING: Compliance with NESC and Regulations...
+  ▶ STARTING: Distribution Methods and Updates...
+  ▶ STARTING: Responsibilities and Expectations...
+  ▶ STARTING: Contributions and Feedback Process...
+  ▶ STARTING: Copyright, Property Rights, and Additional Info...
+  ▶ STARTING: Module Review and Assessment...
+  ▶ STARTING: Foreword and Purpose of National Grid Distribution Standards...
+  ▶ STARTING: Copyright Notice and Standards Ownership...
+  ▶ STARTING: Basic Insulation Level (BIL) Ratings...
+  ▶ STARTING: Transmission and Sub-Transmission Voltages...
+  ▶ STARTING: Primary Distribution Voltages...
+  ▶ STARTING: Secondary Distribution Voltages...
+  ▶ STARTING: General Rules and Compliance Guidelines...
+  ▶ STARTING: Checklists and Document Control...
+  ▶ STARTING: Abbreviations...
+  ▶ STARTING: Definitions...
+  ▶ STARTING: Introduction to Poles and Hardware...
+  ▶ STARTING: Pole Specifications and Identification...
+Gen Error (Attempt 1): Expecting value: line 165 column 1 (char 902)
+Gen Error (Attempt 1): Expecting value: line 183 column 1 (char 1001)
+  ✅ DONE: Secondary Distribution Voltages
+  ⚠️ DB SAVE ERROR for Secondary Distribution Voltages: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Lengths and Selection Criteria...
+  ✅ DONE: Pole Specifications and Identification
+  ⚠️ DB SAVE ERROR for Pole Specifications and Identification: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Strengths and NESC Requirements...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Pole Strengths and NESC Requirements: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Pole Strengths and NESC Requirements: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Setting and Depths...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Copyright, Property Rights, and Additional Info: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Copyright, Property Rights, and Additional Info: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Location and Accessibility...
+  ✅ DONE: Definitions
+  ⚠️ DB SAVE ERROR for Definitions: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Attachments and Restrictions...
+  ✅ DONE: Module Review and Assessment
+  ⚠️ DB SAVE ERROR for Module Review and Assessment: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Alternative Poles...
+  ✅ DONE: Copyright Notice and Standards Ownership
+  ⚠️ DB SAVE ERROR for Copyright Notice and Standards Ownership: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Line Hardware...
+  ✅ DONE: Compliance with NESC and Regulations
+  ⚠️ DB SAVE ERROR for Compliance with NESC and Regulations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Classification and Calculations...
+  ✅ DONE: Contributions and Feedback Process
+  ⚠️ DB SAVE ERROR for Contributions and Feedback Process: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Drawings and Practical Application...
+  ✅ DONE: Abbreviations
+  ⚠️ DB SAVE ERROR for Abbreviations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Review and Assessment...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Review and Assessment: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Review and Assessment: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Guying and When to Guy...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Introduction to Guying and When to Guy: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Introduction to Guying and When to Guy: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Types of Guy Wires and Pole Supports...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: Introduction to Poles and Hardware
+  ⚠️ DB SAVE ERROR for Introduction to Poles and Hardware: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Guying Materials...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Types of Guy Wires and Pole Supports: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Types of Guy Wires and Pole Supports: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Bonding, Isolation, and Insulation...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+  ✅ DONE: Drawings and Practical Application
+  ⚠️ DB SAVE ERROR for Drawings and Practical Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Guy Clearances...
+  ✅ DONE: Checklists and Document Control
+  ⚠️ DB SAVE ERROR for Checklists and Document Control: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Strength Calculations and Guy Factors...
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Transmission and Sub-Transmission Voltages: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Transmission and Sub-Transmission Voltages: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Worksheets, Examples, and Construction Drawings...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+  ✅ DONE: Purpose and Scope of the Standards
+  ⚠️ DB SAVE ERROR for Purpose and Scope of the Standards: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Review and Application...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+  ✅ DONE: Basic Insulation Level (BIL) Ratings
+  ⚠️ DB SAVE ERROR for Basic Insulation Level (BIL) Ratings: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Storm Hardening and Resiliency...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Worksheets, Examples, and Construction Drawings: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Worksheets, Examples, and Construction Drawings: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Objectives and Implementation Through Standards...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Review and Application: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Review and Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: New Construction: Critical Structures...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Introduction to Storm Hardening and Resiliency: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Introduction to Storm Hardening and Resiliency: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: New Construction: Preventing Cascading Failures...
+  ✅ DONE: Foreword and Purpose of National Grid Distribution Standards
+  ⚠️ DB SAVE ERROR for Foreword and Purpose of National Grid Distribution Standards: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: New Construction: Coastal Areas...
+  ✅ DONE: Pole Lengths and Selection Criteria
+  ⚠️ DB SAVE ERROR for Pole Lengths and Selection Criteria: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Storm Hardening Existing Lines: Critical Structures...
+  ✅ DONE: Primary Distribution Voltages
+  ⚠️ DB SAVE ERROR for Primary Distribution Voltages: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Storm Hardening Existing Lines: Preventing Cascading and Coastal Areas...
+  ✅ DONE: Pole Classification and Calculations
+  ⚠️ DB SAVE ERROR for Pole Classification and Calculations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Other Resiliency Items and Review...
+  ✅ DONE: Pole Setting and Depths
+  ⚠️ DB SAVE ERROR for Pole Setting and Depths: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Overhead Distribution Connectors...
+  ✅ DONE: Pole Location and Accessibility
+  ⚠️ DB SAVE ERROR for Pole Location and Accessibility: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Selection of Connectors...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Strength Calculations and Guy Factors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Strength Calculations and Guy Factors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Location of Connectors...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Location of Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Location of Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Conductor Preparation...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: Bonding, Isolation, and Insulation
+  ⚠️ DB SAVE ERROR for Bonding, Isolation, and Insulation: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Insulation of Connectors...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Conductor Preparation: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Conductor Preparation: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Types of Connectors Overview...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: Guying Materials
+  ⚠️ DB SAVE ERROR for Guying Materials: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Compression Tools and Dies...
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Insulation of Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Insulation of Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: H-Tap Connectors...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: General Rules and Compliance Guidelines
+  ⚠️ DB SAVE ERROR for General Rules and Compliance Guidelines: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Parallel Groove Connectors...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED New Construction: Coastal Areas: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for New Construction: Coastal Areas: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Wedge Tap Connectors...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Compression Tools and Dies: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Compression Tools and Dies: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Automatic Splices...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED H-Tap Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for H-Tap Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Repair Sleeves...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Wedge Tap Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Wedge Tap Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Safety, Best Practices, and Review...
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Parallel Groove Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Parallel Groove Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Primary Conductors...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Repair Sleeves: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Repair Sleeves: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Basic Data and Physical Properties...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+  ✅ DONE: Storm Hardening Existing Lines: Critical Structures
+  ⚠️ DB SAVE ERROR for Storm Hardening Existing Lines: Critical Structures: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Electrical Properties and Ampacity...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Safety, Best Practices, and Review: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Safety, Best Practices, and Review: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Sags and Tensions...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Introduction to Primary Conductors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Introduction to Primary Conductors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Maximum Spans...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Electrical Properties and Ampacity: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Electrical Properties and Ampacity: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Planning Conductor Installations...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Planning Conductor Installations: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Planning Conductor Installations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Installing Conductors...
+  ✅ DONE: Guy Clearances
+  ⚠️ DB SAVE ERROR for Guy Clearances: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Standard vs. Non-Standard Conductors...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Selection of Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Selection of Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Review and Practical Application...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Alternative Poles: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Alternative Poles: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Clearances and NESC Requirements...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Introduction to Clearances and NESC Requirements: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Introduction to Clearances and NESC Requirements: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Vertical Clearances to Ground, Roads, Rails, and Other Surfaces...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+  ✅ DONE: New Construction: Preventing Cascading Failures
+  ⚠️ DB SAVE ERROR for New Construction: Preventing Cascading Failures: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Vertical Clearances Over Water Surfaces and to Swimming Pools...
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Basic Data and Physical Properties: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Basic Data and Physical Properties: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Clearances to Buildings, Bridges, and Rail Cars...
+  ✅ DONE: Pole Line Hardware
+  ⚠️ DB SAVE ERROR for Pole Line Hardware: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Separations on Poles: Vertical, Horizontal, and Climbing Space...
+  ✅ DONE: Storm Hardening Existing Lines: Preventing Cascading and Coastal Areas
+  ⚠️ DB SAVE ERROR for Storm Hardening Existing Lines: Preventing Cascading and Coastal Areas: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: BIL Spacing, Climbing Space, and Additional Requirements...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Pole Attachments and Restrictions: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Pole Attachments and Restrictions: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Practical Application and Review...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Automatic Splices: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Automatic Splices: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 1: Introduction to Coastline Construction...
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: Objectives and Implementation Through Standards
+  ⚠️ DB SAVE ERROR for Objectives and Implementation Through Standards: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 2: Corrosion in Coastal Environments...
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Introduction to Overhead Distribution Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Introduction to Overhead Distribution Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 3: Material Selection for Arresters...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Clearances to Buildings, Bridges, and Rail Cars: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Clearances to Buildings, Bridges, and Rail Cars: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 4: Material Selection for Cables...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Lesson 2: Corrosion in Coastal Environments: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Lesson 2: Corrosion in Coastal Environments: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 5: Material Selection for Connectors...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+  ✅ DONE: Other Resiliency Items and Review
+  ⚠️ DB SAVE ERROR for Other Resiliency Items and Review: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 6: Material Selection for Cutouts...
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Lesson 5: Material Selection for Connectors: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Lesson 5: Material Selection for Connectors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 7: Material Selection for Guying...
+  ✅ DONE: Sags and Tensions
+  ⚠️ DB SAVE ERROR for Sags and Tensions: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 8: Material Selection for Insulators and Deadends...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 8: Material Selection for Insulators and Deadends: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 8: Material Selection for Insulators and Deadends: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 9: Material Selection for Switchgear and Transformers...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 9: Material Selection for Switchgear and Transformers: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 9: Material Selection for Switchgear and Transformers: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 10: Implementation and Best Practices...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 10: Implementation and Best Practices: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 10: Implementation and Best Practices: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 9 – Primary Overview...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED New Construction: Critical Structures: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for New Construction: Critical Structures: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Overview of Secondary Systems...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 9 – Primary Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 9 – Primary Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Secondary Crib Design...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Overview of Secondary Systems: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Overview of Secondary Systems: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Sag-Tension Tables...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Secondary Crib Design: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Secondary Crib Design: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Splicing Secondary Conductors...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Sag-Tension Tables: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Sag-Tension Tables: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Flicker Charts and Transformer Regulation...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Splicing Secondary Conductors: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Splicing Secondary Conductors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Residential Loading and Transformer Sizing...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ✅ DONE: Distribution Methods and Updates
+  ⚠️ DB SAVE ERROR for Distribution Methods and Updates: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Attachment Drawings and Best Practices...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Flicker Charts and Transformer Regulation: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Flicker Charts and Transformer Regulation: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Review, Assessment, and Application...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Residential Loading and Transformer Sizing: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Residential Loading and Transformer Sizing: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 11 – Services Overview...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Attachment Drawings and Best Practices: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Attachment Drawings and Best Practices: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 1: Introduction to Overhead Distribution Protection...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Review, Assessment, and Application: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Review, Assessment, and Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 2: Fuse Ratings...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 11 – Services Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 11 – Services Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 3: Selection Guides...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ✅ DONE: Review and Practical Application
+  ⚠️ DB SAVE ERROR for Review and Practical Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 4: Fault Circuit Indicators (FCIs)...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 1: Introduction to Overhead Distribution Protection: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 1: Introduction to Overhead Distribution Protection: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 5: Cutouts...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 2: Fuse Ratings: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 2: Fuse Ratings: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 6: Disconnects...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 3: Selection Guides: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 3: Selection Guides: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 7: Reclosers...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 4: Fault Circuit Indicators (FCIs): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 4: Fault Circuit Indicators (FCIs): cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 8: Construction Drawings and Best Practices...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 5: Cutouts: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 5: Cutouts: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 13 – Grounding Overview...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 6: Disconnects: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 6: Disconnects: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Overhead Distribution Transformers...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 7: Reclosers: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 7: Reclosers: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: General Guidelines and Transformer Location...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 8: Construction Drawings and Best Practices: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 8: Construction Drawings and Best Practices: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Sizing, Loading, and Selection of Transformers...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 13 – Grounding Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 13 – Grounding Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Transformer Installation Procedures...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to Overhead Distribution Transformers: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to Overhead Distribution Transformers: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Transformer Connections and Phasing...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED General Guidelines and Transformer Location: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for General Guidelines and Transformer Location: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Grounding and Bonding Transformers...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Sizing, Loading, and Selection of Transformers: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Sizing, Loading, and Selection of Transformers: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Step-Down/Step-Up Transformers and Special Connections...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Transformer Installation Procedures: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Transformer Installation Procedures: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Transformer Handling, Physical Data Codes, and Drawings...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Transformer Connections and Phasing: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Transformer Connections and Phasing: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Voltage Control in Distribution Systems...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Grounding and Bonding Transformers: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Grounding and Bonding Transformers: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Capacitors: Principles and Types...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to the Foreword and Standards Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to the Foreword and Standards Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Capacitor Installations and Construction Drawings...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Step-Down/Step-Up Transformers and Special Connections: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Step-Down/Step-Up Transformers and Special Connections: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Voltage Regulators: Principles and Types...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Responsibilities and Expectations: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Responsibilities and Expectations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Regulator Installations and Safety...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Transformer Handling, Physical Data Codes, and Drawings: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Transformer Handling, Physical Data Codes, and Drawings: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Primary Metering: Purpose and Configurations...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to Voltage Control in Distribution Systems: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to Voltage Control in Distribution Systems: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole/Line Sensors and Monitoring...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Capacitors: Principles and Types: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Capacitors: Principles and Types: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Construction Drawings and Best Practices...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Capacitor Installations and Construction Drawings: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Capacitor Installations and Construction Drawings: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 16 – Aerial / Spacer Cable Overview...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Voltage Regulators: Principles and Types: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Voltage Regulators: Principles and Types: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 1: Introduction to Joint Use Poles...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Regulator Installations and Safety: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Regulator Installations and Safety: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 2: Poles in Joint Use...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Primary Metering: Purpose and Configurations: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Primary Metering: Purpose and Configurations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 3: Guys in Joint Use...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Pole/Line Sensors and Monitoring: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Pole/Line Sensors and Monitoring: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 4: Climbing Space and Clearances...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Construction Drawings and Best Practices: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Construction Drawings and Best Practices: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 5: Attachment Locations...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 1: Introduction to Joint Use Poles: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 1: Introduction to Joint Use Poles: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 6: Metered Power Supplies...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 16 – Aerial / Spacer Cable Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 16 – Aerial / Spacer Cable Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 7: ADFO Cables...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 2: Poles in Joint Use: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 2: Poles in Joint Use: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 8: Security Cameras...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 3: Guys in Joint Use: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 3: Guys in Joint Use: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Lesson 9: Drawings and Applications...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 4: Climbing Space and Clearances: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 4: Climbing Space and Clearances: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 18 – Risers Overview...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 5: Attachment Locations: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 5: Attachment Locations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Outdoor Lighting Definitions...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 6: Metered Power Supplies: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 6: Metered Power Supplies: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: IES Light Distribution Patterns...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 7: ADFO Cables: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 7: ADFO Cables: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Roadway Luminaires...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 8: Security Cameras: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 8: Security Cameras: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Floodlight Luminaires...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 9: Drawings and Applications: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 9: Drawings and Applications: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Brackets and Mounting Hardware...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 18 – Risers Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 18 – Risers Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Conductors for Outdoor Lighting...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to Outdoor Lighting Definitions: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to Outdoor Lighting Definitions: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Customer-Owned Equipment...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED IES Light Distribution Patterns: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for IES Light Distribution Patterns: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Construction Drawings and Application...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Roadway Luminaires: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Roadway Luminaires: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to 25-35kV Primary Distribution Systems...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Brackets and Mounting Hardware: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Brackets and Mounting Hardware: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Pole Tops and Hardware for 25-35kV Primary...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Floodlight Luminaires: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Floodlight Luminaires: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Conductors for 25-35kV Primary...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Conductors for Outdoor Lighting: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Conductors for Outdoor Lighting: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Separations and Clearances in 25-35kV Design...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Customer-Owned Equipment: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Customer-Owned Equipment: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Construction Drawings and Configurations...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Construction Drawings and Application: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Construction Drawings and Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Advanced Design: Storm Hardening, Joint Use, and Safety...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to 25-35kV Primary Distribution Systems: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to 25-35kV Primary Distribution Systems: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Practical Application and Review...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Conductors for 25-35kV Primary: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Conductors for 25-35kV Primary: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Introduction to Overhead Sub-Transmission Standards...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Pole Tops and Hardware for 25-35kV Primary: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Pole Tops and Hardware for 25-35kV Primary: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Grades of Construction and Overload Factors...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Separations and Clearances in 25-35kV Design: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Separations and Clearances in 25-35kV Design: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Loading Conditions and Calculations...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Construction Drawings and Configurations: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Construction Drawings and Configurations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Conductors for Sub-Transmission...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Advanced Design: Storm Hardening, Joint Use, and Safety: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Advanced Design: Storm Hardening, Joint Use, and Safety: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Structure Selection...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Practical Application and Review: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Practical Application and Review: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Insulators...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Grades of Construction and Overload Factors: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Grades of Construction and Overload Factors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Splicing and Anchors...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Introduction to Overhead Sub-Transmission Standards: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Introduction to Overhead Sub-Transmission Standards: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Clearances...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Conductors for Sub-Transmission: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Conductors for Sub-Transmission: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Risk Mitigation...
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Loading Conditions and Calculations: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Loading Conditions and Calculations: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Review and Application...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Structure Selection: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Structure Selection: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 22 – Materials Catalog Overview...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Insulators: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Insulators: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 23 – Materials Catalog – Lighting Overview...
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Splicing and Anchors: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Splicing and Anchors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ▶ STARTING: Section 25 – Feeder Application & Application Index Overview...
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Clearances: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Clearances: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Risk Mitigation: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Risk Mitigation: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 1): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Review and Application: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Review and Application: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 22 – Materials Catalog Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 22 – Materials Catalog Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 23 – Materials Catalog – Lighting Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 23 – Materials Catalog – Lighting Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Section 25 – Feeder Application & Application Index Overview: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Section 25 – Feeder Application & Application Index Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Types of Connectors Overview
+  ⚠️ DB SAVE ERROR for Types of Connectors Overview: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Lesson 3: Material Selection for Arresters
+  ⚠️ DB SAVE ERROR for Lesson 3: Material Selection for Arresters: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Lesson 4: Material Selection for Cables
+  ⚠️ DB SAVE ERROR for Lesson 4: Material Selection for Cables: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Maximum Spans
+  ⚠️ DB SAVE ERROR for Maximum Spans: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 2): 'NoneType' object is not subscriptable
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Installing Conductors: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Installing Conductors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 3): 'NoneType' object is not subscriptable
+  ❌ FAILED Vertical Clearances to Ground, Roads, Rails, and Other Surfaces: 'NoneType' object is not subscriptable
+  ⚠️ DB SAVE ERROR for Vertical Clearances to Ground, Roads, Rails, and Other Surfaces: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Vertical Clearances Over Water Surfaces and to Swimming Pools
+  ⚠️ DB SAVE ERROR for Vertical Clearances Over Water Surfaces and to Swimming Pools: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Standard vs. Non-Standard Conductors
+  ⚠️ DB SAVE ERROR for Standard vs. Non-Standard Conductors: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED BIL Spacing, Climbing Space, and Additional Requirements: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for BIL Spacing, Climbing Space, and Additional Requirements: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Lesson 1: Introduction to Coastline Construction
+  ⚠️ DB SAVE ERROR for Lesson 1: Introduction to Coastline Construction: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Separations on Poles: Vertical, Horizontal, and Climbing Space
+  ⚠️ DB SAVE ERROR for Separations on Poles: Vertical, Horizontal, and Climbing Space: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Practical Application and Review
+  ⚠️ DB SAVE ERROR for Practical Application and Review: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+  ✅ DONE: Lesson 6: Material Selection for Cutouts
+  ⚠️ DB SAVE ERROR for Lesson 6: Material Selection for Cutouts: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Gen Error (Attempt 1): 'NoneType' object is not subscriptable
+Gen Error (Attempt 2): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+Gen Error (Attempt 3): Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ❌ FAILED Lesson 7: Material Selection for Guying: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}
+  ⚠️ DB SAVE ERROR for Lesson 7: Material Selection for Guying: cannot access free variable 'flag_modified' where it is not associated with a value in enclosing scope
+Stage 1 Complete. Course ID: 4
+--- STARTING STAGE 2: VIDEO FUSION ---
+Skipping Stage 2: 19 video matches already found.
+--- PIPELINE COMPLETE ---

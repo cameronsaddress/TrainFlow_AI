@@ -126,8 +126,107 @@ async def delete_document(doc_id: int, db: Session = Depends(get_db)):
         "sources": [c.document_id for c in relevant_chunks]
     }
 
+
+def _find_page_for_anchor(reader, anchor_text: str) -> int:
+    """
+    Helper to search for anchor text in a PDF reader object using fuzzy logic.
+    Returns: 1-based physical page number, or -1 if not found.
+    """
+    if not anchor_text or len(anchor_text) < 3:
+        return -1
+        
+    print(f"Runtime Search: Scanning for '{anchor_text}'...")
+    
+    # Pre-compile tokens for fuzzy search
+    import re
+    def tokens(s): return re.findall(r'\w+', s.lower())
+    
+    anchor_tokens = tokens(anchor_text)
+    if not anchor_tokens:
+        return -1
+    anchor_norm = " ".join(anchor_tokens)
+
+    for i, page in enumerate(reader.pages):
+        text = page.extract_text()
+        if not text: 
+            continue
+            
+        text_lower = text.lower()
+        
+        # Heuristic 1: Skip obvious TOC pages
+        if "table of contents" in text_lower[:500]:
+            print(f"Skipping Page {i+1} (Detected TOC Header)")
+            continue
+        
+        # Fuzzy Search Logic
+        text_tokens = tokens(text_lower)
+        text_norm = " ".join(text_tokens)
+        
+        if anchor_norm in text_norm:
+             # Check TOC heuristic
+            # Let's check for TOC filtering on the *line* level again but fuzzier.
+            match_found = False
+            
+            for line in text_lower.split('\n'):
+                line_tokens = tokens(line)
+                line_norm = " ".join(line_tokens)
+                
+                if anchor_norm in line_norm:
+                    # It's a match. Check if it's a TOC line.
+                    clean = line.strip()
+                    # TOC check: ends with digit or "thru"
+                    if clean and (clean[-1].isdigit() or clean.endswith("thru") or "..." in clean):
+                        print(f"Skipping Page {i+1} (Detected TOC Line match: '{clean}')")
+                        match_found = False # Reset
+                        break
+                    
+                    match_found = True
+                    break
+            
+            if match_found:
+                return i + 1
+
+    return -1
+
+@router.post("/documents/{doc_id}/locate")
+async def locate_document_page(
+    doc_id: int, 
+    payload: dict, # {"anchor_text": "str"}
+    db: Session = Depends(get_db)
+):
+    """
+    Returns the physical page number for a given anchor text.
+    """
+    anchor_text = payload.get("anchor_text")
+    if not anchor_text:
+        return {"found": False, "page": None}
+
+    doc = db.query(k_models.KnowledgeDocument).filter(k_models.KnowledgeDocument.id == doc_id).first()
+    if not doc or not doc.file_path or not os.path.exists(doc.file_path):
+        raise HTTPException(404, "Document file not found")
+        
+    try:
+        from pypdf import PdfReader
+        reader = PdfReader(doc.file_path)
+        found_page = _find_page_for_anchor(reader, anchor_text)
+        
+        if found_page != -1:
+            return {"found": True, "page": found_page}
+        else:
+             return {"found": False, "page": None}
+             
+    except Exception as e:
+        print(f"Locate Error: {e}")
+        return {"found": False, "page": None, "error": str(e)}
+
+
 @router.get("/documents/{doc_id}/pages/{page_num}/stream")
-async def stream_document_page(doc_id: int, page_num: int, db: Session = Depends(get_db)):
+async def stream_document_page(
+    doc_id: int, 
+    page_num: int, 
+    anchor_text: str = None, # Optional: Text to search for
+    db: Session = Depends(get_db)
+):
     """
     Smart Stream: Extracts ONLY the requested page (+/- context optional) 
     and streams it as a lightweight PDF.
@@ -144,6 +243,17 @@ async def stream_document_page(doc_id: int, page_num: int, db: Session = Depends
         reader = PdfReader(doc.file_path)
         total_pages = len(reader.pages)
         
+        # --- Runtime Search Override ---
+        if anchor_text and len(anchor_text) > 3:
+            found_page = _find_page_for_anchor(reader, anchor_text)
+            
+            if found_page != -1:
+                # Override page_num with the FOUND physical page (1-based)
+                page_num = found_page
+                print(f"Runtime Search Success: Found on Physical Page {page_num}")
+            else:
+                print(f"Runtime Search Failed: '{anchor_text}' not found. Fallback to Page {page_num}")
+        
         if page_num < 1 or page_num > total_pages:
              # Fallback to page 1 if out of bounds
              page_num = 1
@@ -153,9 +263,9 @@ async def stream_document_page(doc_id: int, page_num: int, db: Session = Depends
         # 0-indexed adjustment
         target_idx = page_num - 1
         
-        # Context Buffer: +/- 5 pages
-        start_idx = max(0, target_idx - 5)
-        end_idx = min(total_pages, target_idx + 6) # slice is exclusive at end
+        # Context Buffer: Starts at target, +10 pages forward
+        start_idx = target_idx
+        end_idx = min(total_pages, target_idx + 10) # slice is exclusive at end
         
         # Add pages in range
         for i in range(start_idx, end_idx):

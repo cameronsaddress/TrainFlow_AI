@@ -2,6 +2,7 @@ import json
 import logging
 import asyncio
 from sqlalchemy.orm import Session
+from sqlalchemy.orm.attributes import flag_modified
 from ..models import knowledge as k_models
 from ..schemas.curriculum import Module
 from . import llm
@@ -36,6 +37,7 @@ You MUST VALIDATE that the timestamps you cite actually exist in the source vide
   "modules": [
     {
       "title": "Module 1: ...",
+      "description": "A comprehensive overview of what this module covers...",
       "lessons": [
         {
           "title": "Lesson 1.1: [Action-Oriented Title]",
@@ -118,6 +120,7 @@ def save_curriculum_checkpoint(db: Session, curriculum_id: int, data: dict):
         record = db.query(k_models.TrainingCurriculum).get(curriculum_id)
         if record:
             record.structured_json = data
+            flag_modified(record, "structured_json")
             db.commit()
     except Exception as e:
         print(f"Failed to save checkpoint: {e}")
@@ -227,38 +230,75 @@ async def execute_map_reduce_strategy(db: Session, videos: list, rules: str, det
     3. Detail: Expand each module with full context.
     4. Enrich: Smart Assist.
     """
-    print("--- Phase 1: Summary Map ---", flush=True)
-    yield "Phase 1: Generating Video Summaries (Map)..."
-    summaries = []
+    print("--- Phase 1: Summary Map (Parallel Swarm) ---", flush=True)
+    yield "Phase 1: Generating Video Summaries (Swarm Mode)..."
     
-    for i, v in enumerate(videos):
-        meta = v.metadata_json or {}
-        summary = meta.get("summary")
-        
-        if not summary:
-            print(f"Summarizing {v.filename}...", flush=True)
-            yield f"Summarizing Video {i+1}/{len(videos)}: {v.filename}..."
-            try:
-                summary = await summarize_video_content(v)
-                # Store in DB
-                meta["summary"] = summary
-                v.metadata_json = meta
-                db.commit()
-            except Exception as e:
-                print(f"Error summarizing {v.filename}: {e}")
-                summary = f"Error summarizing video: {v.filename}"
-        else:
-            print(f"Using Cached Summary for {v.filename}", flush=True)
-            yield f"Using Cached Summary for {v.filename}..."
+    summaries = [None] * len(videos)
+    sem = asyncio.Semaphore(10) # 10 Concurrent Summarizers
+
+    async def summarize_worker(i, v):
+        async with sem:
+            meta = v.metadata_json or {}
+            summary = meta.get("summary")
             
-        summaries.append(f"<VIDEO_SUMMARY filename='{v.filename}'>\n{summary}\n</VIDEO_SUMMARY>")
+            if not summary:
+                print(f"Summarizing {v.filename}...", flush=True)
+                try:
+                    summary = await summarize_video_content(v)
+                    # Sync DB writing is risky in async loop without session management.
+                    # Best practice: Return result, batch save later.
+                    # Or use a scoped session. For now, we'll return, and assume volatile until next save?
+                    # Actually, let's just return the keys and save batch or individual if connection allows.
+                    # Given DB is sync, we can't easily write inside async worker without blocking.
+                    # Solution: Return metadata updates, apply in main thread.
+                except Exception as e:
+                    print(f"Error summarizing {v.filename}: {e}")
+                    summary = f"Error summarizing video: {v.filename}"
+            else:
+                 print(f"Using Cached Summary for {v.filename}", flush=True)
+
+            return (i, summary, v)
+
+    # Launch Swarm
+    tasks = [summarize_worker(i, v) for i, v in enumerate(videos)]
+    yield f"Launching {len(tasks)} parallel summarization agents..."
     
+    results = await asyncio.gather(*tasks)
+    
+    # Process Results & Batch Persist
+    for (i, summary, v) in results:
+        # Update Object (InMemory)
+        meta = v.metadata_json or {}
+        if summary and not meta.get("summary"):
+             meta["summary"] = summary
+             v.metadata_json = meta
+             # Mark dirtiness? We need to commit.
+             # Since 'v' is attached to 'db' session, we can commit once at the end?
+             # Yes, assuming session is valid.
+        
+        summaries[i] = f"<VIDEO_SUMMARY filename='{v.filename}'>\n{summary}\n</VIDEO_SUMMARY>"
+    
+    try:
+        db.commit() # Batch Commit all cached summaries
+        print("Batch committed new video summaries.", flush=True)
+    except Exception as e:
+        print(f"Failed to batch commit summaries: {e}")
+
     full_summary_context = "\n".join(summaries)
     
     print("--- Phase 2: Master Plan Reduce ---", flush=True)
     yield "Phase 2: Architecting Master Course Plan (Reduce)..."
     master_plan = await generate_master_plan(full_summary_context, rules, detected_context)
     print(f"Master Plan Generated: {len(master_plan.get('modules', []))} Modules", flush=True)
+
+    # Sanitize Modules (Defensive Coding)
+    valid_modules = []
+    for m in master_plan.get("modules", []):
+        if isinstance(m, dict):
+            valid_modules.append(m)
+        else:
+            print(f"  ⚠️ Dropping malformed module entry from Master Plan: {m}", flush=True)
+    master_plan["modules"] = valid_modules
 
     # PERSISTENCE: Save Master Plan IMMEDIATELY
     curr_id = None
@@ -275,60 +315,69 @@ async def execute_map_reduce_strategy(db: Session, videos: list, rules: str, det
     except Exception as e:
         print(f"Failed to create curriculum record: {e}")
     
-    print("--- Phase 3: Detail Expansion ---", flush=True)
-    yield f"Phase 3: Expanding {len(master_plan.get('modules', []))} Modules with Deep Context..."
-    final_modules = []
+    print("--- Phase 3: Detail Expansion (Parallel Swarm) ---", flush=True)
+    yield f"Phase 3: Expanding {len(master_plan.get('modules', []))} Modules (Parallel Swarm)..."
     
-    for i, module in enumerate(master_plan.get("modules", [])):
-        print(f"Expanding Module: {module.get('title')}...", flush=True)
-        yield f"Drafting Module {i+1}/{len(master_plan.get('modules', []))}: {module.get('title')}..."
-        
-        # Determine context for this module
-        source_filenames = module.get("recommended_source_videos", [])
-        module_videos = [v for v in videos if v.filename in source_filenames]
-        
-        if not module_videos:
-             print("No specific source video cited for module, using GLOBAL SUMMARIES context for detail (fallback).", flush=True)
-             module_context = full_summary_context
-        else:
-             module_context = build_full_context(module_videos)
-             
-        # Detect empty context (e.g. video has no transcripts)
-        if not module_context or not module_context.strip():
-             print("Specific context was empty. Falling back to GLOBAL SUMMARIES context.", flush=True)
-             module_context = full_summary_context
-             
+    sem_modules = asyncio.Semaphore(10) # 10 Modules at once
+
+    async def expand_module_worker(i, module):
+        async with sem_modules:
+            print(f"Expanding Module: {module.get('title')}...", flush=True)
+            
+            # Determine context for this module
+            source_filenames = module.get("recommended_source_videos", [])
+            module_videos = [v for v in videos if v.filename in source_filenames]
+            
+            module_context = ""
+            if not module_videos:
+                 print("No specific source video cited for module, using GLOBAL SUMMARIES context for detail (fallback).", flush=True)
+                 module_context = full_summary_context
+            else:
+                 # Standard Context (Chunking Logic handles overflow inside the function)
+                 module_context = build_full_context(module_videos)
+                 print(f"  Using Specific Context from {len(module_videos)} videos: {[v.filename for v in module_videos]}", flush=True)
+                 
+            # Detect empty context
+            if not module_context or not module_context.strip():
+                 print("Specific context was empty. Falling back to GLOBAL SUMMARIES context.", flush=True)
+                 module_context = full_summary_context
+                 
+            try:
+                detailed_module = await generate_detailed_module_validated(module, module_context)
+                return (i, detailed_module)
+            except Exception as e:
+                print(f"FAILED Expanding Module {i+1}: {e}")
+                module["error"] = str(e)
+                return (i, module)
+
+    # Pre-fill with skeletons so we don't save "None" holes during incremental updates
+    final_modules = list(master_plan.get("modules", []))
+    
+    yield f"Launching {len(final_modules)} parallel detail agents..."
+    module_tasks = [expand_module_worker(i, m) for i, m in enumerate(master_plan.get("modules", []))]
+    
+    # Execute Swarm with INCREMENTAL PERSISTENCE (Save as you go)
+    print(f"  🚀 Swarm Active: {len(module_tasks)} agents. Saving incrementally...", flush=True)
+    
+    for future in asyncio.as_completed(module_tasks):
         try:
-            detailed_module = await generate_detailed_module_validated(module, module_context)
-            final_modules.append(detailed_module)
-            yield f"Completed Module {i+1}. Result: {len(detailed_module.get('lessons', []))} Lessons."
+            i, detailed_module = await future
+            final_modules[i] = detailed_module
+            
+            # Immediate Save
+            if curr_id:
+                 master_plan["modules"] = final_modules
+                 save_curriculum_checkpoint(db, curr_id, master_plan)
+                 print(f"  💾 Checkpoint Saved: Module {i+1} completed.", flush=True)
+                 
         except Exception as e:
-            print(f"FAILED Expanding Module {i+1}: {e}")
-            yield f"Failed Module {i+1}: {e}. Skipping temporarily."
-            # We preserve the skeletons? Or just skip? 
-            # If validated failed, let's keep the skeleton but mark as raw.
-            module["error"] = str(e)
-            final_modules.append(module)
+            print(f"  ❌ Critical Error in Module Worker: {e}", flush=True)
 
-        # PERSISTENCE: Update DB after EACH module
-        if curr_id:
-             # Merge current progress with remaining skeletons
-             temp_plan = master_plan.copy()
-             merged_modules = final_modules + master_plan.get("modules", [])[len(final_modules):]
-             temp_plan["modules"] = merged_modules
-             save_curriculum_checkpoint(db, curr_id, temp_plan)
-
-        # PERSISTENCE: Update DB after EACH module
-        if curr_id:
-             # Merge current progress with remaining skeletons
-             temp_plan = master_plan.copy()
-             merged_modules = final_modules + master_plan.get("modules", [])[len(final_modules):]
-             temp_plan["modules"] = merged_modules
-             save_curriculum_checkpoint(db, curr_id, temp_plan)
-
-    master_plan["modules"] = final_modules
+    # Note: Phase 4 (Enrichment) is already parallelized.
     
     master_plan["modules"] = final_modules
+
+
     
     # Phase 4: Enrich
     async for status in enrich_curriculum_generator(master_plan, db, detected_context=detected_context, curriculum_id=curr_id):
@@ -336,7 +385,163 @@ async def execute_map_reduce_strategy(db: Session, videos: list, rules: str, det
         if isinstance(status, dict):
              master_plan = status
 
+    master_plan["id"] = curr_id
     yield master_plan
+
+async def repair_curriculum(db: Session, curriculum_id: int, target_phases: list = None):
+    """
+    Surgical Repair: Scans an existing curriculum for missing data and re-runs specific agents.
+    Yields status updates.
+    modes: ["phase_3", "phase_4"]
+    """
+    if target_phases is None:
+        target_phases = ["phase_3", "phase_4"]
+        
+    yield f" Inspecting Curriculum ID {curriculum_id} for gaps in {target_phases}..."
+    
+    plan_record = db.query(k_models.TrainingCurriculum).get(curriculum_id)
+    if not plan_record:
+        yield {"error": "Curriculum not found."}
+        return
+
+    master_plan = plan_record.structured_json
+    modules = master_plan.get("modules", [])
+    if not modules:
+        yield "Error: No modules found in Master Plan. Cannot repair empty plan."
+        return
+
+    # --- PRE-FETCH RESOURCES ---
+    # Fetch all videos once for both Phase 3 (Repair) and Phase 4 (Context)
+    all_videos = db.query(k_models.VideoCorpus).all()
+    # Map by filename for easy lookup in Phase 3
+    video_map = {v.filename: v for v in all_videos}
+
+    # --- REPAIR PHASE 3: Missing Lessons (Expansion) ---
+    if "phase_3" in target_phases:
+        incomplete_indices = []
+        
+        for i, mod in enumerate(modules):
+            # Check if module has lessons
+            if not mod.get("lessons") or len(mod.get("lessons")) == 0:
+                print(f"  ⚠️ Module {i+1} '{mod.get('title')}' is missing lessons. Marking for repair.", flush=True)
+                incomplete_indices.append(i)
+            elif mod.get("error"):
+                 print(f"  ⚠️ Module {i+1} has error state. Marking for retry.", flush=True)
+                 incomplete_indices.append(i)
+
+        if incomplete_indices:
+            yield f"Found {len(incomplete_indices)} incomplete modules. Launching repair swarm..."
+            
+            # Needed Filenames
+            needed_filenames = set()
+            for i in incomplete_indices:
+                needed_filenames.update(modules[i].get("recommended_source_videos", []))
+            
+            # Worker Definition (Scoped)
+            sem_modules = asyncio.Semaphore(10)
+            async def repair_worker(i, module):
+                 async with sem_modules:
+                    print(f"Reparing Module {i+1}...", flush=True)
+                    source_filenames = module.get("recommended_source_videos", [])
+                    
+                    # Robust Python Matching
+                    module_videos = []
+                    missing_files = []
+                    
+                    for fname in source_filenames:
+                        if fname in video_map:
+                            module_videos.append(video_map[fname])
+                        else:
+                            # Try simple normalization fallback (trim)
+                            found_fuzzy = False
+                            for v in all_videos:
+                                if v.filename.strip() == fname.strip():
+                                    module_videos.append(v)
+                                    found_fuzzy = True
+                                    break
+                            if not found_fuzzy:
+                                missing_files.append(fname)
+
+                    module_context = ""
+                    if module_videos:
+                         module_context = build_full_context(module_videos)
+                    else:
+                         missing_files = source_filenames
+                    
+                    if not module_context:
+                         err_msg = f"Cannot Repair: Missing Context. Source videos {missing_files} not found in library."
+                         print(f"  ❌ {err_msg}", flush=True)
+                         module["error"] = err_msg
+                         return (i, module)
+                    
+                    try:
+                        detailed = await generate_detailed_module_validated(module, module_context)
+                        
+                        # Double Check: If detailed returns 0 lessons, that's also a failure for repair mode
+                        if not detailed.get("lessons") or len(detailed.get("lessons")) == 0:
+                             err_msg = "Generation Failed: LLM returned 0 lessons despite valid context."
+                             module["error"] = err_msg
+                             return (i, module)
+                             
+                        return (i, detailed)
+                    except Exception as e:
+                        module["error"] = str(e)
+                        return (i, module)
+
+            tasks = [repair_worker(i, modules[i]) for i in incomplete_indices]
+            
+            print(f"  🚀 Repair Swarm Active: {len(tasks)} agents.", flush=True)
+            
+            # Wait for ALL to complete (Batch Strategy) - Safer for data integrity
+            results = await asyncio.gather(*tasks)
+            
+            success_count = 0
+            for (i, detailed_module) in results:
+                if detailed_module.get("error"):
+                     yield f"  ❌ Module {i+1} Failed: {detailed_module.get('error')}"
+                     modules[i] = detailed_module
+                else:
+                    modules[i] = detailed_module
+                    lesson_count = len(detailed_module.get('lessons', []))
+                    yield f"  ✅ Repaired Module {i+1} ({lesson_count} lessons)"
+                    success_count += 1
+            
+            # ATOMIC SAVE at the end
+            if success_count > 0:
+                print(f"  💾 Persisting {success_count} repaired modules to DB...", flush=True)
+                master_plan["modules"] = modules
+                save_curriculum_checkpoint(db, curriculum_id, master_plan)
+                yield "  💾 Database Updated."
+            
+            yield "Phase 3 Repair Process Finished."
+        else:
+            yield "Phase 3 (Expansion) looks healthy. No empty modules found."
+    else:
+        yield "Skipping Phase 3 Check."
+
+    # --- REPAIR PHASE 4: Enrichment ---
+    if "phase_4" in target_phases:
+        # Pre-flight Check
+        total_lessons = sum(len(m.get("lessons", [])) for m in master_plan.get("modules", []))
+        if total_lessons == 0:
+            yield "❌ Cannot run Enrichment (Phase 4): No lessons found in this curriculum. Please run Phase 3 first."
+            yield {"type": "error", "msg": "Phase 4 Aborted: No lessons to enrich."}
+            return
+
+        yield "Verifying Enrichment (Phase 4)..."
+        
+        # Quick re-detect or default for context
+        detected_context = await detect_domain_context(all_videos) 
+        
+        async for status in enrich_curriculum_generator(master_plan, db, detected_context=detected_context, curriculum_id=curriculum_id):
+             # Pass through status messages
+             if isinstance(status, str):
+                 yield status
+    else:
+        yield "Skipping Phase 4 Check."
+    
+    yield {"type": "result", "payload": master_plan}
+    yield "Repair Complete."
 
 async def detect_domain_context(videos: list) -> dict:
     """
@@ -425,18 +630,31 @@ async def generate_master_plan(summary_context: str, rules: str, detected_contex
     Target Audience: New Employees.
     
     Requirements:
-    1. Organize the course such that **Each Module corresponds to exactly ONE Video**.
-    2. The Module Title should reflect the Video's topic.
-    3. You must sequence the Modules logically (e.g. foundational videos first).
-    4. For each Module, you MUST strictly set "recommended_source_videos": ["exact_filename.mp4"].
+    1. **Pedagogical Structure (Hybrid Strategy)**:
+       - **GOAL**: Create the BEST possible training path for mastery.
+       - **Strategy**: **Synthesize & Condense**. Do NOT just map 1 video to 1 module.
+       - **Aggregation**: Group multiple related videos into single, cohesive Modules (e.g., "Safety Intro" + "Safety Advanced" -> "Module 1: Complete Safety").
+       - **Efficiency**: Eliminate redundancy. Create the *fastest* path to competence for a New Trainee.
+    
+    2. **Professional Naming (STRICT)**:
+       - **CRITICAL**: Do NOT use filenames (e.g. "preview_day1.mp4") as Titles.
+       - **INVENT** new, professional titles based on the *SKILL* being taught (e.g. "Unit 1: Fundamentals of GIS").
+       - Titles must be "Human-Readable" and "Corporate Training Standard".
+    
+    3. **Module Description**:
+       - Generate a high-quality, 2-sentence overview for the UI.
+
+    4. **Source Mapping**:
+       - You must strictly set "recommended_source_videos": ["exact_filename.mp4"].
     
     Output JSON format:
     {{
-      "course_title": "...",
+      "course_title": "Mastering [Topic]",
       "course_description": "...",
       "modules": [
         {{
-           "title": "Module 1: [Topic from Video A]", 
+           "title": "Module 1: [Professional Title]", 
+           "description": "A high-level overview...",
            "recommended_source_videos": ["video_A.mp4"],
            "lessons": [] 
         }}
@@ -456,50 +674,16 @@ async def generate_detailed_module_validated(module_skeleton: dict, context_str:
     """
     Phase 3: Deep Dive (Validated with Pydantic)
     Strategy:
-    1. Try Standard Full-Context Generation.
-    2. If fails (Context too large/JSON cutoff), Switch to "Split & Recombine" (Chunking).
-    """
-    prompt = f"""
-    You are the Content Developer.
-    We are detailing the Module: "{module_skeleton.get('title')}".
-    
-    Context Data (Transcripts/OCR):
-    {context_str}
-    
-    Task:
-    1. Create detailed Lessons for this module based on the Context.
-    2. You MUST define "source_clips" as OBJECTS (not strings) with "start_time" and "end_time" matching the Context.
-    3. Example: "source_clips": [{{ "start_time": "10.5s", "end_time": "20.0s", "reason": "Demonstrates X" }}]
-    4. Verify timestamps exist.
-    
-    Output JSON (Module Object only):
-    {{
-        "title": "{module_skeleton.get('title')}",
-        "lessons": [ ... (full lesson structure with voiceover_script and source_clips) ... ],
-        "recommended_source_videos": {json.dumps(module_skeleton.get('recommended_source_videos', []))}
-    }}
-    CRITICAL: Return the raw Module object. Do NOT wrap it in a "module" or "lesson" key.
+    1. If context > 1.5M characters, SKIP straight to Chunking (Split & Recombine).
+    2. Else, Try Standard Full-Context Generation.
+    3. If Standard fails, Switch to Chunking.
     """
     
-    try:
-        # Attempt 1: Standard
-        module_model = await llm.generate_structure_validated(
-            system_prompt="You are a meticulous content developer. Focus on timestamp accuracy and strict JSON structure.",
-            user_content=prompt,
-            model_class=Module,
-            model="x-ai/grok-4.1-fast",
-            max_retries=1 
-        )
-        # Validate content fidelity
-        if not module_model.lessons or len(module_model.lessons) == 0:
-            print("  ⚠️ Standard Generation produced 0 lessons. Treating as failure -> Switching to CHUNKING...", flush=True)
-            return await generate_module_in_chunks(module_skeleton, context_str)
-            
-        return module_model.model_dump()
-        
-    except Exception as e:
-        print(f"  ⚠️ Standard Generation Failed: {e}. Switching to SPLIT & RECOMBINE Strategy...", flush=True)
-        return await generate_module_in_chunks(module_skeleton, context_str)
+    # STRATEGY FORCE: Always use Chunking (Map-Reduce) for maximum fidelity and reliability.
+    # User feedback indicates Standard Generation (Single Shot) is prone to JSON errors with this model/prompt complexity.
+    # Chunking has proven 100% reliable.
+    print(f"  ⚡ Enforcing High-Fidelity Chunking Strategy for '{module_skeleton.get('title')}'...", flush=True)
+    return await generate_module_in_chunks(module_skeleton, context_str)
 
 async def generate_module_in_chunks(module_skeleton: dict, context_str: str) -> dict:
     """
@@ -507,8 +691,10 @@ async def generate_module_in_chunks(module_skeleton: dict, context_str: str) -> 
     """
     # 1. Split Context into Chunks
     # Reduced to 50k to ensure LLM attention
-    CHUNK_SIZE = 50000 
-    OVERLAP = 2000
+    # 1. Split Context into Chunks
+    # Increased to 150k to reduce fragmentation (User Feedback: "Too many lessons")
+    CHUNK_SIZE = 150000 
+    OVERLAP = 5000
     
     chunks = []
     start = 0
@@ -520,53 +706,59 @@ async def generate_module_in_chunks(module_skeleton: dict, context_str: str) -> 
             break
         start = end - OVERLAP
         
-    print(f"  🔄 Splitting into {len(chunks)} chunks (50k chars) for High Fidelity...", flush=True)
+    print(f"  🔄 Splitting into {len(chunks)} chunks (150k chars) for High Fidelity...", flush=True)
     
     all_lessons = []
     
     # Parallel Execution
-    sem = asyncio.Semaphore(10) # Process 10 chunks concurrentl
+    # Global Limit = (10 Concurrent Modules) * (5 Chunks/Module) = 50 Total Agents.
+    sem = asyncio.Semaphore(5) 
     
     async def process_chunk(i, chunk):
         async with sem:
-            print(f"  📝 Processing Chunk {i+1}/{len(chunks)}...", flush=True)
-            chunk_prompt = f"""
-            You are the Content Developer.
-            We are detailing a SECTION of the Module: "{module_skeleton.get('title')}".
-            
-            PARTIAL Context Data (Part {i+1}/{len(chunks)}):
-            {chunk}
-            
-            Task:
-            1. Extract and create detailed Lessons FOUND ONLY IN THIS PARTIAL CONTEXT.
-            2. Do not hallucinate lessons from other parts.
-            3. Include "source_clips" as OBJECTS: [{{ "start_time": "...", "end_time": "..." }}]. DO NOT use plain strings.
-            4. You MUST include a "voiceover_script" for every lesson.
-            5. You MUST use the key "title" for the lesson name (do NOT use "lesson_title").
-            
-            Output JSON:
-            {{
-                "title": "{module_skeleton.get('title')} (Part {i+1})",
-                "lessons": [ ... ]
-            }}
-            """
-            
-            try:
-                partial_module = await llm.generate_structure_validated(
-                    system_prompt="You are a meticulous content developer. Extract lessons from this specific segment.",
-                    user_content=chunk_prompt,
-                    model_class=Module,
-                    model="x-ai/grok-4.1-fast"
-                )
-                count = len(partial_module.lessons)
-                if count > 0:
-                    print(f"  ✅ Chunk {i+1} yielded {count} lessons.", flush=True)
-                else:
-                     print(f"  ⚠️ Chunk {i+1} yielded 0 lessons.", flush=True)
-                return partial_module.lessons
-            except Exception as e:
-                print(f"  ❌ Failed to process chunk {i+1}: {e}", flush=True)
-                return []
+            for attempt in range(3):
+                try:
+                    if attempt > 0:
+                        print(f"  ⚠️ Retry {attempt+1}/3 for Chunk {i+1}...", flush=True)
+                    else:
+                        print(f"  📝 Processing Chunk {i+1}/{len(chunks)}...", flush=True)
+                        
+                    chunk_prompt = f"""
+                    You are the Content Developer.
+                    We are detailing a SECTION of the Module: "{module_skeleton.get('title')}".
+                    
+                    PARTIAL Context Data (Part {i+1}/{len(chunks)}):
+                    {chunk}
+                    
+                    Task:
+                    1. Extract and create detailed Lessons FOUND ONLY IN THIS PARTIAL CONTEXT.
+                    2. Do not hallucinate lessons from other parts.
+                    3. CRITICAL: Include "source_clips" as OBJECTS with "video_filename", "start_time", and "end_time".
+                    4. You MUST include a "voiceover_script" for every lesson.
+                    5. You MUST use the key "title" for the lesson name (do NOT use "lesson_title").
+                    
+                    Output JSON:
+                    {{
+                      "lessons": [ ... ]
+                    }}
+                    """
+                    
+                    result = await llm.generate_structure(
+                        system_prompt="Extract lessons from this context chunk.",
+                        user_content=chunk_prompt,
+                        model="x-ai/grok-4.1-fast"
+                    )
+                    
+                    lessons = result.get("lessons", [])
+                    return lessons
+                    
+                except Exception as e:
+                    print(f"  ❌ Chunk {i+1} Failed (Attempt {attempt+1}): {e}", flush=True)
+                    if attempt == 2:
+                        print(f"  🚨 Chunk {i+1} PERMANENTLY FAILED after 3 attempts.", flush=True)
+                        return []
+                    await asyncio.sleep(1 * (attempt + 1)) # Backoff
+            return []
 
     tasks = [process_chunk(i, chunk) for i, chunk in enumerate(chunks)]
     results = await asyncio.gather(*tasks)
@@ -574,12 +766,88 @@ async def generate_module_in_chunks(module_skeleton: dict, context_str: str) -> 
     # Flatten results
     for lesson_list in results:
         all_lessons.extend(lesson_list)
+
+    # Sanitize lessons (Defensive Coding against malformed LLM outputs)
+    sanitized_lessons = []
+    for l in all_lessons:
+        if isinstance(l, dict):
+            sanitized_lessons.append(l)
+        elif isinstance(l, str):
+            # Fallback for string outputs (rare but possible)
+            sanitized_lessons.append({
+                "title": l, 
+                "learning_objective": "Recovered from raw text",
+                "voiceover_script": "",
+                "source_clips": []
+            })
+    all_lessons = sanitized_lessons
+        
+    # --- CONSOLIDATION PHASE ---
+    if len(all_lessons) > 20:
+        print(f"  ⚠️ Generated {len(all_lessons)} micro-lessons. Triggering AI Consolidation...", flush=True)
+        try:
+             # Just map titles/objectives for the prompt to save tokens
+             summary_list = [{"id": idx, "title": l.get("title"), "objective": l.get("learning_objective", "")} for idx, l in enumerate(all_lessons)]
+             
+             consolidation_prompt = f"""
+             You are a Senior Curriculum Architect.
+             We have generated {len(all_lessons)} fragmented micro-lessons for "{module_skeleton.get('title')}".
+             
+             Task:
+             1. Consolidate these micro-lessons into a cohesive, high-impact course of **10-15 Lessons**.
+             2. Group related micro-lessons together.
+             
+             Input Micro-Lessons:
+             {json.dumps(summary_list)}
+             
+             Output JSON Structure:
+             {{
+                 "consolidated_lessons": [
+                     {{
+                         "title": "New Lesson Title",
+                         "learning_objective": "New Objective",
+                         "source_lesson_ids": [1, 2, 5]  // List of IDs from input list to merge
+                     }}
+                 ]
+             }}
+             """
+             
+             structure = await llm.generate_structure(
+                 system_prompt="Consolidate lessons into a perfect flow.",
+                 user_content=consolidation_prompt,
+                 model="x-ai/grok-4.1-fast"
+             )
+             
+             final_lessons = []
+             for item in structure.get("consolidated_lessons", []):
+                 merged_clips = []
+                 merged_script = ""
+                 
+                 for source_id in item.get("source_lesson_ids", []):
+                     if 0 <= source_id < len(all_lessons):
+                         source = all_lessons[source_id]
+                         merged_clips.extend(source.get("source_clips", []))
+                         merged_script += "\n\n" + source.get("voiceover_script", "")
+                 
+                 # Deduplicate clips? Maybe simplistic for now.
+                 final_lessons.append({
+                     "title": item.get("title"),
+                     "learning_objective": item.get("learning_objective"),
+                     "voiceover_script": merged_script.strip(),
+                     "source_clips": merged_clips # Keep all clips
+                 })
+                 
+             print(f"  ✨ Consolidated into {len(final_lessons)} master lessons.", flush=True)
+             all_lessons = final_lessons
+             
+        except Exception as e:
+            print(f"  ❌ Consolidation Failed: {e}. Falling back to raw list.", flush=True)
             
     # Merge
     print(f"  ✅ Recombined {len(all_lessons)} lessons from {len(chunks)} chunks.", flush=True)
     return {
         "title": module_skeleton.get("title"),
-        "lessons": [l.model_dump() for l in all_lessons],
+        "lessons": all_lessons, # Already dicts
         "recommended_source_videos": module_skeleton.get("recommended_source_videos", [])
     }
 

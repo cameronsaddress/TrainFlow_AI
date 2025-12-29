@@ -8,6 +8,15 @@ app = FastAPI(
 )
 
 from fastapi.staticfiles import StaticFiles
+import logging
+
+# Silence noisy access logs
+class EndpointFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+        return "/api/process/gpu-status" not in msg and "/api/curriculum/videos" not in msg
+
+logging.getLogger("uvicorn.access").addFilter(EndpointFilter())
 
 # CORS Middleware setup
 origins = [

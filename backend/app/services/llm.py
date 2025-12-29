@@ -20,7 +20,7 @@ print(f"Initializing LLM Client: {BASE_URL} with model {MODEL_NAME}")
 client = AsyncOpenAI(
     base_url=BASE_URL,
     api_key=API_KEY,
-    timeout=120.0
+    timeout=300.0
 )
 
 STEP_PROMPT = """

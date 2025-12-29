@@ -1,0 +1,16 @@
+Initializing LLM Client: https://openrouter.ai/api/v1 with model x-ai/grok-4.1-fast
+--- STARTING STAGE 1: GROK GENERATION (RESUME) ---
+Checking for cached text in Document 10...
+Using cached text (2265889 chars).
+Source Text Length: 2265889 chars.
+ found existing course 'Distribution Overhead & Underground Construction Standards' (ID: 4). returning it.
+Resuming Content Generation for existing course...
+Pipeline Failed: cannot access local variable 'asyncio' where it is not associated with a value
+Traceback (most recent call last):
+  File "/app/tools/run_pipeline_v2.py", line 17, in main
+    course = await hybrid_pipeline_v2.stage_1_generate_course(db, doc_id=10)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/services/hybrid_pipeline_v2.py", line 408, in stage_1_generate_course
+    semaphore = asyncio.Semaphore(20)
+                ^^^^^^^
+UnboundLocalError: cannot access local variable 'asyncio' where it is not associated with a value

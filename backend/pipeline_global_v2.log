@@ -1,0 +1,6 @@
+Initializing LLM Client: https://openrouter.ai/api/v1 with model x-ai/grok-4.1-fast
+--- STARTING STAGE 2: VIDEO FUSION ---
+Global Video Context Built: 617258 chars.
+Executing GLOBAL VIDEO MATCH (This may take a minute)...
+Global Enrichment Complete. Applied 19 matches across the course.
+--- PIPELINE COMPLETE ---

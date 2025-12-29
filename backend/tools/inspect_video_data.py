@@ -1,36 +1,22 @@
-
-import os
 import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from app.models import knowledge as k_models
+sys.path.append("/app")
+from app.db import SessionLocal
+from app.models.knowledge import VideoCorpus
+import json
 
-# Setup DB
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@db:5432/trainflow")
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(bind=engine)
 db = SessionLocal()
+video = db.query(VideoCorpus).filter(VideoCorpus.transcript_json != None).first()
 
-TARGET_FILES = [
-    "Jiu_Jitsu_For_Dummies_-_An_Introduction_To_Brazilian_Jiu_Jitsu.mp4",
-    "An_Alternative_To_Pulling_Guard_When_Grappling_On_The_Knees.mp4",
-    "The_Best_Jiujitsu_Move_for_Total_Beginners_KEENANONLINE.COM.mp4",
-    "The_3_Most_Important_Jiu_Jitsu_Techniques_For_A_BJJ_White_Belt_by_John_Danaher.mp4"
-]
-
-def inspect():
-    print(f"{'ID':<5} | {'Status':<10} | {'Docs?':<5} | {'Transcript Len':<15} | {'Filename'}")
-    print("-" * 100)
+if video:
+    print(f"Found Video: {video.filename}")
+    print(f"Transcript JSON keys: {video.transcript_json.keys() if isinstance(video.transcript_json, dict) else 'Not a dict'}")
+    # Print sample to see structure
+    print(json.dumps(video.transcript_json, indent=2)[:500])
+else:
+    print("No videos with transcript_json found.")
     
-    videos = db.query(k_models.VideoCorpus).filter(k_models.VideoCorpus.filename.in_(TARGET_FILES)).all()
-    
-    for v in videos:
-        t_text = v.transcript_text or ""
-        o_text = v.ocr_text or ""
-        t_len = len(t_text)
-        has_docs = "YES" if t_len > 0 else "NO"
-        
-        print(f"{v.id:<5} | {v.status:<10} | {has_docs:<5} | {t_len:<15} | {v.filename}")
-
-if __name__ == "__main__":
-    inspect()
+# check transcript_text
+video_text = db.query(VideoCorpus).filter(VideoCorpus.transcript_text != None).first()
+if video_text:
+    print(f"\nFound Video with Text: {video_text.filename}")
+    print(f"Text Preview: {video_text.transcript_text[:200]}")

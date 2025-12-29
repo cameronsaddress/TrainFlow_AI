@@ -9,52 +9,7 @@ import { SmartAssistSidebar } from '@/components/SmartAssistSidebar';
 import { LessonQuizTile } from '@/components/LessonQuizTile'; // Feature: RAG Context
 import { CourseDashboard } from './CourseDashboard';
 
-interface Lesson {
-    title: string;
-    learning_objective: string;
-    voiceover_script: string;
-    transcript_text?: string; // Hydrated from VideoCorpus
-    source_clips: Array<{
-        video_filename: string;
-        start_time: number;
-        end_time: number;
-        reason: string;
-    }>;
-    quiz?: {
-        questions: Array<{
-            question: string;
-            options: string[];
-            correct_answer: string;
-            explanation?: string;
-        }>;
-    };
-}
-
-interface Module {
-    title: string;
-    recommended_source_videos: string[];
-    lessons: Lesson[];
-    // Computed for UI
-    description?: string;
-}
-
-interface Curriculum {
-    id: number;
-    title: string;
-    structured_json: {
-        course_title: string;
-        course_description: string;
-        modules: Module[];
-    };
-    created_at: string;
-}
-
-interface VideoUnit {
-    source: string; // The video filename
-    title: string; // Friendly title derived from filename
-    modules: Module[];
-    duration: number; // Approximate from lesson clips
-}
+import { Curriculum, Module, VideoUnit } from '@/types/curriculum';
 
 const getApiUrl = () => {
     if (typeof window !== 'undefined') {
@@ -257,9 +212,16 @@ export default function CourseView() {
                             duration: Math.round(grouped[key].reduce((acc, m) => {
                                 return acc + m.lessons.reduce((lAcc, lesson) => {
                                     // Sum duration of all clips in lesson
-                                    const lessonDuration = lesson.source_clips.reduce((cAcc, clip) => {
-                                        const start = Number(clip.start_time) || 0;
-                                        const end = Number(clip.end_time) || 0;
+                                    const lessonDuration = lesson.source_clips.reduce((cAcc, clip: any) => {
+                                        // ADAPTER: Handle DB keys vs UI keys
+                                        const start = Number(clip.start_time ?? clip.start) || 0;
+                                        const end = Number(clip.end_time ?? clip.end) || 0;
+
+                                        // Normalize for UI usage downstream (mutate for local state consistency)
+                                        if (!clip.video_filename && clip.filename) clip.video_filename = clip.filename;
+                                        if (clip.start_time === undefined && clip.start !== undefined) clip.start_time = clip.start;
+                                        if (clip.end_time === undefined && clip.end !== undefined) clip.end_time = clip.end;
+
                                         // Ensure positive duration
                                         return cAcc + Math.max(0, end - start);
                                     }, 0);
@@ -517,14 +479,7 @@ export default function CourseView() {
                                                             </p>
                                                         </div>
 
-                                                        {/* Instructor (Transcript) - Hidden by request
-                                                    <div>
-                                                        <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3">Instructor (Original Transcript)</h4>
-                                                        <div className="text-white/60 font-mono text-xs leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar bg-black/20 p-4 rounded-xl border border-white/5">
-                                                            {lesson.transcript_text || "Transcript not available for this segment."}
-                                                        </div>
-                                                    </div> 
-                                                    */}
+
                                                     </div>
                                                 </div>
                                             </div>
