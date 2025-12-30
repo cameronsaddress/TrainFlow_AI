@@ -348,9 +348,13 @@ export default function CourseView() {
     // If no lesson is actively selected (expandedLessonIdx === null), show the list.
     if (expandedLessonIdx === null) {
         return (
-            <div className="min-h-screen bg-[#050505] text-white font-sans">
+            <div className="min-h-screen bg-[#020202] text-white font-sans selection:bg-blue-500/30">
+
+                {/* Ambient Backgrounds */}
+                <div className="fixed top-0 left-0 w-full h-[500px] bg-gradient-to-b from-blue-900/10 to-transparent pointer-events-none" />
+
                 {/* Header */}
-                <header className="h-20 border-b border-white/10 flex items-center px-8 bg-[#0a0a0a] sticky top-0 z-40 backdrop-blur-md bg-opacity-80">
+                <header className="h-20 border-b border-white/5 flex items-center px-8 bg-[#020202]/80 sticky top-0 z-40 backdrop-blur-md">
                     <button
                         onClick={() => setSelectedUnit(null)}
                         className="mr-6 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-all group"
@@ -359,66 +363,125 @@ export default function CourseView() {
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
                     </button>
                     <div>
-                        <div className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-1">Current Unit</div>
-                        <h1 className="text-xl font-bold">{selectedUnit.title}</h1>
+                        <div className="text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-1 flex items-center gap-2">
+                            <Layers className="w-3 h-3" />
+                            Current Unit
+                        </div>
+                        <h1 className="text-xl font-bold text-white tracking-tight">{selectedUnit.title}</h1>
                     </div>
                 </header>
 
                 {/* Content */}
-                <div className="max-w-4xl mx-auto py-12 px-6">
-                    {selectedUnit.modules.map((mod, mIdx) => {
-                        const isExpanded = mIdx === currentModuleIdx;
+                <div className="max-w-5xl mx-auto py-12 px-6">
 
-                        return (
-                            <div key={mIdx} className={`mb-6 rounded-2xl border transition-all duration-300 overflow-hidden ${isExpanded ? 'bg-[#111] border-white/10 shadow-2xl' : 'bg-transparent border-transparent hover:bg-white/5'}`}>
+                    <div className="flex items-center justify-between mb-8 px-2">
+                        <div className="flex items-center gap-3">
+                            <div className="h-px w-8 bg-blue-500/50" />
+                            <span className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase">Lesson Index</span>
+                        </div>
+                        <span className="text-[10px] font-mono text-white/20">
+                            {selectedUnit.modules.length} MODULES • {(selectedUnit as any).duration || 0} MIN
+                        </span>
+                    </div>
 
-                                {/* Module Header (Accordion Trigger) */}
-                                <button
-                                    onClick={() => setCurrentModuleIdx(mIdx)}
-                                    className="w-full flex items-center justify-between p-6 text-left"
+                    <div className="space-y-4">
+                        {selectedUnit.modules.map((mod, mIdx) => {
+                            const isExpanded = mIdx === currentModuleIdx;
+
+                            return (
+                                <div
+                                    key={mIdx}
+                                    className={`rounded-xl border transition-all duration-500 overflow-hidden ${isExpanded
+                                        ? 'bg-[#080808] border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.1)] relative z-10'
+                                        : 'bg-[#050505] border-white/5 hover:border-blue-500/20 hover:bg-[#080808]'
+                                        }`}
                                 >
-                                    <div className="flex items-center gap-4">
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${isExpanded ? 'bg-blue-600 text-white' : 'bg-white/10 text-white/40'}`}>
-                                            {mIdx + 1}
-                                        </div>
-                                        <div>
-                                            <h2 className={`font-bold text-lg ${isExpanded ? 'text-white' : 'text-white/60'}`}>{mod.title}</h2>
-                                            {!isExpanded && (
-                                                <p className="text-xs text-white/30 mt-1">{mod.lessons.length} Lessons</p>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className={`text-white/30 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                                        <ChevronDown className="w-5 h-5" />
-                                    </div>
-                                </button>
 
-                                {/* Animated Lesson List */}
-                                {isExpanded && (
-                                    <div className="border-t border-white/5 bg-black/20">
-                                        {mod.lessons.map((lesson, lIdx) => (
-                                            <button
-                                                key={lIdx}
-                                                onClick={() => setExpandedLessonIdx(lIdx)}
-                                                className="w-full flex items-center p-5 pl-20 hover:bg-blue-500/5 group transition-colors border-b border-white/5 last:border-0"
-                                            >
-                                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mr-4 group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-colors shrink-0">
-                                                    <PlayCircle className="w-4 h-4" />
+                                    {/* Module Header (Accordion Trigger) */}
+                                    <button
+                                        onClick={() => setCurrentModuleIdx(mIdx)}
+                                        className="group w-full flex items-center gap-6 p-4 relative"
+                                    >
+                                        {/* Index Column */}
+                                        <div className="flex-shrink-0 w-12 text-center">
+                                            <span className={`font-mono text-[10px] tracking-wider transition-colors ${isExpanded ? 'text-blue-400 font-bold' : 'text-blue-500/40 group-hover:text-blue-400'}`}>
+                                                {String(mIdx + 1).padStart(2, '0')}
+                                            </span>
+                                        </div>
+
+                                        {/* Icon */}
+                                        <div className={`flex-shrink-0 p-2 rounded-lg transition-colors ${isExpanded ? 'bg-blue-500/20' : 'bg-white/5 group-hover:bg-blue-500/10'}`}>
+                                            <Layers className={`w-5 h-5 transition-colors ${isExpanded ? 'text-blue-400' : 'text-white/20 group-hover:text-blue-400'}`} />
+                                        </div>
+
+                                        {/* Title Column */}
+                                        <div className="flex-1 min-w-0 text-left">
+                                            <h3 className={`text-base font-bold truncate pr-4 transition-colors ${isExpanded ? 'text-white' : 'text-white/80 group-hover:text-white'}`}>
+                                                {mod.title}
+                                            </h3>
+                                        </div>
+
+                                        {/* Metrics & Chevron */}
+                                        <div className="flex items-center gap-6 pr-2">
+                                            <div className={`hidden md:flex items-center gap-2 text-xs font-mono transition-colors ${isExpanded ? 'text-white/50' : 'text-white/20 group-hover:text-white/40'}`}>
+                                                <div className="flex items-center gap-2">
+                                                    <Layers className="w-3 h-3" />
+                                                    <span>{mod.lessons.length} Lessons</span>
                                                 </div>
-                                                <div className="text-left">
-                                                    <h3 className="font-bold text-white/80 group-hover:text-white text-sm">{lesson.title}</h3>
-                                                    <p className="text-xs text-white/40 mt-1 line-clamp-1 max-w-md">{lesson.learning_objective}</p>
-                                                </div>
-                                                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0 duration-300">
-                                                    <ArrowRight className="w-4 h-4 text-blue-400" />
-                                                </div>
-                                            </button>
-                                        ))}
+                                            </div>
+
+                                            <div className={`w-px h-3 bg-white/10 hidden md:block`} />
+
+                                            <div className={`p-1.5 rounded-full border border-transparent transition-all duration-300 ${isExpanded ? 'rotate-180 bg-blue-500/20 text-blue-400' : 'text-white/20 group-hover:text-white group-hover:bg-white/5'}`}>
+                                                <ChevronDown className="w-4 h-4" />
+                                            </div>
+                                        </div>
+
+                                        {/* Bottom highlight for collapsed state */}
+                                        {!isExpanded && (
+                                            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/50 transition-all duration-700" />
+                                        )}
+                                    </button>
+
+                                    {/* Animated Lesson List */}
+                                    <div className={`transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <div className="border-t border-white/5 bg-black/20 pb-2">
+                                            {mod.lessons.map((lesson, lIdx) => (
+                                                <button
+                                                    key={lIdx}
+                                                    onClick={() => setExpandedLessonIdx(lIdx)}
+                                                    className="w-full flex items-center p-4 pl-[4.5rem] hover:bg-blue-500/5 group/lesson transition-colors border-b border-white/5 last:border-0 relative"
+                                                >
+                                                    {/* Connecting Line */}
+                                                    <div className="absolute left-[2.8rem] top-0 bottom-0 w-px bg-white/5 group-hover/lesson:bg-blue-500/20 transition-colors" />
+                                                    <div className="absolute left-[2.8rem] top-1/2 -translate-y-1/2 w-3 h-px bg-white/5 group-hover/lesson:bg-blue-500/20 transition-colors" />
+
+                                                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mr-4 group-hover/lesson:bg-blue-500/20 group-hover/lesson:text-blue-400 transition-colors shrink-0 text-white/20 border border-white/5 group-hover/lesson:border-blue-500/20">
+                                                        <PlayCircle className="w-4 h-4" />
+                                                    </div>
+
+                                                    <div className="text-left flex-1 min-w-0 pr-4">
+                                                        <h3 className="font-bold text-white/70 group-hover/lesson:text-white text-sm truncate transition-colors flex items-center gap-2">
+                                                            {lesson.title}
+                                                            {lesson.source_clips && lesson.source_clips.length > 0 && (
+                                                                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500/10 text-blue-400" title="Has Video Content">
+                                                                    <Video className="w-3 h-3" />
+                                                                </div>
+                                                            )}
+                                                        </h3>
+                                                    </div>
+
+                                                    <div className="ml-auto opacity-0 group-hover/lesson:opacity-100 transition-opacity transform -translate-x-2 group-hover/lesson:translate-x-0 duration-300 pr-4">
+                                                        <ArrowRight className="w-4 h-4 text-blue-400" />
+                                                    </div>
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                )}
-                            </div>
-                        );
-                    })}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         );
@@ -521,6 +584,24 @@ export default function CourseView() {
                 <div className="flex-1 overflow-y-auto p-8 pb-32">
                     <div className="max-w-2xl mx-auto space-y-8 animate-fade-in-up">
 
+                        {/* 0. Video Context (Moved to Top) */}
+                        {activeLesson.source_clips && activeLesson.source_clips.length > 0 && (
+                            <div className="mb-8">
+                                <h4 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <Video className="w-4 h-4" />
+                                    Related Video Context
+                                </h4>
+                                <div className="rounded-xl overflow-hidden bg-black aspect-video relative border border-white/10 shadow-2xl">
+                                    <VideoPlayer
+                                        src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(activeLesson.source_clips[0].video_filename)}&start=${activeLesson.source_clips[0].start_time}&end=${activeLesson.source_clips[0].end_time + 180}`}
+                                        className="w-full h-full object-contain cursor-pointer"
+                                        autoplay={false}
+                                        onProgress={(t) => handleVideoProgress(activeLesson.source_clips[0].video_filename, t)}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
                         {/* 1. Learning Objective (Hero) */}
                         <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-900/20 to-transparent border border-blue-500/20">
                             <h4 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2">
@@ -576,7 +657,8 @@ export default function CourseView() {
                                             safety: 'border-red-500/50 bg-red-900/10 text-red-100',
                                             compliance: 'border-orange-500/50 bg-orange-900/10 text-orange-100',
                                             critical_info: 'border-blue-500/50 bg-blue-900/10 text-blue-100',
-                                            tip: 'border-green-500/50 bg-green-900/10 text-green-100'
+                                            tip: 'border-green-500/50 bg-green-900/10 text-green-100',
+                                            warning: 'border-yellow-500/50 bg-yellow-900/10 text-yellow-100'
                                         };
                                         const style = colorMap[block.alert_type] || colorMap['critical_info'];
                                         return (
@@ -608,7 +690,7 @@ export default function CourseView() {
                                                         <tbody className="divide-y divide-white/5">
                                                             {block.rows.map((row: any, rIdx: number) => (
                                                                 <tr key={rIdx} className="hover:bg-white/5 transition-colors">
-                                                                    {row.values.map((v: string, cIdx: number) => (
+                                                                    {(Array.isArray(row) ? row : row.values).map((v: string, cIdx: number) => (
                                                                         <td key={cIdx} className="px-6 py-4 text-white/80">{v}</td>
                                                                     ))}
                                                                 </tr>
@@ -657,20 +739,7 @@ export default function CourseView() {
                             </div>
                         )}
 
-                        {/* 4. Video (Optional Footer) */}
-                        {activeLesson.source_clips && activeLesson.source_clips.length > 0 && (
-                            <div className="pt-8 mt-8 border-t border-white/10 opacity-60 hover:opacity-100 transition-opacity">
-                                <h4 className="text-xs font-bold text-white/50 uppercase mb-4">Related Video Context</h4>
-                                <div className="rounded-xl overflow-hidden bg-black aspect-video relative border border-white/10">
-                                    <VideoPlayer
-                                        src={`${getApiUrl()}/api/curriculum/stream?filename=${encodeURIComponent(activeLesson.source_clips[0].video_filename)}&start=${activeLesson.source_clips[0].start_time}&end=${activeLesson.source_clips[0].end_time + 180}`}
-                                        className="w-full h-full object-contain cursor-pointer"
-                                        autoplay={false}
-                                        onProgress={(t) => handleVideoProgress(activeLesson.source_clips[0].video_filename, t)}
-                                    />
-                                </div>
-                            </div>
-                        )}
+
 
                         <div className="h-32" /> {/* Spacer */}
                     </div>

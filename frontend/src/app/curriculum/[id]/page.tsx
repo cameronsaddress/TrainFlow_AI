@@ -425,9 +425,14 @@ export default function CourseView() {
                                                 </div>
 
                                                 <div className="flex-1">
-                                                    <h3 className={`text-xl font-semibold mb-1 transition-colors ${isExpanded ? 'text-white' : 'text-white/80'}`}>
-                                                        {lesson.title}
-                                                    </h3>
+                                                    <div className="flex items-center gap-3">
+                                                        <h3 className={`text-xl font-semibold mb-1 transition-colors ${isExpanded ? 'text-white' : 'text-white/80'}`}>
+                                                            {lesson.title}
+                                                        </h3>
+                                                        {(lesson.source_clips && lesson.source_clips.length > 0) && (
+                                                            <Video className="w-5 h-5 text-blue-500" />
+                                                        )}
+                                                    </div>
                                                     {!isExpanded && (
                                                         <div className="flex items-center gap-4 text-sm text-white/40">
                                                             <span className="flex items-center gap-1.5">

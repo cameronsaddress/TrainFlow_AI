@@ -12,8 +12,9 @@ TrainFlow AI is an advanced "Field-to-Office" automation system that transforms 
 
 ## 🚨 Critical Rules & Standards
 
-1.  **Grok Model**: ALWAYS use `x-ai/grok-4.1-fast` for all high-speed inference tasks (Search, Reasoning). This is the mandated model for the 2M context window.
-2.  **Context Window**: Leverage the 2M token window of Grok 4.1 Fast for full-course context analysis.
+1.  **Grok Model**: ALWAYS use `x-ai/grok-4.1-fast` for all high-speed inference tasks. This model provides a **2M token context window** and a **30k output token limit**.
+2.  **Reasoning**: Reasoning MUST be **DISABLED** to minimize latency and cost.
+3.  **Context Window**: Leverage the 2M token window of Grok 4.1 Fast for full-course context analysis.
 
 ---
 
@@ -180,3 +181,83 @@ This repository includes documentation on database snapshots. Critical backups a
       cat trainflow_backup_complete.sql | docker exec -i trainflow-db psql -U user trainflow
       ```
 
+
+---
+
+## 📍 Key Data Locations
+
+### Hybrid Curriculum (Course 4)
+The Hybrid Course "Distribution Overhead & Underground Construction Standards" (ID 4) stores its full lesson structure (including titles) in a single JSON block.
+
+- **Table**: `hybrid_curricula`
+- **Row ID**: `4`
+- **Column**: `structured_json`
+
+- **JSON Path**: `modules[].lessons[].title`
+- **PDF Page Number Path**: `modules[].lessons[].pdf_reference.page_number`
+
+**Query to verify titles:**
+```sql
+SELECT jsonb_path_query(structured_json::jsonb, '$.modules[*].lessons[*].title') 
+FROM hybrid_curricula 
+WHERE id=4;
+```
+
+
+**Query to verify page numbers:**
+```sql
+SELECT jsonb_path_query(structured_json::jsonb, '$.modules[*].lessons[*].pdf_reference.page_number') 
+FROM hybrid_curricula 
+WHERE id=4;
+```
+
+### Video Transcripts & Timestamps
+Full video transcripts with aligned timestamps are stored in the specialized `video_corpus` table, not the generic `videos` table.
+
+- **Table**: `video_corpus`
+- **Column**: `transcript_json`
+- **JSON Structure**: 
+    ```json
+    {
+      "timeline": [
+        {"word": "example", "start_ts": 0.5, "end_ts": 1.2}
+      ]
+    }
+    ```
+
+
+**Query to preview timestamps:**
+```sql
+SELECT id, filename, substring(transcript_json::text, 1, 300) 
+FROM video_corpus 
+WHERE length(transcript_json::text) > 50 
+LIMIT 5;
+```
+
+### Video Categories (BJJ vs Utility)
+Videos are tagged with a `category` field in `metadata_json` to distinguish between Utility training and BJJ content.
+
+- **Table**: `video_corpus`
+- **Column**: `metadata_json`
+- **JSON Path**: `category` ("utility" or "bjj")
+
+
+**Query to filter by category:**
+```sql
+SELECT id, filename, metadata_json->>'category' as category 
+FROM video_corpus 
+WHERE metadata_json->>'category' = 'bjj';
+```
+
+### Hybrid Course Metadata
+To find the high-level details (Title, Module/Lesson Counts) for the main Utility Course (ID 4):
+
+- **Table**: `hybrid_curricula`
+- **ID**: `4`
+
+**Query to verify course details:**
+```sql
+SELECT id, title, total_modules, total_lessons, description 
+FROM hybrid_curricula 
+WHERE id=4;
+```
