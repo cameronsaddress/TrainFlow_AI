@@ -1,0 +1,139 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "ADFO Cables",
+      "learning_objective": "Understand the installation requirements and safety considerations for All-Dielectric Fiber Optic (ADFO) cables in the supply space of joint use poles.",
+      "voiceover_summary": "ADFO cables can be installed in the supply space under specific agreements, but must maintain strict clearances and worker qualifications to ensure safety.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "ADFO cables are entirely dielectric and may be placed in supply space only with pre-2010 agreements.",
+        "Minimum 12-inch separation from electric neutral/secondary and 30-inch from primary.",
+        "Sag to match secondary cable; workers must be qualified for supply space.",
+        "No metallic components allowed in ADFO cables."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "All-Dielectric Fiber Optic (ADFO) cables are permitted in the supply space of distribution poles up to 34.5 kV only under agreements made prior to January 1, 2010. These cables must be entirely dielectric, including the messenger."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Installation Restrictions",
+          "content": "ADFO cables in supply space require qualified workers per NESC and OSHA. Maintain 12-inch separation from electric neutral/secondary cables and 30-inch from primary conductors."
+        },
+        {
+          "type": "table",
+          "title": "ADFO Clearance Requirements",
+          "headers": ["Location", "Minimum Clearance (inches)"],
+          "rows": [
+            ["To Electric Neutral/Secondary", "12"],
+            ["To Primary Conductors", "30"],
+            ["Sag Matching", "Match secondary sag at 60°F"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "ADFO Safety Check",
+          "question": "What is the minimum clearance required between ADFO cable and primary conductors?",
+          "options": [
+            {"text": "6 inches", "is_correct": false, "explanation": "Too low; risks flashover."},
+            {"text": "12 inches", "is_correct": false, "explanation": "For neutral/secondary only."},
+            {"text": "30 inches", "is_correct": true, "explanation": "Required for safety in supply space."},
+            {"text": "No clearance needed", "is_correct": false, "explanation": "Must follow NESC rules."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Security Cameras",
+      "learning_objective": "Learn the installation guidelines for security and surveillance cameras on wood distribution poles, including responsibilities and safety measures.",
+      "voiceover_summary": "Security cameras on poles require metered power, specific mounting, and compliance with safety clearances to protect workers and infrastructure.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Cameras mounted 12 inches below lowest communication cable.",
+        "Power supply max 670 lbs; antenna max 110 lbs at 104 inches height.",
+        "Customer provides weatherhead, conduit, socket; National Grid connects service.",
+        "Grounding and labeling required; occupancy fees apply."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Wood distribution poles can host security/surveillance cameras with max power supply weight 670 lbs and antenna 110 lbs at 104 inches max height. Install below communication cables."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Mounting Safety",
+          "content": "Maintain 12-inch clearance below communication cables. Use qualified workers; comply with NESC/OSHA."
+        },
+        {
+          "type": "table",
+          "title": "Division of Responsibilities",
+          "headers": ["Item", "Customer/Contractor", "National Grid"],
+          "rows": [
+            ["Weatherhead & Socket", "Furnish/Install", ""],
+            ["Service Drop", "", "Furnish/Install"],
+            ["Meter", "", "Set"],
+            ["Ground Rod", "Furnish/Install", ""]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Camera Installation Quiz",
+          "question": "Who installs the ground rod for security cameras?",
+          "options": [
+            {"text": "National Grid", "is_correct": false, "explanation": "Customer responsibility."},
+            {"text": "Customer/Contractor", "is_correct": true, "explanation": "Customer furnishes and installs."},
+            {"text": "Communication Company", "is_correct": false, "explanation": "Not applicable."},
+            {"text": "No grounding needed", "is_correct": false, "explanation": "Required for safety."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Drawings and Applications",
+      "learning_objective": "Identify key drawings and applications for joint use pole configurations, including space allocation and attachment clearances.",
+      "voiceover_summary": "Joint use poles follow specific space allocations and drawings for safe multi-party attachments, ensuring compliance with agreements.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use space allocation tables for pole heights (e.g., 35/35 ft: Tel 2.5 ft, Elec 5 ft).",
+        "Maintain climbing space and NESC clearances.",
+        "Drawings cover relative levels, air dryers, metering.",
+        "Consult agreements for ownership and costs."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Joint use poles allocate space: e.g., 40 ft pole (40/40): Tel 2.5 ft, Licensee 1 ft, Elec 6.5 ft. Drawings detail attachments like 17-100 for allocation, 17-102 for levels."
+        },
+        {
+          "type": "table",
+          "title": "Sample Pole Space Allocation (MA 40 ft Pole)",
+          "headers": ["Ownership", "Tel Space (ft)", "Licensee (ft)", "Elec Space (ft)"],
+          "rows": [
+            ["40/40", "2.5", "1", "6.5"],
+            ["40/35", "2.5", "1", "7.5"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Joint Use Rules",
+          "content": "Follow joint agreements; obtain approvals before changes. Maintain 40-inch communication safety zone."
+        },
+        {
+          "type": "quiz",
+          "title": "Joint Pole Allocation",
+          "question": "For a 35 ft joint pole (35/35), what is electric space?",
+          "options": [
+            {"text": "5 ft", "is_correct": true, "explanation": "Per allocation table."},
+            {"text": "2.5 ft", "is_correct": false, "explanation": "Tel space."},
+            {"text": "1 ft", "is_correct": false, "explanation": "Licensee."},
+            {"text": "10 ft", "is_correct": false, "explanation": "Too much."}
+          ]
+        }
+      ]
+    }
+  ]
+}

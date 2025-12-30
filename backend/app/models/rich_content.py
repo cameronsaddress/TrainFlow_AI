@@ -18,13 +18,13 @@ class TableBlock(ContentBlock):
     type: Literal["table"] = "table"
     title: str = Field(description="Title or caption for the table.")
     headers: List[str] = Field(description="Column headers.")
-    rows: List[TableRow] = Field(description="Data rows.")
+    rows: List[List[str]] = Field(description="Data rows (list of strings).")
     notes: Optional[str] = Field(description="Footnotes or context for the table.", default=None)
 
 # --- Alert Block ---
 class AlertBlock(ContentBlock):
     type: Literal["alert"] = "alert"
-    alert_type: Literal["safety", "compliance", "critical_info", "tip"] = Field(description="Type of alert determines visual styling.")
+    alert_type: Literal["safety", "compliance", "critical_info", "tip", "warning"] = Field(description="Type of alert determines visual styling.")
     title: str = Field(description="Header for the alert.")
     content: str = Field(description="The body of the alert/warning.")
 
@@ -52,6 +52,13 @@ class PdfReference(BaseModel):
     label: str = Field(description="Display label, e.g. 'Standard 1.3'")
     anchor_text: Optional[str] = Field(description="Text to search for dynamically at runtime to correct page offset.", default=None)
 
+# --- Video Reference ---
+class VideoReference(BaseModel):
+    video_filename: str = Field(description="The filename of the matched video")
+    start_time: float = Field(description="Start time in seconds")
+    end_time: float = Field(description="End time in seconds")
+    reason: str = Field(description="Why this clip is a perfect match")
+
 # --- Container Model ---
 class HybridLessonRichContent(BaseModel):
     learning_objective: str = Field(description="A clear, concise target outcome for the student.")
@@ -66,3 +73,14 @@ class HybridLessonRichContent(BaseModel):
     key_takeaways: List[str] = Field(description="3-5 key bullet points summarizing the lesson.", default_factory=list)
     
     pdf_reference: Optional[PdfReference] = Field(description="Link to the specific PDF page source.", default=None)
+    source_clips: List[VideoReference] = Field(description="Video clips that demonstrate concepts in this lesson.", default_factory=list)
+
+class VideoMatch(BaseModel):
+    lesson_id: str = Field(description="The unique ID or Title of the lesson this clip belongs to.")
+    video_filename: str
+    start_time: float
+    end_time: float
+    reason: str
+
+class GlobalVideoMatchResponse(BaseModel):
+    matches: List[VideoMatch]

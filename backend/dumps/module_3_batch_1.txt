@@ -1,0 +1,163 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Bonding, Isolation, and Insulation",
+      "learning_objective": "Understand the requirements for bonding, isolating, and insulating guy wires on effectively grounded and delta circuits to ensure safety and compliance with NESC.",
+      "voiceover_summary": "Guy wires must be effectively grounded or insulated per NESC. For wye circuits, use one fiberglass rod and bond to neutral; for delta, use two rods for isolation.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Wye circuits: One 54-inch fiberglass rod at pole end, bonded to neutral.",
+        "Delta circuits: Minimum two 54-inch rods, 12 inches fiberglass below secondary.",
+        "Bonding prevents hazardous voltages; isolation required for ungrounded systems.",
+        "Follow drawings 3-105/106 for details."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "The NESC requires all guy wires to be effectively grounded or insulated. For effectively grounded or multi-grounded wye circuits, primary guys use a 54-inch minimum fiberglass rod at the pole end and bond to system neutral. Secondary guys attach at lowest secondary point and bond to neutral. For delta or ungrounded circuits, use two rods with 12 inches fiberglass past secondary."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Guy Wire Safety",
+          "content": "Treat unbonded guys as energized. Ensure 12-inch fiberglass extension below secondary on delta circuits to prevent energy transfer."
+        },
+        {
+          "type": "table",
+          "title": "Fiberglass Guy Strain Insulators",
+          "headers": ["Std Item", "Size", "Rated Breaking Strength (lbs)", "Use Strength (90% RBS)"],
+          "rows": [
+            ["I24", "12-inch rod", "15,000", "13,500"],
+            ["TI95B", "54-inch rod", "15,000", "13,500"],
+            ["TI95C", "54-inch rod", "30,000", "27,000"],
+            ["TI95D", "72-inch rod", "30,000", "27,000"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guy Bonding Quiz",
+          "question": "For a multi-grounded wye primary guy, what is required?",
+          "options": [
+            {"text": "One 54-inch fiberglass rod and bond to neutral", "is_correct": true, "explanation": "Ensures grounding while maintaining insulation."},
+            {"text": "Two fiberglass rods, no bond", "is_correct": false, "explanation": "That's for delta circuits."},
+            {"text": "No rod, direct bond only", "is_correct": false, "explanation": "Violates NESC insulation requirements."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Guy Clearances",
+      "learning_objective": "Identify minimum clearances for guy wires to conductors based on voltage and guy type per NESC.",
+      "voiceover_summary": "Guy clearances vary by type: down guys need 6-17 inches to primary; span guys 12-29 inches. Always maintain NESC Table 235-6.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Down/sidewalk guys: 6 inches up to 8.7kV, up to 17 inches >35kV.",
+        "Span guys require more clearance: 12-29 inches.",
+        "Reduce by 25% to guy insulator if compliant.",
+        "Check conductor movement for spans."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Clearances ensure safety between guys and conductors. Use NESC Table 235-6. Minimum depends on voltage and guy type (down, span, other)."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "Maintain specified clearances; reduce to insulator by 25% max. Account for double circuits and transformers."
+        },
+        {
+          "type": "table",
+          "title": "Down/Sidewalk Guy Clearances (Primary to Guy)",
+          "headers": ["Voltage (Phase-Phase)", "To Guy Wire (inches)", "To Guy Insulator (inches)"],
+          "rows": [
+            ["Up to 8.7kV", "6", "5"],
+            [">8.7-15kV", "8", "6"],
+            [">15-25kV", "11", "9"],
+            [">25-35kV", "13", "10"],
+            [">35-50kV", "17", "13"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Span Guy Clearances",
+          "headers": ["Voltage (Phase-Phase)", "To Guy Wire (inches)", "To Guy Insulator (inches)"],
+          "rows": [
+            ["Up to 8.7kV", "12", "9"],
+            [">8.7-15kV", "15", "11"],
+            [">15-25kV", "19", "15"],
+            [">25-35kV", "23", "17"],
+            [">35-50kV", "29", "22"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guy Clearance Check",
+          "question": "For a 15kV down guy near primary, minimum clearance to guy wire?",
+          "options": [
+            {"text": "8 inches", "is_correct": true, "explanation": "Per table for >8.7-15kV down guy."},
+            {"text": "6 inches", "is_correct": false, "explanation": "For lower voltages."},
+            {"text": "12 inches", "is_correct": false, "explanation": "For span guys."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Strength Calculations and Guy Factors",
+      "learning_objective": "Perform strength calculations for guys using overload factors, guy factors, and buckling limits to select proper materials.",
+      "voiceover_summary": "Calculate guy tension: transverse load x guy factor. Use NESC overloads (Grade C: wind 1.75, tension 1.3). Tables provide buckling capacities.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Guy tension = transverse tension x guy factor (from Table 27).",
+        "Overloads: Grade C wind 1.75, wire tension 1.3.",
+        "Check pole buckling limits (Tables 17-22).",
+        "Anchor: soil class determines helix size."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Determine guy strength via overload factors (Table 11), guy factors (Table 27), and pole buckling (Tables 17-22). Procedure: calculate transverse loads, apply factors."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Pole Overload Risk",
+          "content": "Unbalanced force above top guy <50% pole resisting moment. Guy lead/height ratio >=0.3."
+        },
+        {
+          "type": "table",
+          "title": "NESC Overload Factors (Grade C)",
+          "headers": ["Load Type", "At Crossings", "Elsewhere"],
+          "rows": [
+            ["Vertical", "1.90", "1.90"],
+            ["Transverse Wind", "1.75", "1.75"],
+            ["Transverse Tension", "1.30", "1.30"],
+            ["Longitudinal Deadend", "1.30", "1.30"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Guy Factors (Sample for H=32ft)",
+          "headers": ["Lead (ft)", "Guy Factor"],
+          "rows": [
+            ["16", "2.236"],
+            ["20", "1.887"],
+            ["24", "1.601"],
+            ["28", "1.414"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guy Tension Calc",
+          "question": "For 7907 lbs transverse, H=32ft L=16ft, guy tension?",
+          "options": [
+            {"text": "17,686 lbs (7907 x 2.236)", "is_correct": true, "explanation": "Uses guy factor from table."},
+            {"text": "7907 lbs", "is_correct": false, "explanation": "Missing guy factor."},
+            {"text": "10,000 lbs", "is_correct": false, "explanation": "Incorrect factor."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Foreword and Purpose of National Grid Distribution Standards",
+      "learning_objective": "Understand the purpose, scope, compliance requirements, distribution methods, and usage guidelines for National Grid Distribution Standards to ensure safe, reliable, and uniform overhead and underground construction.",
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "# Foreword and Purpose of National Grid Distribution Standards\n\n## Overview\nNational Grid develops internal Standards to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for repetitive overhead and underground structures. These Standards include engineering calculations for non-standard designs and explanations for material/technique selections.\n\n**Key Objectives:**\n- Safety, reliability, operability, uniformity, appearance, economy, and environmental coordination.\n- Full compliance with the current National Electrical Safety Code (NESC) and applicable regulations (most stringent prevails)."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Compliance Rule",
+          "content": "When conflicts occur between Standards and regulations, the most stringent rule or regulation shall prevail. Questions regarding conflicts should be referred to Standards, Policies, and Codes for interpretation."
+        },
+        {
+          "type": "table",
+          "title": "Distribution Formats",
+          "headers": [
+            "Format",
+            "Details"
+          ],
+          "rows": [
+            [
+              "Electronic",
+              "Issued/updated on National Grid’s “Electric Standards SharePoint” site."
+            ],
+            [
+              "Physical Binders",
+              "“Overhead Construction Standards” and “Underground Construction Standards”; updates issued as needed to book holders and contractors."
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "## Usage Requirements\n- Employees must be thoroughly familiar with Standards.\n- All new construction/rebuilding conforms to Standards.\n- Existing construction unchanged unless safety/reliability issues.\n- Special applications referred to Division Engineering Office.\n\n**Contributions:** Submit suggestions with justification, sketches, photos to Electric Materials Standards team for review."
+        },
+        {
+          "type": "text",
+          "content": "## Signatories\n- Brian Hayduk, Director of Distribution Asset Management & Engineering\n- Fawad Amjad, Director of T&D Line Engineering & Standards"
+        }
+      ],
+      "quiz": {
+        "question": "What takes precedence when conflicts occur between National Grid Standards and regulations?",
+        "options": [
+          "National Grid Standards",
+          "Local preferences",
+          "The most stringent rule or regulation",
+          "NESC only"
+        ],
+        "correct_answer": 2,
+        "explanation": "The Standards explicitly state that the most stringent rule or regulation shall prevail in case of conflict, with questions referred to Standards, Policies, and Codes."
+      },
+      "voiceover_summary": "Welcome to the Foreword of National Grid Distribution Standards. These guide safe, reliable construction with approved materials and NESC compliance. Prioritize the strictest rules. Updates via SharePoint or binders. Employees must follow for new builds. Contact Standards for questions. Signed by Brian Hayduk and Fawad Amjad."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to the Foreword and Standards Overview",
+      "learning_objective": "Understand the purpose of the Foreword and gain an overview of National Grid's Distribution Overhead & Underground Construction Standards.",
+      "voiceover_summary": "The Foreword introduces National Grid's standards for safe, reliable distribution construction, covering materials, techniques, and compliance requirements.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Standards provide guidance on materials, techniques, assemblies, and drawings for repetitive structures.",
+        "Issued electronically via SharePoint and in binders for overhead and underground construction.",
+        "All new construction must conform to these standards; employees must be familiar with them.",
+        "Suggestions for improvements are encouraged with supporting documentation."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid's Distribution Overhead & Underground Construction Standards are detailed guidelines intended to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for building repetitive structures. These standards also include engineering calculations for non-standard construction and explanations for material and technique selections. They coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests."
+        },
+        {
+          "type": "text",
+          "content": "The standards are produced for use by construction personnel, engineers, designers, and contractors. They are issued electronically on the Electric Standards SharePoint site and in binders titled 'Overhead Construction Standards' and 'Underground Construction Standards'. Updates are distributed as needed, and book holders are responsible for maintaining the latest versions."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Employee Responsibility",
+          "content": "Employees whose work requires application of these Standards must be thoroughly familiar with them. All new construction and rebuilding shall conform to these Standards."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Distribution",
+          "question": "How are the Construction Standards primarily distributed?",
+          "options": [
+            {
+              "text": "Electronically via SharePoint and in binders",
+              "is_correct": true,
+              "explanation": "Standards are issued electronically on the Electric Standards SharePoint site and in physical binders for overhead and underground construction."
+            },
+            {
+              "text": "Only in printed binders",
+              "is_correct": false,
+              "explanation": "While binders exist, primary distribution is electronic via SharePoint."
+            },
+            {
+              "text": "Via email attachments only",
+              "is_correct": false,
+              "explanation": "Standards are formally issued through SharePoint and binders."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Purpose and Scope of the Standards",
+      "learning_objective": "Identify the purpose, scope, and key interests coordinated by National Grid's construction standards.",
+      "voiceover_summary": "These standards ensure safe, reliable, and economical distribution construction while complying with NESC and regulations.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Purpose: Provide modern, practical standards for materials, techniques, and assemblies.",
+        "Scope: Covers overhead and underground distribution; includes calculations and reasoning.",
+        "Key interests: Safety, reliability, operability, uniformity, appearance, economy, environment.",
+        "Applies to new construction and rebuilding; not retroactive to existing."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid develops these internal Standards to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for repetitive structures. They include engineering calculations for non-standard designs and explanations for material/technique choices. Prepared for coordination of safety, reliability, operability, uniformity, appearance, economy, and environmental interests."
+        },
+        {
+          "type": "text",
+          "content": "Standards apply to all new construction and rebuilding. Existing installations need not be changed unless safety or reliability issues arise. Special applications not covered should be referred to Division Engineering."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Scope Limitation",
+          "content": "Standards do not require changes to existing construction unless addressing safety concerns or reliability issues."
+        },
+        {
+          "type": "quiz",
+          "title": "Key Coordinated Interests",
+          "question": "What interests do the Standards coordinate?",
+          "options": [
+            {
+              "text": "Safety, reliability, operability, uniformity, appearance, economy, environment",
+              "is_correct": true,
+              "explanation": "Explicitly listed in the Foreword as the coordinated interests."
+            },
+            {
+              "text": "Only safety and economy",
+              "is_correct": false,
+              "explanation": "Multiple interests are balanced, including reliability and environment."
+            },
+            {
+              "text": "Cost only",
+              "is_correct": false,
+              "explanation": "Standards balance multiple factors beyond cost."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Compliance with NESC and Regulations",
+      "learning_objective": "Explain compliance requirements with NESC, regulations, and conflict resolution.",
+      "voiceover_summary": "Standards fully comply with the latest NESC edition; the most stringent rule prevails in conflicts.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Full compliance with current NESC edition.",
+        "Supplemented by public authority rules; most stringent prevails.",
+        "Conflicts referred to Standards, Policies and Codes for interpretation.",
+        "Applies to all construction; ensures safety and reliability."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "These Standards comply in all respects with the requirements of the current edition of the National Electrical Safety Code (NESC) and are supplemented by applicable rules and regulations of governing public authorities. When conflicts occur, the most stringent rule or regulation shall prevail. Questions on conflicts should be referred to Standards, Policies and Codes for interpretation."
+        },
+        {
+          "type": "table",
+          "title": "Voltage Classes and BIL Ratings (from Section 1)",
+          "headers": ["Voltage Class (kV)", "Distribution BIL (kV)"],
+          "rows": [
+            ["23.5", "110*"],
+            ["34.5", "150"],
+            ["46", "200"],
+            ["69", "250"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Rule Precedence",
+          "content": "In case of conflict between NESC and local rules, the most stringent requirement applies. Refer conflicts to Standards for interpretation."
+        },
+        {
+          "type": "quiz",
+          "title": "Compliance Priority",
+          "question": "What prevails in case of conflicting rules?",
+          "options": [
+            {
+              "text": "The most stringent rule or regulation",
+              "is_correct": true,
+              "explanation": "Explicitly stated: 'When a conflict occurs, the most stringent rule or regulation shall prevail.'"
+            },
+            {
+              "text": "NESC always",
+              "is_correct": false,
+              "explanation": "Most stringent prevails, even if local."
+            },
+            {
+              "text": "Local rules always",
+              "is_correct": false,
+              "explanation": "Most stringent, regardless of source."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

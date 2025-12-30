@@ -1,0 +1,141 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Poles and Hardware",
+      "learning_objective": "Understand the general purpose, types, and key considerations for poles and hardware in overhead distribution systems.",
+      "voiceover_summary": "Poles and hardware form the backbone of overhead distribution, ensuring safety, reliability, and compliance with NESC standards. This lesson covers types, selection, and installation basics.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Poles are wood, fiberglass, or metal per ANSI O5.1 and Company specs MS2005/MS2010.",
+        "All wood poles treated with CCA preservative.",
+        "Hardware must meet NESC Grade C, with Grade B for crossings.",
+        "Prioritize safety, reliability, and future needs in selection."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 2 covers selection and installation of distribution poles and hardware for overhead systems. Poles ensure structural integrity with preservatives like CCA. Hardware includes crossarms, insulators, and guys for safety and reliability."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All construction meets NESC; most stringent rule prevails. Use Grade C except Grade B at crossings."
+        },
+        {
+          "type": "table",
+          "title": "Pole Types Overview",
+          "headers": ["Type", "Material", "Key Use"],
+          "rows": [
+            ["Wood", "Southern Yellow Pine/Douglas Fir", "Standard distribution"],
+            ["Fiberglass", "Fiber-reinforced polymer", "Wetlands, backyards"],
+            ["Metal", "Steel", "Heavy loads, no guying"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Core Concept Check",
+          "question": "What is the primary purpose of preservatives on wood poles?",
+          "options": [
+            {"text": "Aesthetics only", "is_correct": false, "explanation": "Preservatives ensure longevity and safety."},
+            {"text": "Structural integrity and safety", "is_correct": true, "explanation": "CCA provides protection against decay."},
+            {"text": "Reduce weight", "is_correct": false, "explanation": "Weight is not the focus."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Specifications and Identification",
+      "learning_objective": "Identify pole classes, materials, strengths, and marking requirements per ANSI and Company standards.",
+      "voiceover_summary": "Poles are classed by circumference and strength per ANSI O5.1. Identification ensures traceability; numbering at 7 ft above grade.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Classes H1 to 6 by min top circumference; H1 for critical structures.",
+        "Southern Yellow Pine/Douglas Fir: 8000 psi bending stress.",
+        "Number poles on road-side face, 7 ft up; 'P' for private poles.",
+        "Reflectors required in MA on highways within 6 ft of travel way."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Poles per ANSI O5.1, MS2005/MS2010. Classes by top circ: H1=29in,1=27in,...6=17in. Breaking loads at 2ft from top. Numbering: road-side, 7ft up, consecutive per line."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Pole Marking",
+          "content": "All poles with attachments numbered; main junctions include line number."
+        },
+        {
+          "type": "table",
+          "title": "ANSI O5.1 Pole Classes (Southern Yellow Pine)",
+          "headers": ["Class", "Min Top Circ (in)", "Breaking Load (lbs @2ft)"],
+          "rows": [
+            ["H1", "29", "5400"],
+            ["1", "27", "4500"],
+            ["2", "25", "3700"],
+            ["3", "23", "3000"],
+            ["4", "21", "2400"],
+            ["5", "19", "1900"],
+            ["6", "17", "1500"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Class Quiz",
+          "question": "What is the min top circumference for Class H1 poles?",
+          "options": [
+            {"text": "27 in", "is_correct": false, "explanation": "Class 1 is 27 in."},
+            {"text": "29 in", "is_correct": true, "explanation": "H1 requires 29 in per ANSI."},
+            {"text": "25 in", "is_correct": false, "explanation": "Class 2 is 25 in."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Lengths and Selection Criteria",
+      "learning_objective": "Select appropriate pole lengths based on clearances, spans, and future needs; understand setting depths.",
+      "voiceover_summary": "Pole length ensures clearances for conductors/equipment. General rule: 10% length +2ft setting depth. Consider spans, elevation changes.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Length for clearances, future needs; avoid >5ft elevation diff per 150ft spans.",
+        "Setting: 10% length +2ft in earth; deeper on slopes from downhill side.",
+        "Rock: anchors per 2-105; wet areas consult engineering.",
+        "Vertical, in-line; alternate gains."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Select length for clearances, future equipment. 10% length +2ft setting. Check conductor profile; deadend if uplift issues. Vertical alignment post-install."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Pole Setting Safety",
+          "content": "Measure depth from low side on slopes; use #2 crushed stone if unstable soil."
+        },
+        {
+          "type": "table",
+          "title": "Pole Setting Depths (SYP)",
+          "headers": ["Length (ft)", "Earth (ft)", "Rock (ft)", "Wet Soil (ft)"],
+          "rows": [
+            ["35", "6", "4", "8"],
+            ["40", "6", "4", "8"],
+            ["45", "6.5", "4.5", "8.5"],
+            ["50", "7", "4.5", "9"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Selection Criteria",
+          "question": "General earth setting depth formula?",
+          "options": [
+            {"text": "10% length +2ft", "is_correct": true, "explanation": "Standard rule."},
+            {"text": "Length/10", "is_correct": false, "explanation": "Incorrect."},
+            {"text": "Fixed 10ft", "is_correct": false, "explanation": "Varies by length."}
+          ]
+        }
+      ]
+    }
+  ]
+}

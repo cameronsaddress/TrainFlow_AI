@@ -1,0 +1,67 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 22 – Materials Catalog Overview",
+      "learning_objective": "Understand the organization, content, and purpose of the National Grid Materials Catalog for overhead and underground distribution construction standards.",
+      "voiceover_summary": "Section 22 provides a comprehensive catalog of all materials used in National Grid's overhead and underground construction, organized by alphanumeric codes with detailed specifications, issue dates, and page references for easy reference during design and installation.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Materials are listed alphabetically from A to Z with specific item codes (e.g., A9–A13A8, B1–B8A3).",
+        "Each entry includes page numbers and issue dates for updates.",
+        "Catalog covers poles, hardware, guys, conductors, connectors, insulators, arresters, and more.",
+        "Separate sections for lighting materials (Section 23).",
+        "Use for selecting compliant materials per NESC and company standards."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 22 of the Overhead Construction Standards serves as the central Materials Catalog, detailing all approved items for distribution systems. It lists materials alphabetically by code (e.g., anchors A9–A22J, bolts B1–B54T, capacitors C4A–C50B), including specifications, standard item IDs, and update dates. This ensures uniformity, compliance with NESC, and efficient procurement."
+        },
+        {
+          "type": "table",
+          "title": "Key Material Categories in Section 22",
+          "headers": ["Category Code Range", "Examples", "Typical Use"],
+          "rows": [
+            ["A9–A22J", "Anchors (e.g., A16A Screw Anchor)", "Pole foundations"],
+            ["B1–B54T", "Bolts and Braces (e.g., B13A Machine Bolt)", "Hardware fastening"],
+            ["C4A–C50B", "Capacitors and Connectors (e.g., C43S Cutout)", "Circuit protection"],
+            ["G2A2–G50", "Guys and Grips (e.g., G15A Guy Wire)", "Pole support"],
+            ["I2–I26C", "Insulators (e.g., I7PA Pin Insulator)", "Conductor support"],
+            ["P1A–P85B", "Poles and Pins (e.g., P77DH6 Fiberglass Pole)", "Structures"],
+            ["S1–S34", "Spacers and Switches (e.g., S19A Splice)", "Line spacing"],
+            ["T1A–TT1B", "Transformers and Terminals (e.g., T91AA Transformer)", "Voltage regulation"],
+            ["U*–Z*", "Conduits, Wires, and Accessories (e.g., UC11BJ Cable)", "Underground/risers"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Material Compliance",
+          "content": "All materials must comply with NESC and National Grid specs (e.g., MS2005 for poles). Use only listed items to ensure safety and reliability."
+        },
+        {
+          "type": "quiz",
+          "title": "Materials Catalog Basics",
+          "question": "What is the primary purpose of Section 22?",
+          "options": [
+            {
+              "text": "Detailed construction drawings for pole tops",
+              "is_correct": false,
+              "explanation": "Drawings are in other sections; Section 22 catalogs materials."
+            },
+            {
+              "text": "Comprehensive list of approved materials by code with specs and updates",
+              "is_correct": true,
+              "explanation": "It organizes all hardware, conductors, etc., alphabetically for quick reference."
+            },
+            {
+              "text": "Sag and tension tables for conductors",
+              "is_correct": false,
+              "explanation": "Those are in Section 6."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

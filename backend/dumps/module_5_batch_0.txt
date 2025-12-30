@@ -1,0 +1,137 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Overhead Distribution Connectors",
+      "learning_objective": "Understand the purpose, types, and general applications of overhead distribution connectors used in National Grid's overhead systems.",
+      "voiceover_summary": "Overhead distribution connectors join conductors reliably, ensuring safety and performance. Key types include automatic, bolted, and compression for splices, taps, deadends, and terminations.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Connectors are automatic, bolted, or compression types for overhead distribution.",
+        "Used for splices, taps, deadends, and terminations on primary and secondary conductors.",
+        "Always clean conductors before installation to prevent oxidation issues.",
+        "Follow specific standards for insulation and location to comply with NESC."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Overhead distribution connectors are essential for joining conductors in National Grid's overhead systems. They ensure electrical continuity, mechanical strength, and safety under various loading conditions. Primary types include automatic, bolted, and compression connectors, used for splices, taps, deadends, and terminations."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Conductor Preparation",
+          "content": "Always wire brush conductors before installing connectors to remove oxides. Never use the same brush on aluminum and copper to avoid galvanic corrosion."
+        },
+        {
+          "type": "table",
+          "title": "Connector Types Overview",
+          "headers": ["Type", "Application", "Key Feature"],
+          "rows": [
+            ["Automatic", "Full tension splices", "Self-gripping for aluminum/copper"],
+            ["Bolted", "Taps and non-tension", "Parallel groove for easy install"],
+            ["Compression", "Splices and taps", "High strength, tool-required"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Connector Basics",
+          "question": "What is the primary purpose of cleaning conductors before connector installation?",
+          "options": [
+            {"text": "To remove oxides and ensure low resistance", "is_correct": true, "explanation": "Oxides increase resistance and cause failures."},
+            {"text": "To make them shiny", "is_correct": false, "explanation": "Appearance is secondary to electrical performance."},
+            {"text": "To reduce weight", "is_correct": false, "explanation": "Weight is not a factor here."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Selection of Connectors",
+      "learning_objective": "Learn how to select the appropriate connector based on conductor type, application, and voltage class per National Grid standards.",
+      "voiceover_summary": "Select connectors from tables on pages 5-111/112 matching conductor size and type. Use full-tension for primaries, non-tension for services, and follow die specs for compression.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Match connector to conductor range using tables 5-111/112.",
+        "Full tension for primaries (e.g., S19 for AL/ACSR), non-tension for services (S13/S26).",
+        "Compression requires specific tools/dies; bolted for taps.",
+        "Verify markings for wire size and die index."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Connector selection is based on conductor material (AL, CU, ACSR), size range, tension class (full/partial/non), and application (splice/tap/deadend). Refer to pages 5-111/112 for matrices."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Tension Classes",
+          "content": "Full tension: 95% RBS; Partial: 40%; Non-tension: 5%. Use correct class to avoid failures."
+        },
+        {
+          "type": "table",
+          "title": "Connector Selection Matrix (Excerpt from 5-111)",
+          "headers": ["Application", "AL/ACSR", "CU/CCW"],
+          "rows": [
+            ["Full Tension Splices", "S19/S20/S21", "S23"],
+            ["Partial Tension", "S19/S22", "-"],
+            ["Non-Tension", "S13/S26", "S13/S14"],
+            ["Taps", "S13/S15/C7", "S14/C27"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Connector Selection",
+          "question": "For full-tension splice on ACSR aluminum primary, select:",
+          "options": [
+            {"text": "S20 series compression", "is_correct": true, "explanation": "Full tension for primaries per matrix."},
+            {"text": "S13 H-tap", "is_correct": false, "explanation": "H-tap is non-tension."},
+            {"text": "C7 parallel groove", "is_correct": false, "explanation": "Bolted for taps, not full tension splices."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Location of Connectors",
+      "learning_objective": "Identify proper locations for splices and taps to comply with NESC and ensure safety/reliability.",
+      "voiceover_summary": "Avoid splices near crossings or railroads. Position taps with slack, aluminum above copper. Insulate services up to 600V.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "No splices over railroads, highways, waterways (NESC 261H2a).",
+        "Taps: Provide slack, train conductors to avoid stress.",
+        "Al to Cu: Aluminum above copper, apply inhibitor.",
+        "Insulate 600V services with covers (C60); bare neutrals uncovered."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Splices must avoid crossings (railroads, highways, waterways per NESC). Taps need slack to prevent stress; position aluminum over copper with inhibitor."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Prohibited Splice Locations",
+          "content": "Splices prohibited on conductors crossing railroads, limited access highways, navigable waterways, or adjacent spans (NESC Rule 261H2a)."
+        },
+        {
+          "type": "table",
+          "title": "Insulation Requirements",
+          "headers": ["Location", "Requirement"],
+          "rows": [
+            ["Services/Secondary ≤600V", "Snap-on covers (C60)"],
+            ["Bare Primary Splices", "No cover/tape"],
+            ["Tree Wire/Spacer Splices", "Gelwrap (C62/C63) or tape"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Splice Location Rule",
+          "question": "Where are splices prohibited?",
+          "options": [
+            {"text": "Over railroads/highways/waterways", "is_correct": true, "explanation": "NESC 261H2a prevents hazards."},
+            {"text": "Only on services", "is_correct": false, "explanation": "Services use taps/covers."},
+            {"text": "Anywhere on poles", "is_correct": false, "explanation": "Poles ok if not crossings."}
+          ]
+        }
+      ]
+    }
+  ]
+}

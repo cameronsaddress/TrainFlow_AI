@@ -1,0 +1,136 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Voltage Regulators: Principles and Types",
+      "learning_objective": "Understand the operating principles of voltage regulators and identify common types used in distribution systems.",
+      "voiceover_summary": "Voltage regulators maintain stable voltage levels on distribution feeders by automatically adjusting tap positions on a transformer. Key types include single-phase and three-phase step regulators.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Voltage regulators compensate for voltage drops due to load and line impedance.",
+        "Common types: single-phase pole-mounted and three-phase platform-mounted.",
+        "Operate via load tap changers (LTC) with automatic controls.",
+        "Essential for feeders with varying loads to meet voltage standards."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Voltage regulators are devices installed on distribution feeders to automatically maintain voltage within acceptable limits. They operate on the principle of changing the turns ratio of a transformer through a load tap changer (LTC), boosting or bucking voltage as needed. Section 15 checklists reference regulator installations on pages 15-111 to 15-601, indicating standard pole-mounted configurations for 15kV systems."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Hazard",
+          "content": "Always de-energize regulators before maintenance. Use proper PPE and follow lockout/tagout procedures."
+        },
+        {
+          "type": "table",
+          "title": "Common Voltage Regulator Types",
+          "headers": ["Type", "Application", "Voltage Class", "Key Features"],
+          "rows": [
+            ["Single-Phase Step Regulator", "Pole-mounted on feeders", "Up to 15kV", "76kVA or 167kVA, ±10% regulation"],
+            ["Three-Phase Step Regulator", "Platform-mounted banks", "15-35kV", "333kVA, coordinated phases"],
+            ["In-Line Power Regulator", "Compact installations", "120/240V secondary", "50kVA, solid-state"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Regulator Principles",
+          "question": "What is the primary function of a voltage regulator in distribution systems?",
+          "options": [
+            {"text": "Boost or buck voltage via LTC", "is_correct": true, "explanation": "Regulators adjust transformer turns ratio to maintain voltage."},
+            {"text": "Protect against faults", "is_correct": false, "explanation": "That's the role of fuses or reclosers."},
+            {"text": "Measure power usage", "is_correct": false, "explanation": "Metering devices handle measurement."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Regulator Installations and Safety",
+      "learning_objective": "Describe proper installation practices for voltage regulators and key safety protocols.",
+      "voiceover_summary": "Regulators are installed on poles or platforms with specific grounding and bonding. Safety requires de-energization, PPE, and adherence to NESC clearances.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Install on Class H1 poles with fiberglass deadends for storm hardening.",
+        "Bond neutrals and ground per Section 13.",
+        "Use sequenced bypass switches for safe operation.",
+        "Maintain 40-inch climbing space and BIL insulation."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Voltage regulators are mounted on reinforced poles (e.g., 15-111 to 15-113). Single-phase on tangent poles, three-phase on platforms (15-121 to 15-131). Checklist pages indicate configurations for grounded and ungrounded systems."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Regulator Safety",
+          "content": "Verify neutral position before bypass switching. Ground frame and use insulated tools. Test ground resistance <25 ohms."
+        },
+        {
+          "type": "table",
+          "title": "Installation Configurations",
+          "headers": ["Type", "Drawing Reference", "Pole Class", "Key Safety Feature"],
+          "rows": [
+            ["Single-Phase Grounded", "15-112", "H1 min.", "Down ground bonded"],
+            ["Three-Phase Platform", "15-151", "H1/H2", "Sequenced bypass"],
+            ["Delta Systems", "15-111", "H1", "Isolated neutral"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Installation Safety",
+          "question": "What must be confirmed before operating a regulator bypass switch?",
+          "options": [
+            {"text": "Tap changer in neutral", "is_correct": true, "explanation": "Prevents circulating currents."},
+            {"text": "Full load applied", "is_correct": false, "explanation": "Dangerous without neutral position."},
+            {"text": "Voltage at peak", "is_correct": false, "explanation": "Irrelevant for bypass."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Primary Metering: Purpose and Configurations",
+      "learning_objective": "Explain the purpose of primary metering and common configurations for overhead systems.",
+      "voiceover_summary": "Primary metering measures high-voltage energy for billing large customers. Configurations include CT/PT setups on poles or platforms.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Measures energy at primary voltage for accuracy and safety.",
+        "Configurations: fused deadend (15-500), riser pole (15-501).",
+        "Requires grounding and surge protection.",
+        "Supports revenue protection and load monitoring."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Primary metering (15-500 to 15-550) measures power before transformation for large loads. Purpose: accurate billing, avoids secondary metering issues. Configurations include fused double deadend, riser poles for tangent/deadend."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Metering Compliance",
+          "content": "Follow revenue metering standards; seal enclosures and test annually."
+        },
+        {
+          "type": "table",
+          "title": "Primary Metering Configurations",
+          "headers": ["Type", "Application", "Key Components"],
+          "rows": [
+            ["Fused Double Deadend", "Inline metering", "CTs, PTs, fuses"],
+            ["Fused Riser Pole Tangent", "Transition to UG", "Riser guards, grounding"],
+            ["Fused Delta", "Ungrounded systems", "Isolated neutrals"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Metering Purpose",
+          "question": "Why use primary metering over secondary?",
+          "options": [
+            {"text": "Higher accuracy for large loads", "is_correct": true, "explanation": "Measures before losses in transformer."},
+            {"text": "Lower cost installation", "is_correct": false, "explanation": "Often more expensive due to CT/PT."},
+            {"text": "Easier access", "is_correct": false, "explanation": "Requires high-voltage safety."}
+          ]
+        }
+      ]
+    }
+  ]
+}

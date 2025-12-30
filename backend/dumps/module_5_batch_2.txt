@@ -1,0 +1,145 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Compression Tools and Dies",
+      "learning_objective": "Understand the types of compression tools and dies used for installing connectors on overhead distribution conductors, including proper usage and maintenance.",
+      "voiceover_summary": "Compression tools like Burndy Y35 and battery-operated models ensure reliable connections. Always test tools frequently and follow die specifications for conductor sizes from #6 AWG to 500kcmil.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use Burndy tools for connectors from #6 AWG through 500kcmil.",
+        "Battery-operated for services/secondaries up to 4/0 AWG.",
+        "Test tools frequently for proper adjustment.",
+        "Y35 hand-operated hydraulic tool for larger connectors."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Compression tools and dies are essential for creating reliable electrical connections on overhead distribution conductors. Burndy tools compress connectors on standard conductors from #6 AWG through 500kcmil. Battery-operated tools handle services and secondaries up to 4/0 AWG, while the HYPRESS Y35 is used for larger connectors."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Tool Maintenance",
+          "content": "Test all compression tools frequently to ensure they are in adjustment. Workers should perform tests before use."
+        },
+        {
+          "type": "table",
+          "title": "Compression Tools Overview",
+          "headers": ["Tool Type", "Conductor Range", "Notes"],
+          "rows": [
+            ["Battery-operated", "#6 to 4/0 AWG", "For services/secondaries"],
+            ["Hand-operated (Kearney)", "#6 to 4/0 AWG", "Smaller conductors"],
+            ["HYPRESS Y35", "Up to 500kcmil", "Larger connectors, multiple crimps"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Tool Selection",
+          "question": "Which tool is primarily used for larger connectors up to 500kcmil?",
+          "options": [
+            {"text": "Battery-operated tool", "is_correct": false, "explanation": "Limited to 4/0 AWG."},
+            {"text": "HYPRESS Y35", "is_correct": true, "explanation": "Suitable for larger range."},
+            {"text": "Kearney hand tool", "is_correct": false, "explanation": "For smaller conductors."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "H-Tap Connectors",
+      "learning_objective": "Learn to select, install, and insulate H-Tap compression connectors for secondary/service connections up to 600V.",
+      "voiceover_summary": "H-Tap connectors are pre-filled with oxide inhibitor for aluminum-to-aluminum or copper taps up to 4/0 AWG. Use specific dies and crimp counts; cover live legs with insulated covers.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "For secondary/services up to 600V, aluminum to aluminum/copper.",
+        "Pre-filled with oxide inhibitor; non-removable.",
+        "Insulate with snap-on covers (C60 series).",
+        "Clean conductors; crimp starting at center."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "H-Tap connectors (S13 series) are used for secondary/service connections up to 600V. They connect 4/0 aluminum to aluminum or copper. Each is pre-filled with oxide inhibitor. Use insulated covers for live legs."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Non-Removable Connectors",
+          "content": "H-Taps are non-removable. Cut old conductors close; reuse covers if possible."
+        },
+        {
+          "type": "table",
+          "title": "H-Tap Connector Selection",
+          "headers": ["Series", "Run Range (AL to AL/CU)", "Die Size", "Crimps (Mech/Batt)", "Crimps (Hydraulic)"],
+          "rows": [
+            ["1", "#6 to #1", "#6 to #1", "O / 4", "2"],
+            ["2", "#1 to 2/0", "#3 to 2/0", "O / 5", "2"],
+            ["4", "2/0 to 4/0", "#1 to 3/0", "D / 5", "2"],
+            ["5", "250-300 to 4/0", "#6 to 1/0", "D / 5", "2"],
+            ["6", "250-300 to 3/0-4/0", "2/0 to 3/0", "D / 7", "3"],
+            ["7", "250-300 to 3/0-4/0", "250-300 to 3/0-4/0", "D / 7", "3"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "H-Tap Crimping",
+          "question": "How many crimps for Series 4 with mechanical tool?",
+          "options": [
+            {"text": "4", "is_correct": false, "explanation": "Incorrect."},
+            {"text": "5", "is_correct": true, "explanation": "D die, 5 crimps for mechanical/battery tool."},
+            {"text": "7", "is_correct": false, "explanation": "For larger series."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Parallel Groove Connectors",
+      "learning_objective": "Master the selection, torque requirements, and installation of parallel groove connectors for primary taps.",
+      "voiceover_summary": "Parallel groove connectors (C7 series) for aluminum-to-aluminum/copper taps. Apply inhibitor; torque bolts to spec (e.g., 5/16” at 8 lb-ft). Position larger plate above for drainage.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Extruded aluminum for primary taps; bronze for copper-to-copper.",
+        "Apply oxide inhibitor; torque bolts uniformly.",
+        "Non-tension; extend ends 1/2 inch beyond connector.",
+        "Cast aluminum not approved."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Parallel groove connectors (C7A-J) for overhead primary aluminum-to-aluminum/copper taps. Bronze (C7K-L) for copper. Clean conductors, apply inhibitor, torque bolts per table."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Torque Specifications",
+          "content": "Tighten bolts to: 5/16”-8 lb-ft, 3/8”-15 lb-ft, 1/2”-25 lb-ft, 5/8”-40 lb-ft. Do not over-tighten."
+        },
+        {
+          "type": "table",
+          "title": "Parallel Groove Range-Taking",
+          "headers": ["Item", "Groove A (AAC/AL/CU)", "Groove B (ACSR/AWAC/AAAC)", "Bolt Size"],
+          "rows": [
+            ["C7A", "8-2", "6-2 (0.128-0.325\")", "5/16\""],
+            ["C7B", "6-3/0", "6-2/0 (0.162-0.464\")", "3/8\""],
+            ["C7E", "2-3/0", "2-3/0 (0.292-0.502\")", "3/8\""],
+            ["C7D", "4/0-400", "6-2/0 (0.162-0.464\")", "1/2\""],
+            ["C7G", "4/0-400", "2-3/0 (0.292-0.502\")", "1/2\""],
+            ["C7I", "4/0-400", "4/0-400 (0.464-0.743\")", "1/2\""],
+            ["C7DA", "450-1000 AL/500 CU", "6-3/0 (0.162-0.464\")", "5/8\""],
+            ["C7H", "450-1000 AL/500 CU", "4/0-400 (0.464-0.743\")", "5/8\""],
+            ["C7J", "450-1000 AL/500 CU", "450-1000 AL/500 CU (0.743-1.152\")", "5/8\""]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Torque for 5/8\" Bolt",
+          "question": "What is the required torque for a 5/8\" bolt in parallel groove connectors?",
+          "options": [
+            {"text": "15 lb-ft", "is_correct": false, "explanation": "For 3/8\"."},
+            {"text": "40 lb-ft", "is_correct": true, "explanation": "Standard torque for 5/8\" bolts."},
+            {"text": "25 lb-ft", "is_correct": false, "explanation": "For 1/2\"."}
+          ]
+        }
+      ]
+    }
+  ]
+}

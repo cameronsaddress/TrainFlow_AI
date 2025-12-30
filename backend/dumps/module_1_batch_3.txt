@@ -1,0 +1,67 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Definitions",
+      "learning_objective": "Understand and apply key abbreviations and definitions used throughout National Grid's Overhead and Underground Distribution Construction Standards.",
+      "voiceover_summary": "This lesson covers essential abbreviations from ANSI standards and key definitions from IEEE, NESC, and other sources, critical for safe and compliant construction practices.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Abbreviations follow ANSI Y1.1 and company-specific standards; always verify context.",
+        "AAC is All Aluminum Conductor; ACSR is Aluminum Conductor Steel Reinforced.",
+        "BIL is Basic Impulse Insulation Level, vital for surge protection.",
+        "Clearance is surface-to-surface distance; separation is center-to-center.",
+        "Effectively grounded systems limit hazardous voltages via low-impedance paths."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 1 provides abbreviations and definitions foundational to all construction standards. Abbreviations are from ANSI Y1.1 and other sources, marked with * for company-specific terms. Definitions draw from IEEE Std 100, Lineman’s and Cableman’s Handbook, NEC, and NESC."
+        },
+        {
+          "type": "table",
+          "title": "Key Abbreviations (Selected Examples)",
+          "headers": ["Abbreviation", "Full Term"],
+          "rows": [
+            ["AAC", "All Aluminum Conductor"],
+            ["AAAC", "All Aluminum Alloy Conductor"],
+            ["ACSR", "Aluminum Conductor Steel Reinforced"],
+            ["AWG", "American Wire Gauge"],
+            ["BIL", "Basic Insulation Impulse Level"],
+            ["CSP", "Completely Self-Protected"],
+            ["NESC", "National Electrical Safety Code"],
+            ["NEC", "National Electrical Code"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Key Definitions (Selected Examples)",
+          "headers": ["Term", "Definition"],
+          "rows": [
+            ["AAC", "A conductor made wholly of 1350 alloy aluminum."],
+            ["AAAC", "A conductor made wholly of 5005-H19 or 6201-T81 higher strength alloy aluminum."],
+            ["ACSR", "A composite conductor made up of a combination of aluminum and steel wires."],
+            ["BIL", "A specific insulation level expressed in kilovolts of the crest value of a standard lightning impulse."],
+            ["Clearance", "The clear distance between two objects measured surface to surface."],
+            ["Effectively Grounded", "Intentionally connected to earth through a ground connection or connections of sufficiently low impedance and having sufficient current-carrying capacity to limit the buildup of voltages to levels below that which may result in undue hazard."]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Safety Note",
+          "content": "Always treat lines as energized unless proven otherwise. Definitions like 'Alive' mean electrically connected to a source of potential difference."
+        },
+        {
+          "type": "quiz",
+          "title": "Key Term Quiz",
+          "question": "What does ACSR stand for?",
+          "options": [
+            { "text": "All Copper Steel Reinforced", "is_correct": false, "explanation": "Incorrect. ACSR uses aluminum strands around steel core." },
+            { "text": "Aluminum Conductor Steel Reinforced", "is_correct": true, "explanation": "Correct. ACSR is a composite conductor with aluminum wires surrounding steel wires." },
+            { "text": "All Aluminum Copper Supported Rod", "is_correct": false, "explanation": "Incorrect. Focus on aluminum and steel composition." }
+          ]
+        }
+      ]
+    }
+  ]
+}

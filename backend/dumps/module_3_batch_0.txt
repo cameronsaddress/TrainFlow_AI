@@ -1,0 +1,143 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Guying and When to Guy",
+      "learning_objective": "Understand the purpose of guying in overhead distribution systems and identify situations where guying is required to maintain structural integrity.",
+      "voiceover_summary": "Guying supports distribution poles against unbalanced loads from deadends, angles, wind, and equipment. Learn when to install guys for safety and reliability per NESC standards.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Guying prevents pole failure from unbalanced forces.",
+        "Required at deadends, junctions, angles >2-4.5°, heavy transverse loads.",
+        "NESC Grade C construction uses overload factors for design.",
+        "Slack spans or self-supporting poles as alternatives when guying impractical."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Guying is essential for supporting distribution poles against unbalanced loads from conductors, equipment, wind, or ice. Section 3 outlines requirements meeting or exceeding NESC standards. Poles at deadends with uneven wires must be guyed; junctions and transitions >10% imbalance require longitudinal guying. Line angles >300 lbs unbalanced force or >2° (3Φ)/4.5° (1Φ) need guying. Transverse loads from wind or services demand side guying."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Guying Safety",
+          "content": "Always guy poles per calculations to prevent failure. Unguyed poles risk collapse under load."
+        },
+        {
+          "type": "table",
+          "title": "When to Guy (NESC Overload Factors Grade C)",
+          "headers": ["Load Type", "At Crossings", "Elsewhere"],
+          "rows": [
+            ["Vertical", "1.90", "1.90"],
+            ["Transverse Wind", "1.75", "1.75"],
+            ["Transverse Tension", "1.30", "1.30"],
+            ["Longitudinal Deadend", "1.30", "1.30"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guying Requirement Check",
+          "question": "When is guying required for a 3-phase line angle pole?",
+          "options": [
+            {"text": ">2 degrees unbalanced force >300 lbs", "is_correct": true, "explanation": "Per standards, 3Φ angles >2° or >300 lbs require guying."},
+            {"text": "Only at deadends", "is_correct": false, "explanation": "Angles also require guying."},
+            {"text": "Never for tangents", "is_correct": false, "explanation": "Tangents may need transverse guying."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Types of Guy Wires and Pole Supports",
+      "learning_objective": "Identify different types of guy wires and pole supports, their applications, and installation guidelines.",
+      "voiceover_summary": "Explore anchor/down guys, stub guys, span guys, sidewalk/strut guys, push braces, and alternatives like steel stubs for various scenarios.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Anchor/down guys: Most common, lower end in earth.",
+        "Stub guys: Short pole when direct anchor impractical.",
+        "Span guys: Pole-to-pole when anchor not feasible.",
+        "Sidewalk/strut: Limited space.",
+        "Push brace: No guy feasible.",
+        "Lead/height ratio ≥0.3."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Guy types include anchor/down (most common), stub (short pole), span/pole-to-pole (15'6\" min clearance), sidewalk/strut (limited space), push brace (no guy option). Use per conditions like deadends, angles. Lead/height ≥0.3."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Guy Clearances",
+          "content": "Maintain 15'6\" over driveways; 9'6\" pedestrian areas."
+        },
+        {
+          "type": "table",
+          "title": "Guy Types and Applications",
+          "headers": ["Type", "Description", "When Used"],
+          "rows": [
+            ["Anchor/Down", "Lower end anchored in earth", "Standard deadends/angles"],
+            ["Stub", "Guy stub pole", "No direct anchor feasible"],
+            ["Span/Pole-to-Pole", "To adjacent pole", "No anchor space"],
+            ["Sidewalk/Strut", "Short lead", "Sidewalk areas"],
+            ["Push Brace", "Timber brace to ground", "No guy possible"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guy Type Selection",
+          "question": "Best for no anchor space?",
+          "options": [
+            {"text": "Span guy", "is_correct": true, "explanation": "Connects pole-to-pole."},
+            {"text": "Down guy", "is_correct": false, "explanation": "Requires earth anchor."},
+            {"text": "Push brace", "is_correct": false, "explanation": "For no guy at all."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Guying Materials",
+      "learning_objective": "Select appropriate guy wires, anchors, rods, hooks, grips, and insulators based on strength and soil conditions.",
+      "voiceover_summary": "Guy materials: 12.5M/16M/25M wires, screw anchors for soil classes, guy hooks by angle/load. Ensure NESC compliance.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Guy wire: G15A (12.5M), G17A (16M).",
+        "Anchors: 10\" screw standard; 14\" soft soil.",
+        "Hooks: B20A/B near-horizontal.",
+        "Insulators: Fiberglass for BIL.",
+        "Grips: Preformed/automatic full-tension."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Guy wire: 12.5M G15A (11,367 lbs use), 16M G17A (16,200 lbs). Anchors: 10\" screw A16A standard, 14\" A16B soft soil. Bolts: 5/8\" B13, 3/4\" B14. Hooks: B20A 11k lbs. Grips: P54 preformed. Insulators: TI95 for BIL."
+        },
+        {
+          "type": "table",
+          "title": "Guy Wire Sizes",
+          "headers": ["Item", "Size", "RBS", "Use Strength"],
+          "rows": [
+            ["G15A", "3/8” Alumoweld (12.5M)", "12,630 lbs", "11,367 lbs"],
+            ["G17A", "7/16” Galv Steel (16M)", "18,000 lbs", "16,200 lbs"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Soil Classes & Anchors",
+          "headers": ["Class", "Soil", "Anchor"],
+          "rows": [
+            ["2", "Dense sand/clay", "A16A 10\""],
+            ["6", "Loose sand/firm clay", "A16B 14\""]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Material Selection",
+          "question": "Soft soil anchor?",
+          "options": [
+            {"text": "A16B 14\"", "is_correct": true, "explanation": "For class 6 soil."},
+            {"text": "A16A 10\"", "is_correct": false, "explanation": "Standard dense soil."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to the Foreword and Standards Overview",
+      "learning_objective": "Understand the purpose of the Foreword and gain an overview of the Distribution Overhead & Underground Construction Standards.",
+      "voiceover_summary": "The Foreword introduces National Grid's internal standards for safe, reliable distribution construction, covering materials, techniques, and compliance with NESC.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Standards provide materials, techniques, assemblies, and drawings for repetitive structures.", "Includes engineering calculations and explanations for non-standard designs.", "Coordinated for safety, reliability, operability, uniformity, appearance, economy, and environment."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid develops internal Standards that provide information on acceptable materials, techniques, assemblies, and representative construction drawings for building structures used repetitively. These Standards also document engineering calculations for non-standard construction and explain material and technique selections. The Company commits to modern, inclusive Standards in a practical format."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Standards Coordination",
+          "content": "Standards coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Purpose",
+          "question": "What do the Standards primarily provide?",
+          "options": [
+            {"text": "Materials, techniques, assemblies, and drawings for repetitive structures.", "is_correct": true, "explanation": "As stated in the Foreword."},
+            {"text": "Only engineering calculations.", "is_correct": false, "explanation": "Includes more than just calculations."},
+            {"text": "Customer billing info.", "is_correct": false, "explanation": "Not related to billing."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Purpose and Scope of the Standards",
+      "learning_objective": "Identify the purpose and scope of National Grid's Construction Standards.",
+      "voiceover_summary": "Standards aim to ensure safe, reliable construction compliant with NESC, for company personnel, engineers, designers, and contractors.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["For construction of distribution system by personnel, engineers, designers, contractors.", "All new construction and rebuilding conforms to Standards.", "Not intended to change existing unless special applications."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid produces these Construction Standards for use by the Company’s construction personnel, engineers, designers and contractors for construction of the Company’s distribution system. All new construction and rebuilding shall conform to these Standards."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Scope Limitation",
+          "content": "Existing construction need not be changed to comply with current Standards unless for special applications referred to Division Engineering."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Users",
+          "question": "Who are the Standards intended for?",
+          "options": [
+            {"text": "Company personnel, engineers, designers, contractors.", "is_correct": true, "explanation": "Explicitly stated in Foreword."},
+            {"text": "Only customers.", "is_correct": false, "explanation": "For internal use."},
+            {"text": "Transmission only.", "is_correct": false, "explanation": "Distribution system."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Compliance with NESC and Regulations",
+      "learning_objective": "Explain compliance requirements with NESC and other regulations.",
+      "voiceover_summary": "Standards comply fully with current NESC; most stringent rule prevails in conflicts.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Comply with current NESC edition and public authority rules.", "Most stringent rule prevails in conflicts.", "Refer questions to Standards, Policies and Codes."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "These Standards are intended to comply in all respects with requirements of the current edition of the National Electrical Safety Code (NESC) and are supplemented by applicable rules and regulations of governing public authorities. When a conflict occurs, the most stringent rule or regulation shall prevail."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Rule Precedence",
+          "content": "In conflicts, the most stringent rule prevails. Questions to Standards, Policies and Codes."
+        },
+        {
+          "type": "quiz",
+          "title": "Compliance Rule",
+          "question": "What prevails in conflicts between rules?",
+          "options": [
+            {"text": "Most stringent rule or regulation.", "is_correct": true, "explanation": "As per Foreword."},
+            {"text": "NESC only.", "is_correct": false, "explanation": "Supplemented by local rules."},
+            {"text": "Oldest rule.", "is_correct": false, "explanation": "Current edition and most stringent."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Distribution Methods and Updates",
+      "learning_objective": "Describe how Standards are distributed and updated.",
+      "voiceover_summary": "Standards issued electronically via SharePoint and in binders; updates released as needed.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Electronically on Electric Standards SharePoint site.", "Binders: Overhead and Underground.", "Updates issued and distributed to holders; maintain books."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "These standards are issued and updated electronically in National Grid’s “Electric Standards Share Point” site. They are also issued in two binders: “Overhead Construction Standards” and “Underground Construction Standards”. Updates are released and issued as needed and distributed to book holders."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Book Maintenance",
+          "content": "Book holders must maintain books with latest updates."
+        },
+        {
+          "type": "quiz",
+          "title": "Update Responsibility",
+          "question": "Who maintains the binders?",
+          "options": [
+            {"text": "Book holders within Company and contractors.", "is_correct": true, "explanation": "Responsibility of holders."},
+            {"text": "Only Standards team.", "is_correct": false, "explanation": "Distributed to holders."},
+            {"text": "No need for updates.", "is_correct": false, "explanation": "Updates required."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Responsibilities and Expectations",
+      "learning_objective": "Outline employee responsibilities regarding Standards.",
+      "voiceover_summary": "Employees must be familiar with Standards; new construction conforms.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Thorough familiarity required for applicable work.", "New construction/rebuilding conforms.", "Special applications to Division Engineering."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Employees whose work calls for the application of these Standards are expected to be thoroughly familiar with them. All new construction and rebuilding shall conform to these Standards."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Familiarity Expected",
+          "content": "Thorough familiarity with Standards required for relevant work."
+        },
+        {
+          "type": "quiz",
+          "

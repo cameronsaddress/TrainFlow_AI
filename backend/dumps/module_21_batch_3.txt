@@ -1,0 +1,53 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Review and Application",
+      "learning_objective": "Apply National Grid standards for Distribution Supply structures (Section 21), including pole selection, guying requirements, voltage classes, BIL ratings, and construction practices for reliability and safety.",
+      "voiceover_summary": "Review key elements of Section 21 Distribution Supply: voltage classes, BIL ratings, pole strengths, guying, and construction drawings. Apply these to ensure safe, reliable installations compliant with NESC Grade B/C.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use Class H1/H2 poles for critical sub-transmission structures (23-46kV NY/MA).",
+        "Apply NESC Heavy Loading for spans, tensions, and clearances.",
+        "Ensure BIL coordination (e.g., 150kV for 34.5kV distribution).",
+        "Guy per Section 3; deadend drawings in 21-101 to 21-305.",
+        "Maintain minimum clearances per Section 7; prioritize Grade B at crossings."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 21 covers Distribution Supply for sub-transmission (23-46kV), emphasizing resilient structures. Key pages include checklists (21-i to 21-NOTES) and drawings for pole tops, deadends, and angles. Review voltage classes from Section 1: 23kV (125/150kV BIL), 34.5kV (150kV BIL). Use NESC Heavy Loading for design."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Safety",
+          "content": "Treat all lines as energized. Verify de-energization before work. Use PPE for 23-46kV."
+        },
+        {
+          "type": "table",
+          "title": "Distribution Supply Voltages & BIL (Ref Section 1)",
+          "headers": ["Voltage (kV)", "BIL (kV)", "Notes"],
+          "rows": [
+            ["23", "125/150", "NY/MA"],
+            ["34.5", "150", "Distribution"],
+            ["46", "200", "NY"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Application: For new builds, select H1 poles at deadends/crossings (21-101+). Guy per drawings (e.g., 21-211 tangent). Ensure 20-span max between deadends to prevent cascading (Section 4)."
+        },
+        {
+          "type": "quiz",
+          "title": "Distribution Supply Review",
+          "question": "What BIL rating applies to 34.5kV Distribution Supply lines?",
+          "options": [
+            {"text": "150kV", "is_correct": true, "explanation": "Per Section 1, 34.5kV distribution requires 150kV BIL."},
+            {"text": "200kV", "is_correct": false, "explanation": "200kV is for 46kV."},
+            {"text": "125kV", "is_correct": false, "explanation": "125kV for some 23kV."}
+          ]
+        }
+      ]
+    }
+  ]
+}

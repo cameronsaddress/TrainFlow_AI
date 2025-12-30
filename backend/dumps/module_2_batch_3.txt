@@ -1,0 +1,157 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Pole Classification and Calculations",
+      "learning_objective": "Master the process of classifying poles based on NESC loading conditions, including transverse, vertical, and longitudinal loads, and perform strength calculations for safe overhead distribution structures.",
+      "voiceover_summary": "This lesson covers pole classification using NESC overload factors, strength tables, and step-by-step examples for determining adequate pole class under heavy loading.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Use NESC Grade C for most structures; Grade B for crossings.",
+        "Apply overload factors: Vertical 1.90, Transverse Wind 1.75, Wire Tension 1.30.",
+        "Pole strength checked via groundline moments and buckling limits.",
+        "Class H1 poles for critical storm-hardened structures in NY."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Pole classification ensures structures withstand NESC heavy loading (4 psf wind, ½\" radial ice). Select class based on conductor/equipment loads using groundline moment calculations. Tables provide buckling limits and allowable weights."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Overload Factors",
+          "content": "Grade C: Vertical 1.90, Transverse Wind 1.75, Wire Tension 1.30. Use most stringent rule."
+        },
+        {
+          "type": "table",
+          "title": "Pole Groundline Moments Due to Wind (ft-lbs, Set in Earth)",
+          "headers": ["Pole Length", "H1", "1", "2", "3", "4", "5", "6"],
+          "rows": [
+            ["35 ft", "2693", "2505", "2330", "2155", "1979", "1804", "1643"],
+            ["40 ft", "3668", "3399", "3166", "2934", "2701", "2468", "2236"],
+            ["45 ft", "4820", "4449", "4151", "3830", "3532", "3234", "2936"],
+            ["50 ft", "6156", "5665", "5264", "4864", "4492", "4120", ""],
+            ["55 ft", "7691", "7017", "6529", "6040", "5586", "", ""]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Permitted Groundline Moments (ft-lbs, Set in Earth)",
+          "headers": ["Pole Length", "H1", "1", "2", "3", "4", "5", "6"],
+          "rows": [
+            ["35 ft", "145800", "105188", "86488", "70125", "56100", "44413", "35063"],
+            ["40 ft", "172800", "122400", "100640", "81600", "65280", "51680", "40800"],
+            ["45 ft", "197100", "139613", "114793", "93075", "74460", "58948", "46538"],
+            ["50 ft", "221400", "156825", "128945", "104550", "83640", "66215", ""],
+            ["55 ft", "245700", "174038", "143098", "116025", "92820", "", ""]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Calculate total moment: Wind + Tension + Equipment. Compare to permitted moment from tables. Example: 40ft Class 3 pole handles 71,091 ft-lbs (permitted 81,600)."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Strength Check",
+          "question": "For Grade C, what overload factor applies to transverse wind loads?",
+          "options": [
+            {"text": "1.75", "is_correct": true, "explanation": "NESC Table 1 specifies 1.75 for Grade C transverse wind elsewhere."},
+            {"text": "2.50", "is_correct": false, "explanation": "2.50 is for Grade B at crossings."},
+            {"text": "1.90", "is_correct": false, "explanation": "1.90 is for vertical loads."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Drawings and Practical Application",
+      "learning_objective": "Apply practical pole drawings for installation, including specs, setting depths, numbering, phase ID, and special features like rock anchors and nesting platforms.",
+      "voiceover_summary": "Explore key drawings for poles: specs on 2-101, weights 2-102, rock anchors 2-105, extensions 2-106, numbering 2-111, phase ID 2-112, fiberglass 2-113, clean corridors 2-301, and protective covers.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Pole specs: 10% length +2ft setting depth (2-101).",
+        "Number poles on road-side face, 7ft above grade (2-111).",
+        "Phase ID on first pole out of substation (2-112).",
+        "Use fiberglass for difficult access or woodpecker issues (2-113)."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Drawings guide practical installs: 2-101 specs/setting depths, 2-102 weights/CG, 2-105 rock anchors, 2-106 extensions (max 1600lbs transverse), 2-111 numbering, 2-112/112A phase/feeder ID, 2-113 self-supporting fiberglass, 2-301 clean corridor sets, nesting platforms 2-501/501B, covers 2-502-504."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Pole Top Extensions",
+          "content": "Limit transverse load to 1600lbs (12in below top). No use at deadends/Grade B."
+        },
+        {
+          "type": "table",
+          "title": "Pole Setting Depths (Southern Yellow Pine)",
+          "headers": ["Length", "Earth", "Rock", "Wet Soil", "H1", "CL1", "CL2", "CL3", "CL4", "CL5", "CL6"],
+          "rows": [
+            ["35ft", "6ft", "4ft", "8ft", "41.5\"", "39\"", "36.5\"", "34\"", "31.5\"", "29\"", "27\""],
+            ["40ft", "6ft", "4ft", "8ft", "43.5\"", "41\"", "38.5\"", "36\"", "33.5\"", "31\"", "28.5\""]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Practical: Number poles road-side 7ft up (2-111). Phase ID per 2-112/112A on smart devices. Fiberglass poles for wetlands (2-113). Clean corridors for contaminated sites (2-301)."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Numbering",
+          "question": "Where to place pole numbers?",
+          "options": [
+            {"text": "Road-side face, ~7ft above grade", "is_correct": true, "explanation": "Per Drawing 2-111 for visibility."},
+            {"text": "Top of pole", "is_correct": false, "explanation": "Not visible or standard."},
+            {"text": "Back side", "is_correct": false, "explanation": "Road-side for access."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Review and Assessment",
+      "learning_objective": "Review key concepts from Section 2 and assess understanding of pole selection, calculations, and applications.",
+      "voiceover_summary": "Summarize pole standards: classification via loads/moments, drawings for specs/installs, safety in guying/extensions.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Classify poles using moments vs. permitted tables.",
+        "NESC Grade C default; H1 for storm hardening.",
+        "Key drawings: 2-101 specs, 2-111 numbering, 2-301 clean corridors.",
+        "Always guy unbalanced loads; use fiberglass alternatives."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 2 ensures safe, reliable poles: specs (2-101), calculations (examples 1-3), drawings for practical use. Comply with NESC, prioritize safety."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Storm Hardening",
+          "content": "NY: Class 1 mainlines/heavy equip; H1 critical. See Section 4."
+        },
+        {
+          "type": "quiz",
+          "title": "Final Assessment",
+          "question": "What pole class for critical NY structures?",
+          "options": [
+            {"text": "H1", "is_correct": true, "explanation": "Per 2.1.10 and Section 4 storm hardening."},
+            {"text": "Class 5", "is_correct": false, "explanation": "Standard tangent; H1 for critical."},
+            {"text": "Class 1 only mainlines", "is_correct": false, "explanation": "H1 for critical like ties/reclosers."}
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Calculation Recall",
+          "question": "Overload for Grade C transverse tension?",
+          "options": [
+            {"text": "1.30", "is_correct": true, "explanation": "NESC Table 1."},
+            {"text": "1.75", "is_correct": false, "explanation": "Wind."},
+            {"text": "1.90", "is_correct": false, "explanation": "Vertical."}
+          ]
+        }
+      ]
+    }
+  ]
+}

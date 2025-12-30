@@ -1,0 +1,96 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Attachment Drawings and Best Practices",
+      "learning_objective": "Understand the standard drawings and best practices for attaching secondary conductors to poles, ensuring safety, reliability, and compliance with NESC clearances.",
+      "voiceover_summary": "Secondary attachments follow specific drawings for straight, angle, corner, junction, dead-end, and tie points. Best practices include proper sagging, grounding, and avoiding overloads to maintain clearances and prevent failures.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Use designated drawings for pole attachments like straight line (Fig.1), angle (Fig.2), and junctions (Fig.4).",
+        "Maintain NESC clearances; sag to tables for safe installation.",
+        "Bond neutrals and ground messengers for safety.",
+        "Limit spans and loads per sag-tension data to avoid issues."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary conductors are attached to poles using standardized configurations from drawings 10-100 to 10-103. These include straight line poles (Fig.1), angle poles (Fig.2), corner poles (Fig.3), junction poles (Fig.4), dead-end poles (Fig.5), tie points (Fig.6), connections to open wire (Fig.7), and transformer poles (Fig.8). Best practices emphasize locating attachments on the street side, using clamps like PR1STS for straight attachments, and ensuring guyed supports for unbalanced loads."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Secondary Attachment Safety",
+          "content": "Always verify clearances per NESC before attachment. Ground messengers and bond neutrals to prevent shock hazards. Use proper PPE and de-energize when possible."
+        },
+        {
+          "type": "table",
+          "title": "Secondary Attachment Configurations",
+          "headers": ["Configuration", "Drawing Fig.", "Key Components"],
+          "rows": [
+            ["Straight Line Pole", "Fig.1", "PR1STS Sec. Clamp"],
+            ["Angle Pole", "Fig.2", "PR1SSA Sec. Clamp Angle"],
+            ["Corner Pole", "Fig.3", "PR1SSA2 Sec. DE Angle 61°-90°"],
+            ["Junction Pole", "Fig.4", "PR1SSADE Sec. Deadend"],
+            ["Dead End Pole", "Fig.5", "CNCUT Sec. Crib Cut/Splice"],
+            ["Tie Point", "Fig.6", "CCTPS Reconnect Sec. Taps"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Secondary Pole Attachments",
+          "question": "What clamp is used for a straight line secondary pole attachment?",
+          "options": [
+            {"text": "PR1STS Sec. Clamp", "is_correct": true, "explanation": "PR1STS is specified for straight line attachments per Fig.1."},
+            {"text": "PR1SSA Sec. Clamp Angle", "is_correct": false, "explanation": "This is for angle poles (Fig.2)."},
+            {"text": "CNCUT Sec. Crib Cut/Splice", "is_correct": false, "explanation": "Used for junctions or cuts."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Review, Assessment, and Application",
+      "learning_objective": "Review sag-tension data, assess transformer loading, and apply best practices for secondary design to ensure voltage regulation and reliability.",
+      "voiceover_summary": "Secondary crib design uses 3/C-1/0 aluminum triplex. Sag-tension tables guide installations. Transformer loading follows residential guidelines; assess flicker and regulation for optimal performance.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Use sag-tension tables for safe spans; e.g., 150 ft ruling span at 0°F: 1495 lbs tension.",
+        "Transformer sizing: 25 kVA for 9 oil/gas heat homes; assess peak kWh.",
+        "Flicker limits per chart; voltage drop <1.5% ideal.",
+        "Apply rules for splicing, grounding, and clearances."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary cribs use 3/C-1/0 aluminum triplex. Design centers transformers at load midpoint. Sag-tension tables (10-5 to 10-8) ensure NESC compliance. Residential loading: 25 kVA serves 9 oil/gas heat homes. Flicker chart (10-10) assesses motor starts. Transformer regulation (10-11) guides sizing."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Voltage Regulation Compliance",
+          "content": "Maintain 114-126V (MA) or 114-123V (NY) at customer point. Exceeding drops risks non-compliance."
+        },
+        {
+          "type": "table",
+          "title": "1/0 Triplex Sag-Tension (150 ft Ruling Span)",
+          "headers": ["Temp °F", "Tension lbs", "Sag 100 ft (in)", "Sag 150 ft (in)"],
+          "rows": [
+            ["0", "1495", "4", "10"],
+            ["32", "1245", "5", "11"],
+            ["60", "1010", "6", "14"],
+            ["120 (Max Design)", "640", "10", "22"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Transformer Loading Assessment",
+          "question": "For 25 kVA transformer with oil/gas heat, max homes served?",
+          "options": [
+            {"text": "9", "is_correct": true, "explanation": "Table allows 9 homes for oil/gas heat on 25 kVA."},
+            {"text": "5", "is_correct": false, "explanation": "5 is for central air."},
+            {"text": "12", "is_correct": false, "explanation": "12 exceeds limit."}
+          ]
+        }
+      ]
+    }
+  ]
+}

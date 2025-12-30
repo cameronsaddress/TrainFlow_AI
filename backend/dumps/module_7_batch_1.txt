@@ -1,0 +1,145 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Clearances to Buildings, Bridges, and Rail Cars",
+      "learning_objective": "Understand NESC minimum clearances for overhead lines to buildings, bridges, rail cars, and related structures to ensure safety and compliance.",
+      "voiceover_summary": "This lesson covers essential NESC clearances to buildings, bridges, and rail cars, emphasizing safety distances for various voltage levels and scenarios.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Maintain minimum clearances to prevent hazards from energized lines.",
+        "Clearances vary by voltage, structure type, and accessibility.",
+        "Use NESC tables for precise measurements; exceed where practical.",
+        "Special rules apply for rail cars and bridges."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Overhead distribution lines must comply with NESC clearances to buildings, bridges, and rail cars. Primary wires should avoid buildings; if unavoidable, follow Table 6 clearances. For bridges, use Table 7 and increase for wind. Rail car clearances are detailed in Section 7.7."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Hazard Prevention",
+          "content": "Energized lines near structures pose electrocution risks. Always verify clearances before installation."
+        },
+        {
+          "type": "table",
+          "title": "Clearance to Buildings (NESC Table 234-1)",
+          "headers": ["Clearance Type", "0-750V (ft)", "750V-22kV (ft)"],
+          "rows": [
+            ["Horizontal to Walls/Windows", "4.5", "7.5"],
+            ["Vertical Over Roofs", "10.5", "12.5"],
+            ["Over Pedestrian Areas", "10.5", "13.5"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Clearance to Bridges (NESC Table 234-2)",
+          "headers": ["Location", "0-750V (ft)", "750V-22kV (ft)"],
+          "rows": [
+            ["Attached to Bridge", "3.0", "5.0"],
+            ["Not Attached", "10.0", "12.5"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Building Clearance Quiz",
+          "question": "What is the minimum horizontal clearance to buildings for 750V-22kV lines?",
+          "options": [
+            {"text": "4.5 ft", "is_correct": false, "explanation": "Applies to lower voltages."},
+            {"text": "7.5 ft", "is_correct": true, "explanation": "NESC requires 7.5 ft for safety."},
+            {"text": "10 ft", "is_correct": false, "explanation": "For rail cars."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Separations on Poles: Vertical, Horizontal, and Climbing Space",
+      "learning_objective": "Identify required vertical, horizontal separations, and climbing spaces on poles per NESC for safe access and maintenance.",
+      "voiceover_summary": "Learn pole separations: vertical between conductors, horizontal for climbing, ensuring worker safety during maintenance.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Vertical separations prevent contact between circuits.",
+        "Horizontal climbing space: 24-40 inches based on voltage.",
+        "Maintain 40-inch climbing zone on poles.",
+        "Reduce for insulated parts but verify NESC."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Separations on poles ensure safety. Vertical: phase-to-phase per Table 9. Horizontal climbing space per NESC Table 236-1. Climbing space extends 40 inches above/below attachments."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Climbing Hazards",
+          "content": "Insufficient climbing space risks falls or shocks. Always confirm before climbing."
+        },
+        {
+          "type": "table",
+          "title": "Vertical Clearance at Supports (NESC Table 235-5)",
+          "headers": ["Conductors", "0-8.7kV (in)", "8.7-15kV (in)"],
+          "rows": [
+            ["Communication to Supply", "40/30", "40/30"],
+            ["Supply 0-750V", "16/12", "16/12"],
+            ["Supply >750V", "16+A", "40+A"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Separation Quiz",
+          "question": "Minimum climbing space for supply conductors 0-8.7kV?",
+          "options": [
+            {"text": "24 inches", "is_correct": true, "explanation": "NESC requires 24 inches horizontal."},
+            {"text": "12 inches", "is_correct": false, "explanation": "Too small for safety."},
+            {"text": "40 inches", "is_correct": false, "explanation": "For higher voltages."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "BIL Spacing, Climbing Space, and Additional Requirements",
+      "learning_objective": "Apply BIL spacing rules, climbing space standards, and extra requirements for pole designs.",
+      "voiceover_summary": "Master BIL for lightning protection, climbing spaces, and extras like property lines.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "150kV BIL minimum: 20 inches wood/air.",
+        "Climbing space: 40 inches vertical, per voltage.",
+        "Additional: property lines, propane tanks.",
+        "Verify with NESC for compliance."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "BIL: 150kV min via 20in wood. Climbing: Table 236-1. Additional: 50ft from propane tanks, 6ft property lines."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "BIL Non-Compliance",
+          "content": "Insufficient BIL risks flashover. Use fiberglass if wood short."
+        },
+        {
+          "type": "table",
+          "title": "Climbing Space (NESC Table 236-1)",
+          "headers": ["Voltage", "Horizontal (in)"],
+          "rows": [
+            ["Communication", "24"],
+            ["Supply 0-750V", "24"],
+            ["Supply >750V", "30"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "BIL Quiz",
+          "question": "Minimum wood for 150kV BIL?",
+          "options": [
+            {"text": "20 inches", "is_correct": true, "explanation": "Provides impulse withstand."},
+            {"text": "10 inches", "is_correct": false, "explanation": "Insufficient."},
+            {"text": "30 inches", "is_correct": false, "explanation": "Overkill for distribution."}
+          ]
+        }
+      ]
+    }
+  ]
+}

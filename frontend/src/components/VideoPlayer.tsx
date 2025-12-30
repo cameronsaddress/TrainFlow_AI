@@ -15,6 +15,7 @@ interface VideoPlayerProps {
 export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autoplay = false, onProgress }: VideoPlayerProps) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Default to loading
+    const [error, setError] = useState<string | null>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -22,6 +23,7 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
     useEffect(() => {
         setIsLoading(true);
         setIsPlaying(false);
+        setError(null);
     }, [src]);
 
     // Initial Seek
@@ -74,6 +76,21 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
                 onWaiting={() => setIsLoading(true)}
                 onCanPlay={() => setIsLoading(false)}
                 onLoadedData={() => setIsLoading(false)}
+                onError={(e) => {
+                    const target = e.currentTarget;
+                    console.error("Video Error Event:", e);
+                    if (target.error) {
+                        console.error("MediaError Details:", {
+                            code: target.error.code,
+                            message: target.error.message,
+                            src: target.currentSrc || target.src
+                        });
+                        setError(`Error ${target.error.code}: ${target.error.message || "Unknown Error"}`);
+                    } else {
+                        setError("Failed to load video (Unknown source error)");
+                    }
+                    setIsLoading(false);
+                }}
                 onLoadedMetadata={() => {
                     if (videoRef.current && startTime > 0) {
                         videoRef.current.currentTime = startTime;
@@ -81,8 +98,18 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
                 }}
             />
 
+            {/* Error Message */}
+            {error && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#0a0a0a]">
+                    <div className="text-center p-4">
+                        <div className="text-red-500 font-bold mb-2">Video Error</div>
+                        <p className="text-white/50 text-xs">{error}</p>
+                    </div>
+                </div>
+            )}
+
             {/* Loading Skeleton & Spinner */}
-            {isLoading && (
+            {isLoading && !error && (
                 <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#0a0a0a]">
                     {/* Shimmer Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]" />
@@ -96,53 +123,55 @@ export function VideoPlayer({ src = "/demo.mp4", startTime = 0, endTime, autopla
             )}
 
             {/* Overlay Controls */}
-            <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity flex items-center gap-4 ${isLoading ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}>
-                <button onClick={togglePlay} className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
-                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                </button>
-
-                {/* Replay Clip Button if in Clip Mode */}
-                {endTime && (
-                    <button onClick={handleReplayClip} className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors" title="Replay Clip">
-                        <RotateCcw className="w-4 h-4" />
+            {!error && (
+                <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity flex items-center gap-4 ${isLoading ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}>
+                    <button onClick={togglePlay} className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+                        {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                     </button>
-                )}
 
-                {/* Debug: Open Source Link */}
-                <a
-                    href={src}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-full hover:bg-white/10 text-white opacity-50 hover:opacity-100 transition-opacity"
-                    title="Open Source Video"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <Maximize className="w-4 h-4" />
-                </a>
+                    {/* Replay Clip Button if in Clip Mode */}
+                    {endTime && (
+                        <button onClick={handleReplayClip} className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors" title="Replay Clip">
+                            <RotateCcw className="w-4 h-4" />
+                        </button>
+                    )}
 
-                {/* Progress Bar */}
-                <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-primary transition-all duration-200"
-                        style={{ width: `${(currentTime / (videoRef.current?.duration || 1)) * 100}%` }}
-                    />
+                    {/* Debug: Open Source Link */}
+                    <a
+                        href={src}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 rounded-full hover:bg-white/10 text-white opacity-50 hover:opacity-100 transition-opacity"
+                        title="Open Source Video"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <Maximize className="w-4 h-4" />
+                    </a>
+
+                    {/* Progress Bar */}
+                    <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-primary transition-all duration-200"
+                            style={{ width: `${(currentTime / (videoRef.current?.duration || 1)) * 100}%` }}
+                        />
+                    </div>
+
+                    {/* Clip Time Indicator */}
+                    <div className="text-xs font-mono text-white/70">
+                        {currentTime.toFixed(0)}s / {videoRef.current?.duration ? videoRef.current.duration.toFixed(0) : "..."}s
+                    </div>
+
+                    <button className="p-2 rounded-full hover:bg-white/10 text-white">
+                        <Volume2 className="w-4 h-4" />
+                    </button>
+                    <button className="p-2 rounded-full hover:bg-white/10 text-white">
+                        <Maximize className="w-4 h-4" />
+                    </button>
                 </div>
-
-                {/* Clip Time Indicator */}
-                <div className="text-xs font-mono text-white/70">
-                    {currentTime.toFixed(0)}s / {videoRef.current?.duration ? videoRef.current.duration.toFixed(0) : "..."}s
-                </div>
-
-                <button className="p-2 rounded-full hover:bg-white/10 text-white">
-                    <Volume2 className="w-4 h-4" />
-                </button>
-                <button className="p-2 rounded-full hover:bg-white/10 text-white">
-                    <Maximize className="w-4 h-4" />
-                </button>
-            </div>
+            )}
 
             {/* Big Play Button */}
-            {!isPlaying && !isLoading && (
+            {!isPlaying && !isLoading && !error && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl backdrop-blur-sm">
                         <Play className="w-8 h-8 text-white ml-1" />

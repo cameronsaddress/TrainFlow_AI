@@ -1,0 +1,129 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Installing Conductors",
+      "learning_objective": "Understand the procedures for sagging, tensioning, and installing primary overhead conductors to ensure compliance with NESC clearances and structural integrity.",
+      "voiceover_summary": "Proper installation of primary conductors involves calculating sags and tensions based on ruling spans, using specific tables for initial and final conditions, and adhering to maximum span limits to maintain safety and reliability.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["String initial tension at 35% RBS at 0°F", "Limit maximum design tension to 50% RBS under heavy loading", "Use ruling span method for sags; slack spans for unguyed ends", "Verify clearances per NESC under ice, wind, and max temperature"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Installing primary conductors requires precise sag and tension calculations to meet NESC clearances. Use the ruling span method for uniform tension across spans. Initial unloaded tension at 0°F should not exceed 35% of rated breaking strength (RBS). Maximum design tension under heavy loading (½\" ice, 4 psf wind) is limited to 50% RBS or 2000-3000 lbs depending on conductor. Final unloaded tension at 0°F ≤25% RBS."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Conductor Tension Safety",
+          "content": "Never exceed tension limits to avoid overstressing poles, crossarms, or guys. Verify sags with dynamometer and line-of-sight method. Treat lines as energized during installation."
+        },
+        {
+          "type": "table",
+          "title": "Tension Limits and Loading",
+          "headers": ["Condition", "Tension Limit (% RBS)", "Temperature"],
+          "rows": [
+            ["Initial Unloaded", "≤35%", "0°F"],
+            ["Max Design (Heavy Load)", "≤50%", "Heavy Loading"],
+            ["Final Unloaded", "≤25%", "0°F"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "For slack spans, calculate sag as S = (W × L²) / (8 × T), where W is total loaded weight/ft, L is span length, T is tension. Sag to normal temperature values. Deadend spans use uniform span tables."
+        },
+        {
+          "type": "quiz",
+          "title": "Conductor Installation Check",
+          "question": "What is the maximum initial unloaded tension at 0°F for primary conductors?",
+          "options": [
+            {"text": "25% RBS", "is_correct": false, "explanation": "This is final unloaded limit."},
+            {"text": "35% RBS", "is_correct": true, "explanation": "Initial tension ≤35% RBS at 0°F."},
+            {"text": "50% RBS", "is_correct": false, "explanation": "This is max under heavy loading."},
+            {"text": "60% RBS", "is_correct": false, "explanation": "NESC allows up to 60%, but company limits to 50%."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Standard vs. Non-Standard Conductors",
+      "learning_objective": "Differentiate between standard and non-standard primary conductors, including physical properties, loading, and application guidelines.",
+      "voiceover_summary": "Standard conductors like 477 kcmil AAC and ACSR are preferred for new lines due to ampacity and sag data. Non-standard like older PE-covered are for maintenance only, with specific limitations.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Standards: AAC/ACSR 336-1113 kcmil for new builds", "Non-standards: PE-covered, copper for maintenance", "Check RBS, sag tables, ampacity per voltage", "Non-standards limited by availability, performance"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Standard conductors (6-100 series) are for new construction: e.g., 477 kcmil AAC 'Cosmos' (RBS 8360 lbs, 640A summer normal). Non-standard (6-200/300): e.g., 636 kcmil AAC 'Orchid' maintenance only. Use standards for reliability; non-standards where existing."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Conductor Approval",
+          "content": "Non-standard conductors limited to maintenance. New installs require standard AAC/ACSR per specs. Verify BIL, clearances."
+        },
+        {
+          "type": "table",
+          "title": "Sample Standard vs Non-Standard Comparison",
+          "headers": ["Type", "Size", "RBS (lbs)", "Ampacity Summer Normal (A)", "Status"],
+          "rows": [
+            ["Standard AAC", "477 kcmil Cosmos", "8360", "640", "New"],
+            ["Non-Std AAC", "636 kcmil Orchid", "11400", "766", "Maintenance"],
+            ["Standard ACSR", "477 kcmil Hawk", "19500", "658", "New"],
+            ["Non-Std Copper", "4/0 HD", "9160", "486", "Maintenance"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Conductor Selection",
+          "question": "Which is approved for new 15kV lines?",
+          "options": [
+            {"text": "636 kcmil AAC Orchid", "is_correct": false, "explanation": "Non-standard, maintenance only."},
+            {"text": "477 kcmil AAC Cosmos", "is_correct": true, "explanation": "Standard for new builds."},
+            {"text": "PE-covered #4 ACSR", "is_correct": false, "explanation": "Obsolete covering."},
+            {"text": "4/0 Copper HD", "is_correct": false, "explanation": "Non-standard copper."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Review and Practical Application",
+      "learning_objective": "Apply knowledge of primary conductor installation and selection through review of key concepts and practical scenarios.",
+      "voiceover_summary": "Review sags, tensions, standards vs non-standards, and installation safety. Practical tips: Use ruling spans, verify NESC clearances, limit tensions to prevent failures.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Ruling span for uniform tension", "Standards for new, non-std maintenance", "Safety: Treat as energized, proper PPE", "Verify with sag tables, dynamometer"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Key review: Sag to 35% initial RBS at 0°F, max 50% heavy load. Standards AAC/ACSR preferred. Install per line-of-sight, check spans <150% avg. Practical: Balance loads, guy angles >2°."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Practical Checklist",
+          "content": "1. Stake poles. 2. Sag key span. 3. Tension per table. 4. Tie securely. 5. Verify clearances."
+        },
+        {
+          "type": "table",
+          "title": "Quick Reference: Max Spans",
+          "headers": ["Conductor", "Max Span (ft)"],
+          "rows": [
+            ["477 kcmil AAC", "250"],
+            ["336 kcmil ACSR", "200"],
+            ["1/0 AAAC", "150"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Practical Scenario",
+          "question": "For 200ft ruling span 477kcmil, initial sag at 60°F?",
+          "options": [
+            {"text": "Use table: ~20in", "is_correct": true, "explanation": "From sag table for conductor."},
+            {"text": "15in", "is_correct": false, "explanation": "Too low."},
+            {"text": "30in", "is_correct": false, "explanation": "Check specific table."},
+            {"text": "No sag needed", "is_correct": false, "explanation": "Always sag per conditions."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 16 – Aerial / Spacer Cable Overview",
+      "learning_objective": "Understand the scope, applications, design principles, and key standards for Aerial and Spacer Cable systems in National Grid's overhead distribution network.",
+      "voiceover_summary": "Section 16 outlines standards for Aerial and Spacer Cable, ideal for treed areas and limited rights-of-way, ensuring reliability with proper guying, insulation, and clearances per NESC.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Spacer cable uses covered conductors supported by a messenger for tree-prone areas.",
+        "Maintain 150kV BIL with fiberglass insulators and proper guying.",
+        "Deadend messengers at intervals; phase conductors with compression splices.",
+        "Comply with NESC clearances; treat as bare conductors for safety."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Aerial/Spacer Cable systems are overhead primary distribution lines using covered conductors held in a triangular configuration by spacers on a grounded messenger strand. Designed for heavily treed areas or limited ROWs, they minimize outages from tree contact while meeting NESC requirements."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Safety Warning",
+          "content": "Spacer cable is NOT insulated. Treat as bare conductors during installation/maintenance. Use PPE and follow NESC MADs."
+        },
+        {
+          "type": "table",
+          "title": "Common Spacer Cable Configurations",
+          "headers": ["Voltage Class", "Messenger", "Phase Conductor", "Max Span"],
+          "rows": [
+            ["15kV", "1/0-2/5 AWAC", "477kcmil AAC Compact", "300ft"],
+            ["35kV", "1/0-2/5 AWAC", "795kcmil AAC Compact", "250ft"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Key practices: Deadend messenger every 800ft; use fiberglass strain insulators for BIL; stagger splices 30in; install spacers ~30ft apart."
+        },
+        {
+          "type": "quiz",
+          "title": "Spacer Cable Basics",
+          "question": "What is the primary purpose of spacer cable?",
+          "options": [
+            {"text": "Insulate conductors fully", "is_correct": false, "explanation": "Spacer cable offers limited protection; treat as bare."},
+            {"text": "Reduce tree-related outages in dense areas", "is_correct": true, "explanation": "Designed for treed ROWs with spacers preventing contact."},
+            {"text": "Increase ampacity over bare wire", "is_correct": false, "explanation": "Ampacity is lower due to covering."},
+            {"text": "Replace underground cable", "is_correct": false, "explanation": "Overhead alternative for specific conditions."}
+          ]
+        }
+      ]
+    }
+  ]
+}

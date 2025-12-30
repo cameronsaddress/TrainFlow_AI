@@ -1,0 +1,90 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Lesson 7: Reclosers",
+      "learning_objective": "Understand the types, applications, ratings, and installation requirements for reclosers in National Grid's overhead distribution protection systems.",
+      "voiceover_summary": "Reclosers enhance reliability by automatically isolating faults and restoring service for temporary issues. Key types include single-phase and three-phase models for various voltages.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Reclosers are used for fault interruption and sectionalizing on distribution feeders.", "Select based on voltage class, fault current, and coordination needs.", "All new installations require Class H1 poles per storm hardening standards.", "Follow specific drawings for Viper-ST and other models with SEL controls."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Reclosers are automatic circuit breakers that detect and interrupt faults, then attempt to reclose to restore service for temporary faults. They are essential for improving reliability on distribution feeders by isolating faults quickly."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Safety",
+          "content": "Always de-energize lines before working on reclosers. Verify grounding and follow lockout/tagout procedures."
+        },
+        {
+          "type": "table",
+            "title": "Recloser Types and Ratings",
+            "headers": ["Type", "Voltage Class", "Current Rating", "Application"],
+            "rows": [
+              ["Single Phase Vacuum Cutout Mounted", "15kV", "100A/200A", "Radial taps, sectionalizing"],
+              ["Three Phase Viper-ST", "5-35kV", "800A", "Loop schemes, radial feeders"],
+              ["SEL-651R Control", "Various", "N/A", "Microprocessor control for Viper"]
+            ]
+        },
+        {
+          "type": "text",
+          "content": "Installation requires Class H1 poles for storm hardening. Use drawings like 12-335 for effectively grounded wye systems. Coordinate with fuses for protection."
+        },
+        {
+          "type": "quiz",
+          "title": "Recloser Application",
+          "question": "What pole class is required for new three-phase recloser installations?",
+          "options": [
+            { "text": "Class H1 minimum", "is_correct": true, "explanation": "Per storm hardening standards in Section 4." },
+            { "text": "Class 3", "is_correct": false, "explanation": "Insufficient for critical structures." },
+            { "text": "Class 5", "is_correct": false, "explanation": "Standard tangent poles only." }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Lesson 8: Construction Drawings and Best Practices",
+      "learning_objective": "Identify key construction drawings for protection devices and best practices for installation to ensure safety and reliability.",
+      "voiceover_summary": "Section 12 drawings detail fuses, cutouts, switches, and reclosers. Best practices emphasize proper grounding, clearances, and coordination.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Use specific CUs for drawings like 12-335 for reclosers.", "Maintain NESC clearances and BIL levels.", "Bond neutrals and guys per Section 13.", "Test ground resistance where required."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Construction drawings in Section 12 cover cutouts, disconnects, reclosers, and fuses. Examples include 12-335 for reclosers on wye systems and 12-141 for loadbreak switches."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All installations must meet NESC grades B/C, overload factors, and clearances. Verify fault currents before selecting devices."
+        },
+        {
+          "type": "table",
+            "title": "Key Protection Drawings",
+            "headers": ["Drawing", "Application", "Key Features"],
+            "rows": [
+              ["12-335", "3Φ Recloser Wye", "Frame-mounted PTs, SEL control"],
+              ["12-141", "Loadbreak Switch", "Below crossarm, conductor deadend"],
+              ["12-127", "CLF Retrofit CSP", "Current limiting fuses for transformers"]
+            ]
+        },
+        {
+          "type": "text",
+          "content": "Best practices: Clean conductors before connections, use torque specs, bond all grounds, label phases. For high fault areas, use CLFs with cutouts."
+        },
+        {
+          "type": "quiz",
+          "title": "Installation Best Practice",
+          "question": "What is required for recloser grounding on wye systems?",
+          "options": [
+            { "text": "Bond to system neutral", "is_correct": true, "explanation": "Per 13.3 for effectively grounded systems." },
+            { "text": "Isolate completely", "is_correct": false, "explanation": "For delta only." },
+            { "text": "No bonding needed", "is_correct": false, "explanation": "Violates standards." }
+          ]
+        }
+      ]
+    }
+  ]
+}

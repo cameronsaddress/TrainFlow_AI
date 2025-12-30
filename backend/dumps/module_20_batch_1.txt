@@ -1,0 +1,155 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Separations and Clearances in 25-35kV Design",
+      "learning_objective": "Understand NESC-mandated separations and clearances for 25-35kV primary distribution lines, including vertical, horizontal, and phase-to-ground requirements to ensure safety and compliance.",
+      "voiceover_summary": "This lesson covers essential separations and clearances for 25-35kV designs per NESC standards, focusing on preventing hazards from conductor movement, ice, and wind.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Vertical clearances over roads: 18.5 ft minimum for 25-35kV under NESC Grade C.",
+        "Phase-to-ground MAD: 31 inches at pole for 35kV, plus 30-inch reach for worker safety.",
+        "Horizontal clearances: Account for wind blowout using swing angles from conductor tables.",
+        "BIL coordination: Minimum 20 inches of wood/air insulation for 150kV BIL.",
+        "Always exceed minimums where practicable for future needs."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "For 25-35kV primary distribution, clearances follow NESC Rules 232-235, adjusted for Heavy Loading District (0.5in ice, 4psf wind). Vertical clearances ensure safe passage under roads/rails; horizontal for blowout."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Hazards",
+          "content": "Treat all 25-35kV lines as energized. Maintain phase-to-ground MAD of 31in + 30in reach (61in total at pole). Use PPE and verify clearances before work."
+        },
+        {
+          "type": "table",
+          "title": "NESC Vertical Clearances for 25-35kV (Grade C)",
+          "headers": ["Surface", "Supply Conductors 25-35kV (ft)"],
+          "rows": [
+            ["Roads/Trucks", "18.5"],
+            ["Driveways/Parking", "18.5"],
+            ["Pedestrian Areas", "14.5"],
+            ["Railroads", "26.5"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Phase Separations at Pole (25-35kV)",
+          "headers": ["Configuration", "Min Separation (in)"],
+          "rows": [
+            ["Phase-to-Phase", "23"],
+            ["Phase-to-Ground/Neutral", "61 (MAD + Reach)"],
+            ["BIL Wood/Air", "20"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Clearance Verification",
+          "question": "What is the minimum vertical clearance over roads for 35kV conductors under NESC Grade C?",
+          "options": [
+            {"text": "15.5 ft", "is_correct": false, "explanation": "Applies to lower voltages."},
+            {"text": "18.5 ft", "is_correct": true, "explanation": "Required for supply conductors over truck traffic."},
+            {"text": "26.5 ft", "is_correct": false, "explanation": "For railroads."},
+            {"text": "No minimum", "is_correct": false, "explanation": "Always required."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Construction Drawings and Configurations",
+      "learning_objective": "Identify standard pole top configurations, drawings, and hardware for 25-35kV primary lines, including tangent, deadend, and angle structures.",
+      "voiceover_summary": "Explore key construction drawings for 25-35kV primaries, from tangent crossarms to deadends, ensuring compliance with NESC Grades B/C.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Tangent: 9-411 series for 0-10° angles, fiberglass options in 9-411F.",
+        "Deadends: Double crossarms per NESC at crossings/angles >20° (9-415/416).",
+        "Max spans: 150-200ft ruling, per conductor tables in Section 6.",
+        "Hardware: Use polymer insulators, guy per Section 3.",
+        "Configs: Armless (9-700 series), alley arms for clearance."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 20 drawings (e.g., 20-411 tangent crossarm, 20-415 deadend) detail pole tops for 25-35kV. Use H1 poles for critical spots, double arms at crossings."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Grade B at Crossings",
+          "content": "Double crossarms required for angles >20° or crossings (NESC 261D5c). Verify overload factors."
+        },
+        {
+          "type": "table",
+          "title": "Key 25-35kV Configurations (from Section 20 Checklist)",
+          "headers": ["Drawing", "Configuration"],
+          "rows": [
+            ["20-411", "3Φ Crossarm Tangent 0-10°"],
+            ["20-415F", "Fiberglass Deadend 21-60°"],
+            ["20-417", "Deadends/Angles 46-60°"],
+            ["20-419 Fig1", "3Φ Preferred Tap to Armless"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Structure Selection",
+          "question": "For 25-35kV tangent 0-10°, which drawing?",
+          "options": [
+            {"text": "20-415", "is_correct": false, "explanation": "Deadend."},
+            {"text": "20-411", "is_correct": true, "explanation": "Crossarm tangent."},
+            {"text": "20-419", "is_correct": false, "explanation": "Tap."},
+            {"text": "20-417", "is_correct": false, "explanation": "Heavy angles."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Advanced Design: Storm Hardening, Joint Use, and Safety",
+      "learning_objective": "Apply storm hardening (Section 4), joint use (Section 17), and safety practices to 25-35kV designs, including critical structures and NESC compliance.",
+      "voiceover_summary": "Advanced topics: Storm hardening with H1 poles/cascading prevention, joint use allocations, and safety clearances for resilient 25-35kV systems.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Storm: H1 poles for ties/reclosers (Sec4); max 20 spans between deadends.",
+        "Joint Use: 17-100 allocations; climbing space 40in (Sec17).",
+        "Safety: BIL 150kV; treat as energized; PPE/report hazards.",
+        "Coastline: +1 class poles within 0.5mi salt (Sec8).",
+        "Critical: Deadend configs prevent cascading."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Storm hardening (Sec4): Use H1 poles at ties/switches; periodic deadends limit cascades. Joint use (Sec17): Space per 17-100 tables. Safety integrates NESC clearances."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Storm Events",
+          "content": "H1 poles for critical structures; verify guys/anchors withstand Heavy Loading (Sec3)."
+        },
+        {
+          "type": "table",
+          "title": "Storm Hardening Priorities (Sec4)",
+          "headers": ["Priority", "Requirement"],
+          "rows": [
+            ["Ties/Reclosers", "H1 pole + deadends"],
+            ["Mainline NY", "Class1 min"],
+            ["Coastline", "Pole class +1"],
+            ["Cascading", "Deadends every 20 spans"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Storm Hardening",
+          "question": "For 25-35kV tie points, minimum pole class?",
+          "options": [
+            {"text": "Class 4", "is_correct": false, "explanation": "Standard tangent."},
+            {"text": "H1", "is_correct": true, "explanation": "Critical structures per Sec4."},
+            {"text": "Class 1", "is_correct": false, "explanation": "Mainline only."},
+            {"text": "H6", "is_correct": false, "explanation": "Too strong."}
+          ]
+        }
+      ]
+    }
+  ]
+}

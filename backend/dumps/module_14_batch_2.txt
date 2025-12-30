@@ -1,0 +1,83 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Step-Down/Step-Up Transformers and Special Connections",
+      "learning_objective": "Understand the purpose, installation, and special wiring configurations for step-down and step-up transformers in overhead distribution systems.",
+      "voiceover_summary": "Step-down and step-up transformers enable voltage conversions for distribution efficiency. Special connections like wye-delta require careful phasing to avoid imbalances.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": ["Use Class H1 poles for critical structures", "Follow wiring diagrams for wye-delta and delta-wye", "Ensure proper grounding and bonding", "Verify BIL compliance"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Step-down transformers reduce voltage from primary distribution levels (e.g., 13.8 kV) to secondary (e.g., 120/240 V). Step-up transformers increase voltage for specific applications. Special connections include wye-delta banks for three-phase services, requiring precise phasing to prevent neutral shifts and ferroresonance."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Risk",
+          "content": "Always de-energize before working on transformers. Verify phase rotation to avoid equipment damage."
+        },
+        {
+          "type": "table",
+          "title": "Common Step-Up/Step-Down Configurations",
+          "headers": ["Configuration", "Primary Voltage", "Secondary Voltage", "Std Drawing"],
+          "rows": [
+            ["Wye-Delta Additive", "5 kV Wye", "15 kV Delta", "14-343"],
+            ["Delta-Wye Subtractive", "15 kV Delta", "5 kV Wye", "14-345"],
+            ["Wye-Wye", "5 kV Wye", "15 kV Wye", "14-344"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Transformer Connections",
+          "question": "What is required for wye-delta step-up connections?",
+          "options": [
+            {"text": "Neutral grounding on high side", "is_correct": true, "explanation": "Prevents voltage imbalances per standards."},
+            {"text": "No grounding", "is_correct": false, "explanation": "Leads to ferroresonance risks."},
+            {"text": "Customer isolation", "is_correct": false, "explanation": "Not standard practice."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Transformer Handling, Physical Data Codes, and Drawings",
+      "learning_objective": "Learn safe handling procedures, interpret physical data codes, and apply standard drawings for transformer installations.",
+      "voiceover_summary": "Proper handling prevents damage; physical data codes identify specs; use drawings for compliant installs.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": ["Use cranes for heavy units", "Decode PDC for voltage/kVA", "Follow Section 14 drawings", "Ground before handling"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Transformers are handled using cranes or hoists per weights on 14-80. Physical Data Codes (PDC) like 10-165-10-00-00 specify type, voltage, taps. Drawings 14-204 to 14-348 detail installs."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Lifting Hazards",
+          "content": "Verify center of gravity; use rated slings. Weights up to 2000 lbs require Class H1 poles."
+        },
+        {
+          "type": "table",
+          "title": "Transformer Weights by Size",
+          "headers": ["kVA", "Weight (lbs)", "Pole Class Min"],
+          "rows": [
+            ["25", "390", "Class 4"],
+            ["50", "640", "Class 3"],
+            ["100", "1250", "Class 2"],
+            ["167", "1568", "Class H1"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Physical Data Code",
+          "question": "What does '10-165-10-00-00' indicate?",
+          "options": [
+            {"text": "Overhead oil-filled, 12470/7200 primary, 120/240 secondary, no taps", "is_correct": true, "explanation": "Matches PDC structure."},
+            {"text": "Padmount", "is_correct": false, "explanation": "Starts with 30."},
+            {"text": "CSP type", "is_correct": false, "explanation": "Type code 17."}
+          ]
+        }
+      ]
+    }
+  ]
+}

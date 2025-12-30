@@ -1,0 +1,65 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Lesson 10: Implementation and Best Practices",
+      "learning_objective": "Apply best practices for implementing coastline construction standards to ensure durability and safety in corrosive coastal environments.",
+      "voiceover_summary": "Incorporate corrosion-resistant materials and proper installation techniques for coastline areas to prevent failures from salt spray and oxidation. Always prioritize galvanized or stainless steel components and seal connections effectively.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Use specified coastline materials like extra creepage arresters and stainless steel switchgear.",
+        "Prevent galvanic corrosion by sealing aluminum-copper connections.",
+        "Fill bolt holes with grease on creosoted poles to avoid poultice corrosion.",
+        "Regularly inspect for salt contamination and replace deteriorated insulators.",
+        "Follow NESC and local guidelines for all installations."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastline construction requires specialized materials and techniques to combat oxidation and galvanic corrosion from salt spray. Define 'Coastline Area' as within 1/2 mile of saltwater or heavy salt spray zones. Prioritize stainless steel, Duronze, or aluminum hardware over galvanized steel."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Material Substitution",
+          "content": "Do not use ACSR in coastline areas due to steel-aluminum corrosion. Opt for AAC or AAAC."
+        },
+        {
+          "type": "table",
+          "title": "Standard vs. Coastline Materials",
+          "headers": ["Component", "Standard Construction", "Coastline Construction"],
+          "rows": [
+            ["Arresters (12kV)", "Standard riser arresters (L3ER)", "Extra creepage (L3ERN)"],
+            ["Cutouts (15kV)", "Standard polymer (C43S10)", "27kV polymer (C43S41)"],
+            ["Guy Deadends", "Preformed + automatic", "Preformed only (P54E)"],
+            ["Switchgear (14.4kV)", "Steel cabinet (US45)", "Stainless steel (US45SS)"],
+            ["Transformers (Pole)", "Conventional steel (MS2523)", "Stainless steel (MS2526)"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Implementation steps: 1. Assess site for salt exposure. 2. Select materials from coastline list. 3. Wire brush conductors before connecting. 4. Apply inhibitors to aluminum-copper joints. 5. Use sealed piercing connectors and gel covers."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Galvanic Corrosion Prevention",
+          "content": "Seal all dissimilar metal connections to block moisture. Failure risks equipment degradation and faults."
+        },
+        {
+          "type": "quiz",
+          "title": "Coastline Material Selection",
+          "question": "What material is recommended for guy deadends in coastline areas?",
+          "options": [
+            { "text": "Preformed + automatic deadend", "is_correct": false, "explanation": "Automatic deadends corrode; use preformed only." },
+            { "text": "Preformed deadend only (P54E)", "is_correct": true, "explanation": "Preformed deadends resist corrosion better in salt environments." },
+            { "text": "Standard galvanized clamps", "is_correct": false, "explanation": "Galvanized fails quickly in salt spray." }
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Best practices: Inspect annually for erosion. Use fiberglass guy insulators. Avoid bare ACSR. Document all substitutions."
+        }
+      ]
+    }
+  ]
+}

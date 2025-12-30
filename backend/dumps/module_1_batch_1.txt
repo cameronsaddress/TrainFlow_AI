@@ -1,0 +1,178 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Transmission and Sub-Transmission Voltages",
+      "learning_objective": "Identify the nominal transmission and sub-transmission voltages used within National Grid's service territory, including operating locations and BIL ratings.",
+      "voiceover_summary": "National Grid operates transmission lines at voltages like 46kV to 450kV DC across various states, with specific BIL ratings for safety. Sub-transmission includes 23kV to 46kV, all 3-phase 3-wire systems.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Transmission voltages range from 46kV to 450kV DC, varying by location.", "Sub-transmission voltages are 23kV, 34.5kV, and 46kV in NY and MA.", "BIL ratings differ: e.g., 23.5kV Distribution is 110kV BIL, Transmission 150kV.", "All voltages are 60Hz unless noted."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Transmission and sub-transmission voltages are critical for system design. Transmission lines carry high voltages across states like MA, NY, RI."
+        },
+        {
+          "type": "table",
+          "title": "Transmission Voltages",
+          "headers": ["Voltage (kV)", "Operating Location"],
+          "rows": [
+            ["46,000", "MA, NH, VT, Nantucket"],
+            ["69,000", "MA, RI, NY"],
+            ["115,000", "MA, NH, NY, RI"],
+            ["138,000", "NY"],
+            ["230,000", "MA, NY"],
+            ["345,000", "MA, NH, NY, RI"],
+            ["450 +/- Volts DC", "MA, NH"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Sub-Transmission Voltages (3-Phase, 3-Wire)",
+          "headers": ["Voltage (kV)", "Operating Location"],
+          "rows": [
+            ["23,000", "NY, MA"],
+            ["34,500", "NY"],
+            ["46,000", "NY"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "BIL Ratings Comparison",
+          "headers": ["Voltage Class (kV)", "Distribution BIL (kV)", "Transmission BIL (kV)"],
+          "rows": [
+            ["23.5", "110*", "150"],
+            ["34.5", "150", "200"],
+            ["46", "200", "250"],
+            ["69", "250", "250"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "BIL Compliance",
+          "content": "A 34.5kV line as Distribution in NE has 150kV BIL; as Transmission in NY, 200kV BIL. Always verify per location."
+        },
+        {
+          "type": "quiz",
+          "title": "Transmission Voltages",
+          "question": "What is the BIL rating for a 34.5kV Transmission line in NY?",
+          "options": [
+            {"text": "150kV", "is_correct": false, "explanation": "This is for Distribution in NE."},
+            {"text": "200kV", "is_correct": true, "explanation": "Transmission in NY requires 200kV BIL."},
+            {"text": "250kV", "is_correct": false, "explanation": "This is for 46kV."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Primary Distribution Voltages",
+      "learning_objective": "List the nominal primary distribution voltages for 3-phase 3-wire and 4-wire systems, including BIL ratings, voltage codes, and operating locations.",
+      "voiceover_summary": "Primary distribution includes 3-phase 3-wire like 4,160Y and 13,800Δ, and 4-wire like 12,470GrdY/7,200, with specific BIL and locations across MA and NY.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["3-Phase 3-Wire: Up to 23kV, BIL 75-150kV.", "3-Phase 4-Wire: GrdY systems from 3,740GrdY/2,160 to 34,500GrdY/19,900.", "Non-standard voltages marked with *.", "Locations: Primarily MA and NY."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Primary distribution voltages are categorized into 3-phase 3-wire and 4-wire systems, with BIL ratings ensuring safety."
+        },
+        {
+          "type": "table",
+          "title": "Primary Distribution: 3-Phase, 3-Wire",
+          "headers": ["Voltage", "BIL (kV)", "Voltage Code", "Operating Location"],
+          "rows": [
+            ["2,400Δ *", "75", "H", "MA"],
+            ["4,160Y *", "75", "", "MA, NY"],
+            ["4,800Δ", "75", "M", "MA, NY"],
+            ["7,200Δ *", "75", "", "NY"],
+            ["13,200Y *", "95", "", "NY"],
+            ["13,800Δ *", "95", "", "MA"],
+            ["13,800Y *", "95", "", "MA (Note 1)"],
+            ["23,000Y", "125", "", "MA"],
+            ["23,000Y", "150", "", "MA"],
+            ["23,000Δ", "150", "", "MA"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Primary Distribution: 3-Phase, 4-Wire",
+          "headers": ["Voltage", "BIL (kV)", "Voltage Code", "Operating Location"],
+          "rows": [
+            ["3,740GrdY/2,160 *", "75", "", "MA"],
+            ["4,160GrdY/2,400", "75", "J", "MA, NY"],
+            ["8,320GrdY/4,800 *", "75", "G", "MA"],
+            ["12,470GrdY/7,200", "95", "F", "MA"],
+            ["13,200GrdY/7,600", "95", "L", "MA, NY"],
+            ["13,800GrdY/7,960", "95", "W", "MA"],
+            ["24,940GrdY/14,400", "125", "K", "MA"],
+            ["34,500GrdY/19,900", "150", "T", "MA"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Note on 13,800Y",
+          "content": "Worcester, MA: 3-phase, 3-wire from high-impedance-grounded-wye transformer."
+        },
+        {
+          "type": "quiz",
+          "title": "Primary Voltages",
+          "question": "What is the voltage code for 4,160GrdY/2,400?",
+          "options": [
+            {"text": "J", "is_correct": true, "explanation": "Standard code for MA, NY."},
+            {"text": "F", "is_correct": false, "explanation": "For 12,470GrdY/7,200."},
+            {"text": "W", "is_correct": false, "explanation": "For 13,800GrdY/7,960."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Secondary Distribution Voltages",
+      "learning_objective": "Describe single-phase and three-phase secondary distribution voltages, including notes on applications.",
+      "voiceover_summary": "Secondary voltages: Single-phase 120/240V common; three-phase includes 208Y/120V for networks and 480Y/277V.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Single-phase: 120V (lighting), 240V, 120/240V, 120/208V (UG network).", "Three-phase: 240V*, 125/216Y (UG network), 208Y/120, 480Y/277.", "Notes: *Non-standard; specific uses like lighting or networks."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary distribution delivers power to end-users at low voltages."
+        },
+        {
+          "type": "table",
+          "title": "Secondary Distribution Voltages: Single-Phase",
+          "headers": ["2-Wire", "3-Wire"],
+          "rows": [
+            ["120 (Note 1)", "120/240"],
+            ["240 (Note 1)", "120/208 (Note 2)"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Secondary Distribution Voltages: Three-Phase",
+          "headers": ["3-Wire", "4-Wire"],
+          "rows": [
+            ["240 *", "125/216Y (Note 1)"],
+            ["480 *", "208Y/120"],
+            ["600 *", "240/120 (Note 2)"],
+            ["N/A", "480Y/277"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Notes",
+          "content": "1. For lighting only. 2. Underground Network. *Non-standard."
+        },
+        {
+          "type": "quiz",
+          "title": "Secondary Voltages",
+          "question": "What is the common single-phase 3-wire voltage?",
+          "options": [
+            {"text": "120/240", "is_correct": true, "explanation": "Standard residential secondary."},
+            {"text": "208Y/120", "is_correct": false, "explanation": "Three-phase 4-wire network."},
+            {"text": "480Y/277", "is_correct": false, "explanation": "Three-phase commercial."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "General Rules and Compliance Guidelines",
+      "learning_objective": "Understand the core principles for compliance with National Grid Distribution Standards, NESC requirements, and construction guidelines.",
+      "voiceover_summary": "National Grid Standards prioritize safety, reliability, and NESC compliance. Always apply the most stringent rule in conflicts and follow guidelines for new, existing, and emergency construction.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": ["Comply with current NESC edition and local regulations; most stringent rule prevails.", "New construction must conform to Standards.", "Existing construction changes only for safety/reliability issues.", "Refer conflicts to Standards, Policies and Codes."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid develops internal Standards for materials, techniques, and assemblies used in distribution systems. These Standards coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests, complying with the current NESC edition. When conflicts arise, the most stringent rule prevails; refer questions to Standards, Policies and Codes."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All new construction and rebuilding shall conform to these Standards. Existing construction need not be changed unless safety or reliability issues arise."
+        },
+        {
+          "type": "table",
+          "title": "Construction Guidelines",
+          "headers": ["Type", "Compliance Requirements"],
+          "rows": [
+            ["New Construction", "Build to current Standards."],
+            ["Existing Construction", "No full compliance unless safety/reliability issues; maintain integrity."],
+            ["Emergency/Temporary", "Maintain integrity; address critical safety; report issues; comply ASAP."]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Compliance Check",
+          "question": "What prevails in case of conflicting rules?",
+          "options": [
+            {"text": "NESC only", "is_correct": false, "explanation": "Most stringent rule applies."},
+            {"text": "Most stringent rule", "is_correct": true, "explanation": "The most stringent rule or regulation shall prevail."},
+            {"text": "Local rules only", "is_correct": false, "explanation": "All applicable rules considered; most stringent governs."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Checklists and Document Control",
+      "learning_objective": "Learn to use checklists for verifying document versions and maintain controlled updates.",
+      "voiceover_summary": "Checklists ensure the latest Overhead Construction Standards pages are used. Updates are issued electronically and in binders; holders must maintain books.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": ["Verify page issue dates using checklists.", "Updates via SharePoint and binders.", "Book holders responsible for latest updates.", "Printed copies uncontrolled; use INFONET for latest."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Standards issued electronically on SharePoint and in binders. Updates released as needed. Holders maintain books with latest issues. Printed copies uncontrolled; refer to INFONET for latest. Checklists list page numbers and issue dates for sections."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Document Control",
+          "content": "Printed copies are NOT controlled. Always use the latest version from INFONET/SharePoint."
+        },
+        {
+          "type": "table",
+          "title": "Section 1 Checklist (Sample)",
+          "headers": ["Page Number", "Issue Date"],
+          "rows": [
+            ["1-i", "7/25"],
+            ["1-1", "7/25"],
+            ["1-101", "7/15"],
+            ["1-NOTES", "7/25"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Document Version Check",
+          "question": "How to ensure using latest standards?",
+          "options": [
+            {"text": "Printed binders only", "is_correct": false, "explanation": "Printed uncontrolled."},
+            {"text": "INFONET/SharePoint", "is_correct": true, "explanation": "Refer to INFONET for latest controlled version."},
+            {"text": "Old checklists", "is_correct": false, "explanation": "Use current checklists and updates."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Abbreviations",
+      "learning_objective": "Master common abbreviations used in National Grid Overhead Construction Standards.",
+      "voiceover_summary": "Abbreviations from ANSI Y1.1 and standards; use for consistent documentation in construction drawings and reports.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": ["From ANSI Y1.1 and utility standards.", "Asterisk (*) for non-standard terms.", "Organized alphabetically for quick reference."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Abbreviations from ANSI Y1.1 and standards. Asterisk (*) denotes necessary but non-standard terms. Organized A-Z for reference."
+        },
+        {
+          "type": "table",
+          "title": "Key Abbreviations (Sample A-C)",
+          "headers": ["Abbreviation", "Full Term"],
+          "rows": [
+            ["ADJ", "Adjust, Adjusting, Adjustable"],
+            ["A/C", "Air Conditioner"],
+            ["AAAC", "All Aluminum Alloy Conductor"],
+            ["AAC", "All Aluminum Conductor"],
+            ["ACSR", "Al Conductor Steel Reinforced"],
+            ["BIL", "Basic Insulation Impulse Level"],
+            ["CAP", "Capacitor"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Abbreviation Quiz",
+          "question": "What does ACSR stand for?",
+          "options": [
+            {"text": "All Copper Steel Reinforced", "is_correct": false, "explanation": "Aluminum Conductor Steel Reinforced."},
+            {"text": "Aluminum Conductor Steel Reinforced", "is_correct": true, "explanation": "ACSR = Aluminum Conductor Steel Reinforced."},
+            {"text": "All Aluminum Cable Supported by Rope", "is_correct": false, "explanation": "Standard utility term for composite conductor."}
+          ]
+        }
+      ]
+    }
+  ]
+}

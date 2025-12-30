@@ -1,0 +1,125 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Conductor Preparation",
+      "learning_objective": "Properly prepare conductors prior to connector installation to ensure reliable electrical connections and prevent failures.",
+      "voiceover_summary": "Conductor preparation is critical for safe and reliable connections. Always clean and wire brush conductors before installing connectors to remove oxides and contaminants.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Wire brush all conductors before connecting", "Separate brushes for aluminum and copper", "Apply oxide inhibitor immediately after cleaning", "Cut back damaged conductors"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Conductor surface preparation is essential to ensure proper contact between conductors and the connector. Surface oxidation and contaminants will greatly interfere with the establishment of a sound electrical connection. An insulating oxide naturally forms on all conductor surfaces exposed to air. Always thoroughly wire brush the conductors (both new conductors and conductors in service) before making connections. Never use the same wire brush to clean both an aluminum and copper conductor. Copper contaminants transferred to the aluminum conductor will cause the aluminum conductor to corrode."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Treat Lines as Energized",
+          "content": "Always assume conductors are energized during preparation. Use proper PPE and follow safety procedures."
+        },
+        {
+          "type": "table",
+          "title": "Conductor Preparation Tools",
+          "headers": ["Tool", "Use", "Std Item"],
+          "rows": [
+            ["Wire Brush", "Clean aluminum/copper surfaces", "NTE1"],
+            ["Oxide Inhibitor", "Prevent re-oxidation", "G9B"],
+            ["Conductor Cutter", "Square cuts", "N/A"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Conductor Cleaning",
+          "question": "Why must separate wire brushes be used for aluminum and copper?",
+          "options": [
+            {"text": "Copper contaminants corrode aluminum", "is_correct": true, "explanation": "Copper transferred to aluminum causes galvanic corrosion."},
+            {"text": "Aluminum brushes are softer", "is_correct": false, "explanation": "Not the primary reason; contamination is key."},
+            {"text": "Color coding", "is_correct": false, "explanation": "Practical but not safety-related."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Insulation of Connectors",
+      "learning_objective": "Understand when and how to insulate connectors to meet safety and NESC requirements.",
+      "voiceover_summary": "Insulate service/secondary connectors up to 600V with snap-on covers. Bare primary splices need no insulation; tree wire splices must be covered.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Snap-on covers for 600V max", "No insulation for bare primary splices", "Cover tree wire splices with gelwrap or tape", "Cover unused exposed conductor"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Splices and tap connectors on service/secondary conductors up to 600 V shall be covered with snap-on covers (C60). Bare messenger/neutral connectors shall not be covered. Splices on tree wire/spacer cable conductors shall be covered or taped. Always cover any unused, exposed bare conductor. Splices on these conductors shall be taped or covered using gelwrap (C62, C63) or taped per instructions."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "Insulation ensures compliance with NESC low-voltage protection rules."
+        },
+        {
+          "type": "table",
+          "title": "Insulation Requirements",
+          "headers": ["Conductor Type", "Insulation Required", "Method"],
+          "rows": [
+            ["Service/Secondary ≤600V", "Yes", "Snap-on covers (C60)"],
+            ["Bare Primary", "No", "N/A"],
+            ["Tree Wire/Spacer Cable", "Yes", "Gelwrap C62/C63 or tape"],
+            ["Messenger/Neutral Bare", "No", "N/A"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Insulation Quiz",
+          "question": "Do bare primary splices require insulation?",
+          "options": [
+            {"text": "No", "is_correct": true, "explanation": "Bare primary splices do not require covering."},
+            {"text": "Yes, always tape", "is_correct": false, "explanation": "Not required for bare primary."},
+            {"text": "Only if damaged", "is_correct": false, "explanation": "Standard is no insulation."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Types of Connectors Overview",
+      "learning_objective": "Identify types of connectors for overhead distribution and their applications.",
+      "voiceover_summary": "Connectors include automatic, compression, bolted, H-tap, parallel groove, hot line clamps, and deadends. Select based on tension, material, and use.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Automatic for full tension AL/CU", "Compression for full/partial/non-tension", "Bolted for taps/hot line", "Deadends mechanical only"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Automatic, bolted, and compression connectors for overhead. Splices: automatic full tension, compression full/partial/non-tension. Taps: parallel groove, H-tap, hot line clamps. Deadends: strain clamps, formed. Terminations: pad connectors."
+        },
+        {
+          "type": "table",
+          "title": "Connector Types",
+          "headers": ["Type", "Application", "Std Items"],
+          "rows": [
+            ["Automatic Splices", "Full tension AL/ACSR", "S19A-V"],
+            ["Compression Splices", "Full/partial/non-tension", "S20-S26"],
+            ["Parallel Groove", "Taps AL-AL/CU", "C7A-J"],
+            ["H-Tap", "Secondary ≤600V", "S13B-LI"],
+            ["Hot Line Clamps", "Energized taps", "C16/C24"],
+            ["Deadends", "Full tension", "C13A1-Q"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Tension Limits",
+          "content": "Do not exceed tension ratings; use proper hardware."
+        },
+        {
+          "type": "quiz",
+          "title": "Connector Selection",
+          "question": "Best for full tension primary AL?",
+          "options": [
+            {"text": "Automatic splice S19", "is_correct": true, "explanation": "Full tension for AL."},
+            {"text": "H-Tap S13", "is_correct": false, "explanation": "Secondary only."},
+            {"text": "Parallel groove C7", "is_correct": false, "explanation": "Taps, non-tension."}
+          ]
+        }
+      ]
+    }
+  ]
+}

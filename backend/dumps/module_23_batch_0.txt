@@ -1,0 +1,54 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 23 – Materials Catalog – Lighting Overview",
+      "learning_objective": "Understand the organization, key categories, and purpose of the Section 23 Materials Catalog for Lighting, including compliance with National Grid Overhead Construction Standards.",
+      "voiceover_summary": "This lesson provides an overview of the Section 23 Materials Catalog for Lighting, detailing standard items for poles, brackets, arms, and related hardware essential for safe and reliable installations per National Grid standards.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Section 23 catalogs lighting materials like poles (SB series), conduits (SC series), housings (SH series), and spacers (SK series).",
+        "All materials comply with NESC and National Grid specs for overhead distribution.",
+        "Use checklists for page references and issue dates to ensure latest versions.",
+        "Prioritize safety: Verify material IDs before installation to meet structural and electrical requirements."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 23 of the National Grid Overhead Construction Standards provides a comprehensive catalog of approved materials for lighting installations. This catalog ensures uniformity, safety, and compliance with NESC requirements. Materials are listed by standard item codes (e.g., SB for streetlight bases, SC for conduits, SJ for junction boxes, SK for spacers), with details on specifications, issue dates, and applications for overhead distribution systems."
+        },
+        {
+          "type": "table",
+          "title": "Key Lighting Material Categories from Section 23 Checklist",
+          "headers": ["Category", "Standard Items", "Typical Use"],
+          "rows": [
+            ["Streetlight Bases", "SB04–SB08, SB10–SB20, SB30–SB31, SB40–SB42", "Pole-mounted bases for luminaires"],
+            ["Conduits & Housings", "SC01–SC17, SC20–SC31, SH01–SH05", "Protective enclosures and conduits"],
+            ["Junction Boxes", "SJ03–SJ05H, SJ06E–SJ06H, SJ10–SJ13, SJ20–SJ21", "Connection points for wiring"],
+            ["Spacers & Supports", "SK03-1 to SK05H, SK06A1–SK07H, SK10G–SK80B", "Spacer cable and support hardware"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Material Compliance",
+          "content": "Always reference the latest issue dates from the checklist (e.g., 7/25 for many items) and verify against Section 22 for cross-references. Non-compliant materials may violate NESC and lead to safety hazards."
+        },
+        {
+          "type": "text",
+          "content": "These materials support installations on wood poles, ensuring structural integrity under heavy loading. For detailed specs, consult individual pages (23-i to 23-SK70H). Use in conjunction with Sections 2 (Poles/Hardware) and 19 (Lighting Construction)."
+        },
+        {
+          "type": "quiz",
+          "title": "Lighting Materials Catalog Quiz",
+          "question": "Which category includes items like SB04–SB42?",
+          "options": [
+            { "text": "Streetlight Bases", "is_correct": true, "explanation": "SB series covers streetlight bases and poles as per the checklist." },
+            { "text": "Junction Boxes", "is_correct": false, "explanation": "SJ series is for junction boxes." },
+            { "text": "Spacers", "is_correct": false, "explanation": "SK series is for spacers and supports." },
+            { "text": "Conduits", "is_correct": false, "explanation": "SC series covers conduits." }
+          ]
+        }
+      ]
+    }
+  ]
+}

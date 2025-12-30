@@ -1,0 +1,156 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Pole Strengths and NESC Requirements",
+      "learning_objective": "Understand pole strength classifications, NESC grades of construction, overload and strength factors, and how to select poles to meet safety and loading requirements.",
+      "voiceover_summary": "Pole strengths are classified by ANSI O5.1 classes 1-6 and H1 for storm hardening, with NESC Grades B and C defining overload factors for safe design under heavy loading.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Poles classified by minimum top circumference and breaking strength per ANSI O5.1.",
+        "NESC Grade C standard for most lines; Grade B for crossings.",
+        "Overload factors: Vertical 1.90 (C), Transverse Wind 1.75 (C), Longitudinal at deadends 1.30 (C).",
+        "Strength factors: Wood 0.85 (C), Metal/Fiberglass 1.0.",
+        "Class H1 poles for critical storm-hardened structures in NY."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Distribution poles are solid wood, fiberglass, or metal per ANSI O5.1 and Company specs MS2005/MS2010. Strengths designated by Class 1-6 (circumference minimums) and H1 for storm hardening. Use Class 1 for NY main lines/heavy equipment."
+        },
+        {
+          "type": "table",
+          "title": "Pole Classes and Breaking Strengths (Southern Yellow Pine/Douglas Fir)",
+          "headers": ["Class", "Min Top Circ. (in)", "Breaking Load @2ft from Top (lbs)"],
+          "rows": [
+            ["H1", "29", "5400"],
+            ["1", "27", "4500"],
+            ["2", "25", "3700"],
+            ["3", "23", "3000"],
+            ["4", "21", "2400"],
+            ["5", "19", "1900"],
+            ["6", "17", "1500"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Grades and Factors",
+          "content": "Grade C for most; Grade B at crossings. Overload: Vertical 1.90(C)/1.50(B), Transverse Wind 1.75(C)/2.50(B). Strength: Wood 0.85(C)/0.65(B)."
+        },
+        {
+          "type": "table",
+          "title": "Overload Factors (Table 1)",
+          "headers": ["Load Type", "Grade B Crossings", "Grade C Crossings", "Grade C Elsewhere"],
+          "rows": [
+            ["Vertical", "1.50", "1.90", "1.90"],
+            ["Transverse Wind", "2.50", "2.20", "1.75"],
+            ["Transverse Wire Tension", "1.65", "1.30", "1.30"],
+            ["Longitudinal General", "1.10", "No req.", "No req."],
+            ["Longitudinal Deadends", "1.65", "1.30", "1.30"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "NESC Pole Strength",
+          "question": "What overload factor for transverse wind on Grade C elsewhere?",
+          "options": [
+            {"text": "1.75", "is_correct": true, "explanation": "Per Table 1 for Grade C elsewhere."},
+            {"text": "2.50", "is_correct": false, "explanation": "Grade B crossings."},
+            {"text": "1.90", "is_correct": false, "explanation": "Vertical loads."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Setting and Depths",
+      "learning_objective": "Learn standard pole setting depths for earth, rock, wet soil, and special conditions like slopes or contaminated sites.",
+      "voiceover_summary": "Poles set to 10% length +2 ft in earth; adjust for slopes, rock anchors in solid rock, deeper in wet soil; use clean corridor for contaminated sites.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Earth: 10% pole length +2 ft.",
+        "Rock: 4-6.5 ft with anchors (2-105).",
+        "Wet soil: +1 ft.",
+        "Slopes: Measure from low side.",
+        "Clean corridor for contaminated sites (2-301)."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Pole setting depth: 10% total length +2 ft into earth. Depths measured from low/downhill side on slopes. Use rock anchors (2-105) for solid rock. Deeper in wet/standing water—consult Standards."
+        },
+        {
+          "type": "table",
+          "title": "Pole Setting Depths (SYP/DF, Table from 2-101)",
+          "headers": ["Length (ft)", "Earth", "Rock", "Wet Soil", "H1", "Cl1", "Cl2", "Cl3", "Cl4", "Cl5", "Cl6"],
+          "rows": [
+            ["35", "6", "4", "8", "41.5", "39", "36.5", "34", "31.5", "29", "27"],
+            ["40", "6", "4", "8", "43.5", "41", "38.5", "36", "33.5", "31", "28.5"],
+            ["45", "6.5", "4.5", "8.5", "45.5", "43", "40.5", "37.5", "35", "32.5", "30"],
+            ["50", "7", "4.5", "9", "47.5", "45", "42", "39", "36.5", "34", ""],
+            ["55", "7.5", "5", "9.5", "49.5", "46.5", "43.5", "40.5", "38", "", ""],
+            ["60", "8", "5.5", "10", "51", "48", "45", "42", "39", "", ""]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Pole Setting Safety",
+          "content": "Set plumb/vertical; tamp backfill; use #2 crushed stone if unstable soil. Poles tipping? Straighten/retamp."
+        },
+        {
+          "type": "text",
+          "content": "Contaminated sites: Clean corridor (2-301/301A)—pole set back from contamination."
+        },
+        {
+          "type": "quiz",
+          "title": "Setting Depth",
+          "question": "Depth for 40ft pole in earth?",
+          "options": [
+            {"text": "6 ft", "is_correct": true, "explanation": "10% of 40ft +2ft=6ft."},
+            {"text": "8 ft", "is_correct": false, "explanation": "Rock depth."},
+            {"text": "7 ft", "is_correct": false, "explanation": "50ft earth."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Location and Accessibility",
+      "learning_objective": "Select pole locations prioritizing accessibility along maintained roads for reliability and quick restoration.",
+      "voiceover_summary": "Locate poles along public roads for access; avoid off-road/private ROWs impacting restoration; consider future needs, clearances.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Prioritize public ROWs maintained by municipalities.",
+        "Avoid off-road/private ROWs hindering access.",
+        "Behind curb/guardrail; avoid vehicle strike zones.",
+        "Plan for future structures; minimize crossings.",
+        "Guard poles in alleys/parking lots."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Locate for present/future needs, aesthetics, low relocation risk, vehicle safety. Along accessible roads for quick restoration. Customer services refused if not accessible."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Accessibility Priority",
+          "content": "Public ROWs first; avoid private impacting reliability. NESC clearances mandatory."
+        },
+        {
+          "type": "text",
+          "content": "Stake considering appearance; use existing poles; avoid frequent crossings. Guard in high-risk areas."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Location Priority",
+          "question": "Primary location criterion?",
+          "options": [
+            {"text": "Accessible public roads", "is_correct": true, "explanation": "For quick restoration."},
+            {"text": "Private ROWs", "is_correct": false, "explanation": "Avoid if impacts access."},
+            {"text": "Max tree cover", "is_correct": false, "explanation": "Prioritize access over trees."}
+          ]
+        }
+      ]
+    }
+  ]
+}

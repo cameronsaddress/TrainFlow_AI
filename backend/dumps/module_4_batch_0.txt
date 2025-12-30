@@ -1,0 +1,165 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Storm Hardening and Resiliency",
+      "learning_objective": "Understand the purpose of storm hardening and resiliency in overhead distribution systems, including the impacts of extreme weather and the definition of resilience.",
+      "voiceover_summary": "Storm hardening enhances the distribution grid's ability to withstand severe weather, reducing outage duration and customer impact through structural and design improvements.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Frequent severe storms damage overhead lines primarily from falling trees and limbs.",
+        "Resiliency is the grid's ability to anticipate, absorb, adapt to, and recover from disruptions.",
+        "Focus on long-term infrastructure improvements like stronger poles and preventing cascading failures.",
+        "National Grid participates in EPRI research for ongoing enhancements."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Electric utilities face more frequent and severe storms, raising customer expectations for minimal outages. National Grid's storm hardening addresses tree/limb damage, defining resiliency as the system's ability to withstand disruptions and recover quickly (IEEE PES-TR65). Efforts target electrical and structural robustness for extreme events."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Regulatory Compliance",
+          "content": "Comply with state mandates like NYS PSL 66(29) for climate plans and periodic reviews."
+        },
+        {
+          "type": "quiz",
+          "title": "Core Concept Quiz",
+          "question": "What is the primary cause of damage to overhead distribution during storms?",
+          "options": [
+            {
+              "text": "High winds directly on poles",
+              "is_correct": false,
+              "explanation": "Trees and limbs cause most damage, not direct wind."
+            },
+            {
+              "text": "Falling trees and limbs",
+              "is_correct": true,
+              "explanation": "Experience shows trees/limbs cause cascading failures and outages."
+            },
+            {
+              "text": "Lightning strikes",
+              "is_correct": false,
+              "explanation": "Lightning is addressed separately; mechanical damage dominates."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Objectives and Implementation Through Standards",
+      "learning_objective": "Identify key objectives of storm hardening, such as protecting critical structures and preventing cascading, and how they are implemented via standards.",
+      "voiceover_summary": "Objectives focus on critical structures like tie points and reclosers, using stronger poles and deadends to limit outages and enable quick restoration.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Protect critical structures (tie points, reclosers, switches) to avoid multi-feeder outages.",
+        "Prevent cascading failures with periodic deadends and stronger crossarms.",
+        "Implement via routine new construction standards; no retrofits required unless targeted.",
+        "Enhance mainline and heavy equipment poles (NY: Class 1 minimum)."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Objectives: Harden critical structures (tie points, reclosers, loadbreak switches) to withstand wire breaks; prevent cascading with deadends every 20 spans; coastal poles one class stronger. Implementation: New standards for all new/replaced structures (e.g., Class H1 poles); no changes to existing unless targeted."
+        },
+        {
+          "type": "table",
+          "title": "Critical Structure Requirements",
+          "headers": ["Structure Type", "New Construction Pole Class", "Notes"],
+          "rows": [
+            ["Tie Points", "H1 minimum", "Deadend both directions"],
+            ["Reclosers/Auto Switches", "H1 minimum", "Deadend both directions"],
+            ["Loadbreak Switches", "H1 minimum", "Deadend both directions or adjacent structures"],
+            ["Multiple Circuits", "Grade B design", "Over 1 three-phase circuit"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All hardening meets or exceeds NESC Grade B/C; coastal areas use stronger poles."
+        },
+        {
+          "type": "quiz",
+          "title": "Objectives Quiz",
+          "question": "What is required at tie points for new construction?",
+          "options": [
+            {
+              "text": "Class 5 pole",
+              "is_correct": false,
+              "explanation": "H1 minimum with deadends both directions."
+            },
+            {
+              "text": "Class H1 pole, deadend both directions",
+              "is_correct": true,
+              "explanation": "Ensures structure withstands wire breaks."
+            },
+            {
+              "text": "No changes needed",
+              "is_correct": false,
+              "explanation": "New construction must harden critical structures."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "New Construction: Critical Structures",
+      "learning_objective": "Apply storm hardening standards to new critical structures like tie points, reclosers, and switches to ensure resiliency.",
+      "voiceover_summary": "New critical structures use Class H1 poles and deadends to remain standing if wires break, preventing multi-feeder outages.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Tie points: Deadend conductors both directions on H1 poles.",
+        "Reclosers/switches: Deadend or strengthen adjacent poles.",
+        "Multiple circuits: NESC Grade B design.",
+        "Mainline/heavy equipment (NY): Class 1 minimum.",
+        "Sub-transmission (NY): H1/H2 per configuration."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "For new construction, critical structures (tie points, reclosers, loadbreak switches) use H1 poles with deadends both directions. Multiple circuits: Grade B. NY mainline/heavy equipment: Class 1. Sub-T: H1 single, H2 double with distribution."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Structural Integrity",
+          "content": "Ensure structures withstand wire breaks from trees/limbs to avoid cascading failures."
+        },
+        {
+          "type": "table",
+          "title": "New Construction Critical Structures",
+          "headers": ["Type", "Requirement", "Implementation"],
+          "rows": [
+            ["Tie Points", "H1 pole, deadend both ways", "New/replaced switches follow standards"],
+            ["Reclosers", "H1 pole, deadend both ways", "Exception for pre-2015 Viper"],
+            ["Loadbreak Switches", "H1 pole or adjacent deadends", "Preferred: separate crossarm"],
+            ["Multi-Circuit", "NESC Grade B", "Stronger conductors/structures"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Critical Structures Quiz",
+          "question": "Pole class for new tie points?",
+          "options": [
+            {
+              "text": "Class 4",
+              "is_correct": false,
+              "explanation": "H1 minimum required."
+            },
+            {
+              "text": "Class H1 minimum",
+              "is_correct": true,
+              "explanation": "Deadend both directions to withstand failures."
+            },
+            {
+              "text": "No specific class",
+              "is_correct": false,
+              "explanation": "Storm hardening mandates H1."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

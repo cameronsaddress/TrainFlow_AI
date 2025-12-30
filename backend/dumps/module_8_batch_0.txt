@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Coastline Construction",
+      "learning_objective": "Understand the scope, environmental challenges, and general guidelines for overhead distribution construction in coastline areas.",
+      "voiceover_summary": "Coastline construction addresses unique challenges from salt spray and corrosion within half a mile of saltwater or in heavy salt areas. Follow material standards to ensure reliability.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Coastline areas are defined as within 0.5 miles of saltwater or heavy salt spray zones.",
+        "Construction mirrors standard practices but uses corrosion-resistant materials.",
+        "Focus on preventing oxidation and galvanic corrosion for long-term reliability."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 8 covers National Grid overhead distribution construction in 'Coastline Areas' for secondary and primary voltages through 15 kV. A 'Coastline Area' includes areas within 1/2 mile of a saltwater coastline and those beyond where heavy salt spray occurs, or heavy road salt contamination. This standard identifies materials for Standard Construction vs. Coastline Construction to mitigate corrosion."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Coastline Definition",
+          "content": "Applies to areas with salt contamination from ocean spray or roads; consult local experience."
+        },
+        {
+          "type": "quiz",
+          "title": "Coastline Scope",
+          "question": "What voltages does Section 8 primarily cover?",
+          "options": [
+            {"text": "Up to 15 kV primary and secondary", "is_correct": true, "explanation": "Section 8 targets overhead distribution up to 15 kV in coastal environments."},
+            {"text": "Transmission voltages above 35 kV", "is_correct": false, "explanation": "Higher voltages follow other sections."},
+            {"text": "Underground only", "is_correct": false, "explanation": "This is for overhead construction."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Corrosion in Coastal Environments",
+      "learning_objective": "Identify types of corrosion in coastal areas and their effects on electrical components.",
+      "voiceover_summary": "Coastal salt accelerates oxidation and galvanic corrosion on metals like copper, aluminum, and steel. Proper material selection prevents failures.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Oxidation forms non-conductive layers on Al and Cu, reducing connections.",
+        "Galvanic corrosion occurs between dissimilar metals in electrolytes like salt water.",
+        "Steel corrodes without protection; use barriers or galvanic coatings."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastal environments cause oxidation and galvanic corrosion. Oxidation: Cu forms protective but conductive-reducing oxides; Al forms thin non-conductive layer; Steel rusts continuously. Galvanic: Electrolytic action between dissimilar metals (e.g., Cu-Al) in moist salt air erodes anode."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Galvanic Risk",
+          "content": "Avoid Cu-Al contacts without moisture barriers; use inhibitors or seals."
+        },
+        {
+          "type": "table",
+          "title": "Corrosion Types",
+          "headers": ["Type", "Affected Metals", "Mechanism"],
+          "rows": [
+            ["Oxidation", "Cu, Al, Steel", "Oxygen reaction forms oxides"],
+            ["Galvanic", "Dissimilar (Cu-Al)", "Electrolyte-driven electron transfer"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Corrosion Key Fact",
+          "question": "What primarily accelerates galvanic corrosion in coasts?",
+          "options": [
+            {"text": "Salt water as electrolyte", "is_correct": true, "explanation": "Moist salt enables electrolytic action between metals."},
+            {"text": "Dry air", "is_correct": false, "explanation": "Needs electrolyte."},
+            {"text": "High temperature only", "is_correct": false, "explanation": "Electrolyte required."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Material Selection for Arresters",
+      "learning_objective": "Select appropriate surge arresters for coastal environments to prevent corrosion failures.",
+      "voiceover_summary": "Use extra creepage arresters in coasts for salt resistance. Standard for inland; coastal needs enhanced designs.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Standard: Regular riser arresters.",
+        "Coastline: Extra creepage (e.g., L3ERN for 12kV).",
+        "Prevents tracking from salt contamination."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "For 12kV riser arresters: Standard uses regular; Coastline requires extra creepage (Std Item L3ERN) for pollution resistance."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Arrester Policy",
+          "content": "Mandatory extra creepage in coasts per 8.3.10."
+        },
+        {
+          "type": "table",
+          "title": "Arrester Selection",
+          "headers": ["Construction", "12kV Arrester Std Item"],
+          "rows": [
+            ["Standard", "L3ER"],
+            ["Coastline", "L3ERN (extra creepage)"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Coastal Arrester",
+          "question": "What arrester for 12kV risers in coasts?",
+          "options": [
+            {"text": "L3ERN extra creepage", "is_correct": true, "explanation": "Provides salt resistance."},
+            {"text": "Standard L3ER", "is_correct": false, "explanation": "Insufficient creepage."},
+            {"text": "No arrester needed", "is_correct": false, "explanation": "Required for protection."}
+          ]
+        }
+      ]
+    }
+  ]
+}

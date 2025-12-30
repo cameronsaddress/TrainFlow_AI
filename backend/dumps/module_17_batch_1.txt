@@ -1,0 +1,102 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Climbing Space and Clearances",
+      "learning_objective": "Understand NESC requirements and National Grid practices for maintaining climbing space and clearances on joint use poles to ensure worker safety.",
+      "voiceover_summary": "Joint use poles require specific climbing spaces and clearances per NESC rules. Always provide adequate space for safe access past energized conductors.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Climbing space must meet NESC Rule 236 standards", "Maintain clearances as shown on Page 7-127", "Care when installing services to preserve climbing space"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Joint use poles must provide adequate climbing space for workers accessing facilities. Reference NESC clearances on Page 7-127. Ensure full climbing space from attachments."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Climbing Hazards",
+          "content": "Always confirm climbing space before work. Insufficient space risks contact with energized parts."
+        },
+        {
+          "type": "quiz",
+          "title": "Climbing Space Requirement",
+          "question": "What is the primary reference for climbing space on joint poles?",
+          "options": [
+            { "text": "NESC Rule 236 and Page 7-127", "is_correct": true, "explanation": "NESC Rule 236 governs climbing space; Page 7-127 provides details." },
+            { "text": "Local building codes only", "is_correct": false, "explanation": "NESC takes precedence for utility poles." },
+            { "text": "No specific requirements", "is_correct": false, "explanation": "Clear standards exist for safety." }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Attachment Locations",
+      "learning_objective": "Identify proper locations for attachments on joint use poles to avoid conflicts and maintain safety.",
+      "voiceover_summary": "Attachments on joint poles must consider cooperative placement to avoid heavy equipment on poles with risers and ensure aesthetics.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Avoid heavy communication equipment on poles with cable risers", "Coordinate with all users for pole space", "Prioritize appearance and accessibility"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Locate attachments cooperatively. Avoid heavy equipment on poles with risers. Consider line appearance and accessibility."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Joint Agreements",
+          "content": "Follow joint use agreements for pole changes and attachments."
+        },
+        {
+          "type": "quiz",
+          "title": "Attachment Avoidance",
+          "question": "Avoid placing heavy communication equipment on poles with:",
+          "options": [
+            { "text": "Cable risers", "is_correct": true, "explanation": "Prevents climbing difficulties." },
+            { "text": "No equipment", "is_correct": false, "explanation": "Safe but not the issue." },
+            { "text": "Only neutrals", "is_correct": false, "explanation": "Still risky." }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Metered Power Supplies",
+      "learning_objective": "Describe standards for installing metered power supplies and antennas on 15kV distribution poles.",
+      "voiceover_summary": "Metered power supplies on poles require specific brackets, clearances, and grounding per detailed standards.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": ["Use approved meter sockets and brackets", "Maintain 12-30 inch clearances", "Ground per NESC and company rules"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "For 15kV poles: Use weatherproof meter socket, 1\" PVC conduit, #10 copper service cable. Mount on non-traffic side. Ground with #4 copper."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Installation Safety",
+          "content": "Qualified workers only in supply space. Follow NESC/OSHA."
+        },
+        {
+          "type": "table",
+          "title": "Metered Supply Components",
+          "headers": ["Component", "Details"],
+          "rows": [
+            ["Meter Socket", "Ringless, arc shield, single handle bypass"],
+            ["Conduit", "1\" PVC Schedule 40"],
+            ["Cable", "#10 stranded copper THWN/THHN/SE"],
+            ["Ground", "#4 copper to rod"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Meter Socket Requirement",
+          "question": "Meter socket must have:",
+          "options": [
+            { "text": "Ringless sealable style with arc shield", "is_correct": true, "explanation": "Per standards for safety." },
+            { "text": "Automatic bypass", "is_correct": false, "explanation": "Not permitted." },
+            { "text": "No grounding", "is_correct": false, "explanation": "Grounding required." }
+          ]
+        }
+      ]
+    }
+  ]
+}

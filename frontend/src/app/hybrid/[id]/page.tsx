@@ -9,6 +9,9 @@ import { Video, Layers, Clock, ArrowRight, ArrowLeft, PlayCircle, Sparkles, Chev
 import { SmartAssistSidebar } from '@/components/SmartAssistSidebar';
 import { PdfModal } from '@/components/PdfModal';
 import { LessonQuizTile } from '@/components/LessonQuizTile';
+import { ComplianceBlock } from '@/components/lesson/ComplianceBlock';
+import { ScenarioBlock } from '@/components/lesson/ScenarioBlock';
+import { AIInstructor } from '@/components/AIInstructor';
 import { CourseDashboard } from './CourseDashboard';
 import ReactMarkdown from 'react-markdown';
 
@@ -584,6 +587,19 @@ export default function CourseView() {
                 <div className="flex-1 overflow-y-auto p-8 pb-32">
                     <div className="max-w-2xl mx-auto space-y-8 animate-fade-in-up">
 
+                        {/* NEW: AI Instructor (Top Priority) */}
+                        {activeLesson.instructor_audio && (
+                            <div className="mb-8 animate-fade-in-down">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase tracking-widest text-xs">
+                                        Active Instructor
+                                    </h3>
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-white/60">BETA</span>
+                                </div>
+                                <AIInstructor audioSrc={activeLesson.instructor_audio} />
+                            </div>
+                        )}
+
                         {/* 0. Video Context (Moved to Top) */}
                         {activeLesson.source_clips && activeLesson.source_clips.length > 0 && (
                             <div className="mb-8">
@@ -639,6 +655,26 @@ export default function CourseView() {
                                                     {block.content}
                                                 </ReactMarkdown>
                                             </div>
+                                        );
+                                    }
+                                    if (block.type === 'compliance_checklist') {
+                                        return (
+                                            <ComplianceBlock
+                                                key={bIdx}
+                                                title={block.title}
+                                                items={block.items}
+                                            />
+                                        );
+                                    }
+                                    if (block.type === 'scenario') {
+                                        return (
+                                            <ScenarioBlock
+                                                key={bIdx}
+                                                setup={block.setup}
+                                                question={block.question}
+                                                answer={block.answer}
+                                                reasoning={block.reasoning}
+                                            />
                                         );
                                     }
                                     if (block.type === 'definition') {
@@ -703,6 +739,7 @@ export default function CourseView() {
                                     }
                                     if (block.type === 'quiz') {
                                         return (
+                                            // Enhanced Quiz Block logic
                                             <div key={bIdx} className="my-8 p-6 bg-blue-900/10 border border-blue-500/30 rounded-2xl relative overflow-hidden group">
                                                 <div className="relative z-10">
                                                     <span className="bg-blue-500 text-white text-[10px] uppercase font-bold px-2 py-1 rounded mb-3 inline-block">Knowledge Check</span>

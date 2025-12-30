@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Clearances and NESC Requirements",
+      "learning_objective": "Understand the purpose of NESC clearances and National Grid's criteria for safe overhead distribution line installations.",
+      "voiceover_summary": "NESC provides minimum clearances for safety; National Grid standards ensure compliance and reliability with specific rules for voltages up to 35kV.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["NESC sets basic safety clearances", "National Grid uses 176°F/80°C MCOT for bare conductors", "Clearances protect public and workers"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "The National Electrical Safety Code (NESC) establishes minimum clearances to protect the public and employees during installation, maintenance, and operation of electric supply lines. National Grid standards exceed these minima for reliability and future needs."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All new installations must meet the latest NESC edition and local regulations. Existing compliant installations need not be modified unless safety requires it."
+        },
+        {
+          "type": "table",
+          "title": "Key NESC Clearance Principles",
+          "headers": ["Principle", "Description"],
+          "rows": [
+            ["Closest Approach", "Clear distance surface-to-surface under specified conditions"],
+            ["Vertical Clearance", "Met at maximum sag"],
+            ["Horizontal Clearance", "Met at rest, consider blowout"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "NESC Basics",
+          "question": "What does NESC primarily ensure?",
+          "options": [
+            {"text": "Minimum safety clearances", "is_correct": true, "explanation": "NESC protects public and workers with clearance rules."},
+            {"text": "Maximum voltage levels", "is_correct": false, "explanation": "NESC focuses on clearances, not voltage limits."},
+            {"text": "Pole strength only", "is_correct": false, "explanation": "Pole strength is separate from clearances."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Vertical Clearances to Ground, Roads, Rails, and Other Surfaces",
+      "learning_objective": "Apply NESC vertical clearance requirements over ground, roads, rails, and other surfaces for safe design.",
+      "voiceover_summary": "Vertical clearances ensure safe passage under lines; use Table 232-1 values based on voltage and surface type.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": ["15.5 ft min over roads for supply >750V", "23.5 ft over rails", "Adjust for ice/wind sags"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Vertical clearances are measured from lowest conductor at max sag (60°F no wind) to surfaces below. NESC Table 232-1 specifies minima by voltage and surface."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Max Sag Clearance",
+          "content": "Design for conductor at 60°F final unloaded sag; ice/wind increases sag."
+        },
+        {
+          "type": "table",
+          "title": "NESC Table 232-1 Vertical Clearances (ft)",
+          "headers": ["Surface", "Supply 0-750V", "Supply >750-22kV", "Communication"],
+          "rows": [
+            ["Roads/Trucks", "16.5", "18.5", "16.0"],
+            ["Rails", "24.5", "26.5", "24.0"],
+            ["Pedestrian Areas", "12.5", "14.5", "9.5"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Vertical Clearance Check",
+          "question": "Min clearance over roads for 15kV supply?",
+          "options": [
+            {"text": "18.5 ft", "is_correct": true, "explanation": "NESC requires 18.5 ft for supply >750V over roads."},
+            {"text": "16 ft", "is_correct": false, "explanation": "16 ft is for 0-750V."},
+            {"text": "15 ft", "is_correct": false, "explanation": "Minimum for trucks is higher."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Vertical Clearances Over Water Surfaces and to Swimming Pools",
+      "learning_objective": "Determine required vertical clearances over water bodies and near swimming pools per NESC.",
+      "voiceover_summary": "Higher clearances over water for boating; special rules for pools to prevent hazards.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": ["Sailboat areas: up to 40.5 ft", "Pools: 25 ft min from edges", "No overhang if possible"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Vertical clearances over water increase with sailboat suitability. For pools, avoid overhangs; min 25 ft from edges."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Swimming Pool Hazard",
+          "content": "No lines over pools; 25 ft min clearance from edges for >750V."
+        },
+        {
+          "type": "table",
+          "title": "NESC Water Clearances (ft)",
+          "headers": ["Water Area", "Supply >750V"],
+          "rows": [
+            ["No Sailboating", "17"],
+            ["<20 acres sail", "20.5"],
+            [">2000 acres sail", "40.5"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Pool Clearance",
+          "question": "Min clearance near pool edge for supply lines?",
+          "options": [
+            {"text": "25 ft any direction", "is_correct": true, "explanation": "NESC Table 234-3 requires 25 ft for >750V."},
+            {"text": "10 ft", "is_correct": false, "explanation": "Too low for safety."},
+            {"text": "15 ft", "is_correct": false, "explanation": "Applies to ground, not pools."}
+          ]
+        }
+      ]
+    }
+  ]
+}

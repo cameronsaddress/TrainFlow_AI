@@ -1,0 +1,112 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Copyright, Property Rights, and Additional Info",
+      "learning_objective": "Understand National Grid's policies on copyright, property rights, confidentiality, document control, and usage restrictions for Distribution Overhead & Underground Construction Standards.",
+      "voiceover_summary": "National Grid's standards are proprietary and confidential. Printed copies are uncontrolled; always use the latest online version. Unauthorized copying or transfer is prohibited.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Standards are National Grid's property; no warranties on content accuracy.",
+        "Maintain confidentiality; disclose only to approved parties with acknowledgment.",
+        "No copying or transfer without written authorization; return upon project completion.",
+        "Printed copies uncontrolled; refer to INFONET for latest version.",
+        "Controlled copies in Documentum; Doc # ST.01.00.001."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid's Distribution Overhead & Underground Construction Standards are confidential, proprietary, and trade secret information, remaining the property of National Grid. They are prepared for use by Company personnel, engineers, designers, and contractors."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Copyright Notice",
+          "content": "Copyright 2025 National Grid. No warranties or representations regarding accuracy or completeness. Unauthorized transfer, copying, reproduction, or failure to return upon project completion is prohibited."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Confidentiality",
+          "content": "Recipients must maintain confidentiality. Disclosure permitted only to partners, employees, agents, contractors, or subcontractors with acknowledgment from National Grid and the recipient."
+        },
+        {
+          "type": "text",
+          "content": "Printed copies are not document controlled. Always refer to the National Grid INFONET, Distribution Engineering Services website for the latest version. Controlled copies are maintained in Documentum (Doc. # ST.01.00.001)."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Usage Compliance",
+          "question": "What must be done with printed copies of the standards after project completion?",
+          "options": [
+            {
+              "text": "Return to National Grid representative",
+              "is_correct": true,
+              "explanation": "Printed copies must be returned in entirety to the issuing representative."
+            },
+            {
+              "text": "Keep indefinitely",
+              "is_correct": false,
+              "explanation": "Printed copies are uncontrolled and must be returned."
+            },
+            {
+              "text": "Copy and distribute",
+              "is_correct": false,
+              "explanation": "Copying requires written authorization."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Module Review and Assessment",
+      "learning_objective": "Review key concepts from the Foreword, including purpose, compliance, updates, and usage responsibilities to ensure understanding of the standards document.",
+      "voiceover_summary": "Summarize the Foreword: Standards guide construction, comply with NESC, updated electronically, users must maintain familiarity and report issues.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Standards provide materials, techniques, drawings, calculations for distribution structures.",
+        "Comply with NESC and local rules; most stringent prevails.",
+        "Issued electronically; binders updated as needed; holders responsible for updates.",
+        "New construction conforms; existing not retrofitted unless safety/reliability issues.",
+        "Suggestions to Electric Materials Standards team with justification."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid Standards guide repetitive construction with materials, techniques, assemblies, drawings, calculations. Committed to modern, inclusive, practical format balancing safety, reliability, operability, uniformity, appearance, economy, environment. Comply with NESC; conflicts resolved by most stringent rule."
+        },
+        {
+          "type": "text",
+          "content": "Issued electronically via SharePoint; binders for Overhead/Underground. Holders maintain updates. Employees familiar with standards; new/rebuild conforms. Special apps to Division Engineering."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Document Control",
+          "content": "Printed uncontrolled; use INFONET for latest. Controlled in Documentum."
+        },
+        {
+          "type": "quiz",
+          "title": "Foreword Key Concepts",
+          "question": "What prevails in case of conflicting rules?",
+          "options": [
+            {
+              "text": "Most stringent rule or regulation",
+              "is_correct": true,
+              "explanation": "When conflicts occur, the most stringent NESC or local rule prevails."
+            },
+            {
+              "text": "NESC only",
+              "is_correct": false,
+              "explanation": "Supplemented by local rules; most stringent applies."
+            },
+            {
+              "text": "Company preference",
+              "is_correct": false,
+              "explanation": "Refer conflicts to Standards for interpretation."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

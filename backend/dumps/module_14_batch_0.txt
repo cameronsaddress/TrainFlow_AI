@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Overhead Distribution Transformers",
+      "learning_objective": "Understand the purpose, types, and key characteristics of overhead distribution transformers used in National Grid's overhead systems.",
+      "voiceover_summary": "Overhead distribution transformers step down high-voltage primary power to low-voltage secondary levels for safe customer delivery. They are critical for reliability and must comply with NESC standards.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Transformers reduce voltage from primary (e.g., 4-35kV) to secondary (120/240V)", "Common types: single-phase pole-mounted, three-phase banks", "Comply with NESC for safety and loading", "Key pages in standards: 14-1 to 14-9 for basics"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Overhead distribution transformers are essential components in National Grid's distribution system, stepping down voltage from primary lines (typically 4kV to 35kV class) to secondary levels (120/240V single-phase or 208Y/120V three-phase) for residential and commercial use. They are mounted on poles and designed for outdoor exposure, complying with NESC standards for safety, reliability, and environmental factors. Section 14 checklists indicate detailed specs on pages 14-1 through 14-9, covering installation and types like single-phase (14-50 to 14-61) and three-phase banks."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Transformer Safety",
+          "content": "Always treat transformers as energized. Follow NESC clearances and lockout/tagout procedures before work. Report defects immediately."
+        },
+        {
+          "type": "table",
+          "title": "Common Transformer Types (From Section 14 Pages)",
+          "headers": ["Type", "kVA Range", "Primary Voltage", "Application"],
+          "rows": [
+            ["Single-Phase Pole-Mount", "10-167 kVA", "4.16-13.8 kV", "Residential"],
+            ["Three-Phase Bank", "75-500 kVA", "12.47-34.5 kV", "Commercial/Industrial"],
+            ["CSP (Self-Protected)", "25-100 kVA", "7.2-13.8 kV", "Maintenance Only"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Transformer Basics Quiz",
+          "question": "What is the primary function of an overhead distribution transformer?",
+          "options": [
+            {"text": "Step up voltage for transmission", "is_correct": false, "explanation": "No, they step down voltage."},
+            {"text": "Step down voltage for customer use", "is_correct": true, "explanation": "Correct, from primary to secondary levels."},
+            {"text": "Protect against surges only", "is_correct": false, "explanation": "Surge protection is secondary; main role is voltage transformation."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "General Guidelines and Transformer Location",
+      "learning

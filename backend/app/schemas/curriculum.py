@@ -14,6 +14,9 @@ class Lesson(BaseModel):
     quiz: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Quiz Data")
     source_clips: List[SourceClip] = Field(default_factory=list, description="List of source clips with timestamps")
     smart_context: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Metadata for compliance and tips")
+    # Added for Active Mastery
+    content_blocks: List[Dict[str, Any]] = Field(default_factory=list, description="Rich content blocks (text, compliance, scenario, etc)")
+    pdf_reference: Optional[Dict[str, Any]] = Field(default=None, description="Link to source PDF page")
 
     @model_validator(mode='before')
     @classmethod

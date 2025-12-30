@@ -1,0 +1,138 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Transformer Installation Procedures",
+      "learning_objective": "Understand the standard procedures for safely installing overhead distribution transformers, including site preparation, mounting, and verification steps.",
+      "voiceover_summary": "Transformer installation requires precise adherence to safety protocols, proper pole selection, and equipment handling to ensure reliability and compliance with NESC standards.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Select poles meeting strength requirements per Section 2",
+        "Use appropriate mounting hardware and ensure vertical alignment",
+        "Verify clearances and grounding before energizing",
+        "Follow NESC for all installations"
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Transformer installation begins with pole selection based on vertical loading from Section 2. Ensure the pole class supports the transformer's weight (e.g., 50 kVA ~750 lbs). Mount using standard brackets like T91 series per drawings 14-204. Align tank vertically and secure with bolts. Check NESC clearances from Section 7."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Pre-Energization Check",
+          "content": "De-energize lines, test for voltage, ground before installation. Use PPE and follow lockout/tagout."
+        },
+        {
+          "type": "table",
+          "title": "Transformer Weights by kVA",
+          "headers": ["kVA", "Approx Weight (lbs)"],
+          "rows": [
+            ["10", "230-280"],
+            ["25", "320-390"],
+            ["50", "550-640"],
+            ["75", "850-970"],
+            ["100", "1050-1250"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Installation Safety",
+          "question": "What must be done before mounting a transformer?",
+          "options": [
+            {"text": "Test pole strength", "is_correct": true, "explanation": "Pole must support vertical load per standards."},
+            {"text": "Energize the line", "is_correct": false, "explanation": "Line must be de-energized first."},
+            {"text": "Skip grounding", "is_correct": false, "explanation": "Grounding is required."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Transformer Connections and Phasing",
+      "learning_objective": "Learn proper methods for connecting primary and secondary conductors to transformers, including phasing diagrams and polarity checks.",
+      "voiceover_summary": "Correct phasing ensures balanced loads and prevents damage; follow diagrams for wye-delta or single-phase setups.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Use copper leads for HV connections",
+        "Verify polarity with voltmeter",
+        "Follow diagrams 14-171 to 14-177 for 3-phase",
+        "Label phases per Section 2"
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Primary connections use #2 Cu wire (W13E). Secondary per 14-171-177. For 3-phase banks, match diagrams for wye or delta. Check polarity: H1-X1 additive/subtractive."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Phasing Error",
+          "content": "Incorrect phasing causes overloads; always test with phase rotation meter."
+        },
+        {
+          "type": "table",
+          "title": "Common Connections",
+          "headers": ["Type", "Primary Wire", "Secondary Wire"],
+          "rows": [
+            ["Single Phase", "#2 Cu", "W19C"],
+            ["3-Phase Wye", "#2 Cu", "W19C"],
+            ["Open Delta", "#4/0 Cu", "W19C"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Phasing Check",
+          "question": "What wire for HV bushing?",
+          "options": [
+            {"text": "#2 Cu (W13E)", "is_correct": true, "explanation": "Standard for primary."},
+            {"text": "Aluminum", "is_correct": false, "explanation": "Copper preferred."},
+            {"text": "#4 AWG", "is_correct": false, "explanation": "Too small."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Grounding and Bonding Transformers",
+      "learning_objective": "Master grounding techniques for transformers to ensure safety and fault protection per NESC.",
+      "voiceover_summary": "Ground tanks and neutrals to driven rods; bond to system neutral on wye systems for effective grounding.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Drive 8-ft rod, resistance <25 ohms",
+        "Bond neutral to ground per 13-112",
+        "Use #4 Cu wire (W11F)",
+        "Separate grounds for delta systems"
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Ground tank via L6 lead to 8-ft rod. Bond neutral on wye. See 13-112. Test resistance <25 ohms; add rods if needed."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Ground Fault",
+          "content": "Verify ground before energizing; improper grounding risks shock."
+        },
+        {
+          "type": "table",
+          "title": "Grounding Components",
+          "headers": ["Item", "Use"],
+          "rows": [
+            ["G2A2", "Rod Clamp"],
+            ["W11F", "#4 Cu Wire"],
+            ["L6", "Arrester Lead"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Ground Rod",
+          "question": "Minimum length?",
+          "options": [
+            {"text": "8 ft", "is_correct": true, "explanation": "Per standards."},
+            {"text": "6 ft", "is_correct": false, "explanation": "Insufficient."},
+            {"text": "10 ft", "is_correct": false, "explanation": "Not minimum."}
+          ]
+        }
+      ]
+    }
+  ]
+}

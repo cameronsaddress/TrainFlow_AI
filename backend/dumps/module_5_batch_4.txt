@@ -1,0 +1,79 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Safety, Best Practices, and Review",
+      "learning_objective": "Understand safety protocols, best practices for connector installation, and key review concepts to ensure reliable overhead distribution connections compliant with National Grid standards.",
+      "voiceover_summary": "Prioritize safety by treating lines as energized, cleaning conductors thoroughly, using correct tools and dies, and applying insulation where required. Review connector types and applications for proper selection.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Always wire brush conductors before installation to remove oxides for reliable connections.",
+        "Use specified compression tools, dies, and connectors; never reuse distorted ones.",
+        "Insulate service/secondary connectors up to 600V with snap-on covers.",
+        "Avoid splices over railroads or highways per NESC.",
+        "Treat all lines as energized; use PPE and follow EOPs."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Connectors are critical for overhead distribution reliability. Automatic, bolted, and compression types are used per standards. Selection from Pages 5-111/112 ensures compatibility."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Safety",
+          "content": "Treat all lines as energized. Use PPE, follow EOPs, and obtain proper de-energization before work. Never assume lines are de-energized."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Conductor Preparation",
+          "content": "Wire brush all conductors (aluminum and copper separately) to remove oxides. Apply inhibitor (G9B) immediately. Failure risks poor connections and failures."
+        },
+        {
+          "type": "table",
+          "title": "Connector Types and Best Practices",
+          "headers": ["Type", "Application", "Best Practice"],
+          "rows": [
+            ["Automatic Splices", "Full tension AL/CU", "Insert fully; no slack spans/services"],
+            ["Compression Splices", "Full/partial/non-tension", "Use correct die/crimps; start center"],
+            ["Bolted (Parallel Groove)", "Taps AL-AL/CU", "Torque to spec; inhibitor on AL"],
+            ["Fired-on Wedge", "Primary taps", "Follow manufacturer manual"],
+            ["H-Taps", "Secondary ≤600V", "Cover with C60; AL over CU"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Splices prohibited over railroads/highways (NESC 261H2a). Train taps to avoid stress. For tree wire, cover splices (Gelwrap C62/C63 or tape)."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Tool and Die Use",
+          "content": "Use Burndy Y35/PAT tools with specified dies. Test tools frequently. Incorrect use voids ratings."
+        },
+        {
+          "type": "quiz",
+          "title": "Connector Safety Check",
+          "question": "What must be done to conductors before installing any connector?",
+          "options": [
+            {
+              "text": "Wire brush to remove oxides and apply inhibitor",
+              "is_correct": true,
+              "explanation": "Oxides prevent reliable connections; cleaning ensures conductivity."
+            },
+            {
+              "text": "Leave as-is for natural patina",
+              "is_correct": false,
+              "explanation": "Oxides are non-conductive and cause failures."
+            },
+            {
+              "text": "Sand lightly only",
+              "is_correct": false,
+              "explanation": "Wire brushing is required for thorough cleaning."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

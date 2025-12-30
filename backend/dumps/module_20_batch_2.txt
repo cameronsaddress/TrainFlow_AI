@@ -1,0 +1,58 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Practical Application and Review",
+      "learning_objective": "Apply National Grid standards for constructing and maintaining 25-35kV distribution primary lines, including pole selection, guying, and compliance with NESC requirements, while reviewing key safety and design practices.",
+      "voiceover_summary": "This lesson reviews practical applications of 25-35kV primary distribution standards, focusing on pole tops, deadends, angles, and storm hardening for reliable, safe construction.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Use H1 class poles for critical structures like deadends and angles per storm hardening rules.",
+        "Follow specific drawings (e.g., 20-411 to 20-441) for pole top configurations based on line angles.",
+        "Ensure NESC Grade B for crossings; guy all angles over 2° and deadends.",
+        "Maintain BIL of 150kV with 20\" wood or equivalent insulation.",
+        "Verify FAA markers for spans near airports."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 20 standards apply to 25-35kV primary distribution, emphasizing robust construction for reliability. Key drawings cover tangent (0-10°), angles (11-60°), deadends (61-90°), and taps. Use H1 poles for critical spots per Section 4 storm hardening. Always comply with NESC clearances and BIL requirements from Section 1 and 7."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "High Voltage Handling",
+          "content": "Treat all 25-35kV lines as energized. Use PPE, follow NESC Grade B for crossings, and verify guying for angles >2° to prevent failures."
+        },
+        {
+          "type": "table",
+          "title": "Key 25-35kV Pole Top Drawings by Angle",
+          "headers": ["Line Angle", "Drawing", "Pole Class", "Notes"],
+          "rows": [
+            ["0°-10° Tangent", "20-411", "Class 4 min", "Crossarm or fiberglass"],
+            ["11°-20°", "20-413", "Class 4 min", "Single/double crossarm"],
+            ["21°-45°", "20-414/20-423", "H1 min", "Deadend crossarms"],
+            ["46°-60°", "20-415", "H1 min", "Fiberglass deadend"],
+            ["61°-90° Deadend", "20-416", "H1 min", "Full deadend"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Storm Hardening",
+          "content": "Critical structures (ties, reclosers) require H1 poles and deadends to prevent cascading failures (Section 4)."
+        },
+        {
+          "type": "quiz",
+          "title": "25-35kV Construction Review",
+          "question": "What pole class is required for deadends and angles over 20°?",
+          "options": [
+            {"text": "Class 4 minimum", "is_correct": false, "explanation": "Higher classes needed for strength."},
+            {"text": "H1 minimum", "is_correct": true, "explanation": "Per storm hardening and NESC Grade B for reliability."},
+            {"text": "Class 1 only", "is_correct": false, "explanation": "Insufficient for high loads."},
+            {"text": "No specific class", "is_correct": false, "explanation": "Always specified for safety."}
+          ]
+        }
+      ]
+    }
+  ]
+}

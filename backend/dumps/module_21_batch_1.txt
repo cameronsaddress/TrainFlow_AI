@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Conductors for Sub-Transmission",
+      "learning_objective": "Identify the standard conductors and voltage ratings used for sub-transmission lines in National Grid's service territory.",
+      "voiceover_summary": "Sub-transmission conductors are selected based on voltage classes like 23kV, 34.5kV, and 46kV, primarily using large ACSR types such as Drake or Condor for strength and ampacity.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Sub-transmission voltages: 23kV (NY/MA), 34.5kV (NY), 46kV (NY)", "Use ACSR conductors like 795kcmil Drake or Condor for heavy loading", "BIL ratings: 150kV for 23kV, 200kV for 34.5kV, 250kV for 46kV", "Ensure compliance with NESC for design tensions and clearances"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Sub-transmission lines operate at voltages of 23kV (NY/MA), 34.5kV (NY), and 46kV (NY), using 3-phase, 3-wire configurations from high-impedance-grounded-wye transformers. Standard conductors are large ACSR types from Section 6, such as 795kcmil Drake (26/7 stranding) or Condor (54/7), selected for high strength under NESC heavy loading."
+        },
+        {
+          "type": "table",
+          "title": "Sub-Transmission Voltages and BIL Ratings",
+          "headers": ["Voltage (kV)", "Locations", "BIL Rating (kV)"],
+          "rows": [
+            ["23", "NY, MA", "150"],
+            ["34.5", "NY", "200"],
+            ["46", "NY", "250"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All sub-transmission must comply with NESC Grade B/C loading, with tensions limited to 50% RBS."
+        },
+        {
+          "type": "quiz",
+          "title": "Sub-Transmission Basics",
+          "question": "What is the BIL rating for 34.5kV sub-transmission in NY?",
+          "options": [
+            {"text": "150kV", "is_correct": false, "explanation": "Incorrect; that's for 23kV."},
+            {"text": "200kV", "is_correct": true, "explanation": "Correct for 34.5kV NY sub-transmission."},
+            {"text": "250kV", "is_correct": false, "explanation": "For 46kV."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Structure Selection",
+      "learning_objective": "Select appropriate pole classes and configurations for sub-transmission structures per NESC and National Grid standards.",
+      "voiceover_summary": "Sub-transmission structures use Class H1 or higher poles, double crossarms at deadends/angles, with guying per Section 3 for heavy loading.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Class H1 poles minimum for critical sub-T structures", "Double crossarms for deadends/angles >20° per NESC", "Guy per Section 3 for unbalanced loads", "Storm hardening: H1/H2 for NY sub-T"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Sub-transmission structures require robust poles like Class H1 (Section 2), double wood/fiberglass crossarms at deadends/crossings (NESC 261D5c), and guying for angles/deadends (Section 3). For NY, single circuit H1, double H2 if underbuilt."
+        },
+        {
+          "type": "table",
+          "title": "Pole Classes for Sub-Transmission (NY)",
+          "headers": ["Configuration", "Pole Class"],
+          "rows": [
+            ["Single Circuit", "H1"],
+            ["Double Circuit", "H1"],
+            ["Double Circuit w/ Distribution Underbuild", "H2"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Guying Required",
+          "content": "Always guy deadends/angles; unbalanced load <50% pole strength."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Class Check",
+          "question": "What pole class for double circuit sub-transmission in NY?",
+          "options": [
+            {"text": "Class 1", "is_correct": false, "explanation": "Too low; use H1."},
+            {"text": "Class H1", "is_correct": true, "explanation": "Standard for double circuit sub-T."},
+            {"text": "Class H2", "is_correct": false, "explanation": "For underbuilt only."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Insulators",
+      "learning_objective": "Understand insulator types and installation for sub-transmission to meet BIL and creepage requirements.",
+      "voiceover_summary": "Sub-transmission uses polymer/porcelain pin-type insulators, HDPE for covered conductors, with fiberglass strain insulators in guys for BIL compliance.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Polymer/porcelain pin insulators for phases", "HDPE for tree wire compatibility", "Fiberglass strain in guys for 150kV+ BIL", "Tie with TPR wire for HDPE"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Insulators for sub-transmission: porcelain/polymer pin-type (Section 2.9.50), HDPE for covered/tree wire. Fiberglass strain insulators (TI95 series) in guys maintain BIL (150-250kV). Clean conductors before tying."
+        },
+        {
+          "type": "table",
+          "title": "Insulator Types for Sub-Transmission",
+          "headers": ["Type", "Application", "BIL Support"],
+          "rows": [
+            ["Pin-Type Porcelain/Polymer", "Phase support", "150kV min"],
+            ["HDPE Pin", "Tree wire", "Dielectric compatible"],
+            ["Fiberglass Strain (54\")", "Guys", "15-30kRBS"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Installation Warning",
+          "content": "Examine conductor covering; use porcelain if damaged. TPR tie wire only for HDPE."
+        },
+        {
+          "type": "quiz",
+          "title": "Insulator Selection",
+          "question": "What insulator for tree wire on sub-transmission?",
+          "options": [
+            {"text": "Porcelain RF", "is_correct": false, "explanation": "For bare; overstress HDPE."},
+            {"text": "HDPE Pin-Type", "is_correct": true, "explanation": "Dielectrically compatible."},
+            {"text": "Suspension Disc", "is_correct": false, "explanation": "For tension, not pins."}
+          ]
+        }
+      ]
+    }
+  ]
+}

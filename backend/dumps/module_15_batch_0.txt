@@ -1,0 +1,172 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Voltage Control in Distribution Systems",
+      "learning_objective": "Understand the purpose, methods, and importance of voltage control in overhead distribution systems, including the roles of capacitors and regulators.",
+      "voiceover_summary": "Voltage control maintains stable power delivery in distribution systems. Capacitors improve power factor and voltage, while regulators adjust voltage levels dynamically. National Grid standards ensure reliable implementation.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Voltage control prevents under/over voltage issues affecting equipment and customers.",
+        "Primary methods: capacitors for reactive power compensation, regulators for active voltage adjustment.",
+        "Comply with NESC and National Grid checklists for Section 15 installations.",
+        "Critical for reliability in varying load and weather conditions."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Voltage control in distribution systems ensures voltages remain within acceptable limits (e.g., NY: 114-123V on 120V base; MA: 114-126V). Fluctuations from load changes, line losses, or faults can damage equipment or cause outages. Section 15 covers capacitors, regulators, and primary metering as key tools."
+        },
+        {
+          "type": "table",
+          "title": "Voltage Control Methods",
+          "headers": ["Method", "Purpose", "Application"],
+          "rows": [
+            ["Capacitors", "Reactive power compensation, voltage support", "Fixed or switched banks per checklists 15-331 to 15-407"],
+            ["Regulators", "Active voltage adjustment (±10%)", "Single/3-phase, see 15-111 to 15-154"],
+            ["Primary Metering", "Monitor voltage/current", "Installations per 15-500 to 15-550"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All installations must meet NESC Grade C (or B at crossings) overload factors from Section 2."
+        },
+        {
+          "type": "quiz",
+          "title": "Voltage Control Basics",
+          "question": "What is the primary role of capacitors in voltage control?",
+          "options": [
+            {
+              "text": "Adjust voltage dynamically like regulators",
+              "is_correct": false,
+              "explanation": "Regulators adjust voltage; capacitors provide reactive support."
+            },
+            {
+              "text": "Compensate for reactive power and support voltage",
+              "is_correct": true,
+              "explanation": "Capacitors improve power factor and voltage profile."
+            },
+            {
+              "text": "Measure current only",
+              "is_correct": false,
+              "explanation": "Metering measures; capacitors support voltage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Capacitors: Principles and Types",
+      "learning_objective": "Explain capacitor principles, types, and selection for distribution voltage support.",
+      "voiceover_summary": "Capacitors store/release reactive power to maintain voltage and power factor. Types include fixed and switched; National Grid uses per Section 15 checklists for reliable operation.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Capacitors provide vars to counteract inductive loads.",
+        "Fixed for constant compensation; switched for variable loads.",
+        "Types: single-phase (15-211), three-phase fixed/switched (15-331+).",
+        "Protect with fuses; ground per Section 13."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Capacitors correct power factor, reduce losses, and support voltage by supplying reactive power. Principles: Q = CV^2, installed in parallel. Section 15 checklists (15-331 to 15-407) detail types like fixed (15-331) and switched (15-335)."
+        },
+        {
+          "type": "table",
+          "title": "Capacitor Types from Section 15",
+          "headers": ["Type", "Pages", "Use"],
+          "rows": [
+            ["Single-Phase", "15-211/212", "Basic voltage support"],
+            ["3Φ Fixed", "15-331/332", "Constant compensation"],
+            ["3Φ Switched", "15-335/336/399-407", "Controlled vars"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Capacitor Safety",
+          "content": "Discharge capacitors before work; use PPE for high voltage."
+        },
+        {
+          "type": "quiz",
+          "title": "Capacitor Principles",
+          "question": "What do capacitors primarily provide in distribution?",
+          "options": [
+            {
+              "text": "Active power",
+              "is_correct": false,
+              "explanation": "Active power from generators; capacitors provide reactive."
+            },
+            {
+              "text": "Reactive power (vars)",
+              "is_correct": true,
+              "explanation": "Essential for voltage regulation and PF correction."
+            },
+            {
+              "text": "DC power",
+              "is_correct": false,
+              "explanation": "AC systems; capacitors handle AC reactive."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Capacitor Installations and Construction Drawings",
+      "learning_objective": "Describe capacitor installation practices and reference Section 15 construction drawings.",
+      "voiceover_summary": "Capacitors install per checklists: single-phase on 15-211/212, 3Φ fixed/switched on 15-331+. Ensure grounding, fusing, and clearances.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Follow checklists: 15-331 fixed, 15-335 switched.",
+        "Ground per Section 13; fuse per Section 12.",
+        "Mount on poles with adequate strength (Section 2).",
+        "Verify BIL and clearances (Section 7)."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Install per Section 15 pages: single-phase (15-211 grounded/effective, 15-212 not), 3Φ fixed (15-331/332), switched (15-335+). Use polymer cutouts, bond neutrals."
+        },
+        {
+          "type": "table",
+          "title": "Key Section 15 Drawings",
+          "headers": ["Drawing", "Type", "Notes"],
+          "rows": [
+            ["15-211", "1Φ Effective Grounded", "Basic install"],
+            ["15-331", "3Φ Fixed Effective", "Rack mount"],
+            ["15-335", "3Φ Switched w/Sensor", "Advanced control"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Installation Warning",
+          "content": "Verify fault current; use CLF if >5000A sym."
+        },
+        {
+          "type": "quiz",
+          "title": "Capacitor Drawing Reference",
+          "question": "Which drawing for 3Φ switched capacitors?",
+          "options": [
+            {
+              "text": "15-211",
+              "is_correct": false,
+              "explanation": "Single-phase."
+            },
+            {
+              "text": "15-335",
+              "is_correct": true,
+              "explanation": "3Φ switched with sensor."
+            },
+            {
+              "text": "15-111",
+              "is_correct": false,
+              "explanation": "Regulators."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

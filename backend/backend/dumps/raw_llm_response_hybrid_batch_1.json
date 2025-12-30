@@ -1,0 +1,53 @@
+{
+  "matches": [
+    {
+      "LESSON_ID": "Introduction to Guying and When to Guy",
+      "VIDEO_FILENAME": "Work Order Training - Day 2.mp4",
+      "START_TIME": 850,
+      "END_TIME": 1250,
+      "REASON": "Video demonstrates identifying situations requiring guying (secondary down guy on unbalanced pole), installing down guy to existing anchor, changing anchor type and lead length per CSV, aligning strongly with purpose of guying for unbalanced loads from conductors and when required at deadends/angles."
+    },
+    {
+      "LESSON_ID": "Guying Materials",
+      "VIDEO_FILENAME": "Work Order Training - Day 2.mp4",
+      "START_TIME": 950,
+      "END_TIME": 1150,
+      "REASON": "Clip details selecting 12.5M guy wire for secondary down guy, anchor type change from CA to TTA, lead length adjustment to 8ft/10ft based on standards/CSV, directly matching selection of guy wires, anchors per strength/soil conditions and standards like 3-118 cost unit."
+    },
+    {
+      "LESSON_ID": "Pole Attachments and Restrictions",
+      "VIDEO_FILENAME": "Work Order Training - Day 2.mp4",
+      "START_TIME": 2100,
+      "END_TIME": 2700,
+      "REASON": "Video explains joint owned poles/anchors where telephone removes old pole/anchor, National Grid sets new, no attachments without approval implied in process, aligns with rules for attachments to company/foreign poles requiring owner approval and joint ownership agreements."
+    },
+    {
+      "LESSON_ID": "Pole Lengths and Selection Criteria",
+      "VIDEO_FILENAME": "Work Order Training - Day 2.mp4",
+      "START_TIME": 2200,
+      "END_TIME": 2500,
+      "REASON": "Demonstrates replacing 40ft pole with 45-2ft pole for work, considering setting depths (10%+2ft implied), future needs, matches selecting lengths for clearances/spans/future equipment and setting depths."
+    },
+    {
+      "LESSON_ID": "Lesson 1: Introduction to Joint Use Poles",
+      "VIDEO_FILENAME": "PreparingtheEON.mp4",
+      "START_TIME": 60,
+      "END_TIME": 420,
+      "REASON": "Video covers compiling Exchange of Notice (EON) for joint owned pole/anchor/push brace replacements, explaining responsibilities (telephone removes old, electric sets new), directly aligning with purpose/benefits/requirements for joint use poles shared with communications."
+    },
+    {
+      "LESSON_ID": "Pole Classification and Calculations",
+      "VIDEO_FILENAME": "ComplexPCO_CUs_Part1.mp4",
+      "START_TIME": 1200,
+      "END_TIME": 1800,
+      "REASON": "Training on complex pole replacement cost units reviews pole class selection (e.g., H1 for storm hardening), NESC loading/strength factors, aligning with classifying poles based on NESC transverse/vertical/longitudinal loads and strength calculations."
+    },
+    {
+      "LESSON_ID": "Review and Assessment",
+      "VIDEO_FILENAME": "Work Order Training - Day 2.mp4",
+      "START_TIME": 3000,
+      "END_TIME": 3300,
+      "REASON": "Summarizes pole replacement process including real world objects (poles, anchors, guys), cost units, ensuring compliance with Section 2 specs/calculations/drawings/NESC, matches review of key Section 2 concepts for safe pole applications."
+    }
+  ]
+}

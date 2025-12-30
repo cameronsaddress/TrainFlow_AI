@@ -1,0 +1,161 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Joint Use Poles",
+      "learning_objective": "Understand the purpose, benefits, and general requirements for joint use poles shared between electric utilities and communication providers.",
+      "voiceover_summary": "Joint use poles enable efficient sharing of infrastructure between National Grid and communication companies, reducing costs and improving reliability while adhering to safety standards.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Joint use poles coordinate electric and communication facilities on shared structures.",
+        "Requires agreements for ownership, space allocation, and maintenance.",
+        "Prioritize safety, NESC compliance, and future capacity.",
+        "Contact communication companies early for coordination."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Joint use poles allow National Grid's electric distribution facilities to share poles with communication companies, optimizing infrastructure use. This practice is governed by joint ownership agreements ensuring safety, reliability, and compliance with NESC standards. Poles must provide adequate space for all attachments, with electric facilities typically above communication space."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Joint Ownership Agreements",
+          "content": "All joint use requires written agreements specifying space allocation, costs, responsibilities, and maintenance. Consult Section 17 pages and local policies before installation."
+        },
+        {
+          "type": "quiz",
+          "title": "Joint Use Basics",
+          "question": "What is required before installing facilities on joint use poles?",
+          "options": [
+            {
+              "text": "Written agreement with communication companies",
+              "is_correct": true,
+              "explanation": "Joint use mandates agreements for ownership and space."
+            },
+            {
+              "text": "Pole numbering only",
+              "is_correct": false,
+              "explanation": "Numbering is part, but agreements are essential."
+            },
+            {
+              "text": "No coordination needed",
+              "is_correct": false,
+              "explanation": "Coordination is critical for safety and compliance."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Poles in Joint Use",
+      "learning_objective": "Identify pole selection, identification, and attachment rules for joint use structures.",
+      "voiceover_summary": "Joint use poles must be selected for strength, numbered properly, and attachments coordinated to maintain clearances and safety.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use standard wood, fiberglass, or metal poles per ANSI O5.1 and MS2005/MS2010.",
+        "Number poles on road-side face, 7 ft above grade; 'P' for private poles.",
+        "Provide space for communication if agreed; maintain NESC clearances.",
+        "No permanent steps on wood poles; use reflectors where required."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Poles for joint use follow Section 2 standards: solid wood, fiberglass, or metal per ANSI O5.1. Select length and class for clearances and loads. Number on road-side face ~7 ft above grade (Drawing 2-111). Joint poles marked 'P' below number if private. Coordinate with communication for space."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Pole Identification",
+          "content": "Every joint use pole must be numbered for identification; failure risks safety during maintenance."
+        },
+        {
+          "type": "table",
+          "title": "Pole Types for Joint Use",
+          "headers": ["Type", "Standard", "Use"],
+          "rows": [
+            ["Wood", "ANSI O5.1, MS2005", "Standard distribution"],
+            ["Fiberglass", "MS2010", "Difficult access, woodpecker areas"],
+            ["Metal", "Custom spec", "High strength needs"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Joint Use Pole Marking",
+          "question": "Where are joint use poles numbered?",
+          "options": [
+            {
+              "text": "Road-side face, 7 ft above grade",
+              "is_correct": true,
+              "explanation": "Ensures visibility and safety per Drawing 2-111."
+            },
+            {
+              "text": "Top of pole",
+              "is_correct": false,
+              "explanation": "Not visible or safe."
+            },
+            {
+              "text": "Underground",
+              "is_correct": false,
+              "explanation": "Poles are above ground."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Guys in Joint Use",
+      "learning_objective": "Learn guying requirements for joint use poles to balance loads and maintain safety.",
+      "voiceover_summary": "Guys on joint use poles must balance electric and communication loads, insulated per circuit type, with proper anchors.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Guy per Section 3; balance all attachments including communication.",
+        "Insulate guys: 54\" fiberglass for wye primary, two for delta.",
+        "Bond to neutral on wye; isolate on delta.",
+        "Use screw anchors; test soil if needed."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Joint use guys support combined loads. Follow Section 3: deadends, angles >2° for 3φ. Insulate with fiberglass rods (54\" min for wye primary at pole end; two for delta, 12\" below secondary). Bond wye guys to neutral; isolate delta. Use 12.5M/16M/25M wire per load."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Guy Insulation",
+          "content": "Delta guys need two insulators; ensure 12\" fiberglass below secondary to prevent energy transfer."
+        },
+        {
+          "type": "table",
+          "title": "Guy Types for Joint Use",
+          "headers": ["Circuit Type", "Insulation", "Bonding"],
+          "rows": [
+            ["Wye (Effectively Grounded)", "One 54\" fiberglass at pole end", "Bond to neutral"],
+            ["Delta/Uni-Grounded", "Two 54\" fiberglass; 12\" below secondary", "Isolate"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Joint Use Guying",
+          "question": "For delta circuits on joint poles, how many fiberglass insulators?",
+          "options": [
+            {
+              "text": "Two, with 12\" below secondary",
+              "is_correct": true,
+              "explanation": "Prevents contact with attachments."
+            },
+            {
+              "text": "One",
+              "is_correct": false,
+              "explanation": "Insufficient for isolation."
+            },
+            {
+              "text": "None",
+              "is_correct": false,
+              "explanation": "Safety violation."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Floodlight Luminaires",
+      "learning_objective": "Identify approved floodlight luminaires, their applications, and installation requirements for National Grid overhead lighting systems.",
+      "voiceover_summary": "Floodlight luminaires provide targeted illumination for safety and security in outdoor settings. National Grid standards specify models like SJ series for various wattages and conditions.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Use SJ03-SJ05H for floodlights up to 400W HPS or MH.", "Mount on brackets SB04-SB42 per pole class and location.", "Ensure FAA compliance for obstruction lighting with specific floodlights."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Floodlight luminaires are essential for non-roadway applications such as security lighting. National Grid approves models from Section 23 Materials Catalog, including SJ03 to SJ13 for HPS and MH lamps."
+        },
+        {
+          "type": "table",
+          "title": "Approved Floodlight Luminaires",
+          "headers": ["Std Item", "Description", "Application"],
+          "rows": [
+            ["SJ03-SJ05H", "HPS Floodlights", "Up to 400W, security lighting"],
+            ["SJ06E-SJ06H", "HPS Floodlights", "Higher wattage variants"],
+            ["SJ10-SJ13", "Floodlight variants", "Specific mounting"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Installation Safety",
+          "content": "Treat all lines as energized. Use PPE and follow NESC clearances when installing near conductors."
+        },
+        {
+          "type": "quiz",
+          "title": "Floodlight Selection",
+          "question": "Which series is used for HPS floodlights?",
+          "options": [
+            {"text": "SJ03-SJ05H", "is_correct": true, "explanation": "SJ series for HPS floodlights per materials catalog."},
+            {"text": "SK03", "is_correct": false, "explanation": "SK for roadway luminaires."},
+            {"text": "SB04", "is_correct": false, "explanation": "SB for brackets."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Brackets and Mounting Hardware",
+      "learning_objective": "Select appropriate brackets and hardware for mounting lighting luminaires on poles, ensuring structural integrity and compliance.",
+      "voiceover_summary": "Brackets like SB04-SB42 support various luminaires. Choose based on pole class, luminaire weight, and wind loading.",
+      "estimated_reading_time_minutes": 4,
+      "key_takeaways": ["SB04-SB08 for light-duty brackets.", "Use SB30-SB42 for heavier floodlights.", "Secure with proper bolts per Section 2 hardware standards."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Brackets provide stable mounting for luminaires. Section 23 lists SB series for lighting, compatible with wood poles per Section 2."
+        },
+        {
+          "type": "table",
+          "title": "Lighting Brackets",
+          "headers": ["Std Item", "Type", "Load Capacity"],
+          "rows": [
+            ["SB04–SB08", "Light brackets", "Up to 50W luminaires"],
+            ["SB10–SB20", "Medium brackets", "70-150W"],
+            ["SB30–SB42", "Heavy brackets", "200W+ floodlights"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Mounting Compliance",
+          "content": "Verify pole class and guying per NESC Grade C or B for crossings."
+        },
+        {
+          "type": "quiz",
+          "title": "Bracket Selection",
+          "question": "Bracket for 400W floodlight?",
+          "options": [
+            {"text": "SB30-SB42", "is_correct": true, "explanation": "Heavy-duty for floodlights."},
+            {"text": "SB04", "is_correct": false, "explanation": "Light-duty only."},
+            {"text": "SC01", "is_correct": false, "explanation": "Not a bracket."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Conductors for Outdoor Lighting",
+      "learning_objective": "Understand conductor types, sizing, and installation for outdoor lighting to ensure safety and reliability.",
+      "voiceover_summary": "Use #6 or #4 copper for lighting circuits. Follow sag-tension tables and grounding per Sections 6 and 13.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["#6 AWG copper for most lighting.", "Insulate with PE or XLPE coverings.", "Ground per NESC and Section 13."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Outdoor lighting uses copper conductors like #6 SD from Section 6. Ensure proper sags and grounding."
+        },
+        {
+          "type": "table",
+          "title": "Lighting Conductors",
+          "headers": ["Size", "Type", "Application"],
+          "rows": [
+            ["#6 Solid HD Cu", "Bare", "Street lighting"],
+            ["#4 7/1 ACSR", "Covered", "Floodlights"],
+            ["#2 6/1 ACSR", "PE Covered", "High load"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Conductor Safety",
+          "content": "Verify ampacity and clearances. Use PPE for live work."
+        },
+        {
+          "type": "quiz",
+          "title": "Conductor Size",
+          "question": "Standard for street lighting?",
+          "options": [
+            {"text": "#6 Cu", "is_correct": true, "explanation": "Common for lighting per materials."},
+            {"text": "477 kcmil", "is_correct": false, "explanation": "Primary mainline."},
+            {"text": "#2 ACSR", "is_correct": false, "explanation": "Heavier duty."}
+          ]
+        }
+      ]
+    }
+  ]
+}

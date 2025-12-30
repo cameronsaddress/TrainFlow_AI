@@ -1,0 +1,58 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 11 – Services Overview",
+      "learning_objective": "Understand the structure, key pages, and purpose of Section 11 on overhead service construction standards for National Grid distribution systems.",
+      "voiceover_summary": "Section 11 covers overhead services, including checklists for pages like 11-1 through 11-NOTES, focusing on safe and compliant installations for customer connections.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Section 11 details overhead service construction with updated pages issued up to 7/25.", "Key pages include installation guidelines (11-1 to 11-3), specialized setups (11-61, 11-115), and notes (11-NOTES).", "All services must comply with NESC and local regulations for safety and reliability.", "Refer to full standards for detailed drawings and compliance."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 11 of the Overhead Construction Standards addresses service connections from the distribution system to customers. It includes checklists for key pages such as 11-i (7/23), 11-1 (7/25), 11-2 (7/25), and up to 11-NOTES (7/25), covering installation practices, materials, and compliance with NESC and local rules."
+        },
+        {
+          "type": "table",
+          "title": "Section 11 Page Checklist",
+          "headers": ["Page Number", "Issue Date"],
+          "rows": [
+            ["11-i", "7/23"],
+            ["11-ii", "7/16"],
+            ["11-1", "7/25"],
+            ["11-2", "7/25"],
+            ["11-3", "1/18"],
+            ["11-4", "7/18"],
+            ["11-61", "7/24"],
+            ["11-62", "7/24"],
+            ["11-115", "7/18"],
+            ["11-121", "7/21"],
+            ["11-141", "7/21"],
+            ["11-151", "7/20"],
+            ["11-161", "7/20"],
+            ["11-NOTES", "7/25"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Service Installation Safety",
+          "content": "Always treat lines as energized. Maintain NESC clearances. Use PPE and follow grounding procedures. Report hazards immediately."
+        },
+        {
+          "type": "text",
+          "content": "Services involve overhead connections from poles to customer premises, ensuring reliable delivery while meeting safety standards. Pages detail configurations like multiplex taps and midspan taps."
+        },
+        {
+          "type": "quiz",
+          "title": "Services Basics",
+          "question": "What is the most recent issue date for Section 11-NOTES?",
+          "options": [
+            {"text": "7/25", "is_correct": true, "explanation": "As per the checklist, 11-NOTES was issued 7/25."},
+            {"text": "7/23", "is_correct": false, "explanation": "This is for 11-i."},
+            {"text": "7/18", "is_correct": false, "explanation": "This is for several pages like 11-4."}
+          ]
+        }
+      ]
+    }
+  ]
+}

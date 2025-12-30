@@ -1,0 +1,795 @@
+ID: Introduction to the Foreword and Standards Overview
+CONTENT: TARGET OUTCOME: Understand the purpose of the Foreword and gain an overview of National Grid's Distribution Overhead & Underground Construction Standards.
+
+DESCRIPTION: National Grid's Distribution Overhead & Underground Construction Standards are detailed guidelines intended to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for building repetitive structures. These standards also include engineering calculations for non-standard construction and explanations for material and technique selections. They coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests.
+---
+ID: Purpose and Scope of the Standards
+CONTENT: TARGET OUTCOME: Identify the purpose, scope, and key interests coordinated by National Grid's construction standards.
+
+DESCRIPTION: National Grid develops these internal Standards to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for repetitive structures. They include engineering calculations for non-standard designs and explanations for material/technique choices. Prepared for coordination of safety, reliability, operability, uniformity, appearance, economy, and environmental interests.
+---
+ID: Compliance with NESC and Regulations
+CONTENT: TARGET OUTCOME: Explain compliance requirements with NESC, regulations, and conflict resolution.
+
+DESCRIPTION: These Standards comply in all respects with the requirements of the current edition of the National Electrical Safety Code (NESC) and are supplemented by applicable rules and regulations of governing public authorities. When conflicts occur, the most stringent rule or regulation shall prevail. Questions on conflicts should be referred to Standards, Policies and Codes for interpretation.
+---
+ID: Distribution Methods and Updates
+CONTENT: TARGET OUTCOME: Understand the methods National Grid uses to distribute and update its Distribution Overhead & Underground Construction Standards.
+
+DESCRIPTION: National Grid produces these Construction Standards for use by the Company’s construction personnel, engineers, designers, and contractors for construction of the Company’s distribution system. These standards are issued and updated electronically in National Grid’s “Electric Standards Share Point” site. They are also issued in two binders: “Overhead Construction Standards” and “Underground Construction Standards”. For each respective binder, updates are released and issued as needed and distributed to the book holders within the Company and to contractors utilized by the Company.
+---
+ID: Responsibilities and Expectations
+CONTENT: TARGET OUTCOME: Identify the responsibilities of employees and contractors regarding familiarity and compliance with the Construction Standards.
+
+DESCRIPTION: Employees whose work calls for the application of these Standards are expected to be thoroughly familiar with them. All new construction and rebuilding shall conform to these Standards. It is not, however, intended that existing construction be changed to comply with each current issue of these Standards. When Distribution construction for special applications is not covered by these documents, those applications shall be referred to the appropriate Division Engineering Office.
+---
+ID: Contributions and Feedback Process
+CONTENT: TARGET OUTCOME: Learn the process for submitting suggestions to improve National Grid's Construction Standards.
+
+DESCRIPTION: National Grid recognizes and appreciates the interest and contributions made by its employees toward the establishment and improvement of construction types and methods, and the Company solicits their continued cooperation. Suggestions submitted to the Electric Materials Standards team should be accompanied with justification, sketches, photographs, or other exhibits in order to be given complete consideration and to ensure that the maximum benefit may be derived from them. Each submittal shall be reviewed, and the results of that review discussed with the employee suggesting the change.
+---
+ID: Copyright, Property Rights, and Additional Info
+CONTENT: TARGET OUTCOME: Understand National Grid's policies on copyright, property rights, confidentiality, document control, and usage restrictions for Distribution Overhead & Underground Construction Standards.
+
+DESCRIPTION: National Grid's Distribution Overhead & Underground Construction Standards are confidential, proprietary, and trade secret information, remaining the property of National Grid. They are prepared for use by Company personnel, engineers, designers, and contractors.
+---
+ID: Module Review and Assessment
+CONTENT: TARGET OUTCOME: Review key concepts from the Foreword, including purpose, compliance, updates, and usage responsibilities to ensure understanding of the standards document.
+
+DESCRIPTION: National Grid Standards guide repetitive construction with materials, techniques, assemblies, drawings, calculations. Committed to modern, inclusive, practical format balancing safety, reliability, operability, uniformity, appearance, economy, environment. Comply with NESC; conflicts resolved by most stringent rule.
+---
+ID: Foreword and Purpose of National Grid Distribution Standards
+CONTENT: TARGET OUTCOME: Understand the purpose, scope, and key principles of National Grid Distribution Standards for safe, reliable overhead and underground construction.
+
+DESCRIPTION: National Grid develops internal Standards to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for repetitive structures. These Standards include engineering calculations for non-standard designs and explanations for material selections. They coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests, complying with the current NESC edition and local regulations. The most stringent rule prevails in conflicts.
+---
+ID: Copyright Notice and Standards Ownership
+CONTENT: TARGET OUTCOME: Recognize National Grid's ownership of Standards, confidentiality requirements, and usage restrictions.
+
+DESCRIPTION: Copyright 2025 National Grid. Standards prepared by National Grid USA Service Company for subsidiaries. Information is confidential, proprietary, trade secret, remaining National Grid property. No warranty or representation on contents, accuracy, or completeness.
+---
+ID: Basic Insulation Level (BIL) Ratings
+CONTENT: TARGET OUTCOME: Identify BIL ratings for distribution and transmission lines by voltage class and location.
+
+DESCRIPTION: Basic Insulation Level (BIL) ratings relate to voltage class (kV). Line use (distribution/transmission) alters value. E.g., 34.5kV Distribution NE=150kV BIL; 34.5kV Transmission NY=200kV BIL. Distribution BIL by voltage in Section 1.5.
+---
+ID: Transmission and Sub-Transmission Voltages
+CONTENT: TARGET OUTCOME: Identify the nominal transmission and sub-transmission voltages used within National Grid's service territory, including operating locations and BIL ratings.
+
+DESCRIPTION: Transmission and sub-transmission voltages are critical for system design. Transmission lines carry high voltages across states like MA, NY, RI.
+---
+ID: Primary Distribution Voltages
+CONTENT: TARGET OUTCOME: List the nominal primary distribution voltages for 3-phase 3-wire and 4-wire systems, including BIL ratings, voltage codes, and operating locations.
+
+DESCRIPTION: Primary distribution voltages are categorized into 3-phase 3-wire and 4-wire systems, with BIL ratings ensuring safety.
+---
+ID: Secondary Distribution Voltages
+CONTENT: TARGET OUTCOME: Describe single-phase and three-phase secondary distribution voltages, including notes on applications.
+
+DESCRIPTION: Secondary distribution delivers power to end-users at low voltages.
+---
+ID: General Rules and Compliance Guidelines
+CONTENT: TARGET OUTCOME: Understand the core principles for compliance with National Grid Distribution Standards, NESC requirements, and construction guidelines.
+
+DESCRIPTION: National Grid develops internal Standards for materials, techniques, and assemblies used in distribution systems. These Standards coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests, complying with the current NESC edition. When conflicts arise, the most stringent rule prevails; refer questions to Standards, Policies and Codes.
+---
+ID: Checklists and Document Control
+CONTENT: TARGET OUTCOME: Learn to use checklists for verifying document versions and maintain controlled updates.
+
+DESCRIPTION: Standards issued electronically on SharePoint and in binders. Updates released as needed. Holders maintain books with latest issues. Printed copies uncontrolled; refer to INFONET for latest. Checklists list page numbers and issue dates for sections.
+---
+ID: Abbreviations
+CONTENT: TARGET OUTCOME: Master common abbreviations used in National Grid Overhead Construction Standards.
+
+DESCRIPTION: Abbreviations from ANSI Y1.1 and standards. Asterisk (*) denotes necessary but non-standard terms. Organized A-Z for reference.
+---
+ID: Definitions
+CONTENT: TARGET OUTCOME: Understand and apply key abbreviations and definitions used throughout National Grid's Overhead and Underground Distribution Construction Standards.
+
+DESCRIPTION: Section 1 provides abbreviations and definitions foundational to all construction standards. Abbreviations are from ANSI Y1.1 and other sources, marked with * for company-specific terms. Definitions draw from IEEE Std 100, Lineman’s and Cableman’s Handbook, NEC, and NESC.
+---
+ID: Introduction to Poles and Hardware
+CONTENT: TARGET OUTCOME: Understand the general purpose, types, and key considerations for poles and hardware in overhead distribution systems.
+
+DESCRIPTION: Section 2 covers selection and installation of distribution poles and hardware for overhead systems. Poles ensure structural integrity with preservatives like CCA. Hardware includes crossarms, insulators, and guys for safety and reliability.
+---
+ID: Pole Specifications and Identification
+CONTENT: TARGET OUTCOME: Identify pole classes, materials, strengths, and marking requirements per ANSI and Company standards.
+
+DESCRIPTION: Poles per ANSI O5.1, MS2005/MS2010. Classes by top circ: H1=29in,1=27in,...6=17in. Breaking loads at 2ft from top. Numbering: road-side, 7ft up, consecutive per line.
+---
+ID: Pole Lengths and Selection Criteria
+CONTENT: TARGET OUTCOME: Select appropriate pole lengths based on clearances, spans, and future needs; understand setting depths.
+
+DESCRIPTION: Select length for clearances, future equipment. 10% length +2ft setting. Check conductor profile; deadend if uplift issues. Vertical alignment post-install.
+---
+ID: Pole Strengths and NESC Requirements
+CONTENT: TARGET OUTCOME: Understand pole strength classifications, NESC grades of construction, overload and strength factors, and how to select poles to meet safety and loading requirements.
+
+DESCRIPTION: Distribution poles are solid wood, fiberglass, or metal per ANSI O5.1 and Company specs MS2005/MS2010. Strengths designated by Class 1-6 (circumference minimums) and H1 for storm hardening. Use Class 1 for NY main lines/heavy equipment.
+---
+ID: Pole Setting and Depths
+CONTENT: TARGET OUTCOME: Learn standard pole setting depths for earth, rock, wet soil, and special conditions like slopes or contaminated sites.
+
+DESCRIPTION: Pole setting depth: 10% total length +2 ft into earth. Depths measured from low/downhill side on slopes. Use rock anchors (2-105) for solid rock. Deeper in wet/standing water—consult Standards.
+---
+ID: Pole Location and Accessibility
+CONTENT: TARGET OUTCOME: Select pole locations prioritizing accessibility along maintained roads for reliability and quick restoration.
+
+DESCRIPTION: Locate for present/future needs, aesthetics, low relocation risk, vehicle safety. Along accessible roads for quick restoration. Customer services refused if not accessible.
+---
+ID: Pole Attachments and Restrictions
+CONTENT: TARGET OUTCOME: Understand the rules and restrictions for attaching equipment to poles, ensuring compliance with ownership agreements and safety standards.
+
+DESCRIPTION: No Company attachments to poles owned by others (foreign poles) shall be made until proper approval has been obtained from the pole’s owner(s). Likewise, no attachments, temporary or permanent, to Company owned poles by any entity, including persons, companies, or government entities, other than those specifically approved in a written agreement with the entity, shall be made to Company poles without prior approval. In addition, permanent pole steps shall not be utilized on wood distribution poles. Pole steps on alternate material poles may be left in place above 8’.
+---
+ID: Alternative Poles
+CONTENT: TARGET OUTCOME: Identify types of alternative poles, their applications, attachments, and installation requirements for challenging environments.
+
+DESCRIPTION: Alternative poles including fiberglass and metal per appropriate material specifications can be purchased and installed resulting in a cost-effective installation. Lightweight easy to handle fiberglass poles can be selected for difficult locations including rights-of-ways, wetlands, and backyards. Unique environmental conditions including woodpecker attack may also warrant a fiberglass pole installation. Metal poles can be selected for installation locations when increase pole strength requirements are necessary due to heavy equipment loading, environmental loading, or where guying cannot be accomplished.
+---
+ID: Pole Line Hardware
+CONTENT: TARGET OUTCOME: Learn selection, strength requirements, and installation of crossarms, braces, insulators, and extensions for pole lines.
+
+DESCRIPTION: Overhead distribution crossarms shall be solid wood or fiberglass. For installations above 2000 lbs. tension, check conductor tension under NESC heavy loading. Double crossarms required for Grade B at crossings/deadends/angles >20°.
+---
+ID: Pole Classification and Calculations
+CONTENT: TARGET OUTCOME: Master the process of classifying poles based on NESC loading conditions, including transverse, vertical, and longitudinal loads, and perform strength calculations for safe overhead distribution structures.
+
+DESCRIPTION: Pole classification ensures structures withstand NESC heavy loading (4 psf wind, ½" radial ice). Select class based on conductor/equipment loads using groundline moment calculations. Tables provide buckling limits and allowable weights.
+---
+ID: Drawings and Practical Application
+CONTENT: TARGET OUTCOME: Apply practical pole drawings for installation, including specs, setting depths, numbering, phase ID, and special features like rock anchors and nesting platforms.
+
+DESCRIPTION: Drawings guide practical installs: 2-101 specs/setting depths, 2-102 weights/CG, 2-105 rock anchors, 2-106 extensions (max 1600lbs transverse), 2-111 numbering, 2-112/112A phase/feeder ID, 2-113 self-supporting fiberglass, 2-301 clean corridor sets, nesting platforms 2-501/501B, covers 2-502-504.
+---
+ID: Review and Assessment
+CONTENT: TARGET OUTCOME: Review key concepts from Section 2 and assess understanding of pole selection, calculations, and applications.
+
+DESCRIPTION: Section 2 ensures safe, reliable poles: specs (2-101), calculations (examples 1-3), drawings for practical use. Comply with NESC, prioritize safety.
+---
+ID: Introduction to Guying and When to Guy
+CONTENT: TARGET OUTCOME: Understand the purpose of guying in overhead distribution systems and identify situations where guying is required to maintain structural integrity.
+
+DESCRIPTION: Guying is essential for supporting distribution poles against unbalanced loads from conductors, equipment, wind, or ice. Section 3 outlines requirements meeting or exceeding NESC standards. Poles at deadends with uneven wires must be guyed; junctions and transitions >10% imbalance require longitudinal guying. Line angles >300 lbs unbalanced force or >2° (3Φ)/4.5° (1Φ) need guying. Transverse loads from wind or services demand side guying.
+---
+ID: Types of Guy Wires and Pole Supports
+CONTENT: TARGET OUTCOME: Identify different types of guy wires and pole supports, their applications, and installation guidelines.
+
+DESCRIPTION: Guy types include anchor/down (most common), stub (short pole), span/pole-to-pole (15'6" min clearance), sidewalk/strut (limited space), push brace (no guy option). Use per conditions like deadends, angles. Lead/height ≥0.3.
+---
+ID: Guying Materials
+CONTENT: TARGET OUTCOME: Select appropriate guy wires, anchors, rods, hooks, grips, and insulators based on strength and soil conditions.
+
+DESCRIPTION: Guy wire: 12.5M G15A (11,367 lbs use), 16M G17A (16,200 lbs). Anchors: 10" screw A16A standard, 14" A16B soft soil. Bolts: 5/8" B13, 3/4" B14. Hooks: B20A 11k lbs. Grips: P54 preformed. Insulators: TI95 for BIL.
+---
+ID: Bonding, Isolation, and Insulation
+CONTENT: TARGET OUTCOME: Understand the requirements for bonding, isolating, and insulating guy wires on effectively grounded and delta circuits to ensure safety and compliance with NESC.
+
+DESCRIPTION: The NESC requires all guy wires to be effectively grounded or insulated. For effectively grounded or multi-grounded wye circuits, primary guys use a 54-inch minimum fiberglass rod at the pole end and bond to system neutral. Secondary guys attach at lowest secondary point and bond to neutral. For delta or ungrounded circuits, use two rods with 12 inches fiberglass past secondary.
+---
+ID: Guy Clearances
+CONTENT: TARGET OUTCOME: Identify minimum clearances for guy wires to conductors based on voltage and guy type per NESC.
+
+DESCRIPTION: Clearances ensure safety between guys and conductors. Use NESC Table 235-6. Minimum depends on voltage and guy type (down, span, other).
+---
+ID: Strength Calculations and Guy Factors
+CONTENT: TARGET OUTCOME: Perform strength calculations for guys using overload factors, guy factors, and buckling limits to select proper materials.
+
+DESCRIPTION: Determine guy strength via overload factors (Table 11), guy factors (Table 27), and pole buckling (Tables 17-22). Procedure: calculate transverse loads, apply factors.
+---
+ID: Worksheets, Examples, and Construction Drawings
+CONTENT: TARGET OUTCOME: Utilize worksheets, calculation examples, and construction drawings to properly select and install guying systems for distribution poles in compliance with NESC standards.
+
+DESCRIPTION: Guying stabilizes poles against unbalanced loads from wind, angles, or deadends. Use worksheets to calculate required guy strength per NESC Grade C (default) or B (crossings).
+---
+ID: Review and Application
+CONTENT: TARGET OUTCOME: Review guying principles and apply them to real-world scenarios for safe pole stability.
+
+DESCRIPTION: Review: Guy when unbalanced load >300lbs angle, deadends uneven wires. Use down/stub/span guys. Bond wye, isolate delta.
+---
+ID: Introduction to Storm Hardening and Resiliency
+CONTENT: TARGET OUTCOME: Understand the purpose of storm hardening and resiliency in overhead distribution systems, including the impacts of extreme weather and the definition of resilience.
+
+DESCRIPTION: Electric utilities face more frequent and severe storms, raising customer expectations for minimal outages. National Grid's storm hardening addresses tree/limb damage, defining resiliency as the system's ability to withstand disruptions and recover quickly (IEEE PES-TR65). Efforts target electrical and structural robustness for extreme events.
+---
+ID: Objectives and Implementation Through Standards
+CONTENT: TARGET OUTCOME: Identify key objectives of storm hardening, such as protecting critical structures and preventing cascading, and how they are implemented via standards.
+
+DESCRIPTION: Objectives: Harden critical structures (tie points, reclosers, loadbreak switches) to withstand wire breaks; prevent cascading with deadends every 20 spans; coastal poles one class stronger. Implementation: New standards for all new/replaced structures (e.g., Class H1 poles); no changes to existing unless targeted.
+---
+ID: New Construction: Critical Structures
+CONTENT: TARGET OUTCOME: Apply storm hardening standards to new critical structures like tie points, reclosers, and switches to ensure resiliency.
+
+DESCRIPTION: For new construction, critical structures (tie points, reclosers, loadbreak switches) use H1 poles with deadends both directions. Multiple circuits: Grade B. NY mainline/heavy equipment: Class 1. Sub-T: H1 single, H2 double with distribution.
+---
+ID: New Construction: Preventing Cascading Failures
+CONTENT: TARGET OUTCOME: Understand the design requirements for new overhead distribution lines to prevent cascading failures during extreme weather events.
+
+DESCRIPTION: Cascading failures occur when a single tree or limb causes multiple pole failures. To prevent this in new construction, design lines with a maximum of 20 spans between structures capable of stopping cascades, such as deadends or junctions.
+---
+ID: New Construction: Coastal Areas
+CONTENT: TARGET OUTCOME: Identify pole strength enhancements required for new construction in coastal areas to withstand higher wind loads.
+
+DESCRIPTION: Coastal areas face higher direct wind loads. New poles must be one strength class stronger, e.g., Class 4 instead of 5.
+---
+ID: Storm Hardening Existing Lines: Critical Structures
+CONTENT: TARGET OUTCOME: Apply storm hardening measures to existing critical structures like tie points and reclosers to improve resilience.
+
+DESCRIPTION: Targeted hardening: Strengthen tie points by deadending; reclosers by following new standards or adjacent H1 poles.
+---
+ID: Storm Hardening Existing Lines: Preventing Cascading and Coastal Areas
+CONTENT: TARGET OUTCOME: Understand the methods for storm hardening existing distribution lines, focusing on preventing cascading failures and enhancing resilience in coastal areas.
+
+DESCRIPTION: Storm hardening existing lines targets feeders or segments with poor performance. No blanket requirement exists to upgrade all lines, but focus on critical upgrades when rebuilding.
+---
+ID: Other Resiliency Items and Review
+CONTENT: TARGET OUTCOME: Review additional resiliency measures like arresters, crossarms, and coastal practices, and summarize storm hardening principles.
+
+DESCRIPTION: Other resiliency: Review lightning arresters for compliance with Section 13. Replace defective crossarms during hardening.
+---
+ID: Introduction to Overhead Distribution Connectors
+CONTENT: TARGET OUTCOME: Understand the purpose, types, and general applications of overhead distribution connectors used in National Grid's overhead systems.
+
+DESCRIPTION: Overhead distribution connectors are essential for joining conductors in National Grid's overhead systems. They ensure electrical continuity, mechanical strength, and safety under various loading conditions. Primary types include automatic, bolted, and compression connectors, used for splices, taps, deadends, and terminations.
+---
+ID: Selection of Connectors
+CONTENT: TARGET OUTCOME: Learn how to select the appropriate connector based on conductor type, application, and voltage class per National Grid standards.
+
+DESCRIPTION: Connector selection is based on conductor material (AL, CU, ACSR), size range, tension class (full/partial/non), and application (splice/tap/deadend). Refer to pages 5-111/112 for matrices.
+---
+ID: Location of Connectors
+CONTENT: TARGET OUTCOME: Identify proper locations for splices and taps to comply with NESC and ensure safety/reliability.
+
+DESCRIPTION: Splices must avoid crossings (railroads, highways, waterways per NESC). Taps need slack to prevent stress; position aluminum over copper with inhibitor.
+---
+ID: Conductor Preparation
+CONTENT: TARGET OUTCOME: Properly prepare conductors prior to connector installation to ensure reliable electrical connections and prevent failures.
+
+DESCRIPTION: Conductor surface preparation is essential to ensure proper contact between conductors and the connector. Surface oxidation and contaminants will greatly interfere with the establishment of a sound electrical connection. An insulating oxide naturally forms on all conductor surfaces exposed to air. Always thoroughly wire brush the conductors (both new conductors and conductors in service) before making connections. Never use the same wire brush to clean both an aluminum and copper conductor. Copper contaminants transferred to the aluminum conductor will cause the aluminum conductor to corrode.
+---
+ID: Insulation of Connectors
+CONTENT: TARGET OUTCOME: Understand when and how to insulate connectors to meet safety and NESC requirements.
+
+DESCRIPTION: Splices and tap connectors on service/secondary conductors up to 600 V shall be covered with snap-on covers (C60). Bare messenger/neutral connectors shall not be covered. Splices on tree wire/spacer cable conductors shall be covered or taped. Always cover any unused, exposed bare conductor. Splices on these conductors shall be taped or covered using gelwrap (C62, C63) or taped per instructions.
+---
+ID: Types of Connectors Overview
+CONTENT: TARGET OUTCOME: Identify types of connectors for overhead distribution and their applications.
+
+DESCRIPTION: Automatic, bolted, and compression connectors for overhead. Splices: automatic full tension, compression full/partial/non-tension. Taps: parallel groove, H-tap, hot line clamps. Deadends: strain clamps, formed. Terminations: pad connectors.
+---
+ID: Compression Tools and Dies
+CONTENT: TARGET OUTCOME: Understand the types of compression tools and dies used for installing connectors on overhead distribution conductors, including proper usage and maintenance.
+
+DESCRIPTION: Compression tools and dies are essential for creating reliable electrical connections on overhead distribution conductors. Burndy tools compress connectors on standard conductors from #6 AWG through 500kcmil. Battery-operated tools handle services and secondaries up to 4/0 AWG, while the HYPRESS Y35 is used for larger connectors.
+---
+ID: H-Tap Connectors
+CONTENT: TARGET OUTCOME: Learn to select, install, and insulate H-Tap compression connectors for secondary/service connections up to 600V.
+
+DESCRIPTION: H-Tap connectors (S13 series) are used for secondary/service connections up to 600V. They connect 4/0 aluminum to aluminum or copper. Each is pre-filled with oxide inhibitor. Use insulated covers for live legs.
+---
+ID: Parallel Groove Connectors
+CONTENT: TARGET OUTCOME: Master the selection, torque requirements, and installation of parallel groove connectors for primary taps.
+
+DESCRIPTION: Parallel groove connectors (C7A-J) for overhead primary aluminum-to-aluminum/copper taps. Bronze (C7K-L) for copper. Clean conductors, apply inhibitor, torque bolts per table.
+---
+ID: Wedge Tap Connectors
+CONTENT: TARGET OUTCOME: Understand the selection criteria, installation procedures, and safety considerations for fired-on wedge tap connectors used in overhead primary aluminum to aluminum or aluminum to copper connections.
+
+DESCRIPTION: Fired-on wedge connectors (Std. Items S15G thru S15R7) are used for overhead primary aluminum to aluminum or aluminum to copper tap connections. They are non-tension connectors.
+---
+ID: Automatic Splices
+CONTENT: TARGET OUTCOME: Learn the application, installation steps, and limitations of automatic splices for full-tension aluminum, copper, and ACSR conductors on primary distribution lines.
+
+DESCRIPTION: Automatic splices (Std. Items S19A thru S19V) are full-tension, full-current rated for primary distribution lines on aluminum, copper, ACSR. Not for slack spans, services, spacer phase conductors.
+---
+ID: Repair Sleeves
+CONTENT: TARGET OUTCOME: Identify repair sleeves for damaged bare overhead aluminum conductors based on broken strands and conductor type, including tools and installation.
+
+DESCRIPTION: Repair sleeves for damaged bare overhead aluminum conductors: line guard, armor rod, compression based on broken strands.
+---
+ID: Safety, Best Practices, and Review
+CONTENT: TARGET OUTCOME: Understand safety protocols, best practices for connector installation, and key review concepts to ensure reliable overhead distribution connections compliant with National Grid standards.
+
+DESCRIPTION: Connectors are critical for overhead distribution reliability. Automatic, bolted, and compression types are used per standards. Selection from Pages 5-111/112 ensures compatibility.
+---
+ID: Introduction to Primary Conductors
+CONTENT: TARGET OUTCOME: Understand the scope, types, and general guidelines for primary overhead conductors used in National Grid's distribution system.
+
+DESCRIPTION: Primary conductors cover physical and electrical data for standard overhead distribution systems. This section includes sags, tensions, maximum spans, and ampacity ratings. Spacer cable and tree wire provide protection against incidental tree contact but are not insulated.
+---
+ID: Basic Data and Physical Properties
+CONTENT: TARGET OUTCOME: Identify key physical properties of primary conductors, including loading definitions, dimensions, and sag-tension data.
+
+DESCRIPTION: Basic data includes conductor diameter, weight, RBS, CSA. Loading properties: Transverse (wind+ice), Vertical (ice weight), Total resultant. Swing angle for blowout calculations.
+---
+ID: Electrical Properties and Ampacity
+CONTENT: TARGET OUTCOME: Calculate ampacity and understand electrical limits for safe conductor operation under normal and emergency conditions.
+
+DESCRIPTION: Ampacity based on thermal limits: Normal 176°F bare/167°F covered; Emergency 194°F. Parameters: 100°F summer ambient, 3 ft/s wind, emissivity 0.75-0.91.
+---
+ID: Sags and Tensions
+CONTENT: TARGET OUTCOME: Understand the principles of conductor sags and tensions, including limiting values, ruling spans, deadend spans, and slack spans for safe and compliant overhead line design.
+
+DESCRIPTION: Sags and tensions are critical for maintaining NESC minimum clearances. Overhead lines must account for temperature changes, ice, and wind. Three limiting tensions: initial unloaded (35% RBS at 0°F), maximum design (50% RBS under heavy loading), final unloaded (25% RBS at 0°F).
+---
+ID: Maximum Spans
+CONTENT: TARGET OUTCOME: Identify factors limiting maximum spans and apply guidelines for safe conductor spacing and pole loading.
+
+DESCRIPTION: Maximum spans consider sag/pole height, transverse loads/pole strength, vertical weights/crossarm strength, sag/separation ratios. Avoid >150% average spans without sags adjusted.
+---
+ID: Planning Conductor Installations
+CONTENT: TARGET OUTCOME: Apply guidelines for selecting conductor size, tensions, and spans in planning overhead installations.
+
+DESCRIPTION: Plan considering load growth, voltage regulation. 3000 lb tension advantages in rural areas. Deadend different sizes: Balance at heavy load, check normal. Ampacity per table parameters.
+---
+ID: Installing Conductors
+CONTENT: TARGET OUTCOME: Understand the procedures for sagging, tensioning, and installing primary overhead conductors to ensure compliance with NESC clearances and structural integrity.
+
+DESCRIPTION: Installing primary conductors requires precise sag and tension calculations to meet NESC clearances. Use the ruling span method for uniform tension across spans. Initial unloaded tension at 0°F should not exceed 35% of rated breaking strength (RBS). Maximum design tension under heavy loading (½" ice, 4 psf wind) is limited to 50% RBS or 2000-3000 lbs depending on conductor. Final unloaded tension at 0°F ≤25% RBS.
+---
+ID: Standard vs. Non-Standard Conductors
+CONTENT: TARGET OUTCOME: Differentiate between standard and non-standard primary conductors, including physical properties, loading, and application guidelines.
+
+DESCRIPTION: Standard conductors (6-100 series) are for new construction: e.g., 477 kcmil AAC 'Cosmos' (RBS 8360 lbs, 640A summer normal). Non-standard (6-200/300): e.g., 636 kcmil AAC 'Orchid' maintenance only. Use standards for reliability; non-standards where existing.
+---
+ID: Review and Practical Application
+CONTENT: TARGET OUTCOME: Apply knowledge of primary conductor installation and selection through review of key concepts and practical scenarios.
+
+DESCRIPTION: Key review: Sag to 35% initial RBS at 0°F, max 50% heavy load. Standards AAC/ACSR preferred. Install per line-of-sight, check spans <150% avg. Practical: Balance loads, guy angles >2°.
+---
+ID: Introduction to Clearances and NESC Requirements
+CONTENT: TARGET OUTCOME: Understand the purpose of NESC clearances and National Grid's criteria for safe overhead distribution line installations.
+
+DESCRIPTION: The National Electrical Safety Code (NESC) establishes minimum clearances to protect the public and employees during installation, maintenance, and operation of electric supply lines. National Grid standards exceed these minima for reliability and future needs.
+---
+ID: Vertical Clearances to Ground, Roads, Rails, and Other Surfaces
+CONTENT: TARGET OUTCOME: Apply NESC vertical clearance requirements over ground, roads, rails, and other surfaces for safe design.
+
+DESCRIPTION: Vertical clearances are measured from lowest conductor at max sag (60°F no wind) to surfaces below. NESC Table 232-1 specifies minima by voltage and surface.
+---
+ID: Vertical Clearances Over Water Surfaces and to Swimming Pools
+CONTENT: TARGET OUTCOME: Determine required vertical clearances over water bodies and near swimming pools per NESC.
+
+DESCRIPTION: Vertical clearances over water increase with sailboat suitability. For pools, avoid overhangs; min 25 ft from edges.
+---
+ID: Clearances to Buildings, Bridges, and Rail Cars
+CONTENT: TARGET OUTCOME: Understand NESC minimum clearances for overhead lines to buildings, bridges, rail cars, and related structures to ensure safety and compliance.
+
+DESCRIPTION: Overhead distribution lines must comply with NESC clearances to buildings, bridges, and rail cars. Primary wires should avoid buildings; if unavoidable, follow Table 6 clearances. For bridges, use Table 7 and increase for wind. Rail car clearances are detailed in Section 7.7.
+---
+ID: Separations on Poles: Vertical, Horizontal, and Climbing Space
+CONTENT: TARGET OUTCOME: Identify required vertical, horizontal separations, and climbing spaces on poles per NESC for safe access and maintenance.
+
+DESCRIPTION: Separations on poles ensure safety. Vertical: phase-to-phase per Table 9. Horizontal climbing space per NESC Table 236-1. Climbing space extends 40 inches above/below attachments.
+---
+ID: BIL Spacing, Climbing Space, and Additional Requirements
+CONTENT: TARGET OUTCOME: Apply BIL spacing rules, climbing space standards, and extra requirements for pole designs.
+
+DESCRIPTION: BIL: 150kV min via 20in wood. Climbing: Table 236-1. Additional: 50ft from propane tanks, 6ft property lines.
+---
+ID: Practical Application and Review
+CONTENT: TARGET OUTCOME: Apply NESC clearance rules to real-world overhead distribution scenarios, calculate required clearances, and review compliance for safe installations.
+
+DESCRIPTION: Practical application involves verifying clearances during design and construction. Use sag-tension data from Section 6 to ensure vertical clearances under max sag (e.g., ice/wind at MCOT). For horizontal, add wind blowout per NESC formulas. Always document and review post-installation.
+---
+ID: Lesson 1: Introduction to Coastline Construction
+CONTENT: TARGET OUTCOME: Understand the scope, environmental challenges, and general guidelines for overhead distribution construction in coastline areas.
+
+DESCRIPTION: Section 8 covers National Grid overhead distribution construction in 'Coastline Areas' for secondary and primary voltages through 15 kV. A 'Coastline Area' includes areas within 1/2 mile of a saltwater coastline and those beyond where heavy salt spray occurs, or heavy road salt contamination. This standard identifies materials for Standard Construction vs. Coastline Construction to mitigate corrosion.
+---
+ID: Lesson 2: Corrosion in Coastal Environments
+CONTENT: TARGET OUTCOME: Identify types of corrosion in coastal areas and their effects on electrical components.
+
+DESCRIPTION: Coastal environments cause oxidation and galvanic corrosion. Oxidation: Cu forms protective but conductive-reducing oxides; Al forms thin non-conductive layer; Steel rusts continuously. Galvanic: Electrolytic action between dissimilar metals (e.g., Cu-Al) in moist salt air erodes anode.
+---
+ID: Lesson 3: Material Selection for Arresters
+CONTENT: TARGET OUTCOME: Select appropriate surge arresters for coastal environments to prevent corrosion failures.
+
+DESCRIPTION: For 12kV riser arresters: Standard uses regular; Coastline requires extra creepage (Std Item L3ERN) for pollution resistance.
+---
+ID: Lesson 4: Material Selection for Cables
+CONTENT: TARGET OUTCOME: Understand the criteria and recommended materials for selecting cables in coastline construction to mitigate corrosion risks.
+
+DESCRIPTION: Coastline construction requires cables resistant to salt contamination. Aluminum secondary/service 600V insulated overhead cables are standard. Triplex configurations (#2 or 1/0 aluminum) are recommended.
+---
+ID: Lesson 5: Material Selection for Connectors
+CONTENT: TARGET OUTCOME: Identify corrosion-resistant connectors for coastline overhead distribution to ensure reliable connections.
+
+DESCRIPTION: Connectors in coastline areas must resist salt corrosion. Use sealed types to exclude moisture.
+---
+ID: Lesson 6: Material Selection for Cutouts
+CONTENT: TARGET OUTCOME: Select cutouts with extra creepage for 15kV in coastline areas to prevent tracking failures.
+
+DESCRIPTION: Cutouts must have extra creepage in salt-prone areas to avoid tracking. Upgrade to higher voltage ratings.
+---
+ID: Lesson 7: Material Selection for Guying
+CONTENT: TARGET OUTCOME: Understand the specific materials required for guying in coastline areas to prevent corrosion and ensure reliability.
+
+DESCRIPTION: Coastline areas require robust guying to withstand salt-induced corrosion. Standard construction uses preformed and automatic deadends, but in coastal regions, automatic deadends fail due to corrosion.
+---
+ID: Lesson 8: Material Selection for Insulators and Deadends
+CONTENT: TARGET OUTCOME: Identify insulators and deadends suitable for coastal corrosion resistance.
+
+DESCRIPTION: Insulators in coastline areas must resist salt contamination tracking. Polymer insulators provide adequate creepage for both standard and coastal use.
+---
+ID: Lesson 9: Material Selection for Switchgear and Transformers
+CONTENT: TARGET OUTCOME: Select corrosion-resistant switchgear and transformers for coastal reliability.
+
+DESCRIPTION: Coastal salt accelerates corrosion; stainless steel is mandatory for switchgear and transformers to prevent failures.
+---
+ID: Lesson 10: Implementation and Best Practices
+CONTENT: TARGET OUTCOME: Apply best practices for implementing coastline construction standards to ensure durability and safety in corrosive coastal environments.
+
+DESCRIPTION: Coastline construction requires specialized materials and techniques to combat oxidation and galvanic corrosion from salt spray. Define 'Coastline Area' as within 1/2 mile of saltwater or heavy salt spray zones. Prioritize stainless steel, Duronze, or aluminum hardware over galvanized steel.
+---
+ID: Section 9 – Primary Overview
+CONTENT: TARGET OUTCOME: Overview of this module.
+
+DESCRIPTION: 
+---
+ID: Overview of Secondary Systems
+CONTENT: TARGET OUTCOME: Understand the purpose, voltages, conductor types, and general design principles of secondary systems in National Grid's overhead distribution network.
+
+DESCRIPTION: Secondary systems provide low-voltage power (≤600V) from distribution transformers to end-users. They include single-phase (120/240V) and three-phase (208Y/120V, 480Y/277V) configurations. Standard crib conductor is 3/C-1/0 aluminum triplex for residential/commercial loads.
+---
+ID: Secondary Crib Design
+CONTENT: TARGET OUTCOME: Learn to design secondary cribs considering transformer location, loading, length, voltage drop, and flicker limits.
+
+DESCRIPTION: Secondary crib: Overhead 120/240V supply from transformer to services. Place transformer at load center. Use 3/C-1/0 Al triplex. Max length for 1.5% drop: 1000ft (15kVA), 700ft (25kVA), 350ft (50kVA).
+---
+ID: Sag-Tension Tables
+CONTENT: TARGET OUTCOME: Apply sag-tension data for 3/C-1/0 Al triplex to ensure NESC clearances and proper installation.
+
+DESCRIPTION: Sag-tension for 3/C-1/0 Al triplex (1/0 6201 messenger). Use for ruling spans, clearances. Initial at install temps; final under load.
+---
+ID: Splicing Secondary Conductors
+CONTENT: TARGET OUTCOME: Understand the proper procedures for splicing 3/C – 1/0 and 3/C – 4/0 triplex aluminum secondary conductors to ensure reliable connections.
+
+DESCRIPTION: Secondary conductor splicing is critical for maintaining service reliability. This applies to 3/C – 1/0 and 3/C – 4/0 triplex aluminum cables. Splices should not be made within 5 feet of poles to allow space for services and streetlights.
+---
+ID: Flicker Charts and Transformer Regulation
+CONTENT: TARGET OUTCOME: Learn to use flicker charts for motor starting loads and understand transformer regulation limits to prevent voltage complaints.
+
+DESCRIPTION: Flicker voltage drop from motor starts should not exceed irritation levels. Use charts on Page 10-10: Curve A for LVAC network, Curve B for feeders affecting others, Curve C for customer's radial service.
+---
+ID: Residential Loading and Transformer Sizing
+CONTENT: TARGET OUTCOME: Apply residential loading guidelines to size transformers correctly, accounting for peak kWh and growth.
+
+DESCRIPTION: Size based on peak month kWh from GIS + expected growth. Tables for summer/winter critical hours.
+---
+ID: Attachment Drawings and Best Practices
+CONTENT: TARGET OUTCOME: Understand the standard drawings and best practices for attaching secondary conductors to poles, ensuring safety, reliability, and compliance with NESC clearances.
+
+DESCRIPTION: Secondary conductors are attached to poles using standardized configurations from drawings 10-100 to 10-103. These include straight line poles (Fig.1), angle poles (Fig.2), corner poles (Fig.3), junction poles (Fig.4), dead-end poles (Fig.5), tie points (Fig.6), connections to open wire (Fig.7), and transformer poles (Fig.8). Best practices emphasize locating attachments on the street side, using clamps like PR1STS for straight attachments, and ensuring guyed supports for unbalanced loads.
+---
+ID: Review, Assessment, and Application
+CONTENT: TARGET OUTCOME: Review sag-tension data, assess transformer loading, and apply best practices for secondary design to ensure voltage regulation and reliability.
+
+DESCRIPTION: Secondary cribs use 3/C-1/0 aluminum triplex. Design centers transformers at load midpoint. Sag-tension tables (10-5 to 10-8) ensure NESC compliance. Residential loading: 25 kVA serves 9 oil/gas heat homes. Flicker chart (10-10) assesses motor starts. Transformer regulation (10-11) guides sizing.
+---
+ID: Section 11 – Services Overview
+CONTENT: TARGET OUTCOME: Understand the structure, key pages, and purpose of Section 11 on overhead service construction standards for National Grid distribution systems.
+
+DESCRIPTION: Section 11 of the Overhead Construction Standards addresses service connections from the distribution system to customers. It includes checklists for key pages such as 11-i (7/23), 11-1 (7/25), 11-2 (7/25), and up to 11-NOTES (7/25), covering installation practices, materials, and compliance with NESC and local rules.
+---
+ID: Lesson 1: Introduction to Overhead Distribution Protection
+CONTENT: TARGET OUTCOME: Understand the fundamental purpose, components, and principles of overhead distribution protection systems, including fuses, cutouts, reclosers, and their role in fault management.
+
+DESCRIPTION: Overhead distribution protection systems prevent damage from short circuits, overvoltages, and faults. Faults occur due to insulation failure, lightning, or mechanical issues. Devices like fuses interrupt current, cutouts isolate sections, and reclosers attempt restoration.
+---
+ID: Lesson 2: Fuse Ratings
+CONTENT: TARGET OUTCOME: Learn how to select and apply fuse ratings for continuous current, disconnecting, and interrupting duties in overhead distribution.
+
+DESCRIPTION: Fuse ratings include continuous current (up to 1.5x nominal), disconnecting (loadbuster tool up to 600A), and interrupting (rms asymmetric amps). Type K expulsion fuses per ANSI C37.42 are standard.
+---
+ID: Lesson 3: Selection Guides
+CONTENT: TARGET OUTCOME: Master selection guides for fuses, cutouts, reclosers, and CLFs based on fault current, transformer size, and coordination.
+
+DESCRIPTION: Selection guides ensure proper coordination. For transformers, use K fuses based on kVA. CLFs for high faults. Reclosers for automation.
+---
+ID: Lesson 4: Fault Circuit Indicators (FCIs)
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Lesson 5: Cutouts
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Lesson 6: Disconnects
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Lesson 7: Reclosers
+CONTENT: TARGET OUTCOME: Understand the types, applications, ratings, and installation requirements for reclosers in National Grid's overhead distribution protection systems.
+
+DESCRIPTION: Reclosers are automatic circuit breakers that detect and interrupt faults, then attempt to reclose to restore service for temporary faults. They are essential for improving reliability on distribution feeders by isolating faults quickly.
+---
+ID: Lesson 8: Construction Drawings and Best Practices
+CONTENT: TARGET OUTCOME: Identify key construction drawings for protection devices and best practices for installation to ensure safety and reliability.
+
+DESCRIPTION: Construction drawings in Section 12 cover cutouts, disconnects, reclosers, and fuses. Examples include 12-335 for reclosers on wye systems and 12-141 for loadbreak switches.
+---
+ID: Section 13 – Grounding Overview
+CONTENT: TARGET OUTCOME: Overview of this module.
+
+DESCRIPTION: 
+---
+ID: Introduction to Overhead Distribution Transformers
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: General Guidelines and Transformer Location
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Sizing, Loading, and Selection of Transformers
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Transformer Installation Procedures
+CONTENT: TARGET OUTCOME: Understand the standard procedures for safely installing overhead distribution transformers, including site preparation, mounting, and verification steps.
+
+DESCRIPTION: Transformer installation begins with pole selection based on vertical loading from Section 2. Ensure the pole class supports the transformer's weight (e.g., 50 kVA ~750 lbs). Mount using standard brackets like T91 series per drawings 14-204. Align tank vertically and secure with bolts. Check NESC clearances from Section 7.
+---
+ID: Transformer Connections and Phasing
+CONTENT: TARGET OUTCOME: Learn proper methods for connecting primary and secondary conductors to transformers, including phasing diagrams and polarity checks.
+
+DESCRIPTION: Primary connections use #2 Cu wire (W13E). Secondary per 14-171-177. For 3-phase banks, match diagrams for wye or delta. Check polarity: H1-X1 additive/subtractive.
+---
+ID: Grounding and Bonding Transformers
+CONTENT: TARGET OUTCOME: Master grounding techniques for transformers to ensure safety and fault protection per NESC.
+
+DESCRIPTION: Ground tank via L6 lead to 8-ft rod. Bond neutral on wye. See 13-112. Test resistance <25 ohms; add rods if needed.
+---
+ID: Step-Down/Step-Up Transformers and Special Connections
+CONTENT: TARGET OUTCOME: Understand the purpose, installation, and special wiring configurations for step-down and step-up transformers in overhead distribution systems.
+
+DESCRIPTION: Step-down transformers reduce voltage from primary distribution levels (e.g., 13.8 kV) to secondary (e.g., 120/240 V). Step-up transformers increase voltage for specific applications. Special connections include wye-delta banks for three-phase services, requiring precise phasing to prevent neutral shifts and ferroresonance.
+---
+ID: Transformer Handling, Physical Data Codes, and Drawings
+CONTENT: TARGET OUTCOME: Learn safe handling procedures, interpret physical data codes, and apply standard drawings for transformer installations.
+
+DESCRIPTION: Transformers are handled using cranes or hoists per weights on 14-80. Physical Data Codes (PDC) like 10-165-10-00-00 specify type, voltage, taps. Drawings 14-204 to 14-348 detail installs.
+---
+ID: Introduction to Voltage Control in Distribution Systems
+CONTENT: TARGET OUTCOME: Understand the purpose, methods, and importance of voltage control in overhead distribution systems, including the roles of capacitors and regulators.
+
+DESCRIPTION: Voltage control in distribution systems ensures voltages remain within acceptable limits (e.g., NY: 114-123V on 120V base; MA: 114-126V). Fluctuations from load changes, line losses, or faults can damage equipment or cause outages. Section 15 covers capacitors, regulators, and primary metering as key tools.
+---
+ID: Capacitors: Principles and Types
+CONTENT: TARGET OUTCOME: Explain capacitor principles, types, and selection for distribution voltage support.
+
+DESCRIPTION: Capacitors correct power factor, reduce losses, and support voltage by supplying reactive power. Principles: Q = CV^2, installed in parallel. Section 15 checklists (15-331 to 15-407) detail types like fixed (15-331) and switched (15-335).
+---
+ID: Capacitor Installations and Construction Drawings
+CONTENT: TARGET OUTCOME: Describe capacitor installation practices and reference Section 15 construction drawings.
+
+DESCRIPTION: Install per Section 15 pages: single-phase (15-211 grounded/effective, 15-212 not), 3Φ fixed (15-331/332), switched (15-335+). Use polymer cutouts, bond neutrals.
+---
+ID: Voltage Regulators: Principles and Types
+CONTENT: TARGET OUTCOME: Understand the operating principles of voltage regulators and identify common types used in distribution systems.
+
+DESCRIPTION: Voltage regulators are devices installed on distribution feeders to automatically maintain voltage within acceptable limits. They operate on the principle of changing the turns ratio of a transformer through a load tap changer (LTC), boosting or bucking voltage as needed. Section 15 checklists reference regulator installations on pages 15-111 to 15-601, indicating standard pole-mounted configurations for 15kV systems.
+---
+ID: Regulator Installations and Safety
+CONTENT: TARGET OUTCOME: Describe proper installation practices for voltage regulators and key safety protocols.
+
+DESCRIPTION: Voltage regulators are mounted on reinforced poles (e.g., 15-111 to 15-113). Single-phase on tangent poles, three-phase on platforms (15-121 to 15-131). Checklist pages indicate configurations for grounded and ungrounded systems.
+---
+ID: Primary Metering: Purpose and Configurations
+CONTENT: TARGET OUTCOME: Explain the purpose of primary metering and common configurations for overhead systems.
+
+DESCRIPTION: Primary metering (15-500 to 15-550) measures power before transformation for large loads. Purpose: accurate billing, avoids secondary metering issues. Configurations include fused double deadend, riser poles for tangent/deadend.
+---
+ID: Pole/Line Sensors and Monitoring
+CONTENT: TARGET OUTCOME: Understand the installation, application, and benefits of pole/line sensors and monitoring devices for improving distribution system reliability and fault detection.
+
+DESCRIPTION: Pole/line sensors and monitoring devices are critical for modern distribution systems, providing real-time data on voltage, current, faults, and power quality. Key devices include 3Φ Pole Mounted Feeder Monitors (15-600, 15-601 for spacer cable), Line Mounted Feeder Monitors (15-651), Power Line Sensors with Collector Boxes (15-650), and Early Fault Detection systems (15-670). These support applications like fault location, isolation, service restoration (FLISR), and volt-var optimization.
+---
+ID: Construction Drawings and Best Practices
+CONTENT: TARGET OUTCOME: Identify best practices and key construction drawings for capacitors, regulators, and primary metering installations per Section 15 standards.
+
+DESCRIPTION: Section 15 provides drawings for regulator (15-111/112/113/121-122), capacitor (15-211/212/331-407), and metering (15-500-503/550) installations. Best practices include Class H1 poles for regulators, surge arresters, proper grounding, and NESC clearances. Follow sequencing for bypass switches.
+---
+ID: Section 16 – Aerial / Spacer Cable Overview
+CONTENT: TARGET OUTCOME: Understand the scope, applications, design principles, and key standards for Aerial and Spacer Cable systems in National Grid's overhead distribution network.
+
+DESCRIPTION: Aerial/Spacer Cable systems are overhead primary distribution lines using covered conductors held in a triangular configuration by spacers on a grounded messenger strand. Designed for heavily treed areas or limited ROWs, they minimize outages from tree contact while meeting NESC requirements.
+---
+ID: Lesson 1: Introduction to Joint Use Poles
+CONTENT: TARGET OUTCOME: Understand the purpose, benefits, and general requirements for joint use poles shared between electric utilities and communication providers.
+
+DESCRIPTION: Joint use poles allow National Grid's electric distribution facilities to share poles with communication companies, optimizing infrastructure use. This practice is governed by joint ownership agreements ensuring safety, reliability, and compliance with NESC standards. Poles must provide adequate space for all attachments, with electric facilities typically above communication space.
+---
+ID: Lesson 2: Poles in Joint Use
+CONTENT: TARGET OUTCOME: Identify pole selection, identification, and attachment rules for joint use structures.
+
+DESCRIPTION: Poles for joint use follow Section 2 standards: solid wood, fiberglass, or metal per ANSI O5.1. Select length and class for clearances and loads. Number on road-side face ~7 ft above grade (Drawing 2-111). Joint poles marked 'P' below number if private. Coordinate with communication for space.
+---
+ID: Lesson 3: Guys in Joint Use
+CONTENT: TARGET OUTCOME: Learn guying requirements for joint use poles to balance loads and maintain safety.
+
+DESCRIPTION: Joint use guys support combined loads. Follow Section 3: deadends, angles >2° for 3φ. Insulate with fiberglass rods (54" min for wye primary at pole end; two for delta, 12" below secondary). Bond wye guys to neutral; isolate delta. Use 12.5M/16M/25M wire per load.
+---
+ID: Lesson 4: Climbing Space and Clearances
+CONTENT: TARGET OUTCOME: Understand NESC requirements and National Grid practices for maintaining climbing space and clearances on joint use poles to ensure worker safety.
+
+DESCRIPTION: Joint use poles must provide adequate climbing space for workers accessing facilities. Reference NESC clearances on Page 7-127. Ensure full climbing space from attachments.
+---
+ID: Lesson 5: Attachment Locations
+CONTENT: TARGET OUTCOME: Identify proper locations for attachments on joint use poles to avoid conflicts and maintain safety.
+
+DESCRIPTION: Locate attachments cooperatively. Avoid heavy equipment on poles with risers. Consider line appearance and accessibility.
+---
+ID: Lesson 6: Metered Power Supplies
+CONTENT: TARGET OUTCOME: Describe standards for installing metered power supplies and antennas on 15kV distribution poles.
+
+DESCRIPTION: For 15kV poles: Use weatherproof meter socket, 1" PVC conduit, #10 copper service cable. Mount on non-traffic side. Ground with #4 copper.
+---
+ID: Lesson 7: ADFO Cables
+CONTENT: TARGET OUTCOME: Understand the installation requirements and safety considerations for All-Dielectric Fiber Optic (ADFO) cables in the supply space of joint use poles.
+
+DESCRIPTION: All-Dielectric Fiber Optic (ADFO) cables are permitted in the supply space of distribution poles up to 34.5 kV only under agreements made prior to January 1, 2010. These cables must be entirely dielectric, including the messenger.
+---
+ID: Lesson 8: Security Cameras
+CONTENT: TARGET OUTCOME: Learn the installation guidelines for security and surveillance cameras on wood distribution poles, including responsibilities and safety measures.
+
+DESCRIPTION: Wood distribution poles can host security/surveillance cameras with max power supply weight 670 lbs and antenna 110 lbs at 104 inches max height. Install below communication cables.
+---
+ID: Lesson 9: Drawings and Applications
+CONTENT: TARGET OUTCOME: Identify key drawings and applications for joint use pole configurations, including space allocation and attachment clearances.
+
+DESCRIPTION: Joint use poles allocate space: e.g., 40 ft pole (40/40): Tel 2.5 ft, Licensee 1 ft, Elec 6.5 ft. Drawings detail attachments like 17-100 for allocation, 17-102 for levels.
+---
+ID: Section 18 – Risers Overview
+CONTENT: TARGET OUTCOME: Understand the purpose, types, standards, and safety requirements for risers in National Grid's overhead distribution systems.
+
+DESCRIPTION: Risers are critical transition points from overhead distribution lines to underground cables, typically at dedicated poles. They ensure structural integrity, electrical continuity, and safety under NESC standards. National Grid's Section 18 covers various configurations for 15-35kV systems, including tangent, deadend, angles, and with/without secondaries.
+---
+ID: Introduction to Outdoor Lighting Definitions
+CONTENT: TARGET OUTCOME: Understand key terminology used in outdoor lighting systems to ensure proper installation and maintenance.
+
+DESCRIPTION: Outdoor lighting systems use specific terminology to describe components and their functions. This lesson defines key terms from National Grid standards.
+---
+ID: IES Light Distribution Patterns
+CONTENT: TARGET OUTCOME: Identify IES classifications for luminaire light distribution to select appropriate fixtures for roadway applications.
+
+DESCRIPTION: The Illuminating Engineering Society (IES) classifies luminaires by light distribution patterns for effective roadway lighting.
+---
+ID: Roadway Luminaires
+CONTENT: TARGET OUTCOME: Apply guidelines for mounting, aiming, and spacing roadway luminaires to achieve optimal illumination and safety.
+
+DESCRIPTION: Roadway luminaires provide illumination for streets. Proper installation ensures safety and efficiency.
+---
+ID: Floodlight Luminaires
+CONTENT: TARGET OUTCOME: Identify approved floodlight luminaires, their applications, and installation requirements for National Grid overhead lighting systems.
+
+DESCRIPTION: Floodlight luminaires are essential for non-roadway applications such as security lighting. National Grid approves models from Section 23 Materials Catalog, including SJ03 to SJ13 for HPS and MH lamps.
+---
+ID: Brackets and Mounting Hardware
+CONTENT: TARGET OUTCOME: Select appropriate brackets and hardware for mounting lighting luminaires on poles, ensuring structural integrity and compliance.
+
+DESCRIPTION: Brackets provide stable mounting for luminaires. Section 23 lists SB series for lighting, compatible with wood poles per Section 2.
+---
+ID: Conductors for Outdoor Lighting
+CONTENT: TARGET OUTCOME: Understand conductor types, sizing, and installation for outdoor lighting to ensure safety and reliability.
+
+DESCRIPTION: Outdoor lighting uses copper conductors like #6 SD from Section 6. Ensure proper sags and grounding.
+---
+ID: Customer-Owned Equipment
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Construction Drawings and Application
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Introduction to 25-35kV Primary Distribution Systems
+CONTENT: TARGET OUTCOME: Understand the purpose, voltage classes, design principles, and safety considerations for 25-35kV primary distribution systems per National Grid standards.
+
+DESCRIPTION: 25-35kV primary distribution systems are used for efficient power delivery in areas requiring higher voltage capacity, such as sub-transmission interfaces or long rural feeders. These systems operate at voltages like 24.94kV GrdY/14.4kV (125kV BIL) and 34.5kV GrdY/19.9kV (150kV BIL), typically 3-phase 4-wire grounded wye configurations.
+---
+ID: Pole Tops and Hardware for 25-35kV Primary
+CONTENT: TARGET OUTCOME: Identify pole classes, hardware, insulators, and configurations for 25-35kV pole tops, ensuring NESC compliance and BIL levels.
+
+DESCRIPTION: Pole tops ensure 150kV BIL with 20+ inches wood/fiberglass separation. Use Class H1 for storm hardening; double crossarms at crossings/angles >20°.
+---
+ID: Conductors for 25-35kV Primary
+CONTENT: TARGET OUTCOME: Select appropriate conductors for 25-35kV systems, understanding specs, sags, tensions, and ampacity limits.
+
+DESCRIPTION: 25-35kV uses high-capacity bare ACSR/AAC: Finch (1113kcmil, 1.293" dia, 1430lbs/1000ft), Condor (795kcmil 54/7, 1.093"), Drake (795kcmil 26/7).
+---
+ID: Separations and Clearances in 25-35kV Design
+CONTENT: TARGET OUTCOME: Understand NESC-mandated separations and clearances for 25-35kV primary distribution lines, including vertical, horizontal, and phase-to-ground requirements to ensure safety and compliance.
+
+DESCRIPTION: For 25-35kV primary distribution, clearances follow NESC Rules 232-235, adjusted for Heavy Loading District (0.5in ice, 4psf wind). Vertical clearances ensure safe passage under roads/rails; horizontal for blowout.
+---
+ID: Construction Drawings and Configurations
+CONTENT: TARGET OUTCOME: Identify standard pole top configurations, drawings, and hardware for 25-35kV primary lines, including tangent, deadend, and angle structures.
+
+DESCRIPTION: Section 20 drawings (e.g., 20-411 tangent crossarm, 20-415 deadend) detail pole tops for 25-35kV. Use H1 poles for critical spots, double arms at crossings.
+---
+ID: Advanced Design: Storm Hardening, Joint Use, and Safety
+CONTENT: TARGET OUTCOME: Apply storm hardening (Section 4), joint use (Section 17), and safety practices to 25-35kV designs, including critical structures and NESC compliance.
+
+DESCRIPTION: Storm hardening (Sec4): Use H1 poles at ties/switches; periodic deadends limit cascades. Joint use (Sec17): Space per 17-100 tables. Safety integrates NESC clearances.
+---
+ID: Practical Application and Review
+CONTENT: TARGET OUTCOME: Apply National Grid standards for constructing and maintaining 25-35kV distribution primary lines, including pole selection, guying, and compliance with NESC requirements, while reviewing key safety and design practices.
+
+DESCRIPTION: Section 20 standards apply to 25-35kV primary distribution, emphasizing robust construction for reliability. Key drawings cover tangent (0-10°), angles (11-60°), deadends (61-90°), and taps. Use H1 poles for critical spots per Section 4 storm hardening. Always comply with NESC clearances and BIL requirements from Section 1 and 7.
+---
+ID: Introduction to Overhead Sub-Transmission Standards
+CONTENT: TARGET OUTCOME: Understand the purpose, voltage classes, BIL ratings, and compliance requirements for overhead sub-transmission standards in National Grid's distribution system.
+
+DESCRIPTION: Overhead sub-transmission lines operate at nominal voltages of 23kV, 34.5kV, and 46kV within National Grid's service territory, primarily in NY and MA. These lines are 3-phase, 3-wire from high-impedance-grounded-wye transformers. Standards ensure compliance with the National Electrical Safety Code (NESC), supplemented by local rules. Basic Insulation Level (BIL) ratings protect against surges, varying by voltage class and use (Distribution vs. Transmission).
+---
+ID: Grades of Construction and Overload Factors
+CONTENT: TARGET OUTCOME: Identify NESC grades of construction (B, C, N), overload factors, and strength factors for sub-transmission structures.
+
+DESCRIPTION: NESC specifies Grades B (highest), C, N for supply structures. National Grid uses Grade C generally, B at crossings. Overload factors multiply loads; strength factors adjust capacities. Tables below detail factors for structures ≤60ft above ground.
+---
+ID: Loading Conditions and Calculations
+CONTENT: TARGET OUTCOME: Calculate pole groundline moments for wind, tension, equipment loads under NESC heavy conditions for sub-transmission design.
+
+DESCRIPTION: Sub-transmission uses NESC heavy loading: 32°F, ½" radial ice, 4psf wind. Calculate groundline moments for wind, tension, equipment. Examples determine pole class ensuring permitted moment > applied.
+---
+ID: Conductors for Sub-Transmission
+CONTENT: TARGET OUTCOME: Identify the standard conductors and voltage ratings used for sub-transmission lines in National Grid's service territory.
+
+DESCRIPTION: Sub-transmission lines operate at voltages of 23kV (NY/MA), 34.5kV (NY), and 46kV (NY), using 3-phase, 3-wire configurations from high-impedance-grounded-wye transformers. Standard conductors are large ACSR types from Section 6, such as 795kcmil Drake (26/7 stranding) or Condor (54/7), selected for high strength under NESC heavy loading.
+---
+ID: Structure Selection
+CONTENT: TARGET OUTCOME: Select appropriate pole classes and configurations for sub-transmission structures per NESC and National Grid standards.
+
+DESCRIPTION: Sub-transmission structures require robust poles like Class H1 (Section 2), double wood/fiberglass crossarms at deadends/crossings (NESC 261D5c), and guying for angles/deadends (Section 3). For NY, single circuit H1, double H2 if underbuilt.
+---
+ID: Insulators
+CONTENT: TARGET OUTCOME: Understand insulator types and installation for sub-transmission to meet BIL and creepage requirements.
+
+DESCRIPTION: Insulators for sub-transmission: porcelain/polymer pin-type (Section 2.9.50), HDPE for covered/tree wire. Fiberglass strain insulators (TI95 series) in guys maintain BIL (150-250kV). Clean conductors before tying.
+---
+ID: Splicing and Anchors
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Clearances
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Risk Mitigation
+CONTENT: TARGET OUTCOME: No description provided.
+
+DESCRIPTION: 
+---
+ID: Review and Application
+CONTENT: TARGET OUTCOME: Apply National Grid standards for Distribution Supply structures (Section 21), including pole selection, guying requirements, voltage classes, BIL ratings, and construction practices for reliability and safety.
+
+DESCRIPTION: Section 21 covers Distribution Supply for sub-transmission (23-46kV), emphasizing resilient structures. Key pages include checklists (21-i to 21-NOTES) and drawings for pole tops, deadends, and angles. Review voltage classes from Section 1: 23kV (125/150kV BIL), 34.5kV (150kV BIL). Use NESC Heavy Loading for design.
+---
+ID: Section 22 – Materials Catalog Overview
+CONTENT: TARGET OUTCOME: Understand the organization, content, and purpose of the National Grid Materials Catalog for overhead and underground distribution construction standards.
+
+DESCRIPTION: Section 22 of the Overhead Construction Standards serves as the central Materials Catalog, detailing all approved items for distribution systems. It lists materials alphabetically by code (e.g., anchors A9–A22J, bolts B1–B54T, capacitors C4A–C50B), including specifications, standard item IDs, and update dates. This ensures uniformity, compliance with NESC, and efficient procurement.
+---
+ID: Section 23 – Materials Catalog – Lighting Overview
+CONTENT: TARGET OUTCOME: Understand the organization, key categories, and purpose of the Section 23 Materials Catalog for Lighting, including compliance with National Grid Overhead Construction Standards.
+
+DESCRIPTION: Section 23 of the National Grid Overhead Construction Standards provides a comprehensive catalog of approved materials for lighting installations. This catalog ensures uniformity, safety, and compliance with NESC requirements. Materials are listed by standard item codes (e.g., SB for streetlight bases, SC for conduits, SJ for junction boxes, SK for spacers), with details on specifications, issue dates, and applications for overhead distribution systems.
+---
+ID: Section 25 – Feeder Application & Application Index Overview
+CONTENT: TARGET OUTCOME: Understand the purpose, structure, and key components of Section 25, which serves as a comprehensive index and reference for feeder applications across various voltage classes and configurations in National Grid's overhead distribution system.
+
+DESCRIPTION: Section 25 – Feeder Application & Application Index serves as a centralized reference for National Grid's overhead distribution feeder designs. It catalogs standard configurations, construction drawings, and application notes tailored to various voltage classes (e.g., 4.16kV to 34.5kV), phases (single, three-phase), and scenarios like tangents, deadends, angles, and joints. This ensures uniform, safe, and reliable installations compliant with NESC and company policies.
+---

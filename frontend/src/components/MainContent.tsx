@@ -8,7 +8,7 @@ export default function MainContent({ children }: { children: React.ReactNode })
 
     // Pages that should be full-width (no padding)
     // /analysis is the AI Assistant page
-    const isFullWidth = pathname === '/analysis' || pathname?.startsWith('/curriculum');
+    const isFullWidth = pathname === '/analysis' || pathname?.startsWith('/curriculum') || pathname?.startsWith('/hybrid');
 
     return (
         <main className={`flex-1 overflow-y-auto ${isFullWidth ? '' : 'p-8'}`}>

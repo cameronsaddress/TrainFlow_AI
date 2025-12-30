@@ -1,0 +1,142 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Distribution Methods and Updates",
+      "learning_objective": "Understand the methods National Grid uses to distribute and update its Distribution Overhead & Underground Construction Standards.",
+      "voiceover_summary": "National Grid distributes its Construction Standards electronically via SharePoint and in physical binders, with updates issued as needed to ensure compliance and safety.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Standards are available electronically on the Electric Standards SharePoint site.",
+        "Physical binders: Overhead and Underground Construction Standards.",
+        "Updates released and distributed to book holders and contractors as needed.",
+        "Book holders are responsible for maintaining the latest updates."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid produces these Construction Standards for use by the Company’s construction personnel, engineers, designers, and contractors for construction of the Company’s distribution system. These standards are issued and updated electronically in National Grid’s “Electric Standards Share Point” site. They are also issued in two binders: “Overhead Construction Standards” and “Underground Construction Standards”. For each respective binder, updates are released and issued as needed and distributed to the book holders within the Company and to contractors utilized by the Company."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Book Holder Responsibility",
+          "content": "It is the responsibility of the book holders to maintain their books with the latest issued updates."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Distribution",
+          "question": "How are the Construction Standards primarily distributed and updated?",
+          "options": [
+            {
+              "text": "Electronically via SharePoint and physical binders with updates as needed",
+              "is_correct": true,
+              "explanation": "Standards are issued electronically on SharePoint and in binders, with updates distributed to holders."
+            },
+            {
+              "text": "Only via email newsletters",
+              "is_correct": false,
+              "explanation": "Updates are formal releases to SharePoint and binders."
+            },
+            {
+              "text": "Printed annually only",
+              "is_correct": false,
+              "explanation": "Updates are issued as needed, not annually."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Responsibilities and Expectations",
+      "learning_objective": "Identify the responsibilities of employees and contractors regarding familiarity and compliance with the Construction Standards.",
+      "voiceover_summary": "Employees must be familiar with Standards; new construction and rebuilding must conform, but existing does not unless safety or reliability issues arise.",
+      "estimated_reading_time_minutes": "5",
+      "key_takeaways": [
+        "Employees whose work requires Standards application must be thoroughly familiar with them.",
+        "All new construction and rebuilding shall conform to these Standards.",
+        "Existing construction need not change unless safety or reliability concerns exist.",
+        "Special applications referred to Division Engineering Office."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Employees whose work calls for the application of these Standards are expected to be thoroughly familiar with them. All new construction and rebuilding shall conform to these Standards. It is not, however, intended that existing construction be changed to comply with each current issue of these Standards. When Distribution construction for special applications is not covered by these documents, those applications shall be referred to the appropriate Division Engineering Office."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Compliance Rules",
+          "content": "New construction and rebuilding MUST conform to Standards. Existing installations exempt unless safety/reliability issues."
+        },
+        {
+          "type": "quiz",
+          "title": "Standards Compliance",
+          "question": "What must conform to the Standards?",
+          "options": [
+            {
+              "text": "All new construction and rebuilding",
+              "is_correct": true,
+              "explanation": "Explicitly stated: new construction and rebuilding shall conform."
+            },
+            {
+              "text": "Only existing construction",
+              "is_correct": false,
+              "explanation": "Existing not required unless safety issues."
+            },
+            {
+              "text": "Nothing, optional",
+              "is_correct": false,
+              "explanation": "Mandatory for new work."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Contributions and Feedback Process",
+      "learning_objective": "Learn the process for submitting suggestions to improve National Grid's Construction Standards.",
+      "voiceover_summary": "Submit suggestions to Electric Materials Standards team with justification, sketches, photos for review and discussion.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Submit suggestions to Electric Materials Standards team.",
+        "Include justification, sketches, photographs, or other exhibits.",
+        "Each submittal reviewed; results discussed with suggester.",
+        "Company appreciates employee contributions."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid recognizes and appreciates the interest and contributions made by its employees toward the establishment and improvement of construction types and methods, and the Company solicits their continued cooperation. Suggestions submitted to the Electric Materials Standards team should be accompanied with justification, sketches, photographs, or other exhibits in order to be given complete consideration and to ensure that the maximum benefit may be derived from them. Each submittal shall be reviewed, and the results of that review discussed with the employee suggesting the change."
+        },
+        {
+          "type": "alert",
+          "alert_type": "tip",
+          "title": "Submission Best Practices",
+          "content": "Include justification, sketches, photos for full consideration."
+        },
+        {
+          "type": "quiz",
+          "title": "Feedback Submission",
+          "question": "Where should suggestions for Standards improvements be sent?",
+          "options": [
+            {
+              "text": "Electric Materials Standards team",
+              "is_correct": true,
+              "explanation": "Directly stated in Foreword."
+            },
+            {
+              "text": "Local supervisor only",
+              "is_correct": false,
+              "explanation": "To Electric Materials Standards team."
+            },
+            {
+              "text": "Public website",
+              "is_correct": false,
+              "explanation": "Internal team submission."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

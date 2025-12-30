@@ -1,0 +1,97 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Storm Hardening Existing Lines: Preventing Cascading and Coastal Areas",
+      "learning_objective": "Understand the methods for storm hardening existing distribution lines, focusing on preventing cascading failures and enhancing resilience in coastal areas.",
+      "voiceover_summary": "Storm hardening existing lines involves targeted upgrades to critical structures, periodic deadends to stop cascading failures, and stronger poles in coastal regions to withstand severe weather.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "For existing lines, upgrade tie points, reclosers, and loadbreak switches to withstand wire failures.",
+        "Implement periodic deadends every 20 spans to prevent cascading outages.",
+        "In coastal areas within 1/2 mile of saltwater, use one pole class higher than standard.",
+        "Inspect and replace defective crossarms during hardening projects."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Storm hardening existing lines targets feeders or segments with poor performance. No blanket requirement exists to upgrade all lines, but focus on critical upgrades when rebuilding."
+        },
+        {
+          "type": "text",
+          "content": "For critical structures like tie points without switches, deadend conductors both ways and use Class H1 poles. For reclosers and loadbreak switches, follow new standards or strengthen adjacent poles."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Critical Structure Compliance",
+          "content": "All new or replaced critical structures must withstand failure of wires in one direction per Section 4.1.10."
+        },
+        {
+          "type": "text",
+          "content": "Prevent cascading by limiting tangent spans to 20 max between deadends or strong structures. Use fiberglass deadend crossarms on replacements."
+        },
+        {
+          "type": "table",
+          "title": "Coastal Pole Requirements",
+          "headers": ["Area", "Pole Strength Requirement"],
+          "rows": [
+            ["Non-Coastal", "Standard class per loading"],
+            ["Coastal (1/2 mile from saltwater)", "One class higher than standard (except critical structures)"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Cascading Prevention",
+          "question": "What is the maximum number of tangent spans between structures to prevent cascading?",
+          "options": [
+            {"text": "10 spans", "is_correct": false, "explanation": "Too low; allows more spans."},
+            {"text": "20 spans", "is_correct": true, "explanation": "Maximum 20 spans (19 structures) between deadends or strong poles."},
+            {"text": "30 spans", "is_correct": false, "explanation": "Exceeds limit; risks cascading."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Other Resiliency Items and Review",
+      "learning_objective": "Review additional resiliency measures like arresters, crossarms, and coastal practices, and summarize storm hardening principles.",
+      "voiceover_summary": "Beyond core hardening, enhance resiliency with arresters per standards, inspect crossarms, and apply coastal rules. Review ensures robust system design.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Review arrester application for lightning-prone feeders.",
+        "Inspect double wood crossarms; replace defects.",
+        "Coastal hardening: one pole class higher, no exceptions for critical.",
+        "Overall: Balance new standards with economic feasibility."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Other resiliency: Review lightning arresters for compliance with Section 13. Replace defective crossarms during hardening."
+        },
+        {
+          "type": "alert",
+          "alert_type": "tip",
+          "title": "Arrester Review",
+          "content": "For feeders with lightning history, apply reliability-based arresters per Section 13."
+        },
+        {
+          "type": "text",
+          "content": "Coastal: New/replaced poles one class higher. No changes to existing unless targeted."
+        },
+        {
+          "type": "text",
+          "content": "Review: No mandate for full upgrades; focus on performance-targeted segments. Integrate with NESC, safety."
+        },
+        {
+          "type": "quiz",
+          "title": "Resiliency Priority",
+          "question": "Key other resiliency item for existing lines?",
+          "options": [
+            {"text": "Replace all poles", "is_correct": false, "explanation": "Not required; targeted only."},
+            {"text": "Review arresters on poor performers", "is_correct": true, "explanation": "Yes, per 4.2.40 for lightning."},
+            {"text": "Ignore coastal", "is_correct": false, "explanation": "Enhance poles in coastal areas."}
+          ]
+        }
+      ]
+    }
+  ]
+}

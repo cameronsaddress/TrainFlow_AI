@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Splicing and Anchors",
+      "learning_objective": "Understand the standards for splicing conductors and installing anchors in Distribution Supply systems to ensure structural integrity and safety.",
+      "voiceover_summary": "In Distribution Supply, splicing and anchors are critical for maintaining line tension and preventing failures under heavy loads.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Use full-tension compression splices for primary conductors", "Select anchors based on soil class, e.g., 10-inch screw for normal soils", "Guy wires must meet NESC overload factors for Grade B/C construction"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 21 covers high-voltage Distribution Supply (23-46kV). Splicing uses compression or automatic methods per Section 5, ensuring full tension for ACSR/AAC. Anchors like screw types (A16A) are selected per soil class from Section 3."
+        },
+        {
+          "type": "table",
+          "title": "Anchor Selection by Soil Class",
+          "headers": ["Soil Class", "Description", "Recommended Anchor"],
+          "rows": [
+            ["0", "Sound rock", ["A13A - Rock Anchor"]],
+            ["1-2", "Dense sands/clays", ["A16A - 10in Helix"]],
+            ["3-5", "Compacted soils", ["A16B - 14in Helix"]]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Anchor Installation Safety",
+          "content": "Test anchor holding capacity to 90% of rated strength. Use proper torque to avoid failure."
+        },
+        {
+          "type": "quiz",
+          "title": "Anchor Basics",
+          "question": "What anchor for dense soil?",
+          "options": [
+            {"text": "A16A 10in Helix", "is_correct": true, "explanation": "Suitable for classes 1-2."},
+            {"text": "A13A Rock", "is_correct": false, "explanation": "For rock only."},
+            {"text": "Hand Dug", "is_correct": false, "explanation": "For inaccessible areas."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Clearances",
+      "learning_objective": "Apply NESC clearances for Distribution Supply lines to ensure safety and compliance.",
+      "voiceover_summary": "Clearances in Section 21 follow NESC for high-voltage supply, prioritizing vertical and horizontal distances.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Vertical clearance over roads: 18.5ft for 25-35kV", "Phase-to-ground: 40in at pole", "Use Section 7 tables for precise values"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "For 25-35kV Distribution Supply, clearances per NESC Table 232-1: roads 18.5ft, rails 26.5ft. Maintain 40in phase-neutral at poles."
+        },
+        {
+          "type": "table",
+          "title": "Key Clearances for 25-35kV",
+          "headers": ["Surface", "Clearance (ft)"],
+          "rows": [
+            ["Roads/Trucks", "18.5"],
+            ["Rails", "26.5"],
+            ["Pedestrian", "14.5"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "Most stringent rule prevails; verify with local authorities."
+        },
+        {
+          "type": "quiz",
+          "title": "Road Clearance",
+          "question": "Vertical clearance over roads for 35kV?",
+          "options": [
+            {"text": "18.5ft", "is_correct": true, "explanation": "NESC Table 232-1 Grade C."},
+            {"text": "15.5ft", "is_correct": false, "explanation": "For lower voltage."},
+            {"text": "26.5ft", "is_correct": false, "explanation": "For rails."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Risk Mitigation",
+      "learning_objective": "Identify risk mitigation strategies for Distribution Supply to enhance reliability during storms.",
+      "voiceover_summary": "Risk mitigation in Section 21 focuses on Grade B construction for critical spans and resilient materials.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Grade B for crossings", "Class H1 poles for critical structures", "Periodic deadends to prevent cascading"],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 21 emphasizes NESC Grade B for crossings, H1 poles, and deadends every 20 spans to mitigate storm risks."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Storm Risks",
+          "content": "Use overload factors: Vertical 1.9, Transverse Wind 1.75 for Grade C."
+        },
+        {
+          "type": "table",
+          "title": "Overload Factors Grade C",
+          "headers": ["Load Type", "Factor"],
+          "rows": [
+            ["Vertical", "1.90"],
+            ["Transverse Wind", "1.75"],
+            ["Longitudinal Deadend", "1.30"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Risk Strategy",
+          "question": "Mitigation for cascading?",
+          "options": [
+            {"text": "Deadends every 20 spans", "is_correct": true, "explanation": "Prevents failure propagation."},
+            {"text": "No guys", "is_correct": false, "explanation": "Increases risk."},
+            {"text": "Class 6 poles", "is_correct": false, "explanation": "Insufficient strength."}
+          ]
+        }
+      ]
+    }
+  ]
+}

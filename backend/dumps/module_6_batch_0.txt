@@ -1,0 +1,136 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Primary Conductors",
+      "learning_objective": "Understand the scope, types, and general guidelines for primary overhead conductors used in National Grid's distribution system.",
+      "voiceover_summary": "Primary conductors are essential for overhead distribution, with detailed data on physical and electrical properties to ensure safe and reliable operation.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Primary conductors include bare, covered, tree wire, and spacer cable types.",
+        "Design focuses on sags, tensions, spans, and ampacity per NESC standards.",
+        "Treat all conductors as bare during installation and maintenance."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Primary conductors cover physical and electrical data for standard overhead distribution systems. This section includes sags, tensions, maximum spans, and ampacity ratings. Spacer cable and tree wire provide protection against incidental tree contact but are not insulated."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Treat as Bare Conductors",
+          "content": "Although tree wire and spacer cable offer some protection, they are NOT insulated. Always treat as bare during installation and maintenance to prevent flashover."
+        },
+        {
+          "type": "table",
+          "title": "Conductor Types Overview",
+          "headers": ["Type", "Description", "Application"],
+          "rows": [
+            ["Bare AAC/AAAC/ACSR", "No covering", "Rural, open areas"],
+            ["Covered (PE/HDPE)", "Polyethylene covering", "Limited tree contact (maintenance only)"],
+            ["Tree Wire", "Semi-conductive layer", "Incidental tree contact"],
+            ["Spacer Cable", "Tree wire with spacers", "Heavy tree areas"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Primary Conductor Basics",
+          "question": "What must be true when handling tree wire or spacer cable?",
+          "options": [
+            {"text": "Treat as insulated conductors", "is_correct": false, "explanation": "They offer limited protection but are not insulated."},
+            {"text": "Treat as bare conductors", "is_correct": true, "explanation": "Always treat tree wire and spacer cable as bare to ensure safety."},
+            {"text": "No special handling required", "is_correct": false, "explanation": "Special precautions are needed to prevent flashover."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Basic Data and Physical Properties",
+      "learning_objective": "Identify key physical properties of primary conductors, including loading definitions, dimensions, and sag-tension data.",
+      "voiceover_summary": "Primary conductors' physical properties like RBS, CSA, weight, and loading ensure structural integrity under NESC heavy conditions.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "RBS: Rated Breaking Strength, e.g., 39,100 lbs for Finch ACSR.",
+        "Heavy Loading: ½\" ice + 4 psf wind at 0°F.",
+        "Use sag tables for stringing and clearances."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Basic data includes conductor diameter, weight, RBS, CSA. Loading properties: Transverse (wind+ice), Vertical (ice weight), Total resultant. Swing angle for blowout calculations."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Heavy Loading",
+          "content": "Design for ½\" radial ice, 4 psf wind at 0°F. Max tension ≤50% RBS."
+        },
+        {
+          "type": "table",
+          "title": "Sample Physical Properties (Finch ACSR)",
+          "headers": ["Property", "Value"],
+          "rows": [
+            ["RBS", "39,100 lbs"],
+            ["CSA", "0.9854 sq in"],
+            ["Diameter", "1.293 in"],
+            ["Weight", "1430 lbs/1000 ft"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Physical Properties",
+          "question": "What is the maximum design tension limit relative to RBS?",
+          "options": [
+            {"text": "35%", "is_correct": false, "explanation": "Initial unloaded is 35%."},
+            {"text": "50%", "is_correct": true, "explanation": "Max design tension ≤50% RBS under heavy loading."},
+            {"text": "60%", "is_correct": false, "explanation": "NESC allows up to 60%, but standard uses 50%."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Electrical Properties and Ampacity",
+      "learning_objective": "Calculate ampacity and understand electrical limits for safe conductor operation under normal and emergency conditions.",
+      "voiceover_summary": "Ampacity ratings ensure conductors handle loads without excessive heating, limited to 176°F normal and 194°F emergency.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Normal: 176°F/80°C bare, 167°F/75°C tree wire.",
+        "Emergency: 194°F/90°C max 24 hours.",
+        "Factors: Ambient 100°F summer/50°F winter, 3 ft/s wind."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Ampacity based on thermal limits: Normal 176°F bare/167°F covered; Emergency 194°F. Parameters: 100°F summer ambient, 3 ft/s wind, emissivity 0.75-0.91."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Overheating Risk",
+          "content": "Do not exceed emergency ratings >24 hrs to avoid annealing and clearance issues."
+        },
+        {
+          "type": "table",
+          "title": "Ampacity Design Parameters",
+          "headers": ["Parameter", "Bare Conductor", "Tree Wire"],
+          "rows": [
+            ["Max Normal Temp (°C)", "176/80", "167/75"],
+            ["Max Emergency Temp (°C)", "194/90", "194/90"],
+            ["Ambient Summer/Winter (°C)", "37.7/10", "37.7/10"],
+            ["Wind Speed (ft/s)", "3", "3"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Ampacity Limits",
+          "question": "What is the normal max temp for bare conductors?",
+          "options": [
+            {"text": "167°F/75°C", "is_correct": false, "explanation": "For tree wire."},
+            {"text": "176°F/80°C", "is_correct": true, "explanation": "Bare conductors normal limit."},
+            {"text": "194°F/90°C", "is_correct": false, "explanation": "Emergency only."}
+          ]
+        }
+      ]
+    }
+  ]
+}

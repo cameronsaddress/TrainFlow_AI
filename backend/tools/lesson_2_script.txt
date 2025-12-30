@@ -1,0 +1,11 @@
+Hey, apprentice! Picture this: we're out in the field, eyeing a fresh distribution line. First off, poles gotta be solid wood, fiberglass, or metal—meeting ANSI O5.1, our MS2005 or MS2010 specs. We stock Classes 1-6 from Page 2-101 for most jobs; stronger for heavy loads or height. Storm hardening? Grab H1 transmission poles for critical spots. In NY, Class 1 for main lines and heavy gear—check Section 4.
+
+Now, numbering: Every pole with our attachments gets a unique number on the road-facing side, 7 feet up (see Drawing 2-111). Privately owned? Slap a "P" below it. Junction or equipment poles? Line number above. For lines with 8+ poles, number 'em consecutive from the main tap. Short branches under 8? Sub-number from the tap pole. Keeps us from getting lost!
+
+Safety next—reflectors in Mass only. On state highways, within 6 feet of travel way, no guardrail: Mount Z12 vertical, 4 feet up, facing traffic. White on right, yellow left for ramps/freeways/one-ways; white facing right-side traffic on two-ways both sides. Other states? Optional if it makes sense.
+
+Phasing: Tag the first pole outta the sub, or when asked—follow Drawings 2-112/2-112A. Hit smart gear like 3φ reclosers, caps, regs, monitors. Before work? Always test phases with our gear—long-range tools for accuracy. No guessing!
+
+Warnings: Mass non-wood poles over 2kV? "Dangerous, Keep Away" signs (P23B1-3). NYS Thruway ROW, stepped under 6.5 feet? Danger labels both sides (P23C1-3). Near airports? FAA might demand markers or lights.
+
+Remember, kid: Number, reflect, phase, warn—keeps us alive. Questions? Let's climb one!

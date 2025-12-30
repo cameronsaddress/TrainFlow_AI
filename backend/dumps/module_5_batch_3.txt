@@ -1,0 +1,173 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Wedge Tap Connectors",
+      "learning_objective": "Understand the selection criteria, installation procedures, and safety considerations for fired-on wedge tap connectors used in overhead primary aluminum to aluminum or aluminum to copper connections.",
+      "voiceover_summary": "Fired-on wedge connectors provide reliable taps for primary lines. Select based on conductor sizes, clean surfaces thoroughly, and follow precise installation steps to ensure safety and performance.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use for overhead primary aluminum to aluminum or aluminum to copper taps.",
+        "Always wire brush conductors before installation.",
+        "Do not reuse connectors.",
+        "Position to prevent rain washing from copper to aluminum."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Fired-on wedge connectors (Std. Items S15G thru S15R7) are used for overhead primary aluminum to aluminum or aluminum to copper tap connections. They are non-tension connectors."
+        },
+        {
+          "type": "table",
+          "title": "Wedge Tap Connector Selection Chart",
+          "headers": ["Run", "Tap", "Std Item", "Charge Color"],
+          "rows": [
+            ["1/0 AL. & ACSR", "1/0 AL & ACSR", "S15G", "Blue"],
+            ["1/0 AL. & ACSR", "#2 AL", "S15H", "White"],
+            ["1/0 AL. & ACSR", "#4 AL & ACSR", "S15J", "Red"],
+            ["336.4 AL. & ACSR", "336.4 AL. & ACSR", "S15L", "Blue"],
+            ["336.4 AL. & ACSR", "4/0 CU.", "S15M", "Blue"],
+            ["336.4 AL. & ACSR", "2/0 AWAC", "S15N", "Blue"],
+            ["336.4 AL. & ACSR", "1/0 AL. & ACSR", "S15N1", "Blue"],
+            ["336.4 AL. & ACSR", "#2 AL., ACSR, & CU", "S15P", "Blue"],
+            ["336.4 AL. & ACSR", "500 AL. & CU.", "S15R5", "Yellow"],
+            ["336.4 AL. & ACSR", "750 AL. & CU.", "S15R7", "Yellow"],
+            ["477 AL AAC or 477 (Compact)", "#2 CU", "S15S", "Yellow"],
+            ["477 (Compact)", "#4/0 CU", "S15T", "Yellow"],
+            ["477 AL AAC", "#4/0 CU", "S15U", "Yellow"],
+            ["477 (Compact)", "477 (Compact)", "S15V", "Yellow"],
+            ["477 AL AAC", "477 AL AAC", "S15W", "Yellow"],
+            ["477 AL AAC", "477 (Compact)", "S15X", "Yellow"],
+            ["500 CU", "#4/0 CU", "S17R", "Blue"],
+            ["#4/0 CU", "#4/0 CU", "S17S", "Blue"],
+            ["#2/0 CU", "#2/0 CU", "S17T", "Blue"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Installation Safety",
+          "content": "Clean conductors thoroughly with wire brush. Position connectors so rain does not wash from copper to aluminum. Do not reuse connectors as body and wedge may be distorted."
+        },
+        {
+          "type": "text",
+          "content": "Installation: Clean conductor surfaces, apply inhibitor if needed, position for drainage, tighten bolts to spec (do not over-tighten), free ends extend 1/2 inch beyond connector."
+        },
+        {
+          "type": "quiz",
+          "title": "Wedge Connector Selection",
+          "question": "What Std Item and charge color for run 336.4 AL & ACSR to tap 4/0 CU?",
+          "options": [
+            {"text": "S15M, Blue", "is_correct": true, "explanation": "Per selection chart, S15M Blue for this combination."},
+            {"text": "S15L, Blue", "is_correct": false, "explanation": "S15L is for 336.4 to 336.4."},
+            {"text": "S15G, Red", "is_correct": false, "explanation": "Incorrect size and color."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Automatic Splices",
+      "learning_objective": "Learn the application, installation steps, and limitations of automatic splices for full-tension aluminum, copper, and ACSR conductors on primary distribution lines.",
+      "voiceover_summary": "Automatic splices are full-tension devices for primary lines. Insert conductors fully after cleaning, avoid use on slack spans or services, and follow precise steps to prevent failures.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Full-tension for AL, ACSR, AWAC, steel, CU.",
+        "Not for slack spans, services, or spacer phase conductors.",
+        "Clean and mark insertion depth before use.",
+        "Do not pull back or twist during insertion."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Automatic splices (Std. Items S19A thru S19V) are full-tension, full-current rated for primary distribution lines on aluminum, copper, ACSR. Not for slack spans, services, spacer phase conductors."
+        },
+        {
+          "type": "table",
+          "title": "Automatic Splice Examples",
+          "headers": ["Std Item", "Conductor Size", "Strands", "O.D. (in)", "Std Item Conductor"],
+          "rows": [
+            ["S19K", "1/0 AAAC", "7", "0.398", "W20A"],
+            ["S19M", "336.4 AAC", "19", "0.666", "W20B"],
+            ["S19T", "477 AAC", "19", "0.793", "W21BA"],
+            ["S19K", "15kV 1/0 6201", "7", "0.728", "W20CA"],
+            ["S19A", "#6 SOL CU", "", "", ""]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Installation Warnings",
+          "content": "Cut conductor squarely, clean thoroughly, insert fully in one motion. Do not use on low-tension spans. Over-tension can release jaws."
+        },
+        {
+          "type": "text",
+          "content": "Procedure: Mark insertion depth, clean conductors, insert fully, ensure pilot-cup clears jaws. For tree wire, remove covering."
+        },
+        {
+          "type": "quiz",
+          "title": "Automatic Splice Use",
+          "question": "Automatic splices are suitable for which? Select all that apply.",
+          "options": [
+            {"text": "Full-tension primary AL conductors", "is_correct": true, "explanation": "Yes, primary distribution full tension."},
+            {"text": "Slack spans", "is_correct": false, "explanation": "No, not for slack spans."},
+            {"text": "Service neutrals", "is_correct": false, "explanation": "No, low tension."},
+            {"text": "ACSR primary", "is_correct": true, "explanation": "Yes, for ACSR."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Repair Sleeves",
+      "learning_objective": "Identify repair sleeves for damaged bare overhead aluminum conductors based on broken strands and conductor type, including tools and installation.",
+      "voiceover_summary": "Repair sleeves restore damaged conductors. Choose based on broken strands: line guard for few, armor rod for more, compression for severe. Always use proper tools.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Line guard for ≤1 strand, armor rod ≤3-5, compression up to 9.",
+        "Tools: specific dies for crimping.",
+        "For AAC, AAAC, ACSR."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Repair sleeves for damaged bare overhead aluminum conductors: line guard, armor rod, compression based on broken strands."
+        },
+        {
+          "type": "table",
+          "title": "Repair Sleeve Selection",
+          "headers": ["Wire Size", "Max Broken Strands", "Line Guard Std Item", "Armor Rod Std Item", "Compression Sleeve Std Item"],
+          "rows": [
+            ["1/0 AAAC", "1", "P51C", "9319672", ""],
+            ["4/0 AAC", "1", "9313104", "", "9313353"],
+            ["336.4 AAC", "3", "9315738", "9319674", "9312431"],
+            ["1/0 ACSR", "", "", "", "9315764"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Compression Tools and Dies",
+          "headers": ["Wire Size", "Dia (in)", "Std Item/SAP", "Tool/Die"],
+          "rows": [
+            ["4/0 AAC", "0.522", "9313353", "YCU28A W249 (28)"],
+            ["336.4 AAC", "0.666", "9312431", "YOU321R U327 (21)"],
+            ["1/0 ACSR", "0.398", "9315764", "YCU25R W243 (20)"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Repair Limits",
+          "content": "Max broken strands per type. Use correct tools to avoid damage."
+        },
+        {
+          "type": "quiz",
+          "title": "Repair Selection",
+          "question": "For 336.4 AAC with 4 broken strands, use?",
+          "options": [
+            {"text": "Line guard", "is_correct": false, "explanation": "Max 3 for line guard."},
+            {"text": "Armor rod", "is_correct": true, "explanation": "Armor rod up to 5."},
+            {"text": "Compression sleeve", "is_correct": false, "explanation": "For up to 9, but armor first."}
+          ]
+        }
+      ]
+    }
+  ]
+}

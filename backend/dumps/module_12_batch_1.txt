@@ -1,0 +1,135 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Lesson 4: Fault Circuit Indicators (FCIs)",
+      "learning_objective": "Understand the purpose, types, and installation of Fault Circuit Indicators (FCIs) on distribution lines to aid in fault location.",
+      "voiceover_summary": "Fault Circuit Indicators quickly identify fault locations on overhead lines, reducing outage times. Key types include standard and smart indicators for distribution systems.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "FCIs detect faults and provide visual indicators for faster troubleshooting.",
+        "Use on radial feeders, load side of switches, and hard-to-access areas.",
+        "Standard items: 12-650A for distribution, 12-650B for smart indicators.",
+        "Automatic reset types reset after line re-energization."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Fault Circuit Indicators (FCIs) are devices installed on distribution lines to detect fault currents and provide visual or remote indication of fault locations. They help reduce outage restoration times by pinpointing faults quickly. Types include automatic reset, time-delay reset, and manual reset FCIs."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "FCI Applications",
+          "content": "Install FCIs on unfused 3-phase lines, load side of switches, and remote locations like rights-of-way."
+        },
+        {
+          "type": "table",
+          "title": "FCI Types and Features",
+          "headers": ["Type", "Reset Method", "Standard Item", "Key Feature"],
+          "rows": [
+            ["Standard FCI", "Automatic/Manual", "12-650A", "LED indicators for faults"],
+            ["Smart FCI", "Automatic", "12-650B", "Remote communication via collector"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "FCI Knowledge Check",
+          "question": "What is the primary purpose of FCIs?",
+          "options": [
+            {"text": "To detect and indicate fault locations", "is_correct": true, "explanation": "FCIs help locate faults quickly to minimize outage times."},
+            {"text": "To protect against overcurrent", "is_correct": false, "explanation": "FCIs indicate faults but do not interrupt current."},
+            {"text": "To measure voltage", "is_correct": false, "explanation": "Voltage measurement is not the function of FCIs."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Lesson 5: Cutouts",
+      "learning_objective": "Identify types, ratings, and installation practices for cutouts used in overhead protection.",
+      "voiceover_summary": "Cutouts provide overcurrent protection and sectionalizing. Select based on fault current, continuous rating, and voltage class.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Cutouts rated for 100A or 200A; use K-links for transformers.",
+        "Install on line/riser poles; heavy-duty for high fault currents.",
+        "Pages 12-127 to 12-146 detail various cutout installations.",
+        "CLFs for high fault areas to limit let-through current."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Cutouts are expulsion fuse devices for overcurrent protection on distribution lines. Types include open and enclosed for 5-35kV. Used for transformers, capacitors, and sectionalizing."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Cutout Installation Safety",
+          "content": "Always de-energize before installing; use proper PPE for high voltage."
+        },
+        {
+          "type": "table",
+          "title": "Cutout Ratings",
+          "headers": ["Type", "Continuous Amp Rating", "Interrupt Rating (RMS Amps)", "Voltage"],
+          "rows": [
+            ["Open Type C43S", "100-300A", "7500-8600", "15kV"],
+            ["Heavy Duty C47", "200A", "12500", "15kV"],
+            ["Enclosed C41", "50-600A", "4000-20000", "5kV"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Cutout Selection",
+          "question": "What cutout for high fault currents above 7500A?",
+          "options": [
+            {"text": "C43S open type", "is_correct": false, "explanation": "Limited to 7500A."},
+            {"text": "C47 heavy-duty", "is_correct": true, "explanation": "Handles up to 12500A."},
+            {"text": "C41 enclosed", "is_correct": false, "explanation": "For lower ratings."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Lesson 6: Disconnects",
+      "learning_objective": "Learn the types, ratings, and safe installation of disconnect switches for sectionalizing overhead lines.",
+      "voiceover_summary": "Disconnects allow safe isolation of line sections. Use loadbreak for up to continuous rating; non-loadbreak for de-energized conditions.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Disconnects for sectionalizing; loadbreak up to 600A.",
+        "Types: underslung, vertical, hookstick; for 15-35kV.",
+        "Install per drawings 12-135A to 12-147.",
+        "Always verify de-energized before operating."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Disconnect switches isolate sections of lines for maintenance. Types include underslung, vertical, and loadbreak for 15-35kV. Rated for continuous current; use Loadbuster for loads."
+        },
+        {
+          "type": "warning",
+          "alert_type": "safety",
+          "title": "Disconnect Operation",
+          "content": "Verify line de-energized; use PPE; do not open under load unless loadbreak rated."
+        },
+        {
+          "type": "table",
+          "title": "Disconnect Types",
+          "headers": ["Type", "Voltage", "Current Rating", "Drawing"],
+          "rows": [
+            ["Underslung Tangent", "15-35kV", "600A", "12-135A"],
+            ["Vertical Loadbreak", "15-35kV", "600A", "12-137A"],
+            ["Hookstick Loadbreak", "15kV", "600A", "12-144"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Disconnect Safety",
+          "question": "Can non-loadbreak disconnects interrupt load?",
+          "options": [
+            {"text": "Yes, up to 600A", "is_correct": false, "explanation": "No, only de-energized."},
+            {"text": "No, only de-energized lines", "is_correct": true, "explanation": "Use Loadbuster or loadbreak types for loads."},
+            {"text": "Always", "is_correct": false, "explanation": "Risk of arc flash."}
+          ]
+        }
+      ]
+    }
+  ]
+}

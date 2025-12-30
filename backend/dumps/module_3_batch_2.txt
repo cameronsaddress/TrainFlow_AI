@@ -1,0 +1,113 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Worksheets, Examples, and Construction Drawings",
+      "learning_objective": "Utilize worksheets, calculation examples, and construction drawings to properly select and install guying systems for distribution poles in compliance with NESC standards.",
+      "voiceover_summary": "Master guying worksheets, examples, and drawings to ensure safe, reliable pole support under heavy loads.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Use guy wire sizes G15A (12.5M) or G17A (16M) for new construction.",
+        "Select anchors based on soil class; test holding capacity.",
+        "Apply NESC overload factors: Grade C transverse wind 1.75, deadend longitudinal 1.30.",
+        "Follow worksheets for angle, deadend, and sidewalk guying calculations.",
+        "Reference drawings like 3-105 for down guys, ensuring proper insulation and bonding."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Guying stabilizes poles against unbalanced loads from wind, angles, or deadends. Use worksheets to calculate required guy strength per NESC Grade C (default) or B (crossings)."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Guy Installation Safety",
+          "content": "Always de-energize lines before guying near energized conductors. Maintain minimum clearances per NESC Table 235-6."
+        },
+        {
+          "type": "table",
+          "title": "Guy Wire Sizes and Strengths",
+          "headers": ["Std Item", "Size", "RBS (lbs)", "Use Strength (90% RBS)"],
+          "rows": [
+            ["G15A", "3/8” Alumoweld (12.5M)", "12630", "11367"],
+            ["G17A", "7/16” Galvanized (16M)", "18000", "16200"],
+            ["G17B", "7/16” Copperweld (25M)", "16890", "15200"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Soil Classes and Recommended Anchors",
+          "headers": ["Soil Class", "Description", "Recommended Anchor"],
+          "rows": [
+            ["0", "Sound unweathered rock", "A13A - Rock Anchor"],
+            ["1", "Very dense sands, coarse gravel", "A16C - Twin 4” Helix"],
+            ["2", "Dense sand, hard silts & clay", "A16A - 10” Helix"],
+            ["6", "Loose coarse sand, firm clay loam", "A16B - 14” Helix"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "NESC Overload Factors (Grade C)",
+          "headers": ["Load Type", "At Crossings", "Elsewhere"],
+          "rows": [
+            ["Vertical Loads", "1.90", "1.90"],
+            ["Transverse: Wind", "1.75", "1.75"],
+            ["Transverse: Wire Tension", "1.30", "1.30"],
+            ["Longitudinal: Deadends", "1.30", "1.30"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Construction drawings (e.g., 3-102 Screw Anchors, 3-105 Down Guy Assembly) detail hardware like guy grips, hooks, insulators. Use for installations per soil and load."
+        },
+        {
+          "type": "quiz",
+          "title": "Guying Worksheet Check",
+          "question": "For a 12.5M guy in soil class 4, what anchor is recommended?",
+          "options": [
+            {"text": "A16A 10” Helix", "is_correct": true, "explanation": "Soil class 4 requires 10” helix per table."},
+            {"text": "A16B 14” Helix", "is_correct": false, "explanation": "For softer soils class 6."},
+            {"text": "Rock Anchor", "is_correct": false, "explanation": "For class 0 only."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Review and Application",
+      "learning_objective": "Review guying principles and apply them to real-world scenarios for safe pole stability.",
+      "voiceover_summary": "Summarize guying rules and test application in scenarios like deadends and angles.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Guy deadends, angles >2° (3Φ), transitions >10%, transverse loads.",
+        "Insulate guys: 54” fiberglass for wye, two for delta.",
+        "Clearances: 6-17” primary to guy per voltage/type.",
+        "Calculate using worksheets: overload factors, guy tension = transverse x factor."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Review: Guy when unbalanced load >300lbs angle, deadends uneven wires. Use down/stub/span guys. Bond wye, isolate delta."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All guying meets Grade C; Grade B at crossings. Overload factors mandatory."
+        },
+        {
+          "type": "text",
+          "content": "Application: For 40ft pole, 150ft span, 477kcmil at 29° angle (Grade B), use 25M guy (17k lbs tension)."
+        },
+        {
+          "type": "quiz",
+          "title": "Guying Scenario",
+          "question": "Deadend pole with uneven primaries: Action?",
+          "options": [
+            {"text": "Guy immediately", "is_correct": true, "explanation": "Per 3.1.10, guy deadends with uneven wires."},
+            {"text": "Slack span only", "is_correct": false, "explanation": "Slack if no guy possible, but guy first."},
+            {"text": "No action needed", "is_correct": false, "explanation": "Always guy uneven deadends."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Overhead Distribution Protection",
+      "learning_objective": "Understand the fundamental purpose, components, and principles of overhead distribution protection systems, including fuses, cutouts, reclosers, and their role in fault management.",
+      "voiceover_summary": "Overhead distribution protection safeguards the system from faults like short circuits caused by lightning or mechanical failures. Key devices include fuses for overcurrent protection, cutouts for isolation, and reclosers for automatic restoration, ensuring reliability and safety.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Protection devices detect and isolate faults to prevent damage and outages.",
+        "Fuses, cutouts, and reclosers are core components for overhead lines.",
+        "Comply with NESC for grades B and C construction.",
+        "Effectively grounded systems enhance protection."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Overhead distribution protection systems prevent damage from short circuits, overvoltages, and faults. Faults occur due to insulation failure, lightning, or mechanical issues. Devices like fuses interrupt current, cutouts isolate sections, and reclosers attempt restoration."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Fault Handling Safety",
+          "content": "Always treat lines as energized during fault investigations. Use proper PPE and follow lockout/tagout procedures."
+        },
+        {
+          "type": "table",
+          "title": "Core Protection Devices",
+          "headers": ["Device", "Function", "Typical Application"],
+          "rows": [
+            ["Fuses (Type K)", "Overcurrent interruption", "Transformers, capacitors"],
+            ["Cutouts", "Isolation and fusing", "Line and equipment protection"],
+            ["Reclosers", "Automatic fault clearing", "Feeder sectionalizing"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Protection Basics",
+          "question": "What is the primary role of fuses in overhead distribution?",
+          "options": [
+            {"text": "Voltage regulation", "is_correct": false, "explanation": "Fuses interrupt overcurrent, not regulate voltage."},
+            {"text": "Fault current interruption", "is_correct": true, "explanation": "Fuses melt to break the circuit during faults."},
+            {"text": "Load balancing", "is_correct": false, "explanation": "Load balancing is done by other devices."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Fuse Ratings",
+      "learning_objective": "Learn how to select and apply fuse ratings for continuous current, disconnecting, and interrupting duties in overhead distribution.",
+      "voiceover_summary": "Fuses have continuous ratings up to 1.5 times nominal, disconnect ratings for safe opening, and interrupting ratings based on fault current. Type K links are standard for coordination.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Type K fuses for transformers and capacitors.",
+        "Continuous rating: Up to 150% nominal.",
+        "Interrupting rating must exceed available fault current.",
+        "CLFs for high fault currents above 7500A."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Fuse ratings include continuous current (up to 1.5x nominal), disconnecting (loadbuster tool up to 600A), and interrupting (rms asymmetric amps). Type K expulsion fuses per ANSI C37.42 are standard."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Fault Current Exceedance",
+          "content": "Never exceed interrupting rating; use CLFs or reclosers for high faults."
+        },
+        {
+          "type": "table",
+          "title": "Cutout & Fuse Ratings",
+          "headers": ["Device", "Continuous Amp", "Interrupting (RMS)", "Disconnect Amp"],
+          "rows": [
+            ["C43S10 (100A)", "100", "7500", "15"],
+            ["C43S20 (200A)", "200", "8600", "20"],
+            ["C47A (Heavy Duty)", "200", "12500", "N/A"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Fuse Continuous Rating",
+          "question": "What is the safe continuous load relative to nominal fuse rating?",
+          "options": [
+            {"text": "100%", "is_correct": false, "explanation": "Up to 150% is allowed."},
+            {"text": "150%", "is_correct": true, "explanation": "Fuses carry up to 1.5x nominal continuously."},
+            {"text": "200%", "is_correct": false, "explanation": "Exceeds safe limit."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Selection Guides",
+      "learning_objective": "Master selection guides for fuses, cutouts, reclosers, and CLFs based on fault current, transformer size, and coordination.",
+      "voiceover_summary": "Use guides for transformer fusing (e.g., K links), capacitor fusing, and high-fault CLFs. Ensure coordination with upstream devices.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Transformer fuses: K links sized per kVA and voltage.",
+        "High fault: CLFs with cutouts for >7500A.",
+        "Reclosers for sectionalizing; match interrupting rating.",
+        "Check fault current studies for selection."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Selection guides ensure proper coordination. For transformers, use K fuses based on kVA. CLFs for high faults. Reclosers for automation."
+        },
+        {
+          "type": "table",
+          "title": "Transformer Fuse Selection (K Links)",
+          "headers": ["Transformer kVA", "7.2kV", "12.47kV", "13.8kV"],
+          "rows": [
+            ["10", "10", "6", "3"],
+            ["25", "15", "10", "6"],
+            ["50", "25", "15", "10"],
+            ["100", "40", "25", "15"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Coordination Requirement",
+          "content": "Protecting fuse clears before protected fuse; check TCC curves."
+        },
+        {
+          "type": "quiz",
+          "title": "Fuse Coordination",
+          "question": "For 50kVA at 13.8kV, select K fuse:",
+          "options": [
+            {"text": "10A", "is_correct": false, "explanation": "Too small."},
+            {"text": "15A", "is_correct": true, "explanation": "Matches guide for coordination."},
+            {"text": "40A", "is_correct": false, "explanation": "For larger kVA."}
+          ]
+        }
+      ]
+    }
+  ]
+}

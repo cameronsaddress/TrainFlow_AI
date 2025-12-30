@@ -34,6 +34,11 @@ TrainFlow AI is an advanced "Field-to-Office" automation system that transforms 
 -   **Buffered Streaming**: "Smart Stream" technology delivers instant PDF access without downloads.
 -   **Deep Links**: AI citations link directly to specific page offsets.
 
+### 4. Premium AI Instructor (ElevenLabs Integration)
+-   **Generative Voice**: "Adam" (ElevenLabs Turbo v2) provides human-like, encouraging instruction for technical modules.
+-   **Static Architecture**: Audio is generated once-per-version (`backend/tools/generate_module_1_audio.py`) and served statically from `frontend/public/audio/lessons/` for zero latency and zero repeated API costs.
+-   **Live Visualizer**: Creating a "living" UI, the `AIInstructor` component uses the Web Audio API to render real-time frequency bars that react precisely to the voice patterns.
+
 ---
 
 ## 🏗 System Architecture

@@ -1,0 +1,134 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Material Selection for Cables",
+      "learning_objective": "Understand the criteria and recommended materials for selecting cables in coastline construction to mitigate corrosion risks.",
+      "voiceover_summary": "In coastline areas, select aluminum triplex cables for secondary/service up to 600V, ensuring proper insulation and splicing to prevent galvanic corrosion from salt exposure.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Use aluminum triplex cables (#2 or 1/0) for secondary/service in coastline areas.",
+        "Prevent galvanic corrosion by avoiding salt/water penetration between insulation and conductor.",
+        "Cover exposed phase conductor ends with cold shrink end caps (UC90C) and vinyl tape.",
+        "Nantucket exception: #4 or #2 copper triplex allowed based on existing construction."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastline construction requires cables resistant to salt contamination. Aluminum secondary/service 600V insulated overhead cables are standard. Triplex configurations (#2 or 1/0 aluminum) are recommended."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Corrosion Prevention",
+          "content": "Galvanic corrosion occurs between dissimilar metals in electrolytes like saltwater. Use insulated piercing connectors and seal all connections."
+        },
+        {
+          "type": "table",
+          "title": "Recommended Cables for Coastline Areas",
+          "headers": ["Standard Construction", "Coastline Construction", "Nantucket Exception"],
+          "rows": [
+            ["#2 Al Triplex (W15B coil)", "#2 Al Triplex (W15B coil)", "#4 Cu Triplex (W15F)"],
+            ["1/0 Al Triplex (W15C coil)", "1/0 Al Triplex (W15C coil)", "#2 Cu Triplex"],
+            ["1/0 Al Triplex (W15C reel)", "1/0 Al Triplex (W15C reel)", ""]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Cable Corrosion Risk",
+          "question": "What is the primary risk for aluminum cables in coastline areas?",
+          "options": [
+            {"text": "Galvanic corrosion from salt and water", "is_correct": true, "explanation": "Saltwater acts as an electrolyte promoting corrosion between dissimilar metals."},
+            {"text": "Overheating", "is_correct": false, "explanation": "Overheating is managed by ampacity ratings, not salt exposure."},
+            {"text": "UV degradation", "is_correct": false, "explanation": "Insulation protects against UV; salt is the key issue."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Material Selection for Connectors",
+      "learning_objective": "Identify corrosion-resistant connectors for coastline overhead distribution to ensure reliable connections.",
+      "voiceover_summary": "Opt for weatherproof piercing connectors or H-Tap with gel-filled covers for secondary taps, and parallel groove with gelwrap for primary to combat salt-induced corrosion.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Secondary/services: Weatherproof piercing (S5) or H-Tap (S13) with gel-filled covers (C61A/B).",
+        "Primary: Bolted parallel groove (C7) with gelwrap covers (C67/C68).",
+        "All connections: Wire brush conductors and apply inhibitor.",
+        "Spacer/tree wire splices: Cover with cold shrink (S16) or gelwrap (C62/C63)."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Connectors in coastline areas must resist salt corrosion. Use sealed types to exclude moisture."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Galvanic Corrosion Rule",
+          "content": "Avoid aluminum-copper contacts without seals; use piercing or gel-filled H-Taps."
+        },
+        {
+          "type": "table",
+          "title": "Coastline Connector Selection",
+          "headers": ["Application", "Standard", "Coastline Option"],
+          "rows": [
+            ["Secondary Taps #8-1/0", "H-Tap (S13)", "Piercing (S5) or H-Tap w/ Gel (C61A/B)"],
+            ["Primary Taps 1/0-795kcmil", "Parallel Groove (C7)", "Parallel Groove w/ Gelwrap (C67/C68)"],
+            ["Spacer/Tree Wire Splices", "Compression", "Cold Shrink (S16) or Gelwrap (C62/C63)"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Primary Connector Choice",
+          "question": "For primary taps in coastline areas, select:",
+          "options": [
+            {"text": "Parallel groove with gelwrap cover", "is_correct": true, "explanation": "Provides sealing against salt ingress."},
+            {"text": "Bare H-Tap", "is_correct": false, "explanation": "Exposed to corrosion without protection."},
+            {"text": "Automatic splice", "is_correct": false, "explanation": "Not for taps; for full tension splices."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Material Selection for Cutouts",
+      "learning_objective": "Select cutouts with extra creepage for 15kV in coastline areas to prevent tracking failures.",
+      "voiceover_summary": "Use 27kV polymer cutouts for 15kV applications in coastal zones to provide extra creepage distance against salt contamination.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "15kV: Standard polymer (C43S10); Coastline: 27kV polymer (C43S41) for extra creepage.",
+        "Higher voltage cutouts resist salt-induced tracking.",
+        "Contact Standards for 23-35kV cutouts."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Cutouts must have extra creepage in salt-prone areas to avoid tracking. Upgrade to higher voltage ratings."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Tracking Hazard",
+          "content": "Salt contamination causes surface tracking; use extra creepage cutouts to maintain insulation."
+        },
+        {
+          "type": "table",
+          "title": "Cutout Selection for Coastline",
+          "headers": ["Voltage", "Standard Construction", "Coastline Construction"],
+          "rows": [
+            ["15kV - 100A", "Polymer (C43S10)", "27kV Polymer (C43S41)"],
+            ["23-35kV", "Consult Standards", "Under review"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Coastline Cutout Upgrade",
+          "question": "For 15kV in coastal areas:",
+          "options": [
+            {"text": "Use 27kV polymer cutout (C43S41)", "is_correct": true, "explanation": "Extra creepage prevents salt tracking."},
+            {"text": "Standard 15kV (C43S10)", "is_correct": false, "explanation": "Insufficient creepage for salt areas."},
+            {"text": "No change needed", "is_correct": false, "explanation": "Upgrade required for reliability."}
+          ]
+        }
+      ]
+    }
+  ]
+}

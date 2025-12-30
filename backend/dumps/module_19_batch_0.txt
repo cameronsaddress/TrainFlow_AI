@@ -1,0 +1,150 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to Outdoor Lighting Definitions",
+      "learning_objective": "Understand key terminology used in outdoor lighting systems to ensure proper installation and maintenance.",
+      "voiceover_summary": "This lesson covers essential definitions for outdoor lighting components, helping you identify and work safely with luminaires and related hardware.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Key terms include luminaire, ballast, and photoelectric control.", "Understand distinctions like reactor vs. regulated ballast.", "Familiarity with terms ensures compliance with standards."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Outdoor lighting systems use specific terminology to describe components and their functions. This lesson defines key terms from National Grid standards."
+        },
+        {
+          "type": "table",
+          "title": "Key Outdoor Lighting Definitions",
+          "headers": ["Term", "Definition"],
+          "rows": [
+            ["Air Lamp", "A failure mode for a high intensity discharge lamp where the vacuum is lost within the glass bulb and the lamp becomes filled with air."],
+            ["Ballast Transformer", "An auxiliary device used with a high intensity discharge lamp to obtain necessary circuit conditions for starting and operating the lamp."],
+            ["Bird Guard", "A device in a horizontal roadway luminaire used to prevent birds and squirrels from entering the luminaire housing."],
+            ["Bracket", "A device installed on a wooden distribution pole which is used to extend and hold a luminaire out over a roadway surface."],
+            ["Photoelectric Control (PEC)", "A device that switches luminaires on or off in response to natural light levels."]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Safety Note",
+          "content": "Always verify luminaire ratings and components before installation to prevent electrical hazards."
+        },
+        {
+          "type": "quiz",
+          "title": "Terminology Quiz",
+          "question": "What is a 'Bird Guard' used for?",
+          "options": [
+            {"text": "Preventing birds from entering the luminaire housing", "is_correct": true, "explanation": "Correct. It protects against wildlife damage."},
+            {"text": "Adjusting light intensity", "is_correct": false, "explanation": "Incorrect. That's a dimmer or control."},
+            {"text": "Mounting the luminaire", "is_correct": false, "explanation": "Incorrect. That's a bracket."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "IES Light Distribution Patterns",
+      "learning_objective": "Identify IES classifications for luminaire light distribution to select appropriate fixtures for roadway applications.",
+      "voiceover_summary": "Explore IES standards for spacing, glare control, and width to optimize outdoor lighting performance and safety.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": ["Spacing: Short (1-2.25 MH), Medium (2.25-3.75 MH), Long (3.75-6 MH).", "Glare: Full Cutoff (0% above 90°), Cutoff (≤2.5%), Semi-Cutoff (≤5%).", "Width: Types I-V for different roadway widths."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "The Illuminating Engineering Society (IES) classifies luminaires by light distribution patterns for effective roadway lighting."
+        },
+        {
+          "type": "table",
+          "title": "IES Spacing Classification",
+          "headers": ["Classification", "Main Beam Length", "Max Pole Spacing"],
+          "rows": [
+            ["Short", "1.0 to 2.25 MH", "4.5 MH"],
+            ["Medium", "2.25 to 3.75 MH", "7.5 MH"],
+            ["Long", "3.75 to 6.0 MH", "12.0 MH"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "IES Glare Control Classification",
+          "headers": ["Type", "80°-90° Plane (%)", "Above 90° Plane (%)"],
+          "rows": [
+            ["Full Cutoff", "≤10", "0"],
+            ["Cutoff", "≤10", "≤2.5"],
+            ["Semi-Cutoff", "≤20", "≤5.0"],
+            ["Non-Cutoff", "No limit", "No limit"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "IES Width Classification",
+          "headers": ["Type", "Roadway Width"],
+          "rows": [
+            ["I", "Narrow roadways"],
+            ["II", "≤1.75 MH"],
+            ["III", "≤2.75 MH"],
+            ["IV", ">2.75 MH"],
+            ["V", "Circular pattern"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Compliance Requirement",
+          "content": "Select IES patterns per local roadway standards to minimize glare and ensure uniform illumination."
+        },
+        {
+          "type": "quiz",
+          "title": "IES Classification Quiz",
+          "question": "What IES Glare Type has 0% light above 90° plane?",
+          "options": [
+            {"text": "Full Cutoff", "is_correct": true, "explanation": "Correct. Maximizes downward light."},
+            {"text": "Semi-Cutoff", "is_correct": false, "explanation": "Allows up to 5% above 90°."},
+            {"text": "Non-Cutoff", "is_correct": false, "explanation": "No limits on upward light."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Roadway Luminaires",
+      "learning_objective": "Apply guidelines for mounting, aiming, and spacing roadway luminaires to achieve optimal illumination and safety.",
+      "voiceover_summary": "Learn mounting heights, bracket selection, and spacing for roadway luminaires to ensure effective lighting design.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": ["Mount at 20-35 ft based on wattage.", "Bracket length: Setback + 3 ft overhang.", "Spacing: 4x mounting height for floodlights; overlap for uniformity."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Roadway luminaires provide illumination for streets. Proper installation ensures safety and efficiency."
+        },
+        {
+          "type": "table",
+          "title": "Minimum Mounting Heights",
+          "headers": ["Wattage", "Height (ft)"],
+          "rows": [
+            ["50-250W", "20"],
+            ["400W", "30"],
+            ["1000W", "35"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Bracket length = setback + 3 ft overhang. Aim ⅔ across area or 2x height max to control glare."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Installation Safety",
+          "content": "Verify clearances per NESC before mounting to avoid hazards."
+        },
+        {
+          "type": "quiz",
+          "title": "Roadway Luminaire Quiz",
+          "question": "Minimum height for 400W luminaire?",
+          "options": [
+            {"text": "20 ft", "is_correct": false, "explanation": "Too low for 400W."},
+            {"text": "30 ft", "is_correct": true, "explanation": "Correct for 400W roadway use."},
+            {"text": "35 ft", "is_correct": false, "explanation": "For 1000W."}
+          ]
+        }
+      ]
+    }
+  ]
+}

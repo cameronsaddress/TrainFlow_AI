@@ -1,0 +1,149 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Introduction to 25-35kV Primary Distribution Systems",
+      "learning_objective": "Understand the purpose, voltage classes, design principles, and safety considerations for 25-35kV primary distribution systems per National Grid standards.",
+      "voiceover_summary": "25-35kV primary distribution systems deliver power efficiently over longer distances with higher BIL ratings for reliability. Key voltages include 24.94kV/14.4kV and 34.5kV/19.9kV, designed to NESC Grade C or B where required.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Uses 3-phase, 4-wire configurations like 24.94kV GrdY/14.4kV (125kV BIL) and 34.5kV GrdY/19.9kV (150kV BIL).",
+        "Complies with NESC; most stringent rules apply in conflicts.",
+        "Focuses on safety, reliability, and coordination with storm hardening for critical structures.",
+        "Avoids existing non-standard construction changes unless safety/reliability issues arise."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "25-35kV primary distribution systems are used for efficient power delivery in areas requiring higher voltage capacity, such as sub-transmission interfaces or long rural feeders. These systems operate at voltages like 24.94kV GrdY/14.4kV (125kV BIL) and 34.5kV GrdY/19.9kV (150kV BIL), typically 3-phase 4-wire grounded wye configurations."
+        },
+        {
+          "type": "table",
+          "title": "25-35kV Voltage Classes and BIL Ratings",
+          "headers": ["Voltage (GrdY)", "BIL (kV)", "Voltage Code", "Operating Location"],
+          "rows": [
+            ["24,940GrdY/14,400", "125", "K", "MA"],
+            ["34,500GrdY/19,900", "150", "T", "MA"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "NESC Compliance",
+          "content": "All construction must comply with the current NESC edition. Use the most stringent rule in conflicts. Consult Standards for interpretations."
+        },
+        {
+          "type": "text",
+          "content": "Design emphasizes safety, reliability, and storm hardening for critical structures (e.g., tie points, reclosers). New lines use Grade C; Grade B for crossings."
+        },
+        {
+          "type": "quiz",
+          "title": "Voltage Identification",
+          "question": "What is the BIL rating for 34.5kV GrdY/19.9kV systems?",
+          "options": [
+            {"text": "125kV", "is_correct": false, "explanation": "Incorrect; that's for lower voltage."},
+            {"text": "150kV", "is_correct": true, "explanation": "Correct per standards for MA operations."},
+            {"text": "200kV", "is_correct": false, "explanation": "Transmission level, not distribution."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Tops and Hardware for 25-35kV Primary",
+      "learning_objective": "Identify pole classes, hardware, insulators, and configurations for 25-35kV pole tops, ensuring NESC compliance and BIL levels.",
+      "voiceover_summary": "Pole tops for 25-35kV use Class H1 poles for critical structures, fiberglass crossarms for deadends, and specific insulators like polymer pin-types for reliability.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Class H1 poles minimum for critical structures; stronger for NY mainlines/heavy equipment.",
+        "Fiberglass deadend crossarms standard; double for angles >20° or crossings.",
+        "150kV BIL via 20+ inches wood or fiberglass strain insulators.",
+        "Use polymer insulators for tree wire; HDPE for covered conductors."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Pole tops ensure 150kV BIL with 20+ inches wood/fiberglass separation. Use Class H1 for storm hardening; double crossarms at crossings/angles >20°."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "BIL Maintenance",
+          "content": "Avoid shorting insulation with steel braces/hardware. Use fiberglass guy strain insulators (TI95 series) for guys."
+        },
+        {
+          "type": "table",
+          "title": "Pole Classes for 25-35kV (Heavy Loading)",
+          "headers": ["Pole Length (ft)", "Class H1 Min Top Circ (in)", "Class 1 Min Top Circ (in)"],
+          "rows": [
+            ["35", "29", "27"],
+            ["40", "43.5", "41"],
+            ["45", "45.5", "43"],
+            ["50", "47.5", "45"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Hardware: Polymer pin insulators (I6/I7 series), vise-type for angles. Fiberglass crossarms (C76/C77) for deadends."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Top BIL",
+          "question": "Minimum wood/fiberglass for 150kV BIL?",
+          "options": [
+            {"text": "10 inches", "is_correct": false, "explanation": "Insufficient."},
+            {"text": "20 inches", "is_correct": true, "explanation": "Standard for distribution pole tops."},
+            {"text": "30 inches", "is_correct": false, "explanation": "Excessive for 25-35kV."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Conductors for 25-35kV Primary",
+      "learning_objective": "Select appropriate conductors for 25-35kV systems, understanding specs, sags, tensions, and ampacity limits.",
+      "voiceover_summary": "Standard conductors: Finch (1113kcmil ACSR), Condor/Drake (795kcmil ACSR), Arbutus (795kcmil AAC). Max tension 2000-4000lbs; ampacity up to 1709A summer.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Bare ACSR/AAC: Finch 1113kcmil (39k lbs RBS), Condor/Drake 795kcmil (28-31k lbs).",
+        "Tree wire variants for tree-prone areas; sags/tensions per heavy loading.",
+        "Ampacity: Normal 902-1614A summer; emergency higher with temp limits.",
+        "Max spans limited by clearances; use sag tables for design."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "25-35kV uses high-capacity bare ACSR/AAC: Finch (1113kcmil, 1.293\" dia, 1430lbs/1000ft), Condor (795kcmil 54/7, 1.093\"), Drake (795kcmil 26/7)."
+        },
+        {
+          "type": "table",
+          "title": "Key 25-35kV Conductors (Heavy Loading Specs)",
+          "headers": ["Conductor", "Stranding", "Dia (in)", "RBS (lbs)", "Weight (lbs/1000ft)", "Max Ampacity Summer Normal"],
+          "rows": [
+            ["Finch ACSR", "54/19", "1.293", "39100", "1430", "1614"],
+            ["Condor ACSR", "54/7", "1.093", "28200", "1022", "1299"],
+            ["Drake ACSR", "26/7", "1.108", "31500", "1094", "1299"],
+            ["Arbutus AAC", "37", "1.026", "13900", "745", "1265"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Tension Limits",
+          "content": "Max design tension 50% RBS (~2000-4000lbs); string at 35% initial unloaded."
+        },
+        {
+          "type": "text",
+          "content": "Tree wire options (e.g., 795kcmil compact AAC 320mil cover) for vegetation areas. Use sag tables for spans up to 300ft."
+        },
+        {
+          "type": "quiz",
+          "title": "Conductor Selection",
+          "question": "RBS for Condor ACSR?",
+          "options": [
+            {"text": "39100 lbs", "is_correct": false, "explanation": "Finch."},
+            {"text": "28200 lbs", "is_correct": true, "explanation": "Matches 795kcmil 54/7 specs."},
+            {"text": "13900 lbs", "is_correct": false, "explanation": "Arbutus AAC."}
+          ]
+        }
+      ]
+    }
+  ]
+}

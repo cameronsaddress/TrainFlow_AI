@@ -1,0 +1,121 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Material Selection for Guying",
+      "learning_objective": "Understand the specific materials required for guying in coastline areas to prevent corrosion and ensure reliability.",
+      "voiceover_summary": "In coastline construction, guy deadends use preformed guy deadends on both ends to avoid corrosion failures common with automatic deadends.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Use preformed guy deadends (Std Item P54E) on both ends for 12.5M guy wire.", "Automatic deadends corrode and fail in coastal environments.", "Maintain standard guying practices from Section 3 with coastal modifications."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastline areas require robust guying to withstand salt-induced corrosion. Standard construction uses preformed and automatic deadends, but in coastal regions, automatic deadends fail due to corrosion."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Corrosion Risk",
+          "content": "Automatic deadends corrode rapidly in salt spray; replace with preformed on both ends."
+        },
+        {
+          "type": "table",
+          "title": "Guying Materials for Coastline",
+          "headers": ["Component", "Standard Construction", "Coastline Construction", "Std Item"],
+          "rows": [
+            ["Guy Deadend (Down/Span Guys)", "Preformed one end + Automatic other end", "Preformed both ends", "P54E (12.5M)"],
+            ["Guy Wire", "G15A (12.5M)", "G15A (12.5M)", "G15A"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Guying in Coastline",
+          "question": "What is required for guy deadends in coastline areas?",
+          "options": [
+            {"text": "Preformed on both ends", "is_correct": true, "explanation": "Prevents corrosion failures seen with automatic deadends."},
+            {"text": "Automatic on both ends", "is_correct": false, "explanation": "Automatic deadends corrode and fail in salt environments."},
+            {"text": "No change from standard", "is_correct": false, "explanation": "Coastal conditions demand upgraded materials."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Material Selection for Insulators and Deadends",
+      "learning_objective": "Identify insulators and deadends suitable for coastal corrosion resistance.",
+      "voiceover_summary": "Polymer deadend insulators are standard for both general and coastline use due to superior performance in salt environments.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Polymer deadend insulators (I7PA for 15kV, I7PB for 35kV) for all coastal applications.", "Copper automatic deadends for copper primaries in severe areas like Nantucket.", "Maintain creepage distances to prevent tracking."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Insulators in coastline areas must resist salt contamination tracking. Polymer insulators provide adequate creepage for both standard and coastal use."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Insulator Standards",
+          "content": "Use polymer deadend insulators; no change needed from standard for creepage."
+        },
+        {
+          "type": "table",
+          "title": "Insulators for Coastline",
+          "headers": ["Type", "Voltage", "Std Item"],
+          "rows": [
+            ["Polymer Deadend Insulator", "15kV", "I7PA"],
+            ["Polymer Deadend Insulator", "35kV", "I7PB"],
+            ["Copper Automatic Deadend", "Copper Primaries (Severe Areas)", "D9A-D9A9"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Coastal Insulators",
+          "question": "Preferred insulator for 15kV deadends in coastline?",
+          "options": [
+            {"text": "Polymer I7PA", "is_correct": true, "explanation": "Provides necessary creepage resistance to salt tracking."},
+            {"text": "Porcelain standard", "is_correct": false, "explanation": "Insufficient for coastal salt contamination."},
+            {"text": "No insulator needed", "is_correct": false, "explanation": "Deadends require rated insulators."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Material Selection for Switchgear and Transformers",
+      "learning_objective": "Select corrosion-resistant switchgear and transformers for coastal reliability.",
+      "voiceover_summary": "Stainless steel cabinets for switchgear and transformers ensure longevity in saline environments.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Switchgear: Stainless steel cabinets (US45SS, US45ASS).", "Pole Transformers: Stainless steel (MS2526).", "Padmount Transformers: Stainless steel (MS2562)."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastal salt accelerates corrosion; stainless steel is mandatory for switchgear and transformers to prevent failures."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Stainless Steel Mandate",
+          "content": "Use stainless steel for all exposed metal in switchgear and transformers."
+        },
+        {
+          "type": "table",
+          "title": "Coastal Switchgear & Transformers",
+          "headers": ["Equipment", "Standard Construction", "Coastline Construction", "Material Spec"],
+          "rows": [
+            ["Switchgear 14.4kV 600A PME-9", "Steel (US45)", "Stainless Steel (US45SS)", "MS2760"],
+            ["Switchgear PME-10", "Steel (US45A)", "Stainless Steel (US45ASS)", "MS2760"],
+            ["Pole Transformer Single Phase", "Steel (MS2523)", "Stainless Steel (MS2526)", "MS2526"],
+            ["Padmount Minipad Single Phase", "Steel (MS2561)", "Stainless Steel (MS2562)", "MS2562"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Switchgear in Coastline",
+          "question": "Cabinet material for 14.4kV PME-9 switchgear?",
+          "options": [
+            {"text": "Stainless Steel US45SS", "is_correct": true, "explanation": "Resists salt corrosion effectively."},
+            {"text": "Standard Steel US45", "is_correct": false, "explanation": "Corrodes rapidly in coastal areas."},
+            {"text": "Aluminum", "is_correct": false, "explanation": "Not specified for switchgear cabinets."}
+          ]
+        }
+      ]
+    }
+  ]
+}

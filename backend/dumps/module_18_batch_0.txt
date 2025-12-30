@@ -1,0 +1,69 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 18 – Risers Overview",
+      "learning_objective": "Understand the purpose, types, standards, and safety requirements for risers in National Grid's overhead distribution systems.",
+      "voiceover_summary": "Risers transition overhead lines to underground cables, ensuring safe and reliable service. Key standards cover configurations for single-phase, three-phase, delta, and wye systems, with emphasis on grounding, clearances, and protection.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Risers connect overhead to underground at poles, using specific hardware for voltage and configuration.",
+        "Follow checklists for pages like 18-104 to 18-739 for detailed drawings.",
+        "Prioritize safety: treat as energized, maintain clearances, bond neutrals.",
+        "Use fiberglass insulators, proper guys, and animal guards in coastal or high-risk areas.",
+        "Configurations vary: tangent, deadend, with/without secondary, delta/wye."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Risers are critical transition points from overhead distribution lines to underground cables, typically at dedicated poles. They ensure structural integrity, electrical continuity, and safety under NESC standards. National Grid's Section 18 covers various configurations for 15-35kV systems, including tangent, deadend, angles, and with/without secondaries."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Riser Safety",
+          "content": "Always assume risers are energized. Verify de-energization with test equipment. Maintain minimum clearances per NESC Table 232-1. Use PPE and follow lockout/tagout procedures."
+        },
+        {
+          "type": "table",
+          "title": "Key Riser Configurations (From Checklist)",
+          "headers": ["Page", "Configuration"],
+          "rows": [
+            ["18-104", "Single-phase riser details"],
+            ["18-107", "Three-phase riser"],
+            ["18-109", "Riser with secondary"],
+            ["18-110", "Deadend riser"],
+            ["18-115", "Riser with cutouts"],
+            ["18-335", "Three-phase 600A riser"],
+            ["18-400", "Spacer cable riser"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Standard materials include polymer cutouts, fiberglass insulators, and armored conduits for corrosion resistance. Grounding via down guys and bonding to neutral is mandatory for wye systems."
+        },
+        {
+          "type": "quiz",
+          "title": "Riser Fundamentals",
+          "question": "What is the primary purpose of a riser pole?",
+          "options": [
+            {
+              "text": "Transition overhead to underground lines",
+              "is_correct": true,
+              "explanation": "Risers facilitate safe connection between overhead and UG systems."
+            },
+            {
+              "text": "Increase voltage",
+              "is_correct": false,
+              "explanation": "Voltage transformation is done by transformers, not risers."
+            },
+            {
+              "text": "Store capacitors",
+              "is_correct": false,
+              "explanation": "Capacitors are separate equipment."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

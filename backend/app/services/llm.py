@@ -444,6 +444,15 @@ async def generate_structure_validated(
             
         except ValidationError as e:
             print(f"Validation Error (Attempt {attempt+1}): {e}")
+            
+            # DEBUG: Dump failed JSON to file
+            try:
+                with open("llm_failure_dump.txt", "w") as f:
+                    f.write(raw_json)
+                print("DUMPED FAILED JSON TO llm_failure_dump.txt")
+            except:
+                pass
+
             if attempt < max_retries:
                 messages.append({"role": "assistant", "content": raw_json})
                 messages.append({

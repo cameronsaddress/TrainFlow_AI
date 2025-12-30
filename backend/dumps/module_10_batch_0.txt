@@ -1,0 +1,136 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Overview of Secondary Systems",
+      "learning_objective": "Understand the purpose, voltages, conductor types, and general design principles of secondary systems in National Grid's overhead distribution network.",
+      "voiceover_summary": "Secondary systems deliver power from transformers to customers at low voltages like 120/240V. Key components include crib designs, triplex cables, and sag-tension considerations for safe installation.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Secondary voltages: Single-phase 120/240V, three-phase 208Y/120V, 480Y/277V.",
+        "Standard conductor: 3/C-1/0 aluminum triplex for single-phase cribs.",
+        "Crib design centers on transformer location, load balancing, and voltage regulation.",
+        "Maintain NESC clearances and proper grounding."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary systems provide low-voltage power (≤600V) from distribution transformers to end-users. They include single-phase (120/240V) and three-phase (208Y/120V, 480Y/277V) configurations. Standard crib conductor is 3/C-1/0 aluminum triplex for residential/commercial loads."
+        },
+        {
+          "type": "table",
+          "title": "Secondary Distribution Voltages",
+          "headers": ["Type", "2-Wire", "3-Wire", "4-Wire"],
+          "rows": [
+            ["Single Phase", "120V", "120/240V", ""],
+            ["Three Phase", "240V", "125/216Y", "208Y/120V, 480Y/277V"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Grounding Requirement",
+          "content": "All secondary neutrals must be grounded at transformers and bonded properly to prevent hazards."
+        },
+        {
+          "type": "quiz",
+          "title": "Secondary Voltages",
+          "question": "What is the standard single-phase secondary voltage?",
+          "options": [
+            {"text": "120/240V", "is_correct": true, "explanation": "Common residential voltage from Section 1.6."},
+            {"text": "208Y/120V", "is_correct": false, "explanation": "Three-phase voltage."},
+            {"text": "480Y/277V", "is_correct": false, "explanation": "Industrial three-phase."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Secondary Crib Design",
+      "learning_objective": "Learn to design secondary cribs considering transformer location, loading, length, voltage drop, and flicker limits.",
+      "voiceover_summary": "Secondary cribs balance loads around transformers. Use 1/0 triplex, limit voltage drop to 1.5-3%, and check flicker for motors.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Transformer at load midpoint; max residential customers per kVA.",
+        "1/0 triplex: 1000ft max for 15kVA, 350ft for 50kVA.",
+        "Voltage drop ≤1.5% with growth; flicker per chart.",
+        "Balance phases; use sag-tension tables."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary crib: Overhead 120/240V supply from transformer to services. Place transformer at load center. Use 3/C-1/0 Al triplex. Max length for 1.5% drop: 1000ft (15kVA), 700ft (25kVA), 350ft (50kVA)."
+        },
+        {
+          "type": "table",
+          "title": "Max Residential Customers per Transformer",
+          "headers": ["kVA", "Oil/Gas Heat", "Central AC", "Electric Heat"],
+          "rows": [
+            ["25", "9", "5", "2"],
+            ["50", "12", "8", "5"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Voltage Drop Limit",
+          "content": "Limit to 1.5% for growth areas; max 3% no growth."
+        },
+        {
+          "type": "quiz",
+          "title": "Crib Length",
+          "question": "Max 1/0 triplex length for 50kVA (1.5% drop)?",
+          "options": [
+            {"text": "350ft", "is_correct": true, "explanation": "From design table."},
+            {"text": "1000ft", "is_correct": false, "explanation": "For 15kVA."},
+            {"text": "700ft", "is_correct": false, "explanation": "For 25kVA."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Sag-Tension Tables",
+      "learning_objective": "Apply sag-tension data for 3/C-1/0 Al triplex to ensure NESC clearances and proper installation.",
+      "voiceover_summary": "Sag-tension tables for 1/0 triplex guide stringing. Initial sags at temps; max design under heavy load.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "150ft ruling span initial sags/tensions.",
+        "Heavy load: 0.5in ice, 4psf wind.",
+        "String at 32°F; check vertical/transverse loads.",
+        "Max design tension 2000lbs."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Sag-tension for 3/C-1/0 Al triplex (1/0 6201 messenger). Use for ruling spans, clearances. Initial at install temps; final under load."
+        },
+        {
+          "type": "table",
+          "title": "Initial Sags/Tensions (150ft Ruling Span)",
+          "headers": ["Temp °F", "Tension lbs", "Sag 100ft", "125ft", "150ft"],
+          "rows": [
+            ["0", "1495", "4", "7", "10"],
+            ["32", "1245", "5", "8", "11"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Max Design (Heavy Load)",
+          "headers": ["Temp °F", "Ice in", "Wind psf", "Sag in", "Tension lbs"],
+          "rows": [
+            ["0", "0.5", "4.0", "31", "2000"],
+            ["32", "0.5", "0", "29", "1630"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Sag at 32°F (150ft)",
+          "question": "Sag for 150ft span at 32°F initial?",
+          "options": [
+            {"text": "11in", "is_correct": true, "explanation": "From table."},
+            {"text": "10in", "is_correct": false, "explanation": "At 0°F."},
+            {"text": "13in", "is_correct": false, "explanation": "Different span."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Practical Application and Review",
+      "learning_objective": "Apply NESC clearance rules to real-world overhead distribution scenarios, calculate required clearances, and review compliance for safe installations.",
+      "voiceover_summary": "Review key NESC clearances for poles, conductors, and equipment. Practice applying rules to common scenarios like road crossings and building proximity. Always prioritize safety with alerts and verify calculations.",
+      "estimated_reading_time_minutes": 10,
+      "key_takeaways": [
+        "Use NESC Table 232-1 for vertical clearances over roads and rails.",
+        "Horizontal clearances require wind displacement adjustments.",
+        "Critical: Maintain 40-inch phase-to-ground MAD for worker safety.",
+        "Review installations against BIL and climbing space rules."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Practical application involves verifying clearances during design and construction. Use sag-tension data from Section 6 to ensure vertical clearances under max sag (e.g., ice/wind at MCOT). For horizontal, add wind blowout per NESC formulas. Always document and review post-installation."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Critical Safety Check",
+          "content": "Treat all lines as energized. Minimum approach distance (MAD) for 15kV is 26 inches phase-to-ground + 30-inch reach = 56 inches total. Violations risk arc flash."
+        },
+        {
+          "type": "table",
+          "title": "Key Vertical Clearances (NESC Table 232-1)",
+          "headers": ["Surface", "Supply Conductors 0-22kV (ft)", "Roads/Trucks (ft)"],
+          "rows": [
+            ["Railroad Tracks", "26.5", "26.5"],
+            ["Roads Subject to Trucks", "18.5", "18.5"],
+            ["Residential Driveways", "16.5 (min)", "16.5"],
+            ["Pedestrian Areas", "14.5", "14.5"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Review process: 1) Calculate ruling span sags. 2) Check vs. NESC tables. 3) Adjust for blowout (e.g., 6psf wind). 4) Field verify with hot sticks or laser. Non-compliance requires redesign."
+        },
+        {
+          "type": "quiz",
+          "title": "Clearance Compliance Review",
+          "question": "For a 15kV line over a road with trucks, what is the min vertical clearance at max sag?",
+          "options": [
+            {"text": "16 ft", "is_correct": false, "explanation": "Too low; NESC requires 18.5 ft for trucks."},
+            {"text": "18.5 ft", "is_correct": true, "explanation": "Correct per NESC Table 232-1 for supply conductors over roads subject to trucks."},
+            {"text": "22 ft", "is_correct": false, "explanation": "Excessive; use calculated value based on sag."},
+            {"text": "No clearance needed", "is_correct": false, "explanation": "Always required for safety."}
+          ]
+        }
+      ]
+    }
+  ]
+}

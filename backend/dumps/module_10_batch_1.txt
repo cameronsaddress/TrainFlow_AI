@@ -1,0 +1,156 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Splicing Secondary Conductors",
+      "learning_objective": "Understand the proper procedures for splicing 3/C – 1/0 and 3/C – 4/0 triplex aluminum secondary conductors to ensure reliable connections.",
+      "voiceover_summary": "This lesson covers the step-by-step process for splicing triplex secondary conductors, emphasizing safety, proper tools, and techniques to maintain electrical integrity.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Cut conductors precisely and prepare ends properly.",
+        "Use full-tension splices for neutrals and non-tension for hot legs.",
+        "Always clean conductors before splicing.",
+        "Stagger splices and cover appropriately."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Secondary conductor splicing is critical for maintaining service reliability. This applies to 3/C – 1/0 and 3/C – 4/0 triplex aluminum cables. Splices should not be made within 5 feet of poles to allow space for services and streetlights."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Safety First",
+          "content": "De-energize lines before splicing. Use proper PPE and follow lockout/tagout procedures."
+        },
+        {
+          "type": "text",
+          "content": "Procedure: Initial Steps – Neutral Splicing\n1. Cut conductors to achieve sleeve locations as shown (total splicing length ~36 inches).\n2. Ensure ends are square and burr-free.\n3. Use full-tension automatic splice (Std. Item S19K or S19S for 4/0) on neutral.\n4. Tension neutral fully; keep live legs slack."
+        },
+        {
+          "type": "text",
+          "content": "Leg Conductor Splicing\n1. Use compression splice (Std. Item S26D or S26D1 for 4/0) on hot legs.\n2. Strip covering using insulated splice strip guide.\n3. Match short conductor of left cable with long of right, spiraling around neutral.\n4. Insert skinned conductors fully; crimp 4 times per side using MD-6 tool with W243 die.\n5. Cover with poly cover."
+        },
+        {
+          "type": "table",
+          "title": "Splice Components",
+          "headers": ["Component", "Std Item", "SAP ID"],
+          "rows": [
+            ["Neutral Splice", "S19K (1/0)", "9311566"],
+            ["Neutral Splice 4/0", "S19S", "9312756"],
+            ["Hot Leg Splice", "S26D", "9311724"],
+            ["Hot Leg Splice 4/0", "S26D1", "9395509"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Splicing Safety Check",
+          "question": "What is the first step in neutral splicing?",
+          "options": [
+            {"text": "Cut conductors to sleeve locations", "is_correct": true, "explanation": "Precise cutting ensures proper alignment and tension."},
+            {"text": "Strip covering", "is_correct": false, "explanation": "Stripping is for hot legs after neutral."},
+            {"text": "Crimp splice", "is_correct": false, "explanation": "Crimping follows preparation."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Flicker Charts and Transformer Regulation",
+      "learning_objective": "Learn to use flicker charts for motor starting loads and understand transformer regulation limits to prevent voltage complaints.",
+      "voiceover_summary": "Flicker charts guide maximum voltage fluctuations for motor starts, while transformer regulation ensures stable voltage on a 120V base.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Limit flicker to Curve B for primary feeders.",
+        "Voltage regulation: NY 123V max/114V min; MA 126V max/114V min.",
+        "Check kW-Ft against charts for % drop."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Flicker voltage drop from motor starts should not exceed irritation levels. Use charts on Page 10-10: Curve A for LVAC network, Curve B for feeders affecting others, Curve C for customer's radial service."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Voltage Limits",
+          "content": "Exceeding flicker limits may require referral to Engineering."
+        },
+        {
+          "type": "text",
+          "content": "Transformer Regulation: Maintain 120V base. NY: 123V max, 114V min. MA: 126V max, 114V min. Graph on 10-11 shows regulation curves."
+        },
+        {
+          "type": "table",
+          "title": "Flicker Limits by Curve",
+          "headers": ["Curve", "Application", "Max % Fluctuation"],
+          "rows": [
+            ["A", "LVAC network/service entrance", "Borderline irritation"],
+            ["B", "Primary feeder/secondary affecting others", "Borderline irritation"],
+            ["C", "Customer radial service", "No strict limit, but recommended"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Flicker Application",
+          "question": "Which curve for primary feeder taps?",
+          "options": [
+            {"text": "Curve B", "is_correct": true, "explanation": "For feeders affecting other customers."},
+            {"text": "Curve A", "is_correct": false, "explanation": "For LVAC networks."},
+            {"text": "Curve C", "is_correct": false, "explanation": "Customer's own service."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Residential Loading and Transformer Sizing",
+      "learning_objective": "Apply residential loading guidelines to size transformers correctly, accounting for peak kWh and growth.",
+      "voiceover_summary": "Transformer sizing uses peak month kWh data from GIS, with tables for changeout and install based on heat type and EV charging.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Use GIS kWh data plus expected growth.",
+        "Oil/Gas heat: lower kWh; Electric heat: higher.",
+        "EV Level 2: add 7.2kW per residence.",
+        "Changeout at 160-200% peak half-hour demand."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Size based on peak month kWh from GIS + expected growth. Tables for summer/winter critical hours."
+        },
+        {
+          "type": "table",
+          "title": "Max Residential Customers per Transformer (Oil/Gas Heat)",
+          "headers": ["Transformer kVA", "Summer Changeout (kWh)", "Summer Install (kWh)", "Winter Changeout (kWh)", "Winter Install (kWh)"],
+          "rows": [
+            ["25", "1800", "1300", "2500", "1500"],
+            ["50", "4100", "3200", "5500", "4000"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Expected Peak Month kWh by Connected Load",
+          "headers": ["Load Type", "Single Family", "Multifamily"],
+          "rows": [
+            ["No heat", "900", "*"],
+            ["Up to 5kW heat", "2800", "1600"],
+            ["EV Level 2", "1500 (TOU)", "1500 (TOU)"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "tip",
+          "title": "EV Impact",
+          "content": "EV charging adds 7.2kW; multiple homes may charge simultaneously."
+        },
+        {
+          "type": "quiz",
+          "title": "Transformer for 10 homes, electric heat",
+          "question": "What kVA for 10 homes with electric heat (20kW diversified)?",
+          "options": [
+            {"text": "50 kVA", "is_correct": true, "explanation": "Per table, suits 5-6 homes; scale up."},
+            {"text": "25 kVA", "is_correct": false, "explanation": "Too small for electric heat."}
+          ]
+        }
+      ]
+    }
+  ]
+}

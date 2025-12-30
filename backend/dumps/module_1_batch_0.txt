@@ -1,0 +1,130 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Foreword and Purpose of National Grid Distribution Standards",
+      "learning_objective": "Understand the purpose, scope, and key principles of National Grid Distribution Standards for safe, reliable overhead and underground construction.",
+      "voiceover_summary": "National Grid Standards guide construction with safety, reliability, and NESC compliance as priorities. They detail materials, techniques, and updates for modern, efficient systems.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Standards provide materials, techniques, assemblies, and drawings for repetitive structures.",
+        "Comply with current NESC; most stringent rule prevails in conflicts.",
+        "Issued electronically and in binders; users must maintain updates.",
+        "New construction conforms; existing not retrofitted unless safety issues.",
+        "Solicits employee input for improvements."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "National Grid develops internal Standards to provide information on acceptable materials, techniques, assemblies, and representative construction drawings for repetitive structures. These Standards include engineering calculations for non-standard designs and explanations for material selections. They coordinate safety, reliability, operability, uniformity, appearance, economy, and environmental interests, complying with the current NESC edition and local regulations. The most stringent rule prevails in conflicts."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All construction must comply with the current NESC; refer conflicts to Standards, Policies and Codes."
+        },
+        {
+          "type": "text",
+          "content": "Standards are for Company personnel, engineers, designers, and contractors. Issued electronically via SharePoint and in binders with updates. Users must maintain books. New construction conforms; existing not changed unless safety/reliability issues. Special applications referred to Division Engineering."
+        },
+        {
+          "type": "quiz",
+          "title": "Purpose Check",
+          "question": "What takes precedence in conflicts?",
+          "options": [
+            {"text": "Most stringent rule or regulation", "is_correct": true, "explanation": "NESC and local rules; most stringent prevails."},
+            {"text": "Company preference", "is_correct": false, "explanation": "Must comply with codes."},
+            {"text": "Cheapest option", "is_correct": false, "explanation": "Safety and reliability first."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Copyright Notice and Standards Ownership",
+      "learning_objective": "Recognize National Grid's ownership of Standards, confidentiality requirements, and usage restrictions.",
+      "voiceover_summary": "Standards are proprietary National Grid property. No copying without authorization; maintain confidentiality and return upon project completion.",
+      "estimated_reading_time_minutes": 4,
+      "key_takeaways": [
+        "Standards are confidential, proprietary trade secrets owned by National Grid.",
+        "No warranties on accuracy; no copying or transfer without written authorization.",
+        "Disclose only to partners/employees with acknowledgment; return upon completion.",
+        "Printed copies uncontrolled; use INFONET for latest version."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Copyright 2025 National Grid. Standards prepared by National Grid USA Service Company for subsidiaries. Information is confidential, proprietary, trade secret, remaining National Grid property. No warranty or representation on contents, accuracy, or completeness."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Usage Restrictions",
+          "content": "No transfer, copy, reproduction without written authorization. Return manual to National Grid upon project completion."
+        },
+        {
+          "type": "text",
+          "content": "Confidentiality: Recipients maintain secrecy; disclose only to partners/employees/contractors with acknowledgment. Printed copies uncontrolled; refer to INFONET for latest. Controlled in Documentum."
+        },
+        {
+          "type": "quiz",
+          "title": "Ownership Quiz",
+          "question": "Who owns the Standards?",
+          "options": [
+            {"text": "National Grid exclusively", "is_correct": true, "explanation": "Proprietary trade secrets."},
+            {"text": "Users upon receipt", "is_correct": false, "explanation": "Remains National Grid property."},
+            {"text": "Public domain", "is_correct": false, "explanation": "Confidential."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Basic Insulation Level (BIL) Ratings",
+      "learning_objective": "Identify BIL ratings for distribution and transmission lines by voltage class and location.",
+      "voiceover_summary": "BIL ratings protect against surges; vary by voltage, use (distribution/transmission), and region like NE vs NY.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "BIL withstands standard lightning impulse crest voltage.",
+        "Distribution: e.g., 34.5kV NE=150kV BIL; Transmission NY=200kV.",
+        "GrdY in NE requires 125kV BIL for 23kV.",
+        "See Sections 9,7,21 for more."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Basic Insulation Level (BIL) ratings relate to voltage class (kV). Line use (distribution/transmission) alters value. E.g., 34.5kV Distribution NE=150kV BIL; 34.5kV Transmission NY=200kV BIL. Distribution BIL by voltage in Section 1.5."
+        },
+        {
+          "type": "table",
+          "title": "BIL Ratings by Voltage Class",
+          "headers": ["Voltage Class (kV)", "Distribution BIL (kV)", "Transmission BIL (kV)"],
+          "rows": [
+            ["23.5", "110*", "150"],
+            ["34.5", "150", "200"],
+            ["46", "200", "250"],
+            ["69", "250", "250"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "Regional Note",
+          "content": "*GrdY Distribution in NE requires 125kV BIL (Section 1.5)."
+        },
+        {
+          "type": "text",
+          "content": "More on BIL: Section 9:9.1.20; Section 7:7.11.40,7-128; Section 21:21.8.30."
+        },
+        {
+          "type": "quiz",
+          "title": "BIL Quiz",
+          "question": "34.5kV Distribution NE BIL?",
+          "options": [
+            {"text": "150kV", "is_correct": true, "explanation": "Standard for NE distribution."},
+            {"text": "200kV", "is_correct": false, "explanation": "Transmission NY."},
+            {"text": "125kV", "is_correct": false, "explanation": "GrdY 23kV NE."}
+          ]
+        }
+      ]
+    }
+  ]
+}

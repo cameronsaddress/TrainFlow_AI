@@ -1,0 +1,53 @@
+{
+  "matches": [
+    {
+      "lesson_id": "Initiating and Managing GIS Work Orders",
+      "video_filename": "WO Training-20251105_093222-Meeting Recording.mp4",
+      "start_time": 0.0,
+      "end_time": 180.0,
+      "reason": "Exact demo of opening Helix app, creating folder, downloading ES final, GIS pole size edit via new alternative, take ownership, change state to Proposed."
+    },
+    {
+      "lesson_id": "Field Site Assessment and Verification",
+      "video_filename": "Work Order Training - Day 1 Part2.mp4",
+      "start_time": 0.0,
+      "end_time": 120.0,
+      "reason": "Street View verification (dated 2019), pole conditions, clearances, tree trimming assessment (18\" secondary), spans, access (off-road Walmart)."
+    },
+    {
+      "lesson_id": "Reviewing Make-Ready Sheets and Field Documentation",
+      "video_filename": "Work Order Training - Day 1 Part2.mp4",
+      "start_time": 300.0,
+      "end_time": 420.0,
+      "reason": "ES Final Excel review: poles, GIS IDs, clearances (e.g., 40\" TPX), work types (Wake Ready, raise secondary), licensee Jason Wino."
+    },
+    {
+      "lesson_id": "Pole Location, Condition, and Attribute Management",
+      "video_filename": "WorkingThroughGIS_Design Part 2.mp4",
+      "start_time": 0.0,
+      "end_time": 90.0,
+      "reason": "GIS pole attributes: ID, status Existing/Replace, height/class, ownership, GPS coords, joint use."
+    },
+    {
+      "lesson_id": "Anchor and Guy Wire Inspection and Editing",
+      "video_filename": "WorkingThroughGIS_Design Part 2.mp4",
+      "start_time": 90.0,
+      "end_time": 210.0,
+      "reason": "Anchor/Guy add-in: edit lead length (9.5 to 10), guy size (13M to 5), ownership, rotate icon; photos verification."
+    },
+    {
+      "lesson_id": "Compatible Units Selection and Cost Estimation",
+      "video_filename": "WO Training-20251105_093222-Meeting Recording.mp4",
+      "start_time": 600.0,
+      "end_time": 720.0,
+      "reason": "CU list Excel (NGrid_CUsAH-Lite), add CUs manually (TLA-CDLRECXFMR), warnings, labor hours/dollars."
+    },
+    {
+      "lesson_id": "GIS Editing Tools and Object Verification",
+      "video_filename": "WorkingThroughGIS_Design Part 2.mp4",
+      "start_time": 210.0,
+      "end_time": 300.0,
+      "reason": "Verify edits in object relationships (username, changes); Navigator, Object Control, Point/Span Editor."
+    }
+  ]
+}

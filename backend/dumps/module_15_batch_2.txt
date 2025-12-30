@@ -1,0 +1,92 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Pole/Line Sensors and Monitoring",
+      "learning_objective": "Understand the installation, application, and benefits of pole/line sensors and monitoring devices for improving distribution system reliability and fault detection.",
+      "voiceover_summary": "Pole and line sensors, including feeder monitors and fault indicators, enable real-time monitoring, early fault detection, and faster restoration on distribution circuits.",
+      "estimated_reading_time_minutes": 7,
+      "key_takeaways": [
+        "Use 3Φ pole-mounted feeder monitors on 15kV lines for voltage/current sensing.",
+        "Line-mounted sensors like power line sensors require specific clearances and calibration.",
+        "Early fault detection systems proactively identify issues to prevent outages.",
+        "Sensors support self-healing grids via FLISR and volt-var optimization."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Pole/line sensors and monitoring devices are critical for modern distribution systems, providing real-time data on voltage, current, faults, and power quality. Key devices include 3Φ Pole Mounted Feeder Monitors (15-600, 15-601 for spacer cable), Line Mounted Feeder Monitors (15-651), Power Line Sensors with Collector Boxes (15-650), and Early Fault Detection systems (15-670). These support applications like fault location, isolation, service restoration (FLISR), and volt-var optimization."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Installation Safety",
+          "content": "Ensure sensors are at least 10 ft from power poles. Ground sensors prior to energization. Maintain clearances per NESC. Use qualified workers for installation."
+        },
+        {
+          "type": "table",
+          "title": "Key Sensor Types and Applications",
+          "headers": ["Device", "Voltage/Class", "Application", "Features"],
+          "rows": [
+            ["3Φ Pole Mounted Feeder Monitor", "15kV", "Pole-mounted monitoring", "Current/voltage sensing, DNP3 integration"],
+            ["Line Mounted Power Sensor", "15kV+", "Line-mounted", "Clamp-on, RF communication, fault detection"],
+            ["Early Fault Detection", "15kV and below", "Proactive monitoring", "Predictive analytics, machine learning"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Sensor Application",
+          "question": "What is the primary purpose of pole/line sensors?",
+          "options": [
+            {"text": "Real-time fault detection and monitoring", "is_correct": true, "explanation": "Sensors enable early detection, FLISR, and optimization."},
+            {"text": "Voltage boosting", "is_correct": false, "explanation": "Not for boosting; for monitoring."},
+            {"text": "Conductor sizing", "is_correct": false, "explanation": "Sizing is per Section 6."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Construction Drawings and Best Practices",
+      "learning_objective": "Identify best practices and key construction drawings for capacitors, regulators, and primary metering installations per Section 15 standards.",
+      "voiceover_summary": "Section 15 drawings detail safe installations for regulators (15-111 to 15-122), capacitors (15-211 to 15-407), and metering (15-500 to 15-503), emphasizing grounding, clearances, and sequencing.",
+      "estimated_reading_time_minutes": 8,
+      "key_takeaways": [
+        "Regulators: Use H1 poles, specific wiring for grounded/non-grounded systems.",
+        "Capacitors: Fixed/switched banks with sensors; ensure NESC clearances.",
+        "Metering: Fused deadends/risers; conduit layouts for secondary.",
+        "Best practices: Bond neutrals, test grounds <25 ohms, sequence bypass switches."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 15 provides drawings for regulator (15-111/112/113/121-122), capacitor (15-211/212/331-407), and metering (15-500-503/550) installations. Best practices include Class H1 poles for regulators, surge arresters, proper grounding, and NESC clearances. Follow sequencing for bypass switches."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Grounding Compliance",
+          "content": "All installations require driven grounds ≤25Ω; bond to neutral on wye systems. Use flexible leads for arresters."
+        },
+        {
+          "type": "table",
+          "title": "Key Drawings Overview",
+          "headers": ["Category", "Drawing Refs", "Key Features"],
+          "rows": [
+            ["Regulators", "15-111 to 15-122", "1Φ/3Φ grounded/non-grounded, platform mounts"],
+            ["Capacitors", "15-211 to 15-407", "Fixed/switched, sensors, controls"],
+            ["Metering", "15-500 to 15-550", "Fused deadends/risers, conduit"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Regulator Best Practice",
+          "question": "What pole class is required for new regulator installs?",
+          "options": [
+            {"text": "Class H1 minimum", "is_correct": true, "explanation": "Per storm hardening and drawings."},
+            {"text": "Class 5", "is_correct": false, "explanation": "Insufficient for equipment loads."},
+            {"text": "No specific class", "is_correct": false, "explanation": "Always H1 for reliability."}
+          ]
+        }
+      ]
+    }
+  ]
+}

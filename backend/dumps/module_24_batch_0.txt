@@ -1,0 +1,53 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 25 – Feeder Application & Application Index Overview",
+      "learning_objective": "Understand the purpose, structure, and key components of Section 25, which serves as a comprehensive index and reference for feeder applications across various voltage classes and configurations in National Grid's overhead distribution system.",
+      "voiceover_summary": "Section 25 provides an essential index for feeder applications, listing standard configurations, drawings, and notes to guide the design and construction of reliable distribution feeders. It ensures compliance with NESC and company standards for safety and performance.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Section 25 indexes feeder designs by voltage, phase, and application type.",
+        "Use checklists to verify latest page issues (e.g., 7/25 updates).",
+        "Refer to drawings like 25-100 to 25-300 for specific configurations.",
+        "Critical for new construction, rebuilds, and maintenance to meet NESC and reliability goals.",
+        "Contact Standards Engineering for non-standard applications."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Section 25 – Feeder Application & Application Index serves as a centralized reference for National Grid's overhead distribution feeder designs. It catalogs standard configurations, construction drawings, and application notes tailored to various voltage classes (e.g., 4.16kV to 34.5kV), phases (single, three-phase), and scenarios like tangents, deadends, angles, and joints. This ensures uniform, safe, and reliable installations compliant with NESC and company policies."
+        },
+        {
+          "type": "table",
+          "title": "Key Pages and Update Status (Issue 7/25)",
+          "headers": ["Page", "Issue Date", "Description"],
+          "rows": [
+            ["25-i to 25-ii", "7/25", "Index"],
+            ["25-1 to 25-5", "7/21-7/24", "Feeder Configurations"],
+            ["25-100 to 25-101", "7/25", "Application Drawings"],
+            ["25-110A to 25-113B", "7/25", "Detailed Schematics"],
+            ["25-201, 25-300", "7/23-7/25", "Special Applications"],
+            ["25-NOTES", "7/25", "Notes and Guidelines"]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All feeder applications must adhere to the latest NESC edition. Verify page issues against the checklist to ensure using current designs."
+        },
+        {
+          "type": "quiz",
+          "title": "Feeder Index Basics",
+          "question": "What is the primary purpose of Section 25?",
+          "options": [
+            { "text": "Catalog feeder designs and configurations for overhead distribution", "is_correct": true, "explanation": "It indexes standard applications by voltage, phase, and structure type." },
+            { "text": "Detailed grounding procedures", "is_correct": false, "explanation": "Grounding is in Section 13." },
+            { "text": "Transformer sizing only", "is_correct": false, "explanation": "Transformers are in Section 14." },
+            { "text": "Pole hardware specs", "is_correct": false, "explanation": "Poles/hardware in Section 2." }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "New Construction: Preventing Cascading Failures",
+      "learning_objective": "Understand the design requirements for new overhead distribution lines to prevent cascading failures during extreme weather events.",
+      "voiceover_summary": "In new construction, prevent cascading failures by limiting tangent spans to 20 maximum between stronger structures and using fiberglass deadend crossarms.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "Maximum 20 spans (19 structures) between deadend, junction, angle >15°, or storm-hardened structures.",
+        "Use fiberglass deadend crossarms on structures with deadends to stop cascading.",
+        "Spacer cable requires only messenger deadending."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Cascading failures occur when a single tree or limb causes multiple pole failures. To prevent this in new construction, design lines with a maximum of 20 spans between structures capable of stopping cascades, such as deadends or junctions."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Storm Hardening Requirement",
+          "content": "Follow Section 9 for deadend structures and Section 16 for spacer cable."
+        },
+        {
+          "type": "table",
+          "title": "Cascading Prevention Structures",
+          "headers": ["Structure Type", "Purpose"],
+          "rows": [
+            ["Deadend Structures", "Stop unbalanced loads"],
+            ["Junction Structures", "Handle line branches"],
+            ["Line Angle >15°", "Provide strength against pulls"],
+            ["Storm-Hardened Tie/Recloser/Loadbreak", "Critical points"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Cascading Prevention",
+          "question": "What is the maximum number of spans between structures to prevent cascading?",
+          "options": [
+            {"text": "10 spans", "is_correct": false, "explanation": "Too low; standard is 20."},
+            {"text": "20 spans", "is_correct": true, "explanation": "Maximum 20 spans (19 structures) between cascade-stopping structures."},
+            {"text": "30 spans", "is_correct": false, "explanation": "Exceeds limit; risks cascading."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "New Construction: Coastal Areas",
+      "learning_objective": "Identify pole strength enhancements required for new construction in coastal areas to withstand higher wind loads.",
+      "voiceover_summary": "In coastal areas within 1/2 mile of saltwater, use poles one strength class higher than standard, except for critical structures.",
+      "estimated_reading_time_minutes": 4,
+      "key_takeaways": [
+        "Coastal Area: Within 1/2 mile of saltwater coastline.",
+        "Poles: One class higher than required elsewhere.",
+        "Exception: Critical structures per Section 4.1.10 follow their own rules."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Coastal areas face higher direct wind loads. New poles must be one strength class stronger, e.g., Class 4 instead of 5."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Coastal Definition",
+          "content": "Applies to areas ≤1/2 mile from saltwater; excludes heavy road salt areas unless specified."
+        },
+        {
+          "type": "quiz",
+          "title": "Coastal Pole Requirement",
+          "question": "Pole strength in coastal areas?",
+          "options": [
+            {"text": "Same as inland", "is_correct": false, "explanation": "Must be stronger."},
+            {"text": "One class higher", "is_correct": true, "explanation": "One strength class higher than standard requirements."},
+            {"text": "Two classes higher", "is_correct": false, "explanation": "Only one class higher."}
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Storm Hardening Existing Lines: Critical Structures",
+      "learning_objective": "Apply storm hardening measures to existing critical structures like tie points and reclosers to improve resilience.",
+      "voiceover_summary": "For existing lines, strengthen tie points, reclosers, and switches by deadending conductors and using Class H1 poles where feasible.",
+      "estimated_reading_time_minutes": 6,
+      "key_takeaways": [
+        "Tie points: Deadend conductors both directions; Class H1 pole.",
+        "Reclosers/switches: Deadend or strengthen adjacent poles to H1.",
+        "No mandate to upgrade non-critical lines unless targeted."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Targeted hardening: Strengthen tie points by deadending; reclosers by following new standards or adjacent H1 poles."
+        },
+        {
+          "type": "alert",
+          "alert_type": "critical_info",
+          "title": "No General Upgrade",
+          "content": "No requirement to upgrade all existing lines; apply to targeted feeders."
+        },
+        {
+          "type": "table",
+          "title": "Critical Structure Options",
+          "headers": ["Structure", "Hardening Method"],
+          "rows": [
+            ["Tie Points", "Deadend both directions + H1 pole"],
+            ["Reclosers", "New standards or adjacent H1 poles"],
+            ["Loadbreak Switches", "Deadend above or adjacent H1 poles"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Existing Tie Point Hardening",
+          "question": "How to harden existing tie point without switch?",
+          "options": [
+            {"text": "Ignore", "is_correct": false, "explanation": "Must strengthen."},
+            {"text": "Deadend both directions + H1 pole", "is_correct": true, "explanation": "Recommended for resilience."},
+            {"text": "Add guys only", "is_correct": false, "explanation": "Insufficient; deadend required."}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Section 13 – Grounding Overview",
+      "learning_objective": "Understand the fundamental principles, requirements, and practices for grounding overhead distribution systems to ensure safety, compliance with NESC, and effective fault protection.",
+      "voiceover_summary": "Grounding is essential for safety, lightning protection, and fault clearing in overhead distribution. This overview covers what to ground, how to ground, bonding practices, and arrester applications per National Grid standards and NESC.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": [
+        "All neutrals of effectively grounded primary circuits and equipment frames must be grounded.",
+        "Use driven ground rods (8 ft min) connected to common neutral; resistance ≤25 ohms where possible.",
+        "Bond all grounded parts to system neutral; isolate non-effectively grounded systems.",
+        "Surge arresters protect equipment; install per application tables for reliability.",
+        "Comply with NESC for clearances and grounding in all installations."
+      ],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Grounding ensures safety by providing low-impedance paths for fault currents and lightning surges, complying with NESC requirements. National Grid standards mandate grounding for neutrals, equipment frames, and surge arresters on distribution poles."
+        },
+        {
+          "type": "alert",
+          "alert_type": "safety",
+          "title": "Grounding Safety",
+          "content": "Treat all lines as energized until proven de-energized and grounded. Ground resistance must not exceed 25 ohms for non-effectively grounded systems; use multiple rods if needed."
+        },
+        {
+          "type": "table",
+          "title": "Grounding Requirements by System Type",
+          "headers": ["System Type", "Grounding Method", "Key Components"],
+          "rows": [
+            ["Effectively Grounded (Multi-Grounded Wye)", "Driven rod + bond to neutral", ["#4 Cu wire (W11F)", "Compression connectors (S14)", "Every pole with equipment"]],
+            ["Not Effectively Grounded (Delta/Uni-Grounded)", "Separate rods ≥20 ft apart", ["Primary neutral isolated", "Secondary neutral grounded separately"]],
+            ["Surge Arresters", "Direct to driven rod + bond", ["Flexible lead (L6)", "Bond to neutral on wye systems"]]
+          ]
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "NESC Compliance",
+          "content": "All grounding must meet NESC Rule 97: ≥4 grounds/mile on neutrals; bonds limit potentials between systems."
+        },
+        {
+          "type": "text",
+          "content": "Lightning protection uses arresters at transitions, equipment, and ends of line. Bond guys to neutral on wye systems; use fiberglass insulators on delta."
+        },
+        {
+          "type": "quiz",
+          "title": "Grounding Fundamentals",
+          "question": "What is required for grounding on effectively grounded wye systems?",
+          "options": [
+            { "text": "Bond neutral to driven rod every pole", "is_correct": true, "explanation": "Connects to common neutral via #4 Cu wire for low impedance path." },
+            { "text": "Isolate neutral from equipment", "is_correct": false, "explanation": "Isolation is for non-effectively grounded systems." },
+            { "text": "No grounding needed if arresters present", "is_correct": false, "explanation": "Arresters supplement but do not replace grounding." }
+          ]
+        }
+      ]
+    }
+  ]
+}

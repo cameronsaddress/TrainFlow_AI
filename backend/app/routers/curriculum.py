@@ -443,7 +443,7 @@ async def repair_curriculum_endpoint(plan_id: int, payload: RepairRequest, db: S
     return StreamingResponse(event_generator(), media_type="application/x-ndjson")
 
 @router.get("/stream/{filename}")
-async def stream_video(
+def stream_video(
     filename: str, 
     range: str = Header(None),
     start: float = None,
@@ -514,7 +514,8 @@ async def stream_video(
         return FileResponse(
             temp_path, 
             media_type="video/mp4", 
-            filename=f"clip_{start}_{end}.mp4",
+            # filename=f"clip_{start}_{end}.mp4", # REMOVED to prevent "attachment"
+            headers={"Content-Disposition": "inline"},
             background=background_task
         )
 
@@ -562,7 +563,7 @@ async def stream_video(
     return StreamingResponse(iterfile(), status_code=206, headers=headers)
 
 @router.get("/stream")
-async def stream_video(
+def stream_video(
     filename: str, 
     range: str = Header(None),
     start: float = None,
@@ -697,7 +698,8 @@ async def stream_video(
         return FileResponse(
             temp_path, 
             media_type="video/mp4", 
-            filename=f"clip_{start}_{end}.mp4",
+            # filename=f"clip_{start}_{end}.mp4",
+            headers={"Content-Disposition": "inline"},
             background=background_task
         )
 

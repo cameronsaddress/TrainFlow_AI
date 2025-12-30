@@ -127,13 +127,26 @@ async def delete_document(doc_id: int, db: Session = Depends(get_db)):
     }
 
 
-def _find_page_for_anchor(reader, anchor_text: str) -> int:
+# --- IN-MEMORY CACHE FOR PDF PAGE LOOKUPS ---
+# Key: f"{doc_id}_{anchor_hash}" -> Value: page_number (int)
+ANCHOR_PAGE_CACHE = {}
+
+def _find_page_for_anchor(reader, anchor_text: str, doc_id: int = 0) -> int:
     """
     Helper to search for anchor text in a PDF reader object using fuzzy logic.
     Returns: 1-based physical page number, or -1 if not found.
     """
     if not anchor_text or len(anchor_text) < 3:
         return -1
+
+    # 1. CHECK CACHE
+    import hashlib
+    anchor_hash = hashlib.md5(anchor_text.encode('utf-8')).hexdigest()
+    cache_key = f"{doc_id}_{anchor_hash}"
+    
+    if cache_key in ANCHOR_PAGE_CACHE:
+        print(f"DEBUG: Cache Hit for '{anchor_text}' -> Page {ANCHOR_PAGE_CACHE[cache_key]}")
+        return ANCHOR_PAGE_CACHE[cache_key]
         
     print(f"Runtime Search: Scanning for '{anchor_text}'...")
     
@@ -145,8 +158,24 @@ def _find_page_for_anchor(reader, anchor_text: str) -> int:
     if not anchor_tokens:
         return -1
     anchor_norm = " ".join(anchor_tokens)
+    
+    # Secondary simplified search (remove stopwords)
+    exclude_words = {"and", "or", "the", "a", "an", "of", "in", "to", "for"}
+    anchor_simple = " ".join([t for t in anchor_tokens if t not in exclude_words])
 
-    for i, page in enumerate(reader.pages):
+    # HEURISTIC: "Sufffix Match"
+    # Titles often have "Introduction to..." prepended. 
+    # Valid match if we find just the last 6 significant words.
+    significant_tokens = [t for t in anchor_tokens if len(t) > 3 and t not in exclude_words]
+    suffix_target = " ".join(significant_tokens[-6:]) if len(significant_tokens) > 2 else ""
+
+    # LIMIT SCAN to first 120 pages (Performance Guard)
+    scan_limit = min(len(reader.pages), 120)
+
+    found_page = -1
+
+    for i in range(scan_limit):
+        page = reader.pages[i]
         text = page.extract_text()
         if not text: 
             continue
@@ -155,36 +184,64 @@ def _find_page_for_anchor(reader, anchor_text: str) -> int:
         
         # Heuristic 1: Skip obvious TOC pages
         if "table of contents" in text_lower[:500]:
-            print(f"Skipping Page {i+1} (Detected TOC Header)")
             continue
         
         # Fuzzy Search Logic
         text_tokens = tokens(text_lower)
         text_norm = " ".join(text_tokens)
         
+        match_found = False
+        
+        # 1. Exact Phrase Match
         if anchor_norm in text_norm:
-             # Check TOC heuristic
-            # Let's check for TOC filtering on the *line* level again but fuzzier.
-            match_found = False
+            print(f"Exact Match Found on Page {i+1}")
+            match_found = True
             
-            for line in text_lower.split('\n'):
-                line_tokens = tokens(line)
-                line_norm = " ".join(line_tokens)
-                
-                if anchor_norm in line_norm:
-                    # It's a match. Check if it's a TOC line.
-                    clean = line.strip()
-                    # TOC check: ends with digit or "thru"
-                    if clean and (clean[-1].isdigit() or clean.endswith("thru") or "..." in clean):
-                        print(f"Skipping Page {i+1} (Detected TOC Line match: '{clean}')")
-                        match_found = False # Reset
-                        break
-                    
-                    match_found = True
-                    break
-            
-            if match_found:
-                return i + 1
+        # 2. Relaxed Match (if exact failed)
+        elif len(anchor_simple) > 5:
+             text_simple = " ".join([t for t in text_tokens if t not in exclude_words])
+             if anchor_simple in text_simple:
+                 print(f"Relaxed Search Match (No Stopwords): '{anchor_simple}' found on p{i+1}")
+                 match_found = True
+
+        # 3. Suffix Heuristic (New)
+        elif suffix_target and len(suffix_target) > 10:
+             text_simple = " ".join([t for t in text_tokens if t not in exclude_words])
+             if suffix_target in text_simple:
+                  print(f"Suffix Search Match ('{suffix_target}') found on p{i+1}")
+                  match_found = True
+        
+        # 4. Aggressive Substring Match (Last Resort)
+        if not match_found and len(anchor_text) > 10:
+             collapsed_anchor = anchor_norm.replace(" ", "")
+             collapsed_text = text_norm.replace(" ", "")
+             if collapsed_anchor in collapsed_text:
+                  print(f"Aggressive Collapsed Match Found on Page {i+1}")
+                  match_found = True
+
+        if match_found:
+             # Check TOC heuristic (Line Level)
+             valid_context = True
+             for line in text_lower.split('\n'):
+                 line_clean = " ".join(tokens(line))
+                 if anchor_tokens[0] in line_clean: 
+                     clean = line.strip()
+                     # TOC check: ends with digit or "thru" or "....."
+                     if clean and (clean[-1].isdigit() or clean.endswith("thru") or "..." in clean):
+                         # Strict check: is this line actually the match?
+                         if anchor_simple in " ".join([t for t in tokens(line) if t not in exclude_words]):
+                             print(f"Skipping Page {i+1} (Detected TOC Line match: '{clean}')")
+                             valid_context = False 
+                             break
+             
+             if valid_context:
+                 found_page = i + 1
+                 break
+
+    if found_page != -1:
+        # Update Cache
+        ANCHOR_PAGE_CACHE[cache_key] = found_page
+        return found_page
 
     return -1
 
@@ -208,7 +265,7 @@ async def locate_document_page(
     try:
         from pypdf import PdfReader
         reader = PdfReader(doc.file_path)
-        found_page = _find_page_for_anchor(reader, anchor_text)
+        found_page = _find_page_for_anchor(reader, anchor_text, doc_id)
         
         if found_page != -1:
             return {"found": True, "page": found_page}
@@ -236,56 +293,74 @@ async def stream_document_page(
         raise HTTPException(404, "Document file not found")
 
     try:
+        from pydantic import BaseModel
         from pypdf import PdfReader, PdfWriter
         from io import BytesIO
         from fastapi.responses import StreamingResponse
+        from fastapi.concurrency import run_in_threadpool
 
-        reader = PdfReader(doc.file_path)
-        total_pages = len(reader.pages)
-        
-        # --- Runtime Search Override ---
-        if anchor_text and len(anchor_text) > 3:
-            found_page = _find_page_for_anchor(reader, anchor_text)
+        # Offload heavy PDF processing to threadpool
+        def process_pdf_sync():
+            reader = PdfReader(doc.file_path)
+            total_pages = len(reader.pages)
             
-            if found_page != -1:
-                # Override page_num with the FOUND physical page (1-based)
-                page_num = found_page
-                print(f"Runtime Search Success: Found on Physical Page {page_num}")
-            else:
-                print(f"Runtime Search Failed: '{anchor_text}' not found. Fallback to Page {page_num}")
-        
-        if page_num < 1 or page_num > total_pages:
-             # Fallback to page 1 if out of bounds
-             page_num = 1
-             
-        writer = PdfWriter()
-        
-        # 0-indexed adjustment
-        target_idx = page_num - 1
-        
-        # Context Buffer: Starts at target, +10 pages forward
-        start_idx = target_idx
-        end_idx = min(total_pages, target_idx + 10) # slice is exclusive at end
-        
-        # Add pages in range
-        for i in range(start_idx, end_idx):
-            writer.add_page(reader.pages[i])
-        
-        output_stream = BytesIO()
-        writer.write(output_stream)
-        output_stream.seek(0)
+            # --- Runtime Search Override ---
+            target_page = page_num
+            if anchor_text and len(anchor_text) > 3:
+                # Pass doc.id for caching
+                found_page = _find_page_for_anchor(reader, anchor_text, doc.id)
+                if found_page != -1:
+                    target_page = found_page
+                    print(f"Runtime Search Success: Found on Physical Page {target_page}")
+                else:
+                    print(f"Runtime Search Failed: '{anchor_text}' not found. Fallback to Page {target_page}")
+            
+            if target_page < 1: target_page = 1
+            if target_page > total_pages: target_page = 1
+                 
+            writer = PdfWriter()
+            
+            # 0-indexed adjustment
+            target_idx = target_page - 1
+            
+            # Context Buffer: Starts at target, +10 pages forward
+            start_idx = target_idx
+            end_idx = min(total_pages, target_idx + 10) # slice is exclusive at end
+            
+            # Add pages in range
+            for i in range(start_idx, end_idx):
+                writer.add_page(reader.pages[i])
+            
+            output_stream = BytesIO()
+            writer.write(output_stream)
+            output_stream.seek(0)
+            
+            # Sanitize filename for headers
+            safe_filename = doc.filename.replace(" ", "_").replace('"', '')
+            
+            return output_stream, safe_filename, target_page
+
+        # Execute in threadpool
+        output_stream, safe_filename, final_page_num = await run_in_threadpool(process_pdf_sync)
         
         return StreamingResponse(
             output_stream, 
             media_type="application/pdf",
-            headers={"Content-Disposition": f"inline; filename={doc.filename}_p{page_num}.pdf"}
+            headers={"Content-Disposition": f'inline; filename="{safe_filename}_p{final_page_num}.pdf"'}
         )
         
     except Exception as e:
         print(f"Smart Stream Error: {e}")
         # Fallback to full file if slicing fails
         from fastapi.responses import FileResponse
-        return FileResponse(doc.file_path, filename=doc.filename, media_type="application/pdf", content_disposition_type="inline")
+        # Sanitize filename for fallback too
+        safe_filename = doc.filename.replace(" ", "_").replace('"', '')
+        return FileResponse(
+            doc.file_path, 
+            filename=safe_filename, 
+            media_type="application/pdf", 
+            content_disposition_type="inline"
+        )
 
 @router.get("/documents/{doc_id}/download")
 async def download_document(doc_id: int, db: Session = Depends(get_db)):

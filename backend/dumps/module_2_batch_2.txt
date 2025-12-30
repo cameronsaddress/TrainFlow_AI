@@ -1,0 +1,119 @@
+{
+  "lessons": [
+    {
+      "target_lesson_title": "Pole Attachments and Restrictions",
+      "learning_objective": "Understand the rules and restrictions for attaching equipment to poles, ensuring compliance with ownership agreements and safety standards.",
+      "voiceover_summary": "Pole attachments require prior approval from pole owners. No unauthorized attachments are permitted on Company poles, and permanent steps are prohibited on wood distribution poles.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Obtain approval before attaching to foreign poles.", "No attachments to Company poles without written agreement.", "Permanent pole steps not allowed on wood distribution poles; allowed above 8 feet on alternative poles."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "No Company attachments to poles owned by others (foreign poles) shall be made until proper approval has been obtained from the pole’s owner(s). Likewise, no attachments, temporary or permanent, to Company owned poles by any entity, including persons, companies, or government entities, other than those specifically approved in a written agreement with the entity, shall be made to Company poles without prior approval. In addition, permanent pole steps shall not be utilized on wood distribution poles. Pole steps on alternate material poles may be left in place above 8’."
+        },
+        {
+          "type": "alert",
+          "alert_type": "compliance",
+          "title": "Approval Required",
+          "content": "All pole attachments must have prior written approval to comply with ownership agreements and prevent unauthorized use."
+        },
+        {
+          "type": "quiz",
+          "title": "Pole Attachment Rule",
+          "question": "What is required before making attachments to Company owned poles?",
+          "options": [
+            { "text": "Written agreement with the entity", "is_correct": true, "explanation": "Prior written approval is mandatory for any attachments to Company poles." },
+            { "text": "Verbal permission from a supervisor", "is_correct": false, "explanation": "Written agreement is required, not verbal." },
+            { "text": "No approval needed for temporary attachments", "is_correct": false, "explanation": "All attachments, temporary or permanent, require prior approval." }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Alternative Poles",
+      "learning_objective": "Identify types of alternative poles, their applications, attachments, and installation requirements for challenging environments.",
+      "voiceover_summary": "Alternative poles like fiberglass and metal offer solutions for difficult locations. Fiberglass for wetlands, metal for high loads. Use specific hardware and follow un-guyed guidelines.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Fiberglass poles for hard-to-reach areas like wetlands.", "Metal poles for heavy loads where guying is impractical.", "Use through bolts and square washers for structural attachments.", "Unguyed fiberglass poles available in specific sizes for no-guy areas."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Alternative poles including fiberglass and metal per appropriate material specifications can be purchased and installed resulting in a cost-effective installation. Lightweight easy to handle fiberglass poles can be selected for difficult locations including rights-of-ways, wetlands, and backyards. Unique environmental conditions including woodpecker attack may also warrant a fiberglass pole installation. Metal poles can be selected for installation locations when increase pole strength requirements are necessary due to heavy equipment loading, environmental loading, or where guying cannot be accomplished."
+        },
+        {
+          "type": "text",
+          "content": "Most standard, non-cleated line hardware can be used on alternative poles with conventional fasteners and installation practices. Structural attachments must be made with through bolts and square washers which enhances the load-bearing capacity interface. Fiberglass crossarms and fiberglass armless brackets shall be used. Fiberglass crossarms include centermounts for attaching and down grounds shall be installed using nylon clips with self tapping screws."
+        },
+        {
+          "type": "alert",
+          "alert_type": "tip",
+          "title": "Unguyed Poles",
+          "content": "For no-guy installations, use unguyed fiberglass poles: 45/H4, 50/H5, 55/H6."
+        },
+        {
+          "type": "table",
+          "title": "Unguyed Fiberglass Poles",
+          "headers": ["Size/Class", "Std ID"],
+          "rows": [
+            ["45/H4", "P77DH4"],
+            ["50/H5", "P77DH5"],
+            ["55/H6", "P77DH6"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "title": "Alternative Pole Use",
+          "question": "What is a key advantage of fiberglass poles?",
+          "options": [
+            { "text": "Lightweight for difficult access", "is_correct": true, "explanation": "Ideal for wetlands, backyards, and woodpecker-prone areas." },
+            { "text": "Higher strength than wood", "is_correct": false, "explanation": "Metal poles are for high strength; fiberglass for access." },
+            { "text": "No hardware needed", "is_correct": false, "explanation": "Specific hardware like through bolts required." }
+          ]
+        }
+      ]
+    },
+    {
+      "target_lesson_title": "Pole Line Hardware",
+      "learning_objective": "Learn selection, strength requirements, and installation of crossarms, braces, insulators, and extensions for pole lines.",
+      "voiceover_summary": "Pole line hardware includes crossarms for Grade B/C, vertical/longitudinal strength checks, braces, HDPE insulators for covered conductors, and pole top extensions limited to 1600 lbs transverse.",
+      "estimated_reading_time_minutes": 5,
+      "key_takeaways": ["Double crossarms for Grade B crossings/deadends.", "Check vertical strength with formula including worker weight.", "HDPE pin insulators for covered conductors.", "Pole top extensions not for deadends; max 1600 lbs transverse."],
+      "content_blocks": [
+        {
+          "type": "text",
+          "content": "Overhead distribution crossarms shall be solid wood or fiberglass. For installations above 2000 lbs. tension, check conductor tension under NESC heavy loading. Double crossarms required for Grade B at crossings/deadends/angles >20°."
+        },
+        {
+          "type": "alert",
+          "alert_type": "warning",
+          "title": "Crossarm Strength",
+          "content": "Ensure sum of vertical loads × NESC factors does not exceed permitted moment."
+        },
+        {
+          "type": "table",
+          "title": "NESC Overload Factors (Table 1 excerpt)",
+          "headers": ["Load Type", "Grade B Crossings", "Grade C Elsewhere"],
+          "rows": [
+            ["Vertical Loads", "1.50", "1.90"],
+            ["Transverse Wind", "2.50", "1.75"],
+            ["Longitudinal Deadends", "1.65", "1.30"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Use HDPE pin insulators with covered conductors. TPR tie wire for HDPE. Pole top extensions on sound wood poles only, squared off, limited to 1600 lbs transverse."
+        },
+        {
+          "type": "quiz",
+          "title": "Crossarm Requirement",
+          "question": "When are double crossarms required?",
+          "options": [
+            { "text": "Grade B crossings and angles >20°", "is_correct": true, "explanation": "NESC requires for safety at crossings/deadends." },
+            { "text": "All tangent poles", "is_correct": false, "explanation": "Single for tangents." },
+            { "text": "Only for wood poles", "is_correct": false, "explanation": "Applies to fiberglass equivalent too." }
+          ]
+        }
+      ]
+    }
+  ]
+}
