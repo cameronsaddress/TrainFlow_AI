@@ -16,7 +16,7 @@ services:
       - OIDC_AUDIENCE=trainflow-api
       # OpenRouter Config (Shared)
       - LLM_API_BASE=https://openrouter.ai/api/v1
-      - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
+      - OPENAI_API_KEY=${OPENROUTER_API_KEY}
       - LLM_MODEL=x-ai/grok-4.1-fast
     depends_on:
       - db
@@ -47,7 +47,7 @@ services:
       - PYTHONUNBUFFERED=1
       # OpenRouter Config (Llama 3.3 70B)
       - LLM_API_BASE=https://openrouter.ai/api/v1
-      - OPENAI_API_KEY=OPENROUTER_API_KEY_REDACTED
+      - OPENAI_API_KEY=${OPENROUTER_API_KEY}
       - LLM_MODEL=x-ai/grok-4.1-fast
     depends_on:
       - db
