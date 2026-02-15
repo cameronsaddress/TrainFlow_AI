@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 
 // Force Rebuild Identifier: 001
 
-// Temporary Hardcoded Credentials
-const API_KEY = "OPENROUTER_API_KEY_REDACTED";
+// API Key from environment variable
+const API_KEY = process.env.OPENROUTER_API_KEY || "";
 const BASE_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL = "x-ai/grok-4.1-fast"; // STRICT RULE: Always use this model for fast inference.
 // Update: logs said "x-ai/grok-4.1-fast" in docker-compose, but earlier I saw "x-ai/grok-2-vision-1212"? 
